@@ -166,7 +166,7 @@ input#search-bar{
     0 -1.2em #000, 
     0 0 #1095c1;
 }
-.nav-email{
+.nav-clientes{
     text-align: center;
     width: 100%;
     height: 18em;
@@ -199,62 +199,6 @@ input#search-bar-email{
      }    
    }
  }
- .nav-email button{
-    position: relative;
-    left: 5.6%;
-    width: 10%;
-    height: 47px;
-    text-align: center;
-    border: none;
-    background-color: black;
-    color: white;
-    transition: 0.3s;
- }
- .nav-email button:hover{
-    box-shadow: black (0,0,0,5);
-    font-size: 18px;
- }
- .nav-email hr{
-    width: 50%;
- }
- .nav-email img{
-    width: 90px;
-    height: 90px;
- }
-.nav-rodape{
-    width: 100%;
-    height: 20em;
-    background-color: rgb(243, 240, 240);
-    box-shadow: black (0,0,0,2);
-    display: flex;
-    gap: 3em;
-}
 
-.nav-social{
-    margin-left: 1%;
-    width: 30%;
-    height: 100%;
-}
-.nav-social a{
-    text-decoration: none;
-    font-size: 1.5em;
-    transition: 0.3s;
-}
-.nav-rodape a:hover{
-    opacity: 30%;
-}
-.nav-social b {
-    font-size: 1.6em;
-}
-.nav-social hr{
-    width: 50%;
-}
-.nav-rodape img{
-    width: 3em;
-    height: 3em;
-    transition: 0.3s;
-}
-.nav-rodape img:hover{
-    opacity: 30%;
-}
+
 
