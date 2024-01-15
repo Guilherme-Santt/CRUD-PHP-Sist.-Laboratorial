@@ -1,4 +1,6 @@
 <?php   
+    include('conexao.php');
+
     function limpar_texto($str){ 
         return preg_replace("/[^0-9]/", "", $str); 
       }
@@ -38,7 +40,6 @@
         if($error){
 
         }else{
-            include('conexao.php');
             $sql_codeverify = "SELECT * FROM clientes WHERE email = '$email'";
             $query_c = $mysqli->query($sql_codeverify);
             $usuario = $query_c->fetch_assoc();
