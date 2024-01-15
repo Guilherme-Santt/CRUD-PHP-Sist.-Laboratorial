@@ -79,8 +79,8 @@
                 <td><?php echo $nascimento ?>   </td>
                 <td><?php echo $data_cadastro;?>    </td>
                 <td>
-                <a class="edit" href="editar_cliente.php?id=<?php echo $cliente['id']?>">Editar</a>
-                <a class="error" href="deletar_cliente.php?id=<?php echo $cliente['id']?>">Deletar</a>
+                <a class="edit" href="editar_usuario.php?id=<?php echo $cliente['id']?>">Editar</a>
+                <a class="error" href="deletar_usuario.php?id=<?php echo $cliente['id']?>">Deletar</a>
                 </td>
             </tr>             
         <?php
