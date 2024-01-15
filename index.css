@@ -1,6 +1,35 @@
-*{
-    
+.center{
+    width: 100%;
+    height: 500px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+    justify-content: center;
+    align-items: center;
 }
+.div-nav{
+    width: 25%;
+    height: 450px;
+    border-radius: 40px;
+    border: none;
+    text-align: center;
+}
+.div-nav a{
+    text-decoration: none;
+    text-align: none;
+}
+.img-nav{
+    background-color: red;
+    width: 300px;
+    height: 310px;
+    background-position: center;
+    background-size: cover;
+    border-radius: 40px;
+    border: none;
+    text-align: center;
+    color: white;
+}
+
 .h-g{
     position: fixed;
     background-color: rgb(253, 253, 253);
@@ -165,13 +194,7 @@ input#search-bar{
   text-shadow: 
     0 -1.2em #000, 
     0 0 #1095c1;
-}
-.nav-clientes{
-    text-align: center;
-    width: 100%;
-    height: 18em;
-    background-color: rgb(226, 224, 224);
-}
+/* }
 input#search-bar-email{
     margin: 0 auto;
     width: 35%;
@@ -198,7 +221,5 @@ input#search-bar-email{
   	    opacity: 0;
      }    
    }
- }
-
-
+ } */
 

@@ -66,10 +66,24 @@
     <div class="nav-g">
         <a href="http://127.0.0.1/projetoCadastro/cadastrar_cliente.php">Cadastrar cliente</a>
     </div>
+ 
+    <div class="center">
 
-    <div class="nav-clientes">
-        <a href="usuarios.php">Usuários cadastrados</a>
-    </div>    
+    <div class="div-nav">
+        <h1>Usuários</h1>
+        <a href="usuarios.php"><img class="img-nav"src="imagens/modelo1.jpg">
+    </div>
+
+    <div class="div-nav">
+        <h1>Listagem de pacientes</h1>
+        <a href="pacientes.php"><img class="img-nav"src="imagens/modelo2.jpg">
+    </div>
+    
+    <div class="div-nav">
+        <h1>Listagem de pacientes</h1>
+        <a href="cadastro_paciente.php"><img class="img-nav"src="imagens/modelo3.jpg">
+    </div>
+
     <script src="index.js"></script>
 </body>
 </html>

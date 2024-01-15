@@ -111,7 +111,7 @@ include('conexao.php');
     } */
 </style>
 <body>
-    <a href="http://127.0.0.1/projetoCadastro/cliente.php">Voltar para a lista</a>
+    <a href="cadastro.php">Voltar para a lista</a>
     <form action="" method="POST">
         <p>
             <label>Nome:</label>
