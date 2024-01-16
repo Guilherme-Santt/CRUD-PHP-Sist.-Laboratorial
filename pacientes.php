@@ -1,8 +1,10 @@
 <?php 
-
+include('conexao.php');
+$sqlcode = "SELECT * FROM pacientes";
+$query_sql = $mysqli->query($sqlcode);
+$pacientes = $query_sql->fetch_assoc();
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,15 +12,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>                
-    <h1>Usuários cadastrados</h1>
-    <p>Esses são os usuários cadastrados no seu sistema</p>
+<body>         
+    <a href="index.php">Retornar pagina inicial</a>       
+    <h1>Listagem de pacientes</h1>
+    <p>Esses são os pacientes cadastrados no seu sistema</p>
     <table border="1" cellpadding="10">
         <thead>
             <th>ID</th>
             <th>Nome</th>
+            <th>Endereço</th>
+            <th>Sexo</th>
             <th>E-mail</th>
+            <th>Exames</th>
             <th>Telefone</th>
+            <th>Nascimento</th>
             <th>Data de cadastro</th>
             <th>Ações</th>
         </thead>
@@ -32,31 +39,34 @@
                 if($num_pacientes == 0) { 
             ?> 
             <tr>
-                <td colspan="7">Nenhum usuário foi encontrado!</td>
+                <td colspan="7">Nenhum paciente foi encontrado!</td>
             </tr>
             <?php }
                 else{ 
                     while($pacientes = $query_pacientes->fetch_assoc()){
                         $telefone ="Não informado!";
                         if(!empty($paciente['telefone'])){
-                            $telefone = formatar_telefone($cliente['telefone']);   
+                            $telefone = formatar_telefone($pacientes['telefone']);   
                         }
                             $nascimento = "Nascimento não informada!";
                         if(!empty($paciente['nascimento'])){
-                             $nascimento = formatar_data($cliente['nascimento']);
+                             $nascimento = formatar_data($pacientes['nascimento']);
                             }
-                            $data_cadastro = date("d/m/y H:i:s", strtotime($cliente['data']));
+                            $data_cadastro = date("d/m/y H:i:s", strtotime($pacientes['data']));
             ?>     
             <tr>
-                <td><?php echo $cliente['id']?>     </td>
-                <td><?php echo $cliente['nome']?>   </td>
-                <td><?php echo $cliente['email']?>  </td>
+                <td><?php echo $pacientes['ID']?>     </td>
+                <td><?php echo $pacientes['nome']?>   </td>
+                <td><?php echo $pacientes['endereco']?>   </td>
+                <td><?php echo $pacientes['sexo']?>   </td>
+                <td><?php echo $pacientes['email']?>  </td>
+                <td><?php echo $pacientes['id_exames']?>   </td>
                 <td><?php echo $telefone; ?>  </td>
                 <td><?php echo $nascimento ?>   </td>
                 <td><?php echo $data_cadastro;?>    </td>
                 <td>
-                <a class="edit" href="editar_usuario.php?id=<?php echo $cliente['id']?>">Editar</a>
-                <a class="error" href="deletar_usuario.php?id=<?php echo $cliente['id']?>">Deletar</a>
+                <a class="edit" href="editar_usuario.php?id=<?php echo $pacientes['ID']?>">Editar</a>
+                <a class="error" href="deletar_usuario.php?id=<?php echo $pacientes['ID']?>">Deletar</a>
                 </td>
             </tr>             
             <?php
