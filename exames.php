@@ -72,6 +72,7 @@
                     <th>Nome exame</th>
                     <th>Código exame</th>
                     <th>Descrição exame</th>
+                    <th>Deletar exame</th>
                 </thead>
                 <tbody> 
                 <?php 
@@ -92,8 +93,9 @@
                     <tr>
                         <td><?php echo $exames['exameid']?>     </td>
                         <td><?php echo $exames['codigo']?>   </td>
-                        <td><?php echo $exames['descricao']?>  </td>
-
+                        <td><?php echo $exames['descricao']?>  </td>   
+                        <td><a href="deletar_exame.php?id=<?php echo $exames['exameid'] ?>">Deletar exame</a></td>
+ 
                     </tr>             
                 <?php
                     }
