@@ -71,7 +71,7 @@
             $query_c = $mysqli->query($sql_codeverify);
             $usuario = $query_c->fetch_assoc();
 
-                if($verify){
+                if($usuario){
                     $error = "usuário já cadastrado!";
                 }
             // INSERÇÃO DAS INFORMAÇÕES NO BANCO, CASO NÃO EXISTIR
@@ -97,35 +97,9 @@
 <link rel="stylesheet" href="usuarios.css">
 <link rel="stylesheet" href="normalize.css">
 <body> 
-        <!-- Header  *NAV* - Mensagem central superior -->
-    <header class="h-g">
-        <form class="h-f">
-            <p class="white">Olá, <b><?php echo $cliente['nome']?></b></p>
-        </form>
-        <!-- *HEADER* Menu & Logo central  -->
-        <img onclick="lmenu()" class="h-img" src="imagens/hamburger.png">
-        <div id="lh" class="h-menu"><br>
-            <a onclick="fmenu()">X</a>
-            <Ul>
-                <a href="index.php"><li>Páginal ínicial</li></a>
-                <a href="usuarios.php"><li>Usuários</li></a>
-                <a href="pacientes.php"><li>Listagem de pacientes</li></a>
-                <a href="cadastro_pacientes.php"><li>Cadastro de pacientes</li></a>
-                <a href="cadastro_exames.php"><li>Cadastro de exames</li></a>
-                <a href="logout.php"><li>Encerrar sessão</li></a>
-            </Ul>
-            <div class="icons">
-                <img src="imagens/instagram.png">
-                <img src="imagens/facebook.png">
-                <img src="imagens/tiktok.png">
-                <img src="imagens/youtube.png">
-                <img src="imagens/whatsapp.png">
-            </div>
-        </div>
-        <p class="white">Unidade: <b><?php echo $cliente['unidade']?></b></p>
-    </header> 
     <div class="full">
         <div class="From_Cadastrados">
+            <a href="index.php">Pagina inicial</a>
             <h1>Usuários cadastrados</h1>
             <p>Esses são os usuários cadastrados no seu sistema</p>
             <table border="1" cellpadding="10">
@@ -134,7 +108,8 @@
                     <th>Nome</th>
                     <th>E-mail</th>
                     <th>Telefone</th>
-                    <th>Data de cadastro</th>
+                    <th>Data de nascimento</th>
+                    <th>Data de cadastro</th>   
                     <th>Ações</th>
                 </thead>
                 <tbody> 

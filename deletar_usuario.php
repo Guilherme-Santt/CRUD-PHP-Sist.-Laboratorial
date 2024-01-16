@@ -23,7 +23,7 @@
 <body>
     <form action="" method="POST">
         <h1>Tem certeza que deseja deletar este cliente?</h1>
-        <a href="cliente.php">Não!</a>
+        <a href="index.php">Não!</a>
         <Button name="confirmar" type="submit">Sim!</Button>
     </form>
 </body>

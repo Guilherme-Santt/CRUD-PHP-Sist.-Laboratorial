@@ -90,34 +90,9 @@
 <link rel="stylesheet" href="index.css">
 <link rel="stylesheet" href="normalize.css">
 <body> 
-    <header class="h-g">
-        <form class="h-f">
-            <p class="white">Olá, <b><?php echo $cliente['nome']?></b></p>
-        </form>
-        <!-- *HEADER* Menu & Logo central  -->
-        <img onclick="lmenu()" class="h-img" src="imagens/hamburger.png">
-        <div id="lh" class="h-menu"><br>
-            <a onclick="fmenu()">X</a>
-            <Ul>
-                <a href="index.php"><li>Páginal ínicial</li></a>
-                <a href="usuarios.php"><li>Usuários</li></a>
-                <a href="pacientes.php"><li>Listagem de pacientes</li></a>
-                <a href="cadastro_pacientes.php"><li>Cadastro de pacientes</li></a>
-                <a href="cadastro_exames.php"><li>Cadastro de exames</li></a>
-                <a href="logout.php"><li>Encerrar sessão</li></a>
-            </Ul>
-            <div class="icons">
-                <img src="imagens/instagram.png">
-                <img src="imagens/facebook.png">
-                <img src="imagens/tiktok.png">
-                <img src="imagens/youtube.png">
-                <img src="imagens/whatsapp.png">
-            </div>
-        </div>
-        <p class="white">Unidade: <b><?php echo $cliente['unidade']?></b></p>
-    </header> 
-
     <div class="full">
+        <a href="index.php">Retornar a pagina inicial</a>
+        <a href="pacientes.php">Listagem de pacientes</a>
         <h1>Cadastrar Pacientes</h1>
         <form action="" method="POST">
             <label>Email</label>

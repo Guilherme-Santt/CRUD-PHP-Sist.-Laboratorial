@@ -22,7 +22,8 @@ function formatar_telefone($telefone){
     <title>Document</title>
 </head>
 <body>         
-    <a href="index.php">Retornar pagina inicial</a>       
+    <a href="index.php">Retornar pagina inicial</a> 
+    <a href="cadastro_pacientes.php">Cadastrar Pacientes</a>      
     <h1>Listagem de pacientes</h1>
     <p>Esses são os pacientes cadastrados no seu sistema</p>
     <table border="1" cellpadding="10">
@@ -32,7 +33,6 @@ function formatar_telefone($telefone){
             <th>Endereço</th>
             <th>Sexo</th>
             <th>E-mail</th>
-            <th>Exames</th>
             <th>Telefone</th>
             <th>Nascimento</th>
             <th>Data de cadastro</th>
@@ -69,7 +69,6 @@ function formatar_telefone($telefone){
                 <td><?php echo $pacientes['endereco']?>   </td>
                 <td><?php echo $pacientes['sexo']?>   </td>
                 <td><?php echo $pacientes['email']?>  </td>
-                <td><?php echo $pacientes['id_exames']?>   </td>
                 <td><?php echo $telefone; ?>  </td>
                 <td><?php echo $nascimento ?>   </td>
                 <td><?php echo $data_cadastro;?>    </td>

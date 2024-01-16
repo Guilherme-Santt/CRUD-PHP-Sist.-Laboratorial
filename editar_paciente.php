@@ -6,9 +6,9 @@
             die('Você não está logado!' . '<a href="login.php">Clique aqui para logar</a>');
         }    
 }
-    $id = intval($_GET['id']);
-    include('conexao.php');
-
+$id = intval($_GET['id']);
+include('conexao.php');
+// FUNÇÃO VISUALIZAÇÕES DE CAMPO DATA E SENHA PADRÃO BR
     function formatar_data($data){
         return implode('/', array_reverse(explode('-', $data)));
     };
@@ -19,58 +19,53 @@
         $parte2 = substr ($telefone, 7);
             return "($ddd) $parte1-$parte2";
     }
-    
+
     function limpar_texto($str){ 
         return preg_replace("/[^0-9]/", "", $str); 
     }
+    
 ?>
 
 <?php
-    $error = "";
+    $erro = false;
+    // VERIFICAÇÃO INSERÇÃO CAMPOS POST NO INPUT FORM
     if(count($_POST) > 0){
         $nome = $_POST['nome'];
         $email = $_POST['email'];
         $telefone = $_POST['telefone'];
         $nascimento = $_POST['nascimento'];
+    
         if(empty($nome) || Strlen($nome) < 3 || Strlen($nome) > 100){
-            $error = "Por favor, Prencha o campo nome corretamente. Capacidade mínima 3 dígitos! ";
+            $erro = "Por favor, Prencha o campo nome corretamente. Capacidade mínima 3 dígitos! ";
         }
 
         if(empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)){
-            $error = "Por favor, Prencha o campo e-mail corretamente.";
+            $erro = "Por favor, Prencha o campo e-mail corretamente.";
         }   
 
         if(!empty($nascimento)){
             $pedacos = explode('/', $nascimento);
-
             if(count($pedacos) == 3){
             $nascimento = implode ('-', array_reverse($pedacos)); 
             }
             else{
-                $error = "A data de nascimento deve ser preenchido no padrão dia/mes/ano";
-            }
-        }    
-            
+                $erro = "A data de nascimento deve ser preenchido no padrão dia/mes/ano";
+            }    
+        }   
+
         if(!empty($telefone)){
             $telefone = limpar_texto($telefone);
             if(strlen($telefone) != 11){
-                $error = "O telefone deve ser preenchido no padrão (11) 98888-8888";
+                $erro = "O telefone deve ser preenchido no padrão (11) 98888-8888";
             }
         }
 
-        if($error){
+        if($erro){
             // echo "<p><b>$erro</b></p>";
         }
 
+        // VERIFICAÇÃO SE EXISTE INPUT EMAIL NO BANCO DE DADOS
         else{
-            $verify = "SELECT email FROM clientes WHERE email = '$email' ";
-            $query_verify = $mysqli->query($verify);
-            $query_verify = $query_verify->num_rows;
-
-            if(!$query_verify){
-                $error = "email não cadastrado!";
-            }
-            else{
                 $sql_code = "UPDATE clientes
                 SET nome   = '$nome', 
                 email      = '$email',
@@ -78,15 +73,18 @@
                 nascimento = '$nascimento' WHERE id   = '$id'";
                 $deu_certo = $mysqli->query($sql_code);
                 }
-                    if($deu_certo){
-                        $sucess ="Atualizado com sucesso";
+                    if(isset($deu_certo)){
+                        $error = "Atualizado com Sucesso!";
                         unset($_POST);
+                    }else{
+                        $error = "Falha ao atualizar!";
+
                     }     
         }
-    }
-
+    
+    // VISUALIZAÇÃO INFORMAÇÕES USUÁRIO NO CAMPO EDIÇÃO
     include('conexao.php');
-    $sql_cliente = "SELECT * FROM clientes WHERE id = '$id'";
+    $sql_cliente = "SELECT * FROM pacientes WHERE id = '$id'";
     $query_cliente = $mysqli->query($sql_cliente) or die ($mysqli->error);
     $cliente = $query_cliente->fetch_assoc();
 
@@ -114,9 +112,18 @@
             <input value= "<?php echo $cliente['nome']; ?>" type="text" name="nome">
         </p>
         <p>
+            <label>Endereço:</label>
+            <input value= "<?php echo $cliente['endereco']; ?>" type="text" name="nome">
+        </p>
+        <p>
+            <label>Sexo:</label>
+            <input value= "<?php if($cliente['sexo']) echo $cliente['sexo']; ?>" type="text" name="nome">
+        </p>
+        <p>
             <label>E-mail:</label>
             <input value ="<?php echo $cliente['email']; ?>" type="email" name="email">
         </p>
+
         <p>
             <label>Telefone:</label>
             <input value ="<?php if(!empty($cliente['telefone'])){ echo formatar_telefone($cliente['telefone']);} ?>" placeholder="(11) 98888-8888" type="text" name="telefone">
@@ -128,11 +135,10 @@
         <p>
             <button type="submit">Enviar</button>
         </p>
-        <?php 
-            if(isset($error)){ echo $error;} 
-            if(isset($sucess)){ echo $sucess;}
-        ?>
     </form>
+            <?php 
+            if(isset($error)) echo $error;
+        ?>
 </body>
 </html>
 
