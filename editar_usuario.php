@@ -30,6 +30,7 @@
     if(count($_POST) > 0){
         $nome = $_POST['nome'];
         $email = $_POST['email'];
+        $unidade = $_POST['unidade'];
         $telefone = $_POST['telefone'];
         $nascimento = $_POST['nascimento'];
         if(empty($nome) || Strlen($nome) < 3 || Strlen($nome) > 100){
@@ -77,6 +78,7 @@
                 $sql_code = "UPDATE clientes
                 SET nome   = '$nome', 
                 email      = '$email',
+                unidade    = '$unidade',
                 telefone   = '$telefone',
                 nascimento = '$nascimento' WHERE id   = '$id'";
                 
@@ -120,6 +122,9 @@
         <p>
             <label>E-mail:</label>
             <input value ="<?php echo $cliente['email']; ?>" type="email" name="email">
+        </p>
+        <label>Unidade:</label>
+            <input value ="<?php echo $cliente['unidade']; ?>" type="text" name="unidade">
         </p>
         <p>
             <label>Telefone:</label>

@@ -107,6 +107,7 @@
                 <thead>
                     <th>ID</th>
                     <th>Nome</th>
+                    <th>Unidade</th>
                     <th>E-mail</th>
                     <th>Telefone</th>
                     <th>Data de nascimento</th>
@@ -141,6 +142,7 @@
                     <tr>
                         <td><?php echo $cliente['id']?>     </td>
                         <td><?php echo $cliente['nome']?>   </td>
+                        <td><?php echo $cliente['unidade']?>     </td>
                         <td><?php echo $cliente['email']?>  </td>
                         <td><?php echo $telefone; ?>  </td>
                         <td><?php echo $nascimento ?>   </td>
