@@ -20,6 +20,7 @@
         $endereco = $_POST['endereco'];
         $telefone = $_POST['telefone'];
         $nascimento = $_POST['nascimento'];
+
         if(empty($_POST['email']) || !filter_var($email, FILTER_VALIDATE_EMAIL)){
         $error = "Campo e-mail obrigatório*";
         }

@@ -1,13 +1,14 @@
 <?php
     if(isset($_POST['confirmar'])){ 
+
         include('conexao.php');
         $id = intval($_GET['id']);
-        $sql_code = "DELETE FROM clientes WHERE id = '$id'";
+        $sql_code = "DELETE FROM pacientes WHERE id = '$id'";
         $query_code = $mysqli->query($sql_code) or die($mysqli->error);
         
             if($query_code) {?> 
                 <h1>Cliente removido com sucesso!</h1>
-                <p><a href="usuarios.php">Clique aqui </a>para retornar a lista de clientes</p>
+                <p><a href="pacientes.php">Clique aqui </a>para retornar a lista de clientes</p>
                 <?php
                 die();
             }

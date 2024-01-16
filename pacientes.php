@@ -1,8 +1,17 @@
 <?php 
 include('conexao.php');
-$sqlcode = "SELECT * FROM pacientes";
-$query_sql = $mysqli->query($sqlcode);
-$pacientes = $query_sql->fetch_assoc();
+
+
+function formatar_data($data){
+    return implode('/', array_reverse(explode('-', $data)));
+};
+// FORMATAR TELEFONE PARA VISUALIZAÇÃO COM CARACTERES
+function formatar_telefone($telefone){
+    $ddd = substr ($telefone, 0, 2);
+    $parte1 = substr ($telefone, 2, 5);
+    $parte2 = substr ($telefone, 7);
+    return "($ddd) $parte1-$parte2";
+}
 
 ?>
 <!DOCTYPE html>
@@ -45,11 +54,11 @@ $pacientes = $query_sql->fetch_assoc();
                 else{ 
                     while($pacientes = $query_pacientes->fetch_assoc()){
                         $telefone ="Não informado!";
-                        if(!empty($paciente['telefone'])){
+                        if(!empty($pacientes['telefone'])){
                             $telefone = formatar_telefone($pacientes['telefone']);   
                         }
                             $nascimento = "Nascimento não informada!";
-                        if(!empty($paciente['nascimento'])){
+                        if(!empty($pacientes['nascimento'])){
                              $nascimento = formatar_data($pacientes['nascimento']);
                             }
                             $data_cadastro = date("d/m/y H:i:s", strtotime($pacientes['data']));
@@ -65,8 +74,8 @@ $pacientes = $query_sql->fetch_assoc();
                 <td><?php echo $nascimento ?>   </td>
                 <td><?php echo $data_cadastro;?>    </td>
                 <td>
-                <a class="edit" href="editar_usuario.php?id=<?php echo $pacientes['ID']?>">Editar</a>
-                <a class="error" href="deletar_usuario.php?id=<?php echo $pacientes['ID']?>">Deletar</a>
+                <a class="edit" href="editar_paciente.php?id=<?php echo $pacientes['ID']?>">Editar</a>
+                <a class="error" href="deletar_paciente.php?id=<?php echo $pacientes['ID']?>">Deletar</a>
                 </td>
             </tr>             
             <?php
