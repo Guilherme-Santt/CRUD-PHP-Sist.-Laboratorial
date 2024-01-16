@@ -14,6 +14,11 @@
     function formatar_data($data){
         return implode('/', array_reverse(explode('-', $data)));
     };
+    
+    function limpar_texto($str){ 
+        return preg_replace("/[^0-9]/", "", $str); 
+    }
+    
     // FORMATAR TELEFONE PARA VISUALIZAÇÃO COM CARACTERES
     function formatar_telefone($telefone){
         $ddd = substr ($telefone, 0, 2);
@@ -26,9 +31,7 @@
 ?>
 
 <?php
-    function limpar_texto($str){ 
-        return preg_replace("/[^0-9]/", "", $str); 
-    }
+
     // VERIFICAÇÃO DE INSERÇÃO NOS CAMPOS POST DO FORMULÁRIO
     $error = "";
     if(count($_POST) > 0){
@@ -53,24 +56,23 @@
                 $nascimento = implode ('-', array_reverse($pedacos)); 
             }
             else{
-                $erro = "A data de nascimento deve ser preenchido no padrão dia/mes/ano";
+                $error = "A data de nascimento deve ser preenchido no padrão dia/mes/ano";
             }
         }    
         if(!empty($telefone)){
             $telefone = limpar_texto($telefone);
             if(strlen($telefone) != 11){
-                $erro = "O telefone deve ser preenchido no padrão (11) 98888-8888";
+                $error = "O telefone deve ser preenchido no padrão (11) 98888-8888";
             }
         }
         if($error){
-
+            
         }
         // VERIFICAÇÃO SE O POST EMAIL EXISTE NO BANCO DE DADOS
         else{
             $sql_codeverify = "SELECT * FROM clientes WHERE email = '$email'";
             $query_c = $mysqli->query($sql_codeverify);
             $usuario = $query_c->fetch_assoc();
-
                 if($usuario){
                     $error = "usuário já cadastrado!";
                 }
@@ -83,7 +85,6 @@
                         }
                 }
         }
-
     }   
 ?>
 <!DOCTYPE html>
@@ -178,11 +179,11 @@
 
                 <button type="submit" name="cadastrar">Cadastrar</button>
             </form>
-            <?php 
+        </div>
+        <?php 
                 if(isset($sucess)){echo'<p class="sucess">'. $sucess . '</p>' ;}
                 if($error){echo '<p class="error">'. $error . '</p>' ;}   
             ?>
-        </div>
     </div>    
     <script src="usuarios.js"></script>
     <script src="index.js"></script>

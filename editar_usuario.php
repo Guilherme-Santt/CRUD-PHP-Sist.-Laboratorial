@@ -40,18 +40,21 @@
             $error = "Por favor, Prencha o campo e-mail corretamente.";
         }   
 
-        if(!empty($nascimento)){
-            $pedacos = explode('/', $nascimento);
-
-            if(count($pedacos) == 3){
-            $nascimento = implode ('-', array_reverse($pedacos)); 
-            }
+        if(empty($nascimento) || strlen($nascimento) != 10){
+            $error = "Campo nascimento deve ser preenchido no padrão dia/mês/ano";
+        }
             else{
-                $error = "A data de nascimento deve ser preenchido no padrão dia/mes/ano";
-            }
+                $pedacos = explode('/', $nascimento);
+
+                if(count($pedacos) == 3){
+                $nascimento = implode ('-', array_reverse($pedacos)); 
+                }
+ 
         }    
             
-        if(!empty($telefone)){
+        if(empty($telefone)){
+            $error ="Campo telefone obrigatório";
+        }else{
             $telefone = limpar_texto($telefone);
             if(strlen($telefone) != 11){
                 $error = "O telefone deve ser preenchido no padrão (11) 98888-8888";
@@ -62,28 +65,29 @@
             // echo "<p><b>$erro</b></p>";
         }
 
-        else{
-            $verify = "SELECT email FROM clientes WHERE email = '$email' ";
-            $query_verify = $mysqli->query($verify);
-            $query_verify = $query_verify->num_rows;
+        // else{
+        //     $verify = "SELECT email FROM clientes WHERE email = '$email' ";
+        //     $query_verify = $mysqli->query($verify);
+        //     $query_verify = $query_verify->num_rows;
 
-            if(!$query_verify){
-                $error = "email não cadastrado!";
-            }
+        //     if(!$query_verify){
+        //         $error = "email não cadastrado!";
+        //     }
             else{
                 $sql_code = "UPDATE clientes
                 SET nome   = '$nome', 
                 email      = '$email',
                 telefone   = '$telefone',
                 nascimento = '$nascimento' WHERE id   = '$id'";
+                
                 $deu_certo = $mysqli->query($sql_code);
-                }
                     if($deu_certo){
                         $sucess ="Atualizado com sucesso";
                         unset($_POST);
                     }     
+            }         
         }
-    }
+    // }
 
     include('conexao.php');
     $sql_cliente = "SELECT * FROM clientes WHERE id = '$id'";

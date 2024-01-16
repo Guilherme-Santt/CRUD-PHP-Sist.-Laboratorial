@@ -6,8 +6,6 @@
             die('Você não está logado!' . '<a href="login.php">Clique aqui para logar</a>');
         }    
 }
-$id = intval($_GET['id']);
-include('conexao.php');
 // FUNÇÃO VISUALIZAÇÕES DE CAMPO DATA E SENHA PADRÃO BR
     function formatar_data($data){
         return implode('/', array_reverse(explode('-', $data)));
@@ -27,61 +25,70 @@ include('conexao.php');
 ?>
 
 <?php
-    $erro = false;
-    // VERIFICAÇÃO INSERÇÃO CAMPOS POST NO INPUT FORM
+    $id = intval($_GET['id']);
+    include('conexao.php');
+    $error = "";
+    $sucess = "";
     if(count($_POST) > 0){
         $nome = $_POST['nome'];
         $email = $_POST['email'];
+        $endereco = $_POST['endereco'];
+        $sexo = $_POST['sexo'];
         $telefone = $_POST['telefone'];
         $nascimento = $_POST['nascimento'];
     
         if(empty($nome) || Strlen($nome) < 3 || Strlen($nome) > 100){
-            $erro = "Por favor, Prencha o campo nome corretamente. Capacidade mínima 3 dígitos! ";
+            $error = "Por favor, Prencha o campo nome corretamente. Capacidade mínima 3 dígitos! ";
         }
 
         if(empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)){
-            $erro = "Por favor, Prencha o campo e-mail corretamente.";
+            $error = "Por favor, Prencha o campo e-mail corretamente.";
         }   
 
-        if(!empty($nascimento)){
-            $pedacos = explode('/', $nascimento);
-            if(count($pedacos) == 3){
-            $nascimento = implode ('-', array_reverse($pedacos)); 
-            }
+        if(empty($nascimento) || strlen($nascimento) != 9){
+            $error = "Data de nascimento obrigatório*";}
             else{
-                $erro = "A data de nascimento deve ser preenchido no padrão dia/mes/ano";
-            }    
+                $pedacos = explode('/', $nascimento);
+                if(count($pedacos) == 3){
+                $nascimento = implode ('-', array_reverse($pedacos)); 
+                }
+                else{
+                    $error = "A data de nascimento deve ser preenchido no padrão dia/mes/ano";
+                }    
         }   
 
-        if(!empty($telefone)){
-            $telefone = limpar_texto($telefone);
-            if(strlen($telefone) != 11){
-                $erro = "O telefone deve ser preenchido no padrão (11) 98888-8888";
-            }
+        if(empty($telefone)){
+            $error = "campo telefone obrigatório*";}
+            else{
+                $telefone = limpar_texto($telefone);
+                if(strlen($telefone) != 11){
+                    $error = "O telefone deve ser preenchido no padrão (11) 98888-8888";
+            }   
         }
 
-        if($erro){
-            // echo "<p><b>$erro</b></p>";
+        if($error){
         }
-
-        // VERIFICAÇÃO SE EXISTE INPUT EMAIL NO BANCO DE DADOS
         else{
-                $sql_code = "UPDATE clientes
-                SET nome   = '$nome', 
+                $sql_code = "UPDATE pacientes
+                SET nome = '$nome', 
+                sexo = '$sexo',
+                endereco = '$endereco',
                 email      = '$email',
                 telefone   = '$telefone',
-                nascimento = '$nascimento' WHERE id   = '$id'";
-                $deu_certo = $mysqli->query($sql_code);
-                }
-                    if(isset($deu_certo)){
-                        $error = "Atualizado com Sucesso!";
-                        unset($_POST);
-                    }else{
-                        $error = "Falha ao atualizar!";
+                nascimento = '$nascimento' WHERE id  = '$id'";
 
-                    }     
+                $deu_certo = $mysqli->query($sql_code);
+
+                    if($deu_certo){
+                        $sucess = "Atualizado com Sucesso!";
+                        unset($_POST);
+                    }
+                     
         }
-    
+        
+    }
+
+        
     // VISUALIZAÇÃO INFORMAÇÕES USUÁRIO NO CAMPO EDIÇÃO
     include('conexao.php');
     $sql_cliente = "SELECT * FROM pacientes WHERE id = '$id'";
@@ -105,19 +112,19 @@ include('conexao.php');
     } */
 </style>
 <body>
-    <a href="usuarios.php">Retornar listagem de úsuarios</a>
+    <a href="pacientes.php">Retornar listagem de pacientes</a>
     <form action="" method="POST">
         <p>
-            <label>Nome:</label>
-            <input value= "<?php echo $cliente['nome']; ?>" type="text" name="nome">
+            <label>Nome: <?php echo $cliente['nome']; ?> </label>
+            <input value="<?php echo $cliente['nome']; ?>" type="text" name="nome">
         </p>
         <p>
             <label>Endereço:</label>
-            <input value= "<?php echo $cliente['endereco']; ?>" type="text" name="nome">
+            <input value= "<?php echo $cliente['endereco']; ?>" type="text" name="endereco">
         </p>
         <p>
             <label>Sexo:</label>
-            <input value= "<?php if($cliente['sexo']) echo $cliente['sexo']; ?>" type="text" name="nome">
+            <input value= "<?php if($cliente['sexo']) echo $cliente['sexo']; ?>" type="text" name="sexo">
         </p>
         <p>
             <label>E-mail:</label>
@@ -138,6 +145,8 @@ include('conexao.php');
     </form>
             <?php 
             if(isset($error)) echo $error;
+            if(isset($sucess)) echo $sucess;
+
         ?>
 </body>
 </html>

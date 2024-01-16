@@ -90,7 +90,7 @@
                         while($exames = $query_exames->fetch_assoc()){
                     ?>     
                     <tr>
-                        <td><?php echo $exames['id']?>     </td>
+                        <td><?php echo $exames['exameid']?>     </td>
                         <td><?php echo $exames['codigo']?>   </td>
                         <td><?php echo $exames['descricao']?>  </td>
 

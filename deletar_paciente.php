@@ -7,8 +7,8 @@
         $query_code = $mysqli->query($sql_code) or die($mysqli->error);
         
             if($query_code) {?> 
-                <h1>Cliente removido com sucesso!</h1>
-                <p><a href="pacientes.php">Clique aqui </a>para retornar a lista de clientes</p>
+                <h1>Paciente removido com sucesso!</h1>
+                <p><a href="pacientes.php">Clique aqui </a>para retornar a listagem de pacientes</p>
                 <?php
                 die();
             }
@@ -23,8 +23,8 @@
 </head>
 <body>
     <form action="" method="POST">
-        <h1>Tem certeza que deseja deletar este cliente?</h1>
-        <a href="index.php">Não!</a>
+        <h1>Tem certeza que deseja deletar este paciente?</h1>
+        <a href="pacientes.php">Não!</a>
         <Button name="confirmar" type="submit">Sim!</Button>
     </form>
 </body>

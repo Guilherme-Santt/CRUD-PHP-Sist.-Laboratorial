@@ -35,6 +35,7 @@
         if(empty($_POST['nome']) || Strlen($nome) < 3 || Strlen($nome) > 100){
             $error = "Campo nome obrigatório*";
         }
+
         if(!empty($nascimento)){
             $pedacos = explode('/', $nascimento);
             if(count($pedacos) == 3){
