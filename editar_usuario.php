@@ -99,16 +99,15 @@ include('conexao.php');
     } */
 </style>
 <body>
+    <a href="usuarios.php">Retornar listagem de úsuarios</a>
     <form action="" method="POST">
         <p>
             <label>Nome:</label>
-            <input value= "<?php echo $cliente['nome']; ?>"
-            type="text" name="nome">
+            <input value= "<?php echo $cliente['nome']; ?>" type="text" name="nome">
         </p>
         <p>
             <label>E-mail:</label>
-            <input value ="<?php echo $cliente['email']; ?>"
-             type="email" name="email">
+            <input value ="<?php echo $cliente['email']; ?>" type="email" name="email">
         </p>
         <p>
             <label>Telefone:</label>
@@ -122,8 +121,7 @@ include('conexao.php');
             <button type="submit">Enviar</button>
         </p>
         <?php 
-            if(isset($erro))
-            echo $erro;
+            if(isset($erro))echo $erro;
         ?>
     </form>
 </body>

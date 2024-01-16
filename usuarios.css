@@ -1,0 +1,21 @@
+.full{
+    width: 100%;
+    height: 1000px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+.insert_cadastrar{
+    width: 500px;
+    height: 400px;
+    font-size: 20px;
+    display: none;
+}
+.input_edit{
+    border-top: none;
+    border-left: none;
+    border-right: none;
+
+}

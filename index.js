@@ -13,3 +13,4 @@ function tbanner(){
   let div =  document.getElementById("banner");
   div.style.backgroundColor="black";
 }
+
