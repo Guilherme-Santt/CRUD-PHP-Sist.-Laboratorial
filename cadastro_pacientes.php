@@ -48,13 +48,14 @@
         }else{
             $sql_codeverify = "SELECT * FROM pacientes WHERE email = '$email'";
             $query_c = $mysqli->query($sql_codeverify);
-            $usuario = $query_c->fetch_assoc();
+            $paciente = $query_c->fetch_assoc();
             $verify = $query_c->num_rows;
                 if($verify){
                     $error = "paciente já cadastrado!";
                 }
                 else{
-                    $sqlinsert = "INSERT INTO pacientes (nome, email, endereco, telefone, nascimento, data, sexo)  values ('$nome', '$email', '$endereco', '$telefone', '$nascimento', NOW(), '$sexo')";
+                    $sqlinsert = "INSERT INTO pacientes (nome, email, endereco, telefone, nascimento, data, sexo)  
+                    values ('$nome', '$email', '$endereco', '$telefone', '$nascimento', NOW(), '$sexo')";
                     $queryinsert = $mysqli->query($sqlinsert);
                         if($queryinsert){
                             $sucess = "Cadastrado com sucesso";
@@ -90,7 +91,7 @@
             <input class="input_edit" value ="<?php if(isset($_POST['telefone'])) echo $_POST['telefone']; ?>" placeholder="(11) 98888-8888" type="text" name="telefone"><br><br>
                 
             <label>sexo</label>
-            <input class="input_edit" type="text" value="<?php if(isset($_POST['sexo'])) echo $_POST['sexo']; ?>" name="sexo"><br><br>
+            <input class="input_edit" type="text" value="<?php if(isset($_POST['sexo'])) echo $_POST['sexo']; ?>"placeholder="MAS ou FEM" name="sexo"><br><br>
 
             <button type="submit" name="cadastrar">Cadastrar</button>
         </form>
