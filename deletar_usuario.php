@@ -7,7 +7,7 @@
         
             if($query_code) {?> 
                 <h1>Cliente removido com sucesso!</h1>
-                <p><a href="/projetoCadastro/cliente.php">Clique aqui </a>para retornar a lista de clientes</p>
+                <p><a href="index.php">Clique aqui </a>para retornar a lista de clientes</p>
                 <?php
                 die();
             }

@@ -38,38 +38,29 @@
     <!-- Header  *NAV* - Mensagem central superior -->
     <header class="h-g">
         <form class="h-f">
-        <p class="white">Olá, <b><?php echo $cliente['nome']?></b></p>
-
+            <p class="white">Olá, <b><?php echo $cliente['nome']?></b></p>
         </form>
-    <!-- *HEADER* Menu & Logo central  -->
-        <p><a href="">Pacientes total</p>
-        <p><a href="">Cadastro de exames</p>
-
-        <p><a href="logout.php">Encerrar sessão</p>
-
-
+        <!-- *HEADER* Menu & Logo central  -->
+        <img onclick="lmenu()" class="h-img" src="imagens/hamburger.png">
+        <div id="lh" class="h-menu"><br>
+            <a onclick="fmenu()">X</a>
+            <Ul>
+                <a href="usuarios.php"><li>Usuários</li></a>
+                <a href="pacientes.php"><li>Listagem de pacientes</li>
+                <a href="cadastro_pacientes.php"><li>Cadastro de pacientes</li>
+                <a href="cadastro_exames.php"><li>Cadastro de exames</li>
+                <a href="logout.php"><li>Encerrar sessão</li>
+            </Ul>
+            <div class="icons">
+                <img src="imagens/instagram.png">
+                <img src="imagens/facebook.png">
+                <img src="imagens/tiktok.png">
+                <img src="imagens/youtube.png">
+                <img src="imagens/whatsapp.png">
+            </div>
+        </div>
     </header>
 
-    <div class="nav-g">
-        <a href="http://127.0.0.1/projetoCadastro/cadastrar_cliente.php">Cadastrar cliente</a>
-    </div>
- 
-    <div class="center">
-
-    <div class="div-nav">
-        <h1>Usuários</h1>
-        <a href="usuarios.php"><img class="img-nav"src="imagens/modelo1.jpg">
-    </div>
-
-    <div class="div-nav">
-        <h1>Listagem de pacientes</h1>
-        <a href="pacientes.php"><img class="img-nav"src="imagens/modelo2.jpg">
-    </div>
-    
-    <div class="div-nav">
-        <h1>Cadastro de pacientes</h1>
-        <a href="cadastro_paciente.php"><img class="img-nav"src="imagens/modelo3.jpg">
-    </div>
 
     <script src="index.js"></script>
 </body>
