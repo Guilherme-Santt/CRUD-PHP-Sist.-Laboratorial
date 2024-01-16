@@ -1,6 +1,7 @@
 <!-- <?php
     include('conexao.php');
     $error = "";
+    // VERIFICAÇÃO POST Á PARTIR DO EMAIL
     if(isset($_POST['email'])){
         $email = $_POST['email'];
         $senha = $_POST['senha'];
@@ -9,14 +10,18 @@
         }
         else if(empty($senha)){
             $error = '<p class="error">Preencha o campo senha*</p>';
-        }else{
+        }
+        // VERIFICAÇÃO SE EXISTE O USUÁRIO NO BANCO
+        else{
             $sql_code = "SELECT * FROM clientes WHERE email = '$email' LIMIT 1";
             $sql_exec = $mysqli->query($sql_code);
             $usuario = $sql_exec->fetch_assoc();
             if (!$usuario) {
-                $error = '<p class="error">Usuário inexistente!*</p>';    
+                $error = '<p class="error">Usuário inexistente*</p>';    
             }
-            else {
+            else 
+            // VERIFICAÇÃO SE A SENHA BATE COM A SENHA DO BANCO->SESSION OU MENSAGEM DE ERRO
+            {
                 if(password_verify($senha, $usuario['senha'] )){
                     if(!isset($_SESSION)){
                         session_start();
@@ -56,7 +61,7 @@
                 <input class="input_edit"  type="senha" name="senha"><br><br>
                 <button type="submit">Logar</button>
                 <p>
-                    <!-- <?php if(isset($error)){echo $error;}?> -->
+                    <?php if(isset($error)){echo $error;}?> 
                 </p>
             </form>
         </div>

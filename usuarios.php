@@ -22,12 +22,6 @@
         return "($ddd) $parte1-$parte2";
     }
     include('conexao.php');
-    // COMANDO SQL PARA CONSULTAR CLIENTES
-    $sql_clientes   = "SELECT * FROM clientes";
-    // COMANDO QUERY, PARA EXECUTAR COMANDO SQL
-    $query_clientes = $mysqli->query($sql_clientes) or die($mysqli->error);
-    // COMANDO NUM ROWS, PARA CONTAR QUANTIDADE DADOS NO BANCO
-    $num_clientes   = $query_clientes->num_rows;
 
 ?>
 
@@ -35,7 +29,7 @@
     function limpar_texto($str){ 
         return preg_replace("/[^0-9]/", "", $str); 
     }
-
+    // VERIFICAÇÃO DE INSERÇÃO NOS CAMPOS POST DO FORMULÁRIO
     $error = "";
     if(count($_POST) > 0){
         $email = $_POST['email'];
@@ -70,14 +64,17 @@
         }
         if($error){
 
-        }else{
+        }
+        // VERIFICAÇÃO SE O POST EMAIL EXISTE NO BANCO DE DADOS
+        else{
             $sql_codeverify = "SELECT * FROM clientes WHERE email = '$email'";
             $query_c = $mysqli->query($sql_codeverify);
             $usuario = $query_c->fetch_assoc();
-            $verify = $query_c->num_rows;
+
                 if($verify){
                     $error = "usuário já cadastrado!";
                 }
+            // INSERÇÃO DAS INFORMAÇÕES NO BANCO, CASO NÃO EXISTIR
                 else{
                     $sqlinsert = "INSERT INTO clientes (nome, email, telefone, nascimento, data, senha)  values ('$nome', '$email', '$telefone', '$nascimento', NOW(), '$senha')";
                     $queryinsert = $mysqli->query($sqlinsert);
@@ -101,7 +98,7 @@
 <link rel="stylesheet" href="normalize.css">
 <body> 
         <!-- Header  *NAV* - Mensagem central superior -->
-        <header class="h-g">
+    <header class="h-g">
         <form class="h-f">
             <p class="white">Olá, <b><?php echo $cliente['nome']?></b></p>
         </form>
@@ -142,6 +139,11 @@
                 </thead>
                 <tbody> 
                 <?php 
+                
+                    // COMANDO SQL PARA CONSULTAR QUANTIDADE DE CLIENTES NO SISTEMA
+                    $sql_clientes   = "SELECT * FROM clientes";
+                    $query_clientes = $mysqli->query($sql_clientes) or die($mysqli->error);
+                    $num_clientes = $query_clientes->num_rows;
                     if($num_clientes == 0) { 
                 ?> 
                 <tr>

@@ -1,4 +1,5 @@
 <?php 
+// SESSÃO
     if(!isset($_SESSION)){
         session_start();
         if(!isset($_SESSION['usuario'])){
@@ -7,7 +8,7 @@
 }
 $id = intval($_GET['id']);
 include('conexao.php');
-
+// FUNÇÃO VISUALIZAÇÕES DE CAMPO DATA E SENHA PADRÃO BR
     function formatar_data($data){
         return implode('/', array_reverse(explode('-', $data)));
     };
@@ -19,7 +20,7 @@ include('conexao.php');
             return "($ddd) $parte1-$parte2";
     }
     $erro = false;
-
+    // VERIFICAÇÃO INSERÇÃO CAMPOS POST NO INPUT FORM
     if(count($_POST) > 0){
         $nome = $_POST['nome'];
         $email = $_POST['email'];
@@ -59,7 +60,7 @@ include('conexao.php');
     if($erro){
         // echo "<p><b>$erro</b></p>";
     }
-
+    // VERIFICAÇÃO SE EXISTE INPUT EMAIL NO BANCO DE DADOS
     else{
         $verify = "SELECT email FROM clientes WHERE email = '$email' ";
         $query_verify = $mysqli->query($verify);
@@ -81,7 +82,7 @@ include('conexao.php');
                 };     
     }
 }
-
+    // VISUALIZAÇÃO INFORMAÇÕES USUÁRIO NO CAMPO EDIÇÃO
     include('conexao.php');
     $sql_cliente = "SELECT * FROM clientes WHERE id = '$id'";
     $query_cliente = $mysqli->query($sql_cliente) or die ($mysqli->error);

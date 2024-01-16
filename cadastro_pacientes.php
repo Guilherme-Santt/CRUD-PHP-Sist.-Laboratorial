@@ -1,4 +1,5 @@
 <?php
+// SESSÃO 
     include('conexao.php');
     if(!isset($_SESSION)){
         session_start();
@@ -9,7 +10,8 @@
         return preg_replace("/[^0-9]/", "", $str); 
     }
     }
-    // INSERÇÃO POST TABELA PACIENTES
+
+    // VERIFICAÇÃO DA INSERÇÃO DOS CAMPOS POST NO FORM
     $error = "";
     if(count($_POST) > 0){
         $email = $_POST['email'];
@@ -18,11 +20,9 @@
         $endereco = $_POST['endereco'];
         $telefone = $_POST['telefone'];
         $nascimento = $_POST['nascimento'];
-
         if(empty($_POST['email']) || !filter_var($email, FILTER_VALIDATE_EMAIL)){
         $error = "Campo e-mail obrigatório*";
         }
-
         if(empty($_POST['endereco'])){
             $error = "Campo endereço obrigatório*";
         }
@@ -70,6 +70,11 @@
         }
 
     }   
+    // VISUALIZAÇÃO INFORMAÕES USUARIO CAMPO NO HEADER
+    $id = $_SESSION['usuario'];
+    $sqlcode = "SELECT * FROM clientes WHERE id = '$id'";
+    $query = $mysqli->query($sqlcode);
+    $cliente = $query->fetch_assoc();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -81,9 +86,37 @@
 <body>
 </head>
 <link rel="stylesheet" href="usuarios.css">
+<link rel="stylesheet" href="index.css">
 <link rel="stylesheet" href="normalize.css">
 <body> 
-        <a href="index.php">Retornar tela inicial</a>
+    <header class="h-g">
+        <form class="h-f">
+            <p class="white">Olá, <b><?php echo $cliente['nome']?></b></p>
+        </form>
+        <!-- *HEADER* Menu & Logo central  -->
+        <img onclick="lmenu()" class="h-img" src="imagens/hamburger.png">
+        <div id="lh" class="h-menu"><br>
+            <a onclick="fmenu()">X</a>
+            <Ul>
+                <a href="index.php"><li>Páginal ínicial</li></a>
+                <a href="usuarios.php"><li>Usuários</li></a>
+                <a href="pacientes.php"><li>Listagem de pacientes</li></a>
+                <a href="cadastro_pacientes.php"><li>Cadastro de pacientes</li></a>
+                <a href="cadastro_exames.php"><li>Cadastro de exames</li></a>
+                <a href="logout.php"><li>Encerrar sessão</li></a>
+            </Ul>
+            <div class="icons">
+                <img src="imagens/instagram.png">
+                <img src="imagens/facebook.png">
+                <img src="imagens/tiktok.png">
+                <img src="imagens/youtube.png">
+                <img src="imagens/whatsapp.png">
+            </div>
+        </div>
+        <p class="white">Unidade: <b><?php echo $cliente['unidade']?></b></p>
+    </header> 
+
+    <div class="full">
         <h1>Cadastrar Pacientes</h1>
         <form action="" method="POST">
             <label>Email</label>
@@ -110,6 +143,7 @@
             if(isset($sucess)){echo'<p class="sucess">'. $sucess . '</p>' ;}
             if($error){echo '<p class="error">'. $error . '</p>' ;}   
         ?>
-        <script href="index.js"></script>
+    </div>    
+    <script src="index.js"></script>
 </body> 
 </html>
