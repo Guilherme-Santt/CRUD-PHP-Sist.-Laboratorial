@@ -40,7 +40,8 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: space-between;
+    gap: 10px;
+    justify-content: center;
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 
 }
@@ -51,6 +52,10 @@
 .h-g b{
     font-size: 18px;
 
+}
+.h-g a{
+    font-size: 18px;
+    color: black;
 }
 .h-f{
     background-color: rgb(41, 39, 39);

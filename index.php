@@ -38,31 +38,18 @@
     <!-- Header  *NAV* - Mensagem central superior -->
     <header class="h-g">
         <form class="h-f">
-            <p>Text tittle</p>
+        <p class="white">Olá, <b><?php echo $cliente['nome']?></b></p>
+
         </form>
     <!-- *HEADER* Menu & Logo central  -->
-        <img onclick="lmenu()" class="h-img" src="imagens/hamburger.png">
-        <div id="lh" class="h-menu"><br>
-            <a onclick="fmenu()">X</a>
-            <a>Menu de configuções</a>
-            <br><br>
-            <a>Menu1</a><hr><br>
-            <a href="logout.php">Encerrar sessão</a>
-          
-            <input type="text" id="search-bar" placeholder="Busca">
-            <a><img class="input-lupa"src="imagens/pesquisa-de-lupa.png"></a>
-                <div class="icons">
-                    <img src="imagens/instagram.png">
-                    <img src="imagens/facebook.png">
-                    <img src="imagens/tiktok.png">
-                    <img src="imagens/youtube.png">
-                    <img src="imagens/whatsapp.png">
-                </div>
-        </div>
+        <p><a href="">Pacientes total</p>
+        <p><a href="">Cadastro de exames</p>
 
-        <p>Olá, <b><?php echo $cliente['nome']?></b></p>
-        <p></p>
+        <p><a href="logout.php">Encerrar sessão</p>
+
+
     </header>
+
     <div class="nav-g">
         <a href="http://127.0.0.1/projetoCadastro/cadastrar_cliente.php">Cadastrar cliente</a>
     </div>
@@ -80,7 +67,7 @@
     </div>
     
     <div class="div-nav">
-        <h1>Listagem de pacientes</h1>
+        <h1>Cadastro de pacientes</h1>
         <a href="cadastro_paciente.php"><img class="img-nav"src="imagens/modelo3.jpg">
     </div>
 

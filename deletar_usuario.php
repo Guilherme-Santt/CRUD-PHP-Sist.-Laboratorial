@@ -1,12 +1,8 @@
 <?php
-// VERIFICAÇÃO DO POST SUBMIT BUTTON "SIM"
     if(isset($_POST['confirmar'])){ 
         include('conexao.php');
-        // PUXANDO ID DO GET
         $id = intval($_GET['id']);
-        // CÓDIGO DE DELETAR SQL
         $sql_code = "DELETE FROM clientes WHERE id = '$id'";
-        // FAZENDO A QUERY DO CÓDIGO DE DELETAR 
         $query_code = $mysqli->query($sql_code) or die($mysqli->error);
         
             if($query_code) {?> 

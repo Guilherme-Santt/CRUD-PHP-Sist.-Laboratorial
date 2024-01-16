@@ -3,39 +3,32 @@
 $id = intval($_GET['id']);
 include('conexao.php');
 
-    // FUNÇÃO PARA FORMATAR DATA PADRÃO AMERICANO PARA O BRASILEIRO 
     function formatar_data($data){
         return implode('/', array_reverse(explode('-', $data)));
     };
 
-    // FUNÇÃO FORMATAR TELEFONE 1199999999 -> (11) 99999-9999
     function formatar_telefone($telefone){
         $ddd = substr ($telefone, 0, 2);
         $parte1 = substr ($telefone, 2, 5);
         $parte2 = substr ($telefone, 7);
             return "($ddd) $parte1-$parte2";
     }
-// VARIAVEL PADRÃO CASO HAVER ERRO
     $erro = false;
 
-// VERIFICAÇÃO SE EXISTE INFORMAÇÃO NOS CAMPOS POST
     if(count($_POST) > 0){
         $nome = $_POST['nome'];
         $email = $_POST['email'];
         $telefone = $_POST['telefone'];
         $nascimento = $_POST['nascimento'];
     
-// VERIFICANDO SE CAMPO NOME ESTÁ VAZIO OU TEM MENOS QUE 3 LETRAS E MAIS DE 100, MENSAGEM ERRO 
     if(empty($nome) || Strlen($nome) < 3 || Strlen($nome) > 100){
         $erro = "Por favor, Prencha o campo nome corretamente. Capacidade mínima 3 dígitos! ";
     }
 
-// VERIFICANDO SE O CAMPO EMAIL ESTÁ VAZIO OU NÃO ESTÁ NO PADRÃO DE VALIDAÇÃO
     if(empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)){
         $erro = "Por favor, Prencha o campo e-mail corretamente.";
     }   
 
-// VERIFICANDO QUE SE CASO O CAMPO NASCIMENTO NÃO ESTÁ VAZIO, VAI PEGAR O CAMPO DIGITADO(PADRÃO BR) & CONVERTER PARA PADRÃO AMERICANO
     if(!empty($nascimento)){
          $pedacos = explode('/', $nascimento);
 
@@ -47,12 +40,10 @@ include('conexao.php');
         }
     }    
 
-    // FUNÇÃO LIMPAR CARACTERES NA INSERÇÃO DO CAMPO NUMERO, (INPUT NUMERO)
     function limpar_texto($str){ 
         return preg_replace("/[^0-9]/", "", $str); 
         }
 
-    // VERIFICAÇÃO: CASO CAMPO NUMERO TIVER PREENCHIDO, ESTEJA NO PADRÃO CORRETO PARA INSERÇÃO
     if(!empty($telefone)){
         $telefone = limpar_texto($telefone);
         if(strlen($telefone) != 11){
@@ -60,12 +51,10 @@ include('conexao.php');
         }
     }
 
-    //VERIFICAÇÃO SE EXISTE ERRO
     if($erro){
         // echo "<p><b>$erro</b></p>";
     }
 
-    // CASO NÃO HOUVER ERRO, FAZER EDIÇÃO NO BANCO DE DADOS
     else{
         $verify = "SELECT email FROM clientes WHERE email = '$email' ";
         $query_verify = $mysqli->query($verify);
@@ -88,7 +77,6 @@ include('conexao.php');
     }
 }
 
-// PUXANDO CAMPO ID PELO GET ENVIADO NA TELA CLIENTE, IDENTIFICANDO ESSE ID NO BANCO DE DADOS PELO F.ASSOC PARA A $CLIENTE 
     include('conexao.php');
     $sql_cliente = "SELECT * FROM clientes WHERE id = '$id'";
     $query_cliente = $mysqli->query($sql_cliente) or die ($mysqli->error);
@@ -111,7 +99,6 @@ include('conexao.php');
     } */
 </style>
 <body>
-    <a href="cadastro.php">Voltar para a lista</a>
     <form action="" method="POST">
         <p>
             <label>Nome:</label>
