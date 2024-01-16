@@ -29,7 +29,9 @@
     text-align: center;
     color: white;
 }
-
+.img-nav:hover{
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+}
 .h-g{
     position: fixed;
     background-color: rgb(253, 253, 253);
