@@ -26,6 +26,7 @@
 
 <?php
     $id = intval($_GET['id']);
+
     include('conexao.php');
     $error = "";
     $sucess = "";
@@ -95,6 +96,24 @@
     $query_cliente = $mysqli->query($sql_cliente) or die ($mysqli->error);
     $cliente = $query_cliente->fetch_assoc();
 
+
+
+
+    $sql_exame = "SELECT * FROM pacientes_exames WHERE paciente_id = '$id'";
+    $query_exames = $mysqli->query($sql_exame);
+    $num_exames = $query_exames->num_rows;
+
+
+
+    $sql_cliente = "SELECT * FROM exames";
+    $query_cliente = $mysqli->query($sql_cliente) or die ($mysqli->error);
+
+    while($exameinfo = $query_cliente->fetch_assoc()){
+        echo $exameinfo['nome'] . "<br>";
+        echo $exameinfo['codigo'] . "<br>";
+        echo $exameinfo['descricao']  . "<br>";
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -143,7 +162,31 @@
             <button type="submit">Enviar</button>
         </p>
     </form>
+    <table border="1" cellpadding="10">
+        <thead>
+            <th>ID Exames</th>
+            <th>código exame</th>
+            <th>Nome exame</th>
+            <th>descrição exame</th>
+        </thead>
+        <tbody> 
             <?php 
+            if($num_exames == 0) {?>
+                <tr>
+                    <td colspan="7">Nenhum exame foi encontrado!</td>
+                </tr>
+            <?php } ?>
+            <?php
+            while($exames = $query_exames->fetch_assoc()){?>
+                <tr>
+                    <td><?php echo $exames['exame_id']?></td>
+                </tr> 
+            <?php }?> 
+        </tbody>
+    </table>
+
+
+        <?php
             if(isset($error)) echo $error;
             if(isset($sucess)) echo $sucess;
 
