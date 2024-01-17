@@ -1,20 +1,16 @@
 <?php
+// VERIFICAÇÃO SE O USUÁRIO ESTÁ LOGADO
     if(!isset($_SESSION)){
         session_start();
         if(!isset($_SESSION['usuario'])){
             die('Você não está logado!' . '<a href="login.php">Clique aqui para logar</a>');
         }    
 }
-    include('conexao.php');
-    $id = $_SESSION['usuario'];
-    $sqlcode = "SELECT * FROM clientes WHERE id = '$id'";
-    $query = $mysqli->query($sqlcode);
-    $cliente = $query->fetch_assoc();
-
+    // FUNÇÃO FORMATAR DATA PARA VISUALIZAÇÃO PADRÃO BR
     function formatar_data($data){
         return implode('/', array_reverse(explode('-', $data)));
     };
-    
+    // FUNÇÃO LIMPAR CARACTERES NO CAMPO TELEFONE
     function limpar_texto($str){ 
         return preg_replace("/[^0-9]/", "", $str); 
     }
@@ -50,21 +46,25 @@
         if(empty($_POST['nome']) || Strlen($nome) < 3 || Strlen($nome) > 100){
             $error = "preencha o campo nome!";
         }
-        if(!empty($nascimento)){
-            $pedacos = explode('/', $nascimento);
+
+        if(empty($nascimento) || strlen($nascimento) < 10 || strlen($nascimento) > 10 ){
+            $error = "A data de nascimento deve ser preenchido no padrão dia/mes/ano";
+        }
+        else{
+        $pedacos = explode('/', $nascimento);
             if(count($pedacos) == 3){
                 $nascimento = implode ('-', array_reverse($pedacos)); 
             }
-            else{
-                $error = "A data de nascimento deve ser preenchido no padrão dia/mes/ano";
-            }
         }    
-        if(!empty($telefone)){
+        if(empty($telefone)){
+            $error ="Campo telefone obrigatório";
+        }else{
             $telefone = limpar_texto($telefone);
             if(strlen($telefone) != 11){
                 $error = "O telefone deve ser preenchido no padrão (11) 98888-8888";
             }
         }
+        
         if($error){
             
         }
@@ -116,7 +116,6 @@
                 </thead>
                 <tbody> 
                 <?php 
-                
                     // COMANDO SQL PARA CONSULTAR QUANTIDADE DE CLIENTES NO SISTEMA
                     $sql_clientes   = "SELECT * FROM clientes";
                     $query_clientes = $mysqli->query($sql_clientes) or die($mysqli->error);
@@ -158,7 +157,10 @@
                 ?>
                 </tbody>
             </table>
-        </div><br>
+        </div>
+        
+        
+        <br>
         <button onclick="lcadastro()">Cadastrar clientes</button><br>
         <div class="insert_cadastrar" id="cadastrar_usuarios">
             <a onclick="fcadastro()">X</a>

@@ -8,7 +8,8 @@
             die('Você não está logado!' . '<a href="login.php">Clique aqui para logar</a>');
         }    
 
-        // FUNÇÃO FORMATAR DATA PADRÃO BRASILEIRO VISUALIZAÇÃO
+
+    // FUNÇÃO FORMATAR DATA PADRÃO BRASILEIRO VISUALIZAÇÃO 
     function formatar_data($data){
         return implode('/', array_reverse(explode('-', $data)));
     };
@@ -21,7 +22,6 @@
         return "($ddd) $parte1-$parte2";
 }
 ?>
-
 
 <?php 
     // FUNÇÃO LIMPA TEXTO AO INSERIR TELEFONE 
@@ -58,22 +58,25 @@
             $error = "Campo nome obrigatório*";
             }
         
-        if(!empty($nascimento)){
+            if(empty($nascimento) || strlen($nascimento) < 10 || strlen($nascimento) > 10 ){
+                $error = "A data de nascimento deve ser preenchido no padrão dia/mes/ano";
+            }
+            else{
             $pedacos = explode('/', $nascimento);
                 if(count($pedacos) == 3){
-                        $nascimento = implode ('-', array_reverse($pedacos)); 
+                    $nascimento = implode ('-', array_reverse($pedacos)); 
                 }
-                else{
-                        $erro = "A data de nascimento deve ser preenchido no padrão dia/mes/ano";
-                }
-            }    
+            }      
 
-        if(!empty($telefone)){
-            $telefone = limpar_texto($telefone);
+            if(empty($telefone)){
+                $error ="Campo telefone obrigatório";
+            }else{
+                $telefone = limpar_texto($telefone);
                 if(strlen($telefone) != 11){
-                    $erro = "O telefone deve ser preenchido no padrão (11) 98888-8888";
+                    $error = "O telefone deve ser preenchido no padrão (11) 98888-8888";
                 }
             }
+
         if($error){
         
         }else{
@@ -95,13 +98,13 @@
             }
         
         }   
+
     // VISUALIZAÇÃO INFORMAÕES USUARIO CAMPO NO HEADER
     $id = $_SESSION['usuario'];
     $sqlcode = "SELECT * FROM clientes WHERE id = '$id'";
     $query = $mysqli->query($sqlcode);
     $cliente = $query->fetch_assoc();
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -174,6 +177,7 @@
     </table>
     <div class="full">
         <h1>Cadastrar Pacientes</h1>
+        <!-- FORMULARIO POST INFORMAÇÕES DE CADASTRO -->
         <form action="" method="POST">
             <label>Email</label>
             <input class="input_edit" type="email" value="<?php if(isset($_POST['email'])) echo $_POST['email']; ?>" name="email"><br><br>

@@ -1,5 +1,5 @@
 <?php 
-// SESSÃO
+// VERIFICAÇÃO DE SESSÃO
     if(!isset($_SESSION)){
         session_start();
         if(!isset($_SESSION['usuario'])){
@@ -10,14 +10,14 @@
     function formatar_data($data){
         return implode('/', array_reverse(explode('-', $data)));
     };
-
+// FUNÇÃO FORMATAR TELEFONE PARA VISUALIZAÇÃO COM CARACTERES
     function formatar_telefone($telefone){
         $ddd = substr ($telefone, 0, 2);
         $parte1 = substr ($telefone, 2, 5);
         $parte2 = substr ($telefone, 7);
             return "($ddd) $parte1-$parte2";
     }
-
+// FUNÇÃO LIMPAR CARACTERES 
     function limpar_texto($str){ 
         return preg_replace("/[^0-9]/", "", $str); 
     }
@@ -25,6 +25,7 @@
 ?>
 
 <?php
+
     $id = intval($_GET['id']);
 
     include('conexao.php');
@@ -69,17 +70,19 @@
         }
         if(!empty($codigo)){
 
-            $sql_verify = "SELECT * FROM pacientes_exames WHERE exame_id = '$codigo'";
+            $sql_verify = "SELECT * FROM exames WHERE exameid = '$codigo'";
             $query_verify = $mysqli->query($sql_verify);
-            $exameverifica = $query_verify->fetch_assoc();            
-                if($exameverifica){
-                    $error = "exame já inserido ou inexistente!";                
-                }
-                else{
-                    $ql_insert = "INSERT INTO pacientes_exames (paciente_id, exame_id) VALUES ('$id', '$codigo' )";
-                    $query_insert = $mysqli->query($ql_insert);   
-                }
-            }   
+            $verify = $query_verify->fetch_assoc();
+            if($verify){
+                $ql_insert = "INSERT INTO pacientes_exames (paciente_id, exame_id) VALUES ('$id', '$codigo')";
+                $query_insert = $mysqli->query($ql_insert);      
+            }else{
+                $error = "Exame não existe";
+                print_r($verify);
+        }
+        
+        }
+             
         
         if($error){
         }
@@ -135,6 +138,7 @@
 </style>
 <body>
     <a href="pacientes.php">Retornar listagem de pacientes</a>
+    <!-- INSERÇÃO CAMPOS POST NO FORM -->
     <form action="" method="POST">
         <p>
             <label>Nome: <?php echo $cliente['nome']; ?> </label>
