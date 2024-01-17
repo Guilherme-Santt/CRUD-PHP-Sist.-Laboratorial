@@ -113,7 +113,6 @@
 <link rel="stylesheet" href="../Arquivos CSS/usuarios.css">
 <body>         
     <a href="index.php">Retornar pagina inicial</a> 
-    <a href="cadastro_pacientes.php">Cadastrar Pacientes</a>      
     <h1>Listagem de pacientes</h1>
     <p>Esses são os pacientes cadastrados no seu sistema</p>
     <table border="1" cellpadding="10">
