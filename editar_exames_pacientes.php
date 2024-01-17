@@ -40,24 +40,20 @@
         $num_clientes = $query_code->num_rows;
         $exame = $query_code->fetch_assoc();
         $error = "";
-
-            if($id_exame == $exame['id_exame'] && $id_paciente == $exame['id_paciente'])
+            if($exame){
                 $error = "Exame já adicionado ao paciente!";
-
-            else{
+            }else{
+    
                 $sql_code = "INSERT INTO pacientes_exames (paciente_id, exame_id) VALUES ('$id_paciente', '$id_exame')";
                 $query = $mysqli->query($sql_code);
                 $deu_certo = $mysqli->query($sql_code);
+
                     if($deu_certo){
                         $sucess ="Exame adicionado";
                         unset($_POST);
-                    }     
-                var_dump($query);
-
-            }         
+                    }             
+            }
         }
-    // }
-
 ?>
 
 <!DOCTYPE html>
