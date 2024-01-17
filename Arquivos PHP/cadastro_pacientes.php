@@ -1,11 +1,6 @@
 <?php
 // SESSÃO 
-    include('conexao.php');
-    if(!isset($_SESSION)){
-        session_start();
-        if(!isset($_SESSION['usuario'])){
-            die('Você não está logado!' . '<a href="login.php">Clique aqui para logar</a>');
-        }    
+
     function limpar_texto($str){ 
         return preg_replace("/[^0-9]/", "", $str); 
     }
