@@ -45,7 +45,7 @@
     font-size: 30px;
 }
 .img_banner{
-    background-image: url(imagens/modelo_login.jpg);
+    background-image: url(../imagens/modelo_login.jpg);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;

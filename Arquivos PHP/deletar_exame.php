@@ -13,9 +13,8 @@
 
         $sql_code = "DELETE FROM exames WHERE exameid = '$id'";
         $query_code = $mysqli->query($sql_code);
-        var_dump($sql_code);
             if($query_code) {?> 
-                <h1>Paciente removido com sucesso!</h1>
+                <h1>Exame removido com sucesso!</h1>
                 <p><a href="exames.php">Clique aqui </a>para retornar a listagem de pacientes</p>
                 <?php
                 die();
@@ -32,7 +31,7 @@
 </head>
 <body>
     <form action="" method="POST">
-        <h1>Tem certeza que deseja deletar este exame:   <?php echo $exame['nome']?>?</h1>
+        <h1>Tem certeza que deseja deletar este exame:   <?php echo $exame['descricao']?>?</h1>
         <a href="exames.php">Não!</a>
         <Button name="confirmar" type="submit">Sim!</Button>
     </form>

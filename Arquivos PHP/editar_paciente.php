@@ -37,6 +37,7 @@
         $sexo = $_POST['sexo'];
         $telefone = $_POST['telefone'];
         $nascimento = $_POST['nascimento'];
+        $codigo = $_POST['id_exame'];
     
         if(empty($nome) || Strlen($nome) < 3 || Strlen($nome) > 100){
             $error = "Por favor, Prencha o campo nome corretamente. Capacidade mínima 3 dígitos! ";
@@ -46,7 +47,7 @@
             $error = "Por favor, Prencha o campo e-mail corretamente.";
         }   
 
-        if(empty($nascimento) || strlen($nascimento) != 9){
+        if(empty($nascimento) || strlen($nascimento) != 10){
             $error = "Data de nascimento obrigatório*";}
             else{
                 $pedacos = explode('/', $nascimento);
@@ -66,7 +67,20 @@
                     $error = "O telefone deve ser preenchido no padrão (11) 98888-8888";
             }   
         }
+        if(!empty($codigo)){
 
+            $sql_verify = "SELECT * FROM pacientes_exames WHERE exame_id = '$codigo'";
+            $query_verify = $mysqli->query($sql_verify);
+            $exameverifica = $query_verify->fetch_assoc();            
+                if($exameverifica){
+                    $error = "exame já inserido ou inexistente!";                
+                }
+                else{
+                    $ql_insert = "INSERT INTO pacientes_exames (paciente_id, exame_id) VALUES ('$id', '$codigo' )";
+                    $query_insert = $mysqli->query($ql_insert);   
+                }
+            }   
+        
         if($error){
         }
         else{
@@ -84,7 +98,7 @@
                         $sucess = "Atualizado com Sucesso!";
                         unset($_POST);
                     }
-                     
+
         }
         
     }
@@ -96,25 +110,14 @@
     $query_cliente = $mysqli->query($sql_cliente) or die ($mysqli->error);
     $cliente = $query_cliente->fetch_assoc();
 
+    // CAMPOS EXAMES DO PACIENTE / ID DO EXAME / ID DO PACIENTE
+    $sql_exame = "SELECT * FROM pacientes_exames AS pacex
+     INNER JOIN exames ON exames.exameid = pacex.exame_id WHERE pacex.paciente_id = '$id'";
 
-
-
-    $sql_exame = "SELECT * FROM pacientes_exames WHERE paciente_id = '$id'";
     $query_exames = $mysqli->query($sql_exame);
     $num_exames = $query_exames->num_rows;
 
-
-
-    $sql_cliente = "SELECT * FROM exames";
-    $query_cliente = $mysqli->query($sql_cliente) or die ($mysqli->error);
-
-    while($exameinfo = $query_cliente->fetch_assoc()){
-        echo $exameinfo['nome'] . "<br>";
-        echo $exameinfo['codigo'] . "<br>";
-        echo $exameinfo['descricao']  . "<br>";
-    }
-
-?>
+ ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -159,15 +162,23 @@
             <input value ="<?php if(!empty($cliente['nascimento'])){ echo formatar_data($cliente['nascimento']);} ?>" placeholder="dia/mês/ano" type="text" name="nascimento">
         </p>
         <p>
+            <label>Exame ID</label>
+            <input type="text" name="id_exame">
+        </p>
+        <p>
             <button type="submit">Enviar</button>
         </p>
+    <?php
+            if(isset($error)) echo $error;
+            if(isset($sucess)) echo $sucess;
+    ?>
     </form>
+
     <table border="1" cellpadding="10">
         <thead>
             <th>ID Exames</th>
             <th>código exame</th>
             <th>Nome exame</th>
-            <th>descrição exame</th>
         </thead>
         <tbody> 
             <?php 
@@ -176,21 +187,22 @@
                     <td colspan="7">Nenhum exame foi encontrado!</td>
                 </tr>
             <?php } ?>
+
             <?php
-            while($exames = $query_exames->fetch_assoc()){?>
+            while($exames = $query_exames->fetch_assoc()){
+                ?>
                 <tr>
                     <td><?php echo $exames['exame_id']?></td>
+                    <td><?php echo $exames['codigo']?></td>
+                    <td><?php echo $exames['descricao']?></td>
+
+
                 </tr> 
             <?php }?> 
         </tbody>
     </table>
 
-
-        <?php
-            if(isset($error)) echo $error;
-            if(isset($sucess)) echo $sucess;
-
-        ?>
+  
 </body>
 </html>
 

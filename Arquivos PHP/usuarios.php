@@ -94,9 +94,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<link rel="stylesheet" href="index.css">
-<link rel="stylesheet" href="usuarios.css">
-<link rel="stylesheet" href="normalize.css">
+<link rel="stylesheet" href="../Arquivos CSS/index.css">
+<link rel="stylesheet" href="../Arquivos CSS/usuarios.css">
+<link rel="stylesheet" href="../Arquivos CSS/normalize.css">
 <body> 
     <div class="full">
         <div class="From_Cadastrados">
@@ -187,7 +187,7 @@
                 if($error){echo '<p class="error">'. $error . '</p>' ;}   
             ?>
     </div>    
-    <script src="usuarios.js"></script>
-    <script src="index.js"></script>
+    <script src="../Arquivos JS/usuarios.js"></script>
+    <script src="../Arquivos JS/index.js"></script>
 </body>
 </html>

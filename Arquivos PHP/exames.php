@@ -16,13 +16,9 @@
     $error = "";
     $sucess = "";
     if(count($_POST) > 0){
-        $nome = $_POST['nome'];
         $codigo = $_POST['codigo'];
         $descricao = $_POST['descricao'];
 
-        if(empty($_POST['nome'])){
-            $error = "Campo nome obrigatório*";
-        }
         if(empty($_POST['descricao'])){
             $error = "Campo descrição obrigatório*";
         }  
@@ -43,7 +39,7 @@
                 }
             // INSERÇÃO DAS INFORMAÇÕES NO BANCO, CASO NÃO EXISTIR
                 else{
-                    $sqlinsert = "INSERT INTO exames (nome, descricao, codigo)  values ('$nome', '$descricao', '$codigo')";
+                    $sqlinsert = "INSERT INTO exames (descricao, codigo)  values ('$descricao', '$codigo')";
                     $queryinsert = $mysqli->query($sqlinsert);
                         if($queryinsert){
                             $sucess = "Cadastrado com sucesso";
@@ -59,8 +55,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<link rel="stylesheet" href="usuarios.css">
-<link rel="stylesheet" href="normalize.css">
+<link rel="stylesheet" href="../Arquivos CSS/usuarios.css">
+<link rel="stylesheet" href="../Arquivos CSS/normalize.css">
 <body> 
     <div class="full">
         <div class="From_Cadastrados">
@@ -69,7 +65,7 @@
             <p>Esses são os exames cadastrados no seu sistema</p>
             <table border="1" cellpadding="10">
                 <thead>
-                    <th>Nome exame</th>
+                    <th>ID exame</th>
                     <th>Código exame</th>
                     <th>Descrição exame</th>
                     <th>Deletar exame</th>
@@ -111,9 +107,6 @@
                 <label>Código exame</label>
                 <input class="input_edit" type="text" value="<?php if(isset($_POST['codigo'])) echo $_POST['codigo']; ?>" name="codigo"><br><br>
 
-                <label>Nome exame</label>
-                <input class="input_edit" type="text" value="<?php if(isset($_POST['nome'])) echo $_POST['nome']; ?>" name="nome"><br><br>
-
                 <label>Descrição exame</label>
                 <input class="input_edit" type="text" value="<?php if(isset($_POST['descricao'])) echo $_POST['descricao']; ?>" name="descricao"><br><br>
 
@@ -127,7 +120,7 @@
                 if($error){echo '<p class="error">'. $error . '</p>' ;}   
             ?>
     </div>    
-    <script src="usuarios.js"></script>
-    <script src="index.js"></script>
+    <script src="../Arquivos JS/usuarios.js"></script>
+    <script src="../Arquivos JS/index.js"></script>
 </body>
 </html>

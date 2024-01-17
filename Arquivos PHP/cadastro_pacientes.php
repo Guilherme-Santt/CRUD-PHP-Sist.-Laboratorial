@@ -121,6 +121,6 @@
             if($error){echo '<p class="error">'. $error . '</p>' ;}   
         ?>
     </div>    
-    <script src="index.js"></script>
+    <script src="../Arquivos JS/index.js"></script>
 </body> 
 </html>
