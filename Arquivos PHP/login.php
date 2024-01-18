@@ -47,6 +47,8 @@ if(isset($_POST['email'])){
     <title>Tela de login</title>
     <link rel="stylesheet" href="../Arquivos CSS/login.css">
     <link rel="stylesheet" href="../Arquivos CSS/normalize.css">
+    <link rel="stylesheet" href="../Arquivos CSS/button.css">
+
 </head>
 <style>
 
@@ -55,12 +57,12 @@ if(isset($_POST['email'])){
     <div class="full_mapa">    
         <div class="form_login">
             <form class="form_edit" action="" method="POST">
-                <h1>logo</h1>
-                <label class="edit_label">Usuario</label><br>
+                <h1>System Home</h1>
+                <label class="edit_label">Usuário</label><br>
                 <input class="input_edit" type="email" name="email"><br><br>
                 <Label class="edit_label">Senha</Label><br>
-                <input class="input_edit"  type="senha" name="senha"><br><br>
-                <button type="submit">Logar</button>
+                <input class="input_edit"  type="password" name="senha"><br><br>
+                <button type="submit">Entrar</button>
                 <p>
                     <?php if(isset($error)){echo $error;}?> 
                 </p>
