@@ -27,7 +27,7 @@ if(isset($_POST['confirmar'])){
 </head>
 <body>
     <form action="" method="POST">
-        <h1>Tem certeza que deseja deletar este exame:   <?php echo $exame['descricao']?>?</h1>
+        <h1>Remover exame: <?php echo $exame['descricao']?>?</h1>
         <a href="exames.php">Não!</a>
         <Button name="confirmar" type="submit">Sim!</Button>
     </form>
