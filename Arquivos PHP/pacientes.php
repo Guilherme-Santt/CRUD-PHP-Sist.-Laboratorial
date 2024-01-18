@@ -72,6 +72,7 @@ if(count($_POST) > 0){
                     if($queryinsert){
                         $sucess = "Cadastrado com sucesso";
                         }
+                        
                 }
         }
 
@@ -110,95 +111,99 @@ $num_pacientes = $query_pacientes->num_rows;
 <link rel="stylesheet" href="../Arquivos CSS/button.css">
 <link rel="stylesheet" href="../Arquivos CSS/tabela.css">
 <link rel="stylesheet" href="../Arquivos CSS/efeito_a.css">
+<link rel="stylesheet" href="../Arquivos CSS/FormatBody.css">
+<link rel="stylesheet" href="../Arquivos CSS/input.css">
 
 
-<body>         
-    <a href="index.php">Retornar pagina inicial</a> 
-    <h1>Listagem de pacientes</h1>
-    <p>Esses são os pacientes cadastrados no seu sistema</p>
-    <table border="1" cellpadding="10">
-        <thead>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>Endereço</th>
-            <th>Sexo</th>
-            <th>E-mail</th>
-            <th>Telefone</th>
-            <th>Nascimento</th>
-            <th>Data de cadastro</th>
-            <th>Ações</th>
-        </thead>
-        <tbody>        
-       <?php if($num_pacientes == 0) { ?> 
-            <tr>
-                <td colspan="7">Nenhum paciente foi encontrado!</td>
-            </tr><?php }
-            else{ 
-                while($pacientes = $query_pacientes->fetch_assoc()){
-
-                    $telefone ="Não informado!";
-                    // SE O CAMPO CONSULTADO NÃO TIVER VÁZIO, UTILIZARÁ FUNÇÃO PARA FORMATAR O MESMO COM CARACTERES
-                    if(!empty($pacientes['telefone'])){
-                        $telefone = formatar_telefone($pacientes['telefone']);   
-                    }
-
-                    $nascimento = "Nascimento não informada!";
-                    // SE O CAMPO CONSULTADO NÃO TIVER VÁZIO, UTILIZARÁ FUNÇÃO QUE PEGA O CAMPO SQL ANO-MES-DIA ALTERANDO - POR / E REVERTER OS CAMPOS PARA DIA/MES/ANO 
-                    if(!empty($pacientes['nascimento'])){
-                        $nascimento = formatar_data($pacientes['nascimento']);
-                    }
-                    // FUNÇÃO DATE (PADRÃO DO PHP) PARA CONVERTER DATA DE CADASTRO NO SQL PARA DIA/MES/ANO E HORA
-                    $data_cadastro = date("d/m/y H:i:s", strtotime($pacientes['data']));?>     
-                    <tr>
-                        <td><?php echo $pacientes['ID']?>     </td>
-                        <td><?php echo $pacientes['nome']?>   </td>
-                        <td><?php echo $pacientes['endereco']?>   </td>
-                        <td><?php echo $pacientes['sexo']?>   </td>
-                        <td><?php echo $pacientes['email']?>  </td>
-                        <td><?php echo $telefone; ?>  </td>
-                        <td><?php echo $nascimento ?>   </td>
-                        <td><?php echo $data_cadastro;?>    </td>
-                        <td>
-                        <a class="edit" href="editar_paciente.php?id=<?php echo $pacientes['ID']?>">Editar</a>
-                        <a class="error" href="deletar_paciente.php?id=<?php echo $pacientes['ID']?>">Deletar</a>
-                        </td>
-                    </tr>
-                  <?php
-                  }
-                } 
-                ?>
-        </tbody>
-    </table>
+<body>   
     <div class="full">
-        <h1>Cadastrar pacientes</h1>
-        <!-- FORMULARIO POST INFORMAÇÕES DE CADASTRO -->
-        <form action="" method="POST">
-            <label>Email</label><br>
-            <input class="input_edit" type="email" value="<?php if(isset($_POST['email'])) echo $_POST['email']; ?>" name="email"><br><br>
+        <div class="tela1">      
+            <p>Esses são os pacientes cadastrados no seu sistema</p>
+            <table border="1" cellpadding="10">
+                <thead>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Endereço</th>
+                    <th>Sexo</th>
+                    <th>E-mail</th>
+                    <th>Telefone</th>
+                    <th>Nascimento</th>
+                    <th>Data de cadastro</th>
+                    <th>Ações</th>
+                </thead>
+                <tbody>        
+            <?php if($num_pacientes == 0) { ?> 
+                    <tr>
+                        <td colspan="7">Nenhum paciente foi encontrado!</td>
+                    </tr><?php }
+                    else{ 
+                        while($pacientes = $query_pacientes->fetch_assoc()){
 
-            <label>Endereço</label><br>
-            <input class="input_edit" type="text" value="<?php if(isset($_POST['endereco'])) echo $_POST['endereco']; ?>" name="endereco"><br><br>
+                            $telefone ="Não informado!";
+                            // SE O CAMPO CONSULTADO NÃO TIVER VÁZIO, UTILIZARÁ FUNÇÃO PARA FORMATAR O MESMO COM CARACTERES
+                            if(!empty($pacientes['telefone'])){
+                                $telefone = formatar_telefone($pacientes['telefone']);   
+                            }
 
-            <label>Nome</label><br><br>
-            <input class="input_edit" type="text" value="<?php if(isset($_POST['nome'])) echo $_POST['nome']; ?>" name="nome"><br><br>
+                            $nascimento = "Nascimento não informada!";
+                            // SE O CAMPO CONSULTADO NÃO TIVER VÁZIO, UTILIZARÁ FUNÇÃO QUE PEGA O CAMPO SQL ANO-MES-DIA ALTERANDO - POR / E REVERTER OS CAMPOS PARA DIA/MES/ANO 
+                            if(!empty($pacientes['nascimento'])){
+                                $nascimento = formatar_data($pacientes['nascimento']);
+                            }
+                            // FUNÇÃO DATE (PADRÃO DO PHP) PARA CONVERTER DATA DE CADASTRO NO SQL PARA DIA/MES/ANO E HORA
+                            $data_cadastro = date("d/m/y H:i:s", strtotime($pacientes['data']));?>     
+                            <tr>
+                                <td><?php echo $pacientes['ID']?>     </td>
+                                <td><?php echo $pacientes['nome']?>   </td>
+                                <td><?php echo $pacientes['endereco']?>   </td>
+                                <td><?php echo $pacientes['sexo']?>   </td>
+                                <td><?php echo $pacientes['email']?>  </td>
+                                <td><?php echo $telefone; ?>  </td>
+                                <td><?php echo $nascimento ?>   </td>
+                                <td><?php echo $data_cadastro;?>    </td>
+                                <td>
+                                <a class="edit" href="editar_paciente.php?id=<?php echo $pacientes['ID']?>">Editar</a>
+                                <a class="error" href="deletar_paciente.php?id=<?php echo $pacientes['ID']?>">Deletar</a>
+                                </td>
+                            </tr>
+                        <?php
+                        }
+                        } 
+                        ?>
+                </tbody>
+            </table><br><br>
+            <button><a href="index.php">Pagina inicial</button> </a> 
+            <button onclick="lcadastro()">Cadastrar usuário</button><br><br>
+            <?php 
+            if(isset($sucess)){echo'<p class="sucess">'. $sucess . '</p>' ;}
+            if($error){echo '<p class="error">'. $error . '</p>' ;} ?>
+        </div>
+        <div class="tela2" id="cadastrar_usuarios">
+            <a onclick="fcadastro()">x</a><br><br>
+                <!-- FORMULARIO POST INFORMAÇÕES DE CADASTRO -->
+                <form action="" method="POST">
+                    <label>Email</label>
+                    <input class="input_edit" type="email" value="<?php if(isset($_POST['email'])) echo $_POST['email']; ?>" name="email">
+                    <label>Endereço</label>
+                    <input class="input_edit" type="text" value="<?php if(isset($_POST['endereco'])) echo $_POST['endereco']; ?>" name="endereco">
 
-            <label>Nascimento</label><br>
-            <input class="input_edit" type="text" value="<?php if(isset($_POST['nascimento'])) echo $_POST['nascimento']; ?>" name="nascimento" placeholder="dia/mês/ano"><br><br>
-                
-            <label>Telefone:</label><br>
-            <input class="input_edit" value ="<?php if(isset($_POST['telefone'])) echo $_POST['telefone']; ?>" placeholder="(11) 98888-8888" type="text" name="telefone"><br><br>
-                
-            <label>sexo</label><br>
-            <input class="input_edit" type="text" value="<?php if(isset($_POST['sexo'])) echo $_POST['sexo']; ?>"placeholder="MAS ou FEM" name="sexo"><br><br>
+                    <label>Nome</label>
+                    <input class="input_edit" type="text" value="<?php if(isset($_POST['nome'])) echo $_POST['nome']; ?>" name="nome">
 
-            <button class="button_slide" type="submit" name="cadastrar">Cadastrar</button>
-        </form>
-<?php 
-if(isset($sucess)){echo'<p class="sucess">'. $sucess . '</p>' ;}
-if($error){echo '<p class="error">'. $error . '</p>' ;}   
-?>
-    </div>    
-    <script src="../Arquivos JS/index.js"></script>
+                    <label>Nascimento</label>
+                    <input class="input_edit" type="text" value="<?php if(isset($_POST['nascimento'])) echo $_POST['nascimento']; ?>" name="nascimento" placeholder="dia/mês/ano">
+                        
+                    <label>Telefone:</label>
+                    <input class="input_edit" value ="<?php if(isset($_POST['telefone'])) echo $_POST['telefone']; ?>" placeholder="(11) 98888-8888" type="text" name="telefone"><br><br>
+                        
+                    <label>sexo</label>
+                    <input class="input_edit" type="text" value="<?php if(isset($_POST['sexo'])) echo $_POST['sexo']; ?>"placeholder="MAS ou FEM" name="sexo"><br><br>
+
+                    <button class="button_slide" type="submit" name="cadastrar">Cadastrar</button>
+                </form>
+        </div>    
+<script src="../Arquivos JS/index.js"></script>
+<script src="../Arquivos JS/usuarios.js"></script>
 </body>
 </html>
 

@@ -107,7 +107,7 @@
     <div class="full">
         <div class="tela1">
             <p>Esses são os usuários cadastrados no seu sistema</p>
-            <table ID="alter"border="1" cellpadding="10">
+            <table ID="alter" border="1" cellpadding="10">
                 <thead>
                     <th>ID</th>
                     <th>Nome</th>
