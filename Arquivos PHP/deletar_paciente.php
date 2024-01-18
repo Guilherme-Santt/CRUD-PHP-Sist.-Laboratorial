@@ -1,18 +1,23 @@
 <?php
-    if(isset($_POST['confirmar'])){ 
-
-        include('conexao.php');
-        $id = intval($_GET['id']);
-        $sql_code = "DELETE FROM pacientes WHERE id = '$id'";
-        $query_code = $mysqli->query($sql_code) or die($mysqli->error);
-        
-            if($query_code) {?> 
-                <h1>Paciente removido com sucesso!</h1>
-                <p><a href="pacientes.php">Clique aqui </a>para retornar a listagem de pacientes</p>
-                <?php
-                die();
-            }
-    } 
+if(isset($_POST['confirmar'])){ 
+    include('conexao.php');
+    $id = intval($_GET['id']);
+    // DELETANDO O ID DO PACIENTE PUXANDO O ID NO GET
+    $sql_code = "DELETE FROM pacientes WHERE id = '$id'";
+    $query_code = $mysqli->query($sql_code) or die($mysqli->error);
+        if($query_code) {?> 
+            <h1>Paciente removido com sucesso!</h1>
+            <p><a href="pacientes.php">Clique aqui </a>para retornar a listagem de pacientes</p>
+            <?php
+            die();
+        }
+} 
+// CONSULTA NA TABELA PACIENTES, PUXANDO O CAMPO NOME, PARA O H1 NO FORM 
+include('conexao.php');
+$id = intval($_GET['id']);
+$consult_code = "SELECT * FROM pacientes WHERE id = '$id'";
+$consult_query = $mysqli->query($consult_code);
+$consulta = $consult_query->fetch_assoc();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,7 +28,7 @@
 </head>
 <body>
     <form action="" method="POST">
-        <h1>Tem certeza que deseja deletar este paciente?</h1>
+        <h1>Tem certeza que deseja deletar este paciente: <?php echo $consulta['nome']; ?> ?</h1>
         <a href="pacientes.php">Não!</a>
         <Button name="confirmar" type="submit">Sim!</Button>
     </form>

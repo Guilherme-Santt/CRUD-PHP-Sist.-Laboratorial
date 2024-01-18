@@ -1,26 +1,22 @@
 <?php
-
-    include('conexao.php');
-
+// SELECT FROM NA COLUNA EXAMES PARA PUXAR NOME DO EXAME
+include('conexao.php');
+$id = intval($_GET['id']);
+$from_id = "SELECT * FROM exames WHERE exameid = '$id'";
+$query_from = $mysqli->query($from_id);
+$exame = $query_from->fetch_assoc();
+// VERIFICAÇÃO DO SUBMITE CONFIRMAR,FAZENDO O DELETE DO ID EXAME VINDO DO GET
+if(isset($_POST['confirmar'])){
     $id = intval($_GET['id']);
-    $from_id = "SELECT * FROM exames WHERE exameid = '$id'";
-    $query_from = $mysqli->query($from_id);
-    $exame = $query_from->fetch_assoc();
-
-
-    if(isset($_POST['confirmar'])){
-        $id = intval($_GET['id']);
-
-        $sql_code = "DELETE FROM exames WHERE exameid = '$id'";
-        $query_code = $mysqli->query($sql_code);
-            if($query_code) {?> 
-                <h1>Exame removido com sucesso!</h1>
-                <p><a href="exames.php">Clique aqui </a>para retornar a listagem de pacientes</p>
-                <?php
-                die();
-            }
-
-    }
+    $sql_code = "DELETE FROM exames WHERE exameid = '$id'";
+    $query_code = $mysqli->query($sql_code);
+        if($query_code) {?> 
+            <h1>Exame removido com sucesso!</h1>
+            <p><a href="exames.php">Clique aqui </a>para retornar ao cadastro de exames</p>
+            <?php
+            die();
+        }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
