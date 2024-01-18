@@ -22,7 +22,7 @@ $consulta = $query_consult->fetch_assoc();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deletar Cliente</title>
+    <title>Deletar usuário</title>
 </head>
 <body>
     <form action="" method="POST">

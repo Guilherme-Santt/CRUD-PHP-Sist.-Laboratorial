@@ -124,7 +124,7 @@ $num_exames = $query_exames->num_rows;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Listagem de pacientes</title>
 </head>
 <style>
     /* body{
