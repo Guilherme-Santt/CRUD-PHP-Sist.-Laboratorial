@@ -52,19 +52,19 @@ if(count($_POST) > 0){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<link rel="stylesheet" href="../Arquivos CSS/usuarios.css">
 <link rel="stylesheet" href="../Arquivos CSS/normalize.css">
 <link rel="stylesheet" href="../Arquivos CSS/button.css">
 <link rel="stylesheet" href="../Arquivos CSS/tabela.css">
 <link rel="stylesheet" href="../Arquivos CSS/efeito_a.css">
+<link rel="stylesheet" href="../Arquivos CSS/FormatBody.css">
+<link rel="stylesheet" href="../Arquivos CSS/input.css">
 
 
 
 <body> 
     <div class="full">
         <!-- DIV PARA TABELA COM INFORMAÇÕES DOS EXAMES -->
-        <div class="From_Cadastrados">
-            <a href="index.php">Retornar para pagina inicial</a>
+        <div class="tela1">
             <h1>Tabela de exames</h1>
             <p>Esses são os exames cadastrados no seu sistema</p>
             <table border="1" cellpadding="10">
@@ -97,12 +97,13 @@ if(count($_POST) > 0){
                     <?php     }
                         } ?>
                 </tbody>
-            </table>
+            </table><br>
+            <button><a href="index.php">Pagina inicial</button> </a> 
+            <button onclick="lcadastro()">Cadastrar exames</button>
+        </div>
         <!-- DIV TELA DE FORM PARA CADASTRO DE PACIENTES  -->
-        </div><br>
-        <button onclick="lcadastro()">Cadastrar exames</button><br>
-        <div class="insert_cadastrar" id="cadastrar_usuarios">
-            <a onclick="fcadastro()">X</a><br><br>
+        <div class="tela2" id="cadastrar_usuarios">
+           <br> <a onclick="fcadastro()">X</a><br><br>
             <form action="" method="POST">
                 <label>Código exame</label>
                 <input class="input_edit" type="text" value="<?php if(isset($_POST['codigo'])) echo $_POST['codigo']; ?>" name="codigo"><br><br>
@@ -110,8 +111,8 @@ if(count($_POST) > 0){
                 <label>Descrição exame</label>
                 <input class="input_edit" type="text" value="<?php if(isset($_POST['descricao'])) echo $_POST['descricao']; ?>" name="descricao"><br><br>
 
-
                 <button class="button_slide" type="submit" name="cadastrar">Cadastrar exame</button>
+
             </form>
 
         </div>

@@ -130,48 +130,39 @@ $num_exames = $query_exames->num_rows;
 <link rel="stylesheet" href="../Arquivos CSS/button.css">
 <link rel="stylesheet" href="../Arquivos CSS/tabela.css">
 <link rel="stylesheet" href="../Arquivos CSS/efeito_a.css">
+<link rel="stylesheet" href="../Arquivos CSS/input.css">
 
 <body>
-    <a href="pacientes.php">Retornar listagem de pacientes</a>
     <!-- INSERÇÃO CAMPOS POST NO FORM -->
-    <form action="" method="POST">
-        <p>
-            <label>Nome: <?php echo $cliente['nome']; ?> </label>
-            <input value="<?php echo $cliente['nome']; ?>" type="text" name="nome">
-        </p>
-        <p>
-            <label>Endereço:</label>
-            <input value= "<?php echo $cliente['endereco']; ?>" type="text" name="endereco">
-        </p>
-        <p>
-            <label>Sexo:</label>
-            <input value= "<?php if($cliente['sexo']) echo $cliente['sexo']; ?>" type="text" name="sexo">
-        </p>
-        <p>
-            <label>E-mail:</label>
-            <input value ="<?php echo $cliente['email']; ?>" type="email" name="email">
-        </p>
+    <button><a href="index.php">Pagina inicial</button> </a> <br><br>
 
-        <p>
+    <form action="" method="POST">
+            <label>Nome: </label>
+            <input class="input_edit" value="<?php echo $cliente['nome']; ?>" type="text" name="nome">
+ 
+            <label>Endereço:</label>
+            <input class="input_edit" value= "<?php echo $cliente['endereco']; ?>" type="text" name="endereco">
+
+            <label>Sexo:</label>
+            <input class="input_edit" value= "<?php if($cliente['sexo']) echo $cliente['sexo']; ?>" type="text" name="sexo">
+
+            <label>E-mail:</label>
+
             <label>Telefone:</label>
-            <input value ="<?php if(!empty($cliente['telefone'])){ echo formatar_telefone($cliente['telefone']);} ?>" placeholder="(11) 98888-8888" type="text" name="telefone">
-        </p>
-        <p>
+            <input class="input_edit" value ="<?php if(!empty($cliente['telefone'])){ echo formatar_telefone($cliente['telefone']);} ?>" placeholder="(11) 98888-8888" type="text" name="telefone">
+
             <label>Data de nascimento:</label>
-            <input value ="<?php if(!empty($cliente['nascimento'])){ echo formatar_data($cliente['nascimento']);} ?>" placeholder="dia/mês/ano" type="text" name="nascimento">
-        </p>
+            <input class="input_edit" value ="<?php if(!empty($cliente['nascimento'])){ echo formatar_data($cliente['nascimento']);} ?>" placeholder="dia/mês/ano" type="text" name="nascimento">
         <p>
             <label>Exame ID</label>
-            <input type="text" name="id_exame">
+            <input class="input_edit" type="text" name="id_exame">
         </p>
-        <p>
-            <button class="button_slide" type="submit">Enviar</button>
-        </p>
-<?php
-if(isset($error)) echo $error;
-if(isset($sucess)) echo $sucess;
-?>
     </form>
+    <button class="button_slide" type="submit">Enviar</button>
+    <?php
+            if(isset($error)) echo $error;
+            if(isset($sucess)) echo $sucess;
+            ?>
     <!-- TABELA DE INFORMAÇÕES EXAMES CADASTRADOS DO PACIENTE -->
     <table border="1" cellpadding="10">
         <thead>
@@ -183,6 +174,7 @@ if(isset($sucess)) echo $sucess;
             <tr>
                 <td colspan="7">Nenhum exame foi encontrado!</td>
             </tr> <?php } ?>
+            <h1>Exames cadastrados</h1>
         <?php while($exames = $query_exames->fetch_assoc()){?>
             <tr>
                 <td><?php echo $exames['exame_id']?></td>

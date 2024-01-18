@@ -173,7 +173,7 @@ $num_pacientes = $query_pacientes->num_rows;
                 </tbody>
             </table><br><br>
             <button><a href="index.php">Pagina inicial</button> </a> 
-            <button onclick="lcadastro()">Cadastrar usuário</button><br><br>
+            <button onclick="lcadastro()">Cadastrar paciente</button><br><br>
             <?php 
             if(isset($sucess)){echo'<p class="sucess">'. $sucess . '</p>' ;}
             if($error){echo '<p class="error">'. $error . '</p>' ;} ?>

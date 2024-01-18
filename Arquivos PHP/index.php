@@ -26,7 +26,7 @@ $usuario = $query->fetch_assoc();
     <!-- Header  *NAV* - Mensagem central superior -->
     <header class="h-g">
         <form class="h-f">
-            <p class="white">Usuário, <b><?php echo $usuario['nome']?></b></p>
+            <p class="white">Usuário: <b><?php echo $usuario['nome']?></b></p>
         </form>
         <!-- *HEADER* Menu & Logo central  -->
         <img onclick="lmenu()" class="h-img" src="../imagens/hamburger.png">
