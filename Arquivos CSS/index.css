@@ -67,15 +67,7 @@
     font-size: 15px;
     background-color: rgb(41, 39, 39);
 }
-.h-a{
-    background-color: red;
-    width: 100%;
-    height: 20px;
-    align-items: center;
-    display: flex;
-    gap: 15px;
-    justify-content: center;
-}
+
 .h-g img{
     width: 35px;
     height: 40px;
@@ -99,103 +91,13 @@
     color: #0000;
     text-shadow: 
       0 0 #000, 
-      0 0.0em #1095c1;
+      0 0.0em #016436;
     overflow: hidden;
     transition: 0.3s;
 }
 .h-menu a:hover {
   text-shadow: 
     0 -1.2rem #000, 
-    0 0 #1095c1;
+    0 0 #016929;
 }
 
-.h-menu hr{
-    width: 90%;
-    color: #555555;
-}
-
-.search-container{
-  width: 490px;
-  display: block;
-  margin: 0 auto;
-}
-.input-lupa{
-    width: 20px;
-    height: 10px;
-    position: relative;
-    top: 1.5%;
-    left: 8%;
-    transition: 0.3s;
-}
-.input-lupa:hover{
-    opacity: 30%;
-}
-input#search-bar{
-    margin: 0 auto;
-    width: 60%;
-    position: relative;
-    left: 6%;
-    height: 35px;
-    font-size: 1rem;
-    border: 1px solid #D0CFCE;
-    outline: none;
-    &:focus{
-    border: 1px solid #000000;
-    transition: 0.35s ease;
-    color: #000000;
-    &::-webkit-input-placeholder{
-        transition: opacity 0.45s ease; 
-  	    opacity: 0;
-     }
-    &::-moz-placeholder {
-        transition: opacity 0.45s ease; 
-  	    opacity: 0;
-     }
-    &:-ms-placeholder {
-        transition: opacity 0.45s ease; 
-  	    opacity: 0;
-     }    
-   }
- }
-.icons{
-    margin-top: 25px;
-    display: flex;
-    gap: 20px;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 80px;
-    transition: 0.3s;
-}
-.icons img:hover{
-    opacity: 30%;
-}
-.icons img{
-    width: 45px;
-    height: 45px;
-}
-
-.nav-g{
-    padding-top: 80px;
-    width: 100%;
-    height: 100%;
-    background-color: rgb(252, 252, 252);
-    display: flex;
-    flex-wrap: wrap;
-    gap: 50px;
-
-}
-.nav-g h1{
-    line-height: 1.2em;
-    color: #0000;
-    text-shadow: 
-      0 0 #000, 
-      0 1.2em #1095c1;
-    overflow: hidden;
-    transition: .3s;
-}
-.nav-g h1:hover {
-  text-shadow: 
-    0 -1.2em #000, 
-    0 0 #1095c1;
-}

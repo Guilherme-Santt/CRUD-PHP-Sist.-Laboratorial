@@ -69,16 +69,17 @@ if(count($_POST) > 0){
         $sql_verify = "SELECT * FROM exames WHERE exameid = '$codigo'";
         $query_verify = $mysqli->query($sql_verify);
         $verify_existencia_exame = $query_verify->fetch_assoc();
+
         if($verify_existencia_exame){
                 $sql_verify = "SELECT * FROM pacientes_exames WHERE exame_id = '$codigo' AND paciente_id = '$id' ";
                 $query_verify = $mysqli->query($sql_verify);
                 $verify_cadastro_exame_no_paciente = $query_verify->fetch_assoc();
                         if($verify_cadastro_exame_no_paciente){
                             $error = "Exame já inserido*";
-                            }else{
+                            }
+                            else{
                                 $ql_insert = "INSERT INTO pacientes_exames (paciente_id, exame_id) VALUES ('$id', '$codigo')";
                                 $query_insert = $mysqli->query($ql_insert);
-                                var_dump($ql_insert);
                             }
             }else{
                 $error = "Exame não existe";
@@ -124,15 +125,12 @@ $num_exames = $query_exames->num_rows;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Listagem de pacientes</title>
+    <title>Cadastro paciente</title>
 </head>
-<style>
-    /* body{
-        background-color: black;
-        color: white;
-        border-color: white;
-    } */
-</style>
+<link rel="stylesheet" href="../Arquivos CSS/button.css">
+<link rel="stylesheet" href="../Arquivos CSS/tabela.css">
+<link rel="stylesheet" href="../Arquivos CSS/efeito_a.css">
+
 <body>
     <a href="pacientes.php">Retornar listagem de pacientes</a>
     <!-- INSERÇÃO CAMPOS POST NO FORM -->
@@ -167,7 +165,7 @@ $num_exames = $query_exames->num_rows;
             <input type="text" name="id_exame">
         </p>
         <p>
-            <button type="submit">Enviar</button>
+            <button class="button_slide" type="submit">Enviar</button>
         </p>
 <?php
 if(isset($error)) echo $error;

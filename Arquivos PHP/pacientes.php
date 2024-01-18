@@ -107,6 +107,11 @@ $num_pacientes = $query_pacientes->num_rows;
     <title>Document</title>
 </head>
 <link rel="stylesheet" href="../Arquivos CSS/usuarios.css">
+<link rel="stylesheet" href="../Arquivos CSS/button.css">
+<link rel="stylesheet" href="../Arquivos CSS/tabela.css">
+<link rel="stylesheet" href="../Arquivos CSS/efeito_a.css">
+
+
 <body>         
     <a href="index.php">Retornar pagina inicial</a> 
     <h1>Listagem de pacientes</h1>
@@ -165,28 +170,28 @@ $num_pacientes = $query_pacientes->num_rows;
         </tbody>
     </table>
     <div class="full">
-        <h1>Cadastrar Pacientes</h1>
+        <h1>Cadastrar pacientes</h1>
         <!-- FORMULARIO POST INFORMAÇÕES DE CADASTRO -->
         <form action="" method="POST">
-            <label>Email</label>
+            <label>Email</label><br>
             <input class="input_edit" type="email" value="<?php if(isset($_POST['email'])) echo $_POST['email']; ?>" name="email"><br><br>
 
-            <label>Endereço</label>
+            <label>Endereço</label><br>
             <input class="input_edit" type="text" value="<?php if(isset($_POST['endereco'])) echo $_POST['endereco']; ?>" name="endereco"><br><br>
 
-            <label>Nome</label>
+            <label>Nome</label><br><br>
             <input class="input_edit" type="text" value="<?php if(isset($_POST['nome'])) echo $_POST['nome']; ?>" name="nome"><br><br>
 
-            <label>Nascimento</label>
+            <label>Nascimento</label><br>
             <input class="input_edit" type="text" value="<?php if(isset($_POST['nascimento'])) echo $_POST['nascimento']; ?>" name="nascimento" placeholder="dia/mês/ano"><br><br>
                 
-            <label>Telefone:</label>
+            <label>Telefone:</label><br>
             <input class="input_edit" value ="<?php if(isset($_POST['telefone'])) echo $_POST['telefone']; ?>" placeholder="(11) 98888-8888" type="text" name="telefone"><br><br>
                 
-            <label>sexo</label>
+            <label>sexo</label><br>
             <input class="input_edit" type="text" value="<?php if(isset($_POST['sexo'])) echo $_POST['sexo']; ?>"placeholder="MAS ou FEM" name="sexo"><br><br>
 
-            <button type="submit" name="cadastrar">Cadastrar</button>
+            <button class="button_slide" type="submit" name="cadastrar">Cadastrar</button>
         </form>
 <?php 
 if(isset($sucess)){echo'<p class="sucess">'. $sucess . '</p>' ;}

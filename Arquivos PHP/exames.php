@@ -54,6 +54,12 @@ if(count($_POST) > 0){
 </head>
 <link rel="stylesheet" href="../Arquivos CSS/usuarios.css">
 <link rel="stylesheet" href="../Arquivos CSS/normalize.css">
+<link rel="stylesheet" href="../Arquivos CSS/button.css">
+<link rel="stylesheet" href="../Arquivos CSS/tabela.css">
+<link rel="stylesheet" href="../Arquivos CSS/efeito_a.css">
+
+
+
 <body> 
     <div class="full">
         <!-- DIV PARA TABELA COM INFORMAÇÕES DOS EXAMES -->
@@ -105,7 +111,7 @@ if(count($_POST) > 0){
                 <input class="input_edit" type="text" value="<?php if(isset($_POST['descricao'])) echo $_POST['descricao']; ?>" name="descricao"><br><br>
 
 
-                <button type="submit" name="cadastrar">Cadastrar exame</button>
+                <button class="button_slide" type="submit" name="cadastrar">Cadastrar exame</button>
             </form>
 
         </div>

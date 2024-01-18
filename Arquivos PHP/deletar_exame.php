@@ -25,6 +25,9 @@ if(isset($_POST['confirmar'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Deletar exame</title>
 </head>
+<link rel="stylesheet" href="../Arquivos CSS/button.css">
+<link rel="stylesheet" href="../Arquivos CSS/efeito_a.css">
+
 <body>
     <form action="" method="POST">
         <h1>Remover exame: <?php echo $exame['descricao']?>?</h1>

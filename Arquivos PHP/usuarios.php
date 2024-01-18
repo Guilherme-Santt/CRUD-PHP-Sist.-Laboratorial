@@ -92,18 +92,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Listagem de usuários</title>
 </head>
-<link rel="stylesheet" href="../Arquivos CSS/index.css">
 <link rel="stylesheet" href="../Arquivos CSS/usuarios.css">
 <link rel="stylesheet" href="../Arquivos CSS/normalize.css">
+<link rel="stylesheet" href="../Arquivos CSS/button.css">
+<link rel="stylesheet" href="../Arquivos CSS/efeito_a.css">
+<link rel="stylesheet" href="../Arquivos CSS/tabela.css">
+
+
+
 <body> 
     <div class="full">
         <div class="From_Cadastrados">
             <a href="index.php">Pagina inicial</a>
-            <h1>Usuários cadastrados</h1>
+            <h1>Usuários</h1>
             <p>Esses são os usuários cadastrados no seu sistema</p>
-            <table border="1" cellpadding="10">
+            <table ID="alter"border="1" cellpadding="10">
                 <thead>
                     <th>ID</th>
                     <th>Nome</th>
@@ -166,22 +171,22 @@
             <a onclick="fcadastro()">X</a>
             <h1>Cadastrar usuários</h1>
             <form action="" method="POST">
-                <label>Email</label>
+                <label>Email</label><br>
                 <input class="input_edit" type="email" value="<?php if(isset($_POST['email'])) echo $_POST['email']; ?>" name="email"><br><br>
 
-                <label>Nome</label>
+                <label>Nome</label><br><br>
                 <input class="input_edit" type="text" value="<?php if(isset($_POST['nome'])) echo $_POST['nome']; ?>" name="nome"><br><br>
 
-                <label>Nascimento</label>
+                <label>Nascimento</label><br>
                 <input class="input_edit" type="text" value="<?php if(isset($_POST['nascimento'])) echo $_POST['nascimento']; ?>" name="nascimento" placeholder="dia/mês/ano"><br><br>
                 
-                <label>Telefone:</label>
+                <label>Telefone:</label><br>
                 <input class="input_edit" value ="<?php if(isset($_POST['telefone'])) echo $_POST['telefone']; ?>" placeholder="(11) 98888-8888" type="text" name="telefone"><br><br>
                 
-                <label>Senha</label>
+                <label>Senha</label><br>
                 <input class="input_edit" type="password" value="<?php if(isset($_POST['senha'])) echo $_POST['senha']; ?>" name="senha"><br><br>
 
-                <button type="submit" name="cadastrar">Cadastrar</button>
+                <button class="button_slide" type="submit" name="cadastrar">Cadastrar</button>
             </form>
         </div>
         <?php 

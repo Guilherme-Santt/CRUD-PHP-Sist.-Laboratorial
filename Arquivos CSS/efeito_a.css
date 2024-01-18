@@ -1,0 +1,13 @@
+a{
+    text-decoration: none;
+    font-size: 20px;
+    color: black;
+}
+a:hover
+{
+    zoom: normal;
+    zoom: 1.10;
+    zoom: 90%;
+    transform: scale(1.1);
+    color: green;
+}

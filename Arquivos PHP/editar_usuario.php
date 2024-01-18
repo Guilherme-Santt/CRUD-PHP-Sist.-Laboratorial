@@ -100,6 +100,8 @@ $cliente = $query_cliente->fetch_assoc();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Listagem de usuários</title>
 </head>
+<link rel="stylesheet" href="../Arquivos CSS/button.css">
+
 <body>
     <a href="usuarios.php">Retornar listagem de úsuarios</a>
     <form action="" method="POST">
@@ -123,7 +125,7 @@ $cliente = $query_cliente->fetch_assoc();
             <input value ="<?php if(!empty($cliente['nascimento'])){ echo formatar_data($cliente['nascimento']);} ?>" placeholder="dia/mês/ano" type="text" name="nascimento">
         </p>
         <p>
-            <button type="submit">Enviar</button>
+            <button class="button_slide" type="submit">Enviar</button>
         </p>
 <?php 
 if(isset($error)){ echo $error;} 
