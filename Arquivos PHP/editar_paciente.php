@@ -68,22 +68,31 @@
                     $error = "O telefone deve ser preenchido no padrão (11) 98888-8888";
             }   
         }
-        if(!empty($codigo)){
 
+        if(!empty($codigo)){
+            // VERIFICAÇÃO SE O EXAME EXISTE NA TABELA EXAMES
             $sql_verify = "SELECT * FROM exames WHERE exameid = '$codigo'";
             $query_verify = $mysqli->query($sql_verify);
-            $verify = $query_verify->fetch_assoc();
-            if($verify){
-                $ql_insert = "INSERT INTO pacientes_exames (paciente_id, exame_id) VALUES ('$id', '$codigo')";
-                $query_insert = $mysqli->query($ql_insert);      
-            }else{
-                $error = "Exame não existe";
-                print_r($verify);
+            $verify_existencia_exame = $query_verify->fetch_assoc();
+
+            if($verify_existencia_exame){
+                    $sql_verify = "SELECT * FROM pacientes_exames WHERE exame_id = '$codigo' AND paciente_id = '$id' ";
+                    $query_verify = $mysqli->query($sql_verify);
+                    $verify_cadastro_exame_no_paciente = $query_verify->fetch_assoc();
+                            if($verify_cadastro_exame_no_paciente){
+                                $error = "Exame já inserido*";
+                                }else{
+                                    $ql_insert = "INSERT INTO pacientes_exames (paciente_id, exame_id) VALUES ('$id', '$codigo')";
+                                    $query_insert = $mysqli->query($ql_insert);
+                                    var_dump($ql_insert);
+                                }
+                }else{
+                    $error = "Exame não existe";
+                }
+            
         }
         
-        }
-             
-        
+                     
         if($error){
         }
         else{
