@@ -1,52 +1,49 @@
 <?php
-    if(!isset($_SESSION)){
-        session_start();
-        if(!isset($_SESSION['usuario'])){
-            die('Você não está logado!' . '<a href="login.php">Clique aqui para logar</a>');
-        }    
+if(!isset($_SESSION)){
+    session_start();
+    if(!isset($_SESSION['usuario'])){
+        die('Você não está logado!' . '<a href="login.php">Clique aqui para logar</a>');
+    }    
 }
-    include('conexao.php');
-    $id = $_SESSION['usuario'];
+include('conexao.php');
+$id = $_SESSION['usuario'];
 
-    $sqlcode = "SELECT * FROM clientes WHERE id = '$id'";
-    $query = $mysqli->query($sqlcode);
-    $usuario = $query->fetch_assoc();
+$error = "";
+$sucess = "";
+// VERIFICAÇÃO DE INSERÇÃO NOS CAMPOS POST DO FORMULÁRIO
+if(count($_POST) > 0){
+    $codigo = $_POST['codigo'];
+    $descricao = $_POST['descricao'];
+    // VERIFICANDO SE O CAMPO DESCRIÇÃO ESTÁ VAZIO
+    if(empty($_POST['descricao'])){
+        $error = "Campo descrição obrigatório*";
+    }  
+    // VERIFICANDO SE O CAMPO CÓDIGO ESTÁ VAZIO OU MAIOR QUE 3 DÍGITOS
+    if(empty($_POST['codigo']) || Strlen($codigo) > 3){
+        $error = "Campo código deve conter 3 dígitos";
+    }
+    // VERIFICANDO SE CONTÉM ALGUM ERRO-.> CASO TIVER TERÁ UM IF ISSET ERRO A BAIXO DO FORM
+    if($error){
 
-    // VERIFICAÇÃO DE INSERÇÃO NOS CAMPOS POST DO FORMULÁRIO
-    $error = "";
-    $sucess = "";
-    if(count($_POST) > 0){
-        $codigo = $_POST['codigo'];
-        $descricao = $_POST['descricao'];
-
-        if(empty($_POST['descricao'])){
-            $error = "Campo descrição obrigatório*";
-        }  
-        if(empty($_POST['codigo']) || Strlen($codigo) > 3){
-            $error = "Campo código deve conter 3 dígitos";
-        }
-        if($error){
-
-        }
-        // VERIFICAÇÃO SE O POST EMAIL EXISTE NO BANCO DE DADOS
-        else{
-            $sql_codeverify = "SELECT * FROM exames WHERE codigo = '$codigo'";
-            $query_c = $mysqli->query($sql_codeverify);
-            $verify = $query_c->fetch_assoc();
-
-                if($verify){
-                    $error = "Código exame já cadastrado!";
-                }
-            // INSERÇÃO DAS INFORMAÇÕES NO BANCO, CASO NÃO EXISTIR
-                else{
-                    $sqlinsert = "INSERT INTO exames (descricao, codigo)  values ('$descricao', '$codigo')";
-                    $queryinsert = $mysqli->query($sqlinsert);
-                        if($queryinsert){
-                            $sucess = "Cadastrado com sucesso";
-                        }
-                }
-        }
-    }   
+    }
+    // VERIFICAÇÃO SE O POST CÓDIGO EXISTE NO BANCO DE DADOS, PARA NÃO DUPLICAR EXAME AO CRIAR
+    else{
+        $sql_codeverify = "SELECT * FROM exames WHERE codigo = '$codigo'";
+        $query_c = $mysqli->query($sql_codeverify);
+        $verify = $query_c->fetch_assoc();
+            if($verify){
+                $error = "Código exame já cadastrado!";
+            }
+        // INSERÇÃO DAS INFORMAÇÕES NO BANCO, CASO NÃO EXISTIR O CÓDIGO 
+            else{
+                $sqlinsert = "INSERT INTO exames (descricao, codigo)  values ('$descricao', '$codigo')";
+                $queryinsert = $mysqli->query($sqlinsert);
+                    if($queryinsert){
+                        $sucess = "Cadastrado com sucesso";
+                    }
+            }
+    }
+}   
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -59,6 +56,7 @@
 <link rel="stylesheet" href="../Arquivos CSS/normalize.css">
 <body> 
     <div class="full">
+        <!-- DIV PARA TABELA COM INFORMAÇÕES DOS EXAMES -->
         <div class="From_Cadastrados">
             <a href="index.php">Retornar para pagina inicial</a>
             <h1>Tabela de exames</h1>
@@ -72,33 +70,29 @@
                 </thead>
                 <tbody> 
                 <?php 
-                
-                    // COMANDO SQL PARA CONSULTAR QUANTIDADE DE CLIENTES NO SISTEMA
-                    $sql_exames  = "SELECT * FROM exames";
-                    $query_exames = $mysqli->query($sql_exames) or die($mysqli->error);
-                    $num_exames = $query_exames->num_rows;
+                // COMANDO SQL PARA CONSULTAR QUANTIDADE DE CLIENTES NO SISTEMA
+                $sql_exames  = "SELECT * FROM exames";
+                $query_exames = $mysqli->query($sql_exames) or die($mysqli->error);
+                $num_exames = $query_exames->num_rows;
                     if($num_exames == 0) { 
-                ?> 
-                <tr>
-                    <td colspan="3">Nenhum exame foi encontrado!</td>
-                </tr>
-                <?php }
-                    else{ 
-                        while($exames = $query_exames->fetch_assoc()){
-                    ?>     
+                    ?> 
                     <tr>
-                        <td><?php echo $exames['exameid']?>     </td>
-                        <td><?php echo $exames['codigo']?>   </td>
-                        <td><?php echo $exames['descricao']?>  </td>   
-                        <td><a href="deletar_exame.php?id=<?php echo $exames['exameid'] ?>">Deletar exame</a></td>
- 
-                    </tr>             
-                <?php
-                    }
-                    }
-                ?>
+                        <td colspan="3">Nenhum exame foi encontrado!</td>
+                    </tr>
+                    <?php }
+                        else{ 
+                            while($exames = $query_exames->fetch_assoc()){?>     
+                        <tr>
+                            <td><?php echo $exames['exameid']?>     </td>
+                            <td><?php echo $exames['codigo']?>   </td>
+                            <td><?php echo $exames['descricao']?>  </td>   
+                            <td><a href="deletar_exame.php?id=<?php echo $exames['exameid'] ?>">Deletar exame</a></td>
+                        </tr>      
+                    <?php     }
+                        } ?>
                 </tbody>
             </table>
+        <!-- DIV TELA DE FORM PARA CADASTRO DE PACIENTES  -->
         </div><br>
         <button onclick="lcadastro()">Cadastrar exames</button><br>
         <div class="insert_cadastrar" id="cadastrar_usuarios">
@@ -115,12 +109,12 @@
             </form>
 
         </div>
-        <?php 
-                if(isset($sucess)){echo'<p class="sucess">'. $sucess . '</p>' ;}
-                if($error){echo '<p class="error">'. $error . '</p>' ;}   
-            ?>
+<?php 
+if(isset($sucess)){echo'<p class="sucess">'. $sucess . '</p>' ;}
+if($error){echo '<p class="error">'. $error . '</p>' ;}   
+?>
     </div>    
-    <script src="../Arquivos JS/usuarios.js"></script>
-    <script src="../Arquivos JS/index.js"></script>
+<script src="../Arquivos JS/usuarios.js"></script>
+<script src="../Arquivos JS/index.js"></script>
 </body>
 </html>
