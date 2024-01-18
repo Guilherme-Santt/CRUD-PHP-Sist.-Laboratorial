@@ -1,49 +1,50 @@
-<!-- <?php
-    include('conexao.php');
-    $error = "";
-    // VERIFICAÇÃO POST Á PARTIR DO EMAIL
-    if(isset($_POST['email'])){
-        $email = $_POST['email'];
-        $senha = $_POST['senha'];
-        if(empty($email)){
-            $error = '<p class="error">Preencha o campo email*</p>';
+<?php
+include('conexao.php');
+$error = "";
+// VERIFICAÇÃO POST Á PARTIR DO EMAIL
+if(isset($_POST['email'])){
+    $email = $_POST['email'];
+    $senha = $_POST['senha'];
+
+    if(empty($email)){
+        $error = '<p class="error">Preencha o campo email*</p>';
+    }
+    else if(empty($senha)){
+        $error = '<p class="error">Preencha o campo senha*</p>';
+    }
+    // VERIFICAÇÃO SE EXISTE O USUÁRIO NO BANCO
+    else{
+        $sql_code = "SELECT * FROM clientes WHERE email = '$email' LIMIT 1";
+        $sql_exec = $mysqli->query($sql_code);
+        $usuario = $sql_exec->fetch_assoc();
+        if (!$usuario) {
+            $error = '<p class="error">Usuário inexistente*</p>';    
         }
-        else if(empty($senha)){
-            $error = '<p class="error">Preencha o campo senha*</p>';
-        }
-        // VERIFICAÇÃO SE EXISTE O USUÁRIO NO BANCO
-        else{
-            $sql_code = "SELECT * FROM clientes WHERE email = '$email' LIMIT 1";
-            $sql_exec = $mysqli->query($sql_code);
-            $usuario = $sql_exec->fetch_assoc();
-            if (!$usuario) {
-                $error = '<p class="error">Usuário inexistente*</p>';    
-            }
-            else 
-            // VERIFICAÇÃO SE A SENHA BATE COM A SENHA DO BANCO->SESSION OU MENSAGEM DE ERRO
-            {
-                if(password_verify($senha, $usuario['senha'] )){
-                    if(!isset($_SESSION)){
-                        session_start();
-                        $_SESSION['usuario'] = $usuario['id'];
-                        header("location: index.php");
-                    }
-                }else{
-                    $error = '<p class="error">Usuário ou senha incorretos!*</p>';
+        else 
+        // VERIFICAÇÃO SE A SENHA BATE COM A SENHA DO BANCO->SESSION OU MENSAGEM DE ERRO
+        {
+            if(password_verify($senha, $usuario['senha'] )){
+                if(!isset($_SESSION)){
+                    session_start();
+                    $_SESSION['usuario'] = $usuario['id'];
+                    header("location: index.php");
                 }
+            }else{
+                $error = '<p class="error">Usuário ou senha incorretos!*</p>';
             }
-            if($error){
-            }
+        }
+        if($error){
+        }
     }
 }
-?> -->
+?> 
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Tela de login</title>
     <link rel="stylesheet" href="../Arquivos CSS/login.css">
     <link rel="stylesheet" href="../Arquivos CSS/normalize.css">
 </head>

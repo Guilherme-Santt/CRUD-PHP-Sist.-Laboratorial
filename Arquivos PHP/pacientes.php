@@ -1,109 +1,102 @@
 <?php 
+// VERICIAÇÃO DE SESSÃO
+include('conexao.php');
+if(!isset($_SESSION)){
+    session_start();
+    if(!isset($_SESSION['usuario'])){
+        die('Você não está logado!' . '<a href="login.php">Clique aqui para logar</a>');
+    }  
+}      
+   
+// VERIFICAÇÃO DA INSERÇÃO DOS CAMPOS POST NO FORM
+$error = "";
+if(count($_POST) > 0){
+    $email = $_POST['email'];
+    $sexo = $_POST['sexo'];
+    $nome = $_POST['nome'];
+    $endereco = $_POST['endereco'];
+    $telefone = $_POST['telefone'];
+    $nascimento = $_POST['nascimento'];
 
-    // VERICIAÇÃO DE SESSÃO
-    include('conexao.php');
-    if(!isset($_SESSION)){
-        session_start();
-        if(!isset($_SESSION['usuario'])){
-            die('Você não está logado!' . '<a href="login.php">Clique aqui para logar</a>');
+    if(empty($_POST['email']) || !filter_var($email, FILTER_VALIDATE_EMAIL)){
+        $error = "Campo e-mail obrigatório*";
+        }
+
+    if(empty($_POST['endereco'])){
+        $error = "Campo endereço obrigatório*";
+        }
+
+    if(!empty($_POST['sexo']) ){
+        if(strlen($sexo) != 3){
+            $error = "Escreva campo FEM ou MAS";
+        }
         }    
 
+    if(empty($_POST['nome']) || Strlen($nome) < 3 || Strlen($nome) > 100){
+        $error = "Campo nome obrigatório*";
+        }
 
-    // FUNÇÃO FORMATAR DATA PADRÃO BRASILEIRO VISUALIZAÇÃO 
-    function formatar_data($data){
-        return implode('/', array_reverse(explode('-', $data)));
-    };
-
-    // FORMATAR TELEFONE PARA VISUALIZAÇÃO COM CARACTERES
-    function formatar_telefone($telefone){
-        $ddd = substr ($telefone, 0, 2);
-        $parte1 = substr ($telefone, 2, 5);
-        $parte2 = substr ($telefone, 7);
-        return "($ddd) $parte1-$parte2";
-}
-?>
-
-<?php 
-    // FUNÇÃO LIMPA TEXTO AO INSERIR TELEFONE 
-    function limpar_texto($str){ 
-        return preg_replace("/[^0-9]/", "", $str); 
-    }
+        if(empty($nascimento) || strlen($nascimento) < 10 || strlen($nascimento) > 10 ){
+            $error = "A data de nascimento deve ser preenchido no padrão dia/mes/ano";
+        }
+        else{
+        $pedacos = explode('/', $nascimento);
+            if(count($pedacos) == 3){
+                $nascimento = implode ('-', array_reverse($pedacos)); 
             }
-        
-    // VERIFICAÇÃO DA INSERÇÃO DOS CAMPOS POST NO FORM
-    $error = "";
-    if(count($_POST) > 0){
-        $email = $_POST['email'];
-        $sexo = $_POST['sexo'];
-        $nome = $_POST['nome'];
-        $endereco = $_POST['endereco'];
-        $telefone = $_POST['telefone'];
-        $nascimento = $_POST['nascimento'];
-        
-        if(empty($_POST['email']) || !filter_var($email, FILTER_VALIDATE_EMAIL)){
-            $error = "Campo e-mail obrigatório*";
-            }
+        }      
 
-        if(empty($_POST['endereco'])){
-            $error = "Campo endereço obrigatório*";
-            }
-
-        if(!empty($_POST['sexo']) ){
-            if(strlen($sexo) != 3){
-                $error = "Escreva campo FEM ou MAS";
-            }
-            }    
-
-        if(empty($_POST['nome']) || Strlen($nome) < 3 || Strlen($nome) > 100){
-            $error = "Campo nome obrigatório*";
-            }
-        
-            if(empty($nascimento) || strlen($nascimento) < 10 || strlen($nascimento) > 10 ){
-                $error = "A data de nascimento deve ser preenchido no padrão dia/mes/ano";
-            }
-            else{
-            $pedacos = explode('/', $nascimento);
-                if(count($pedacos) == 3){
-                    $nascimento = implode ('-', array_reverse($pedacos)); 
-                }
-            }      
-
-            if(empty($telefone)){
-                $error ="Campo telefone obrigatório";
-            }else{
-                $telefone = limpar_texto($telefone);
-                if(strlen($telefone) != 11){
-                    $error = "O telefone deve ser preenchido no padrão (11) 98888-8888";
-                }
-            }
-
-        if($error){
-        
+        if(empty($telefone)){
+            $error ="Campo telefone obrigatório";
         }else{
-            $sql_codeverify = "SELECT * FROM pacientes WHERE email = '$email'";
-            $query_c = $mysqli->query($sql_codeverify);
-            $paciente = $query_c->fetch_assoc();
-            $verify = $query_c->num_rows;
-                if($verify){
-                    $error = "paciente já cadastrado!";
-                    }
-                else{
-                    $sqlinsert = "INSERT INTO pacientes (nome, email, endereco, telefone, nascimento, data, sexo)  
-                        values ('$nome', '$email', '$endereco', '$telefone', '$nascimento', NOW(), '$sexo')";
-                    $queryinsert = $mysqli->query($sqlinsert);
-                        if($queryinsert){
-                            $sucess = "Cadastrado com sucesso";
-                            }
-                    }
+            $telefone = limpar_texto($telefone);
+            if(strlen($telefone) != 11){
+                $error = "O telefone deve ser preenchido no padrão (11) 98888-8888";
             }
-        
-        }   
+        }
 
-    // VISUALIZAÇÃO INFORMAÕES USUARIO CAMPO NO HEADER
-    $id = $_SESSION['usuario'];
-    $sqlcode = "SELECT * FROM clientes WHERE id = '$id'";
-    $query = $mysqli->query($sqlcode);
-    $cliente = $query->fetch_assoc();
+    if($error){
+
+    }else{
+        $sql_codeverify = "SELECT * FROM pacientes WHERE email = '$email'";
+        $query_c = $mysqli->query($sql_codeverify);
+        $paciente = $query_c->fetch_assoc();
+        $verify = $query_c->num_rows;
+            if($verify){
+                $error = "paciente já cadastrado!";
+                }
+            else{
+                $sqlinsert = "INSERT INTO pacientes (nome, email, endereco, telefone, nascimento, data, sexo)  
+                    values ('$nome', '$email', '$endereco', '$telefone', '$nascimento', NOW(), '$sexo')";
+                $queryinsert = $mysqli->query($sqlinsert);
+                    if($queryinsert){
+                        $sucess = "Cadastrado com sucesso";
+                        }
+                }
+        }
+
+    }   
+    
+// FUNÇÃO FORMATAR DATA PADRÃO BRASILEIRO VISUALIZAÇÃO 
+function formatar_data($data){
+    return implode('/', array_reverse(explode('-', $data)));
+};
+// FORMATAR TELEFONE PARA VISUALIZAÇÃO COM CARACTERES
+function formatar_telefone($telefone){
+    $ddd = substr ($telefone, 0, 2);
+    $parte1 = substr ($telefone, 2, 5);
+    $parte2 = substr ($telefone, 7);
+    return "($ddd) $parte1-$parte2";
+}
+// FUNÇÃO LIMPA TEXTO AO INSERIR TELEFONE 
+function limpar_texto($str){ 
+    return preg_replace("/[^0-9]/", "", $str); 
+}
+include('conexao.php');
+// COMANDO SQL PARA CONSULTAR QUANTIDADE DE CLIENTES NO SISTEMA
+$sql_pacientes   = "SELECT * FROM pacientes";
+$query_pacientes = $mysqli->query($sql_pacientes) or die($mysqli->error);
+$num_pacientes = $query_pacientes->num_rows; 
 ?>
 
 <!DOCTYPE html>
@@ -131,30 +124,26 @@
             <th>Ações</th>
         </thead>
         <tbody>        
-<?php 
-    include('conexao.php');
-    // COMANDO SQL PARA CONSULTAR QUANTIDADE DE CLIENTES NO SISTEMA
-    $sql_pacientes   = "SELECT * FROM pacientes";
-    $query_pacientes = $mysqli->query($sql_pacientes) or die($mysqli->error);
-    $num_pacientes = $query_pacientes->num_rows;
-        if($num_pacientes == 0) { 
-            ?> 
+       <?php if($num_pacientes == 0) { ?> 
             <tr>
                 <td colspan="7">Nenhum paciente foi encontrado!</td>
-            </tr>
-            <?php }
+            </tr><?php }
             else{ 
                 while($pacientes = $query_pacientes->fetch_assoc()){
+
                     $telefone ="Não informado!";
+                    // SE O CAMPO CONSULTADO NÃO TIVER VÁZIO, UTILIZARÁ FUNÇÃO PARA FORMATAR O MESMO COM CARACTERES
                     if(!empty($pacientes['telefone'])){
                         $telefone = formatar_telefone($pacientes['telefone']);   
                     }
-                        $nascimento = "Nascimento não informada!";
+
+                    $nascimento = "Nascimento não informada!";
+                    // SE O CAMPO CONSULTADO NÃO TIVER VÁZIO, UTILIZARÁ FUNÇÃO QUE PEGA O CAMPO SQL ANO-MES-DIA ALTERANDO - POR / E REVERTER OS CAMPOS PARA DIA/MES/ANO 
                     if(!empty($pacientes['nascimento'])){
                         $nascimento = formatar_data($pacientes['nascimento']);
                     }
-                        $data_cadastro = date("d/m/y H:i:s", strtotime($pacientes['data']));
-?>     
+                    // FUNÇÃO DATE (PADRÃO DO PHP) PARA CONVERTER DATA DE CADASTRO NO SQL PARA DIA/MES/ANO E HORA
+                    $data_cadastro = date("d/m/y H:i:s", strtotime($pacientes['data']));?>     
                     <tr>
                         <td><?php echo $pacientes['ID']?>     </td>
                         <td><?php echo $pacientes['nome']?>   </td>
@@ -168,10 +157,10 @@
                         <a class="edit" href="editar_paciente.php?id=<?php echo $pacientes['ID']?>">Editar</a>
                         <a class="error" href="deletar_paciente.php?id=<?php echo $pacientes['ID']?>">Deletar</a>
                         </td>
-                    </tr>             
-<?php
-                    }
-                }
+                    </tr>
+                  <?php
+                  }
+                } 
                 ?>
         </tbody>
     </table>
@@ -200,8 +189,8 @@
             <button type="submit" name="cadastrar">Cadastrar</button>
         </form>
 <?php 
-    if(isset($sucess)){echo'<p class="sucess">'. $sucess . '</p>' ;}
-    if($error){echo '<p class="error">'. $error . '</p>' ;}   
+if(isset($sucess)){echo'<p class="sucess">'. $sucess . '</p>' ;}
+if($error){echo '<p class="error">'. $error . '</p>' ;}   
 ?>
     </div>    
     <script src="../Arquivos JS/index.js"></script>
