@@ -94,7 +94,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Listagem de usuários</title>
 </head>
-<link rel="stylesheet" href="../Arquivos CSS/usuarios.css">
+<link rel="stylesheet" href="../Arquivos CSS/input.css">
+<link rel="stylesheet" href="../Arquivos CSS/formatBody.css">
 <link rel="stylesheet" href="../Arquivos CSS/normalize.css">
 <link rel="stylesheet" href="../Arquivos CSS/button.css">
 <link rel="stylesheet" href="../Arquivos CSS/efeito_a.css">
@@ -104,9 +105,7 @@
 
 <body> 
     <div class="full">
-        <div class="From_Cadastrados">
-            <a href="index.php">Pagina inicial</a>
-            <h1>Usuários</h1>
+        <div class="tela1">
             <p>Esses são os usuários cadastrados no seu sistema</p>
             <table ID="alter"border="1" cellpadding="10">
                 <thead>
@@ -120,7 +119,7 @@
                     <th>Ações</th>
                 </thead>
                 <tbody> 
-                <?php 
+                    <?php 
                     // COMANDO SQL PARA CONSULTAR QUANTIDADE DE CLIENTES NO SISTEMA
                     $sql_clientes   = "SELECT * FROM clientes";
                     $query_clientes = $mysqli->query($sql_clientes) or die($mysqli->error);
@@ -161,38 +160,34 @@
                     }
                 ?>
                 </tbody>
-            </table>
+            </table><br>
+            <button><a href="index.php">Pagina inicial</button> </a> 
+            <button onclick="lcadastro()">Cadastrar usuário</button><br><br>
+<?php 
+if(isset($sucess)){echo'<p class="sucess">'. $sucess . '</p>' ;}
+if($error){echo '<p class="error">'. $error . '</p>' ;}   
+?>
         </div>
-        
-        
-        <br>
-        <button onclick="lcadastro()">Cadastrar clientes</button><br>
-        <div class="insert_cadastrar" id="cadastrar_usuarios">
-            <a onclick="fcadastro()">X</a>
-            <h1>Cadastrar usuários</h1>
-            <form action="" method="POST">
-                <label>Email</label><br>
-                <input class="input_edit" type="email" value="<?php if(isset($_POST['email'])) echo $_POST['email']; ?>" name="email"><br><br>
-
-                <label>Nome</label><br><br>
-                <input class="input_edit" type="text" value="<?php if(isset($_POST['nome'])) echo $_POST['nome']; ?>" name="nome"><br><br>
-
-                <label>Nascimento</label><br>
-                <input class="input_edit" type="text" value="<?php if(isset($_POST['nascimento'])) echo $_POST['nascimento']; ?>" name="nascimento" placeholder="dia/mês/ano"><br><br>
-                
-                <label>Telefone:</label><br>
-                <input class="input_edit" value ="<?php if(isset($_POST['telefone'])) echo $_POST['telefone']; ?>" placeholder="(11) 98888-8888" type="text" name="telefone"><br><br>
-                
-                <label>Senha</label><br>
-                <input class="input_edit" type="password" value="<?php if(isset($_POST['senha'])) echo $_POST['senha']; ?>" name="senha"><br><br>
-
-                <button class="button_slide" type="submit" name="cadastrar">Cadastrar</button>
-            </form>
-        </div>
-        <?php 
-                if(isset($sucess)){echo'<p class="sucess">'. $sucess . '</p>' ;}
-                if($error){echo '<p class="error">'. $error . '</p>' ;}   
-            ?>
+        <div class="tela2" id="cadastrar_usuarios">
+                <a onclick="fcadastro()">x</a><br><br>
+                <form action="" method="POST">
+                    <label>Email</label>
+                    <input class="input_edit" type="email" value="<?php if(isset($_POST['email'])) echo $_POST['email']; ?>" name="email">
+            
+                    <label>Nome</label>
+                    <input class="input_edit" type="text" value="<?php if(isset($_POST['nome'])) echo $_POST['nome']; ?>" name="nome">
+            
+                    <label>Nascimento</label>
+                    <input class="input_edit" type="text" value="<?php if(isset($_POST['nascimento'])) echo $_POST['nascimento']; ?>" name="nascimento" placeholder="dia/mês/ano">
+                    
+                    <label>Telefone:</label>
+                    <input class="input_edit" value ="<?php if(isset($_POST['telefone'])) echo $_POST['telefone']; ?>" placeholder="(11) 98888-8888" type="text" name="telefone">
+                    
+                    <label>Senha</label>
+                    <input class="input_edit" type="password" value="<?php if(isset($_POST['senha'])) echo $_POST['senha']; ?>" name="senha"><br><br>
+                    <button class="button_slide" type="submit" name="cadastrar">Enviar</button>
+                </form>
+            </div><br>
     </div>    
     <script src="../Arquivos JS/usuarios.js"></script>
     <script src="../Arquivos JS/index.js"></script>
