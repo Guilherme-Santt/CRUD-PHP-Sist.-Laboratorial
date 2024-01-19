@@ -110,10 +110,7 @@
 <!-- DIVISÃO MODAL -> CADASTRO DE USUARIOS -->
 <body> 
     <div class="janela-modal" id="janela-modal">
-        <?php 
-        if(isset($sucess)){echo'<p class="sucess">'. $sucess . '</p>' ;}
-        if($error){echo '<p class="error">'. $error . '</p>' ;}   
-        ?>
+
         <div class="modal">
             <button class="fechar" id="fechar">X</button>
             <form action="" method="POST">
@@ -139,8 +136,14 @@
     <!-- DIVISÃO TABELA DE USUARIOS CADASTRADOS -->
     <div class="janela_tabela">
         <h1>Esses são os usuários cadastrados no seu sistema</h1>
-        <button><a href="index.php">Pagina inicial</button> </a>
+        <button><a href="index.php">Pagina inicial</button> </a><br>
         <button onclick="abrir_modal()">Cadastrar usuário</button><br><br>    
+        <p>
+            <?php 
+            if(isset($sucess)){echo'<p class="sucess">'. $sucess . '</p>' ;}
+            if($error){echo '<p class="error">'. $error . '</p>' ;}   
+            ?>
+        </p>    
         <table ID="alter" border="1" cellpadding="10">
             <thead>
                 <th>ID</th>

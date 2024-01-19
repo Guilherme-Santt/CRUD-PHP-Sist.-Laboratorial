@@ -147,10 +147,10 @@ $num_pacientes = $query_pacientes->num_rows;
     </div>
     
     <!-- TABELA DE PACIENTES CADASTRADOS -->
-    <div class="janela-tabela"></div>        
+    <div class="janela_tabela">       
         <h1>Esses são os pacientes cadastrados no seu sistema</h1>
-        <button><a href="index.php">Pagina inicial</button> </a> 
-        <button onclick="abrir_modal()">Cadastrar paciente</button><br><br>
+            <button><a href="index.php">Pagina inicial</button> </a><br>
+            <button onclick="abrir_modal()">Cadastrar paciente</button><br><br>
         <table border="1" cellpadding="10">
             <thead>
                 <th>ID</th>

@@ -131,30 +131,34 @@ $num_exames = $query_exames->num_rows;
 <link rel="stylesheet" href="../Arquivos CSS/tabela.css">
 <link rel="stylesheet" href="../Arquivos CSS/efeito_a.css">
 <link rel="stylesheet" href="../Arquivos CSS/input.css">
+<link rel="stylesheet" href="../Arquivos CSS/janela_tabela.css">
+
 
 <body>
+
+    <a href="pacientes.php"><button>Retornar</button></a> 
+    <a href="index.php">    <button>inicial</button></a><br><br>
+
     <!-- INSERÇÃO CAMPOS POST NO FORM -->
-    <button><a href="pacientes.php">Retornar</button> </a> <br><br>
-    <button><a href="index.php">Pagina inicial</button> </a> <br><br>
-
+    <p>Informações do paciente:</p>
     <form action="" method="POST">
-            <label>Nome: </label>
-            <input class="input_edit" value="<?php echo $cliente['nome']; ?>" type="text" name="nome">
+            <label>Nome: </label><br>
+            <input class="input_edit" value="<?php echo $cliente['nome']; ?>" type="text" name="nome"><br><br>
  
-            <label>Endereço:</label>
-            <input class="input_edit" value= "<?php echo $cliente['endereco']; ?>" type="text" name="endereco">
+            <label>Endereço:</label><br>
+            <input class="input_edit" value= "<?php echo $cliente['endereco']; ?>" type="text" name="endereco"><br><br>
 
-            <label>Sexo:</label>
-            <input class="input_edit" value= "<?php if($cliente['sexo']) echo $cliente['sexo']; ?>" type="text" name="sexo">
+            <label>Sexo:</label><br>
+            <input class="input_edit" value= "<?php if($cliente['sexo']) echo $cliente['sexo']; ?>" type="text" name="sexo"><br><br>
 
-            <label>E-mail:</label>
-            <input class="input_edit" value ="<?php if(!empty($cliente['telefone'])){ echo ($cliente['email']);} ?>" type="email" name="email">
+            <label>E-mail:</label><br>
+            <input class="input_edit" value ="<?php if(!empty($cliente['telefone'])){ echo ($cliente['email']);} ?>" type="email" name="email"><br><br>
 
-            <label>Telefone:</label>
-            <input class="input_edit" value ="<?php if(!empty($cliente['telefone'])){ echo formatar_telefone($cliente['telefone']);} ?>" placeholder="(11) 98888-8888" type="text" name="telefone">
+            <label>Telefone:</label><br>
+            <input class="input_edit" value ="<?php if(!empty($cliente['telefone'])){ echo formatar_telefone($cliente['telefone']);} ?>" placeholder="(11) 98888-8888" type="text" name="telefone"><br><br>
 
-            <label>Data de nascimento:</label>
-            <input class="input_edit" value ="<?php if(!empty($cliente['nascimento'])){ echo formatar_data($cliente['nascimento']);} ?>" placeholder="dia/mês/ano" type="text" name="nascimento">
+            <label>Data de nascimento:</label><br>
+            <input class="input_edit" value ="<?php if(!empty($cliente['nascimento'])){ echo formatar_data($cliente['nascimento']);} ?>" placeholder="dia/mês/ano" type="text" name="nascimento"><br>
         <p>
             <label>Exame ID</label>
             <input class="input_edit" type="text" name="id_exame">
