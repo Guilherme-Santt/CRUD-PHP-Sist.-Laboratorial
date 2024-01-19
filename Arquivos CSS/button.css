@@ -18,11 +18,12 @@
     position:relative;
     width: 120px;;
     height: 50px;
-    font-size:1.2em;
+    font-size:15px;
     padding:0 2em;
     cursor:pointer;
     transition:800ms ease all;
     outline:none;
+    text-align: center;
   }
 
 

@@ -160,6 +160,7 @@ $num_exames = $query_exames->num_rows;
             <label>Data de nascimento:</label><br>
             <input class="input_edit" value ="<?php if(!empty($cliente['nascimento'])){ echo formatar_data($cliente['nascimento']);} ?>" placeholder="dia/mês/ano" type="text" name="nascimento"><br>
         <p>
+            <p>Adicionar um exame no atendimento:</p>
             <label>Exame ID</label>
             <input class="input_edit" type="text" name="id_exame"><br><br>
             <button class="button_slide" type="submit">Enviar</button>

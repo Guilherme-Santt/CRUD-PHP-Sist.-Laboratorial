@@ -3,7 +3,7 @@
   justify-content: center;
   flex-direction: column;
     align-items: center;
-    font-size: 50;
+    font-size: 10;
 }
 h1 {
     display: flex;
@@ -12,9 +12,10 @@ h1 {
     text-align: center;
   }
   h1:before, h1:after {
-    background-color: #ddd;
+    background-color: #069968;
     content: '\a0';
     flex-grow: 1;
+    width: 220px;
     height: 1px;
     position: relative;
     top: 0.5em;
