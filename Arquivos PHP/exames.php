@@ -56,72 +56,71 @@ if(count($_POST) > 0){
 <link rel="stylesheet" href="../Arquivos CSS/button.css">
 <link rel="stylesheet" href="../Arquivos CSS/tabela.css">
 <link rel="stylesheet" href="../Arquivos CSS/efeito_a.css">
-<link rel="stylesheet" href="../Arquivos CSS/FormatBody.css">
+<link rel="stylesheet" href="../Arquivos CSS/modal.css">
 <link rel="stylesheet" href="../Arquivos CSS/input.css">
 
 
 
 <body> 
-    <div class="full">
-        <!-- DIV PARA TABELA COM INFORMAÇÕES DOS EXAMES -->
-        <div class="tela1">
-            <h1>Tabela de exames</h1>
-            <p>Esses são os exames cadastrados no seu sistema</p>
-            <table border="1" cellpadding="10">
-                <thead>
-                    <th>ID exame</th>
-                    <th>Código exame</th>
-                    <th>Descrição exame</th>
-                    <th>Deletar exame</th>
-                </thead>
-                <tbody> 
-                <?php 
-                // COMANDO SQL PARA CONSULTAR QUANTIDADE DE CLIENTES NO SISTEMA
-                $sql_exames  = "SELECT * FROM exames";
-                $query_exames = $mysqli->query($sql_exames) or die($mysqli->error);
-                $num_exames = $query_exames->num_rows;
-                    if($num_exames == 0) { 
-                    ?> 
-                    <tr>
-                        <td colspan="3">Nenhum exame foi encontrado!</td>
-                    </tr>
-                    <?php }
-                        else{ 
-                            while($exames = $query_exames->fetch_assoc()){?>     
-                        <tr>
-                            <td><?php echo $exames['exameid']?>     </td>
-                            <td><?php echo $exames['codigo']?>   </td>
-                            <td><?php echo $exames['descricao']?>  </td>   
-                            <td><a href="deletar_exame.php?id=<?php echo $exames['exameid'] ?>">Deletar exame</a></td>
-                        </tr>      
-                    <?php     }
-                        } ?>
-                </tbody>
-            </table><br>
-            <button><a href="index.php">Pagina inicial</button> </a> 
-            <button onclick="lcadastro()">Cadastrar exames</button>
-        </div>
-        <!-- DIV TELA DE FORM PARA CADASTRO DE PACIENTES  -->
-        <div class="tela2" id="cadastrar_usuarios">
-           <br> <a onclick="fcadastro()">X</a><br><br>
+    <div class="janela-modal" id="janela-modal">
+        <div class="modal">
+            <button class="fechar" id="fechar">X</button><br>
             <form action="" method="POST">
                 <label>Código exame</label>
                 <input class="input_edit" type="text" value="<?php if(isset($_POST['codigo'])) echo $_POST['codigo']; ?>" name="codigo"><br><br>
-
+    
                 <label>Descrição exame</label>
                 <input class="input_edit" type="text" value="<?php if(isset($_POST['descricao'])) echo $_POST['descricao']; ?>" name="descricao"><br><br>
-
+    
                 <button class="button_slide" type="submit" name="cadastrar">Cadastrar exame</button>
-
             </form>
-
         </div>
+    </div>    
+
+    <div class="tabela">
+    <!-- DIV PARA TABELA COM INFORMAÇÕES DOS EXAMES -->
+    <div class="tela1">
+        <h1>Tabela de exames</h1>
+        <p>Esses são os exames cadastrados no seu sistema</p>
+        <table border="1" cellpadding="10">
+            <thead>
+                <th>ID exame</th>
+                <th>Código exame</th>
+                <th>Descrição exame</th>
+                <th>Deletar exame</th>
+            </thead>
+            <tbody> 
+            <?php 
+            // COMANDO SQL PARA CONSULTAR QUANTIDADE DE CLIENTES NO SISTEMA
+            $sql_exames  = "SELECT * FROM exames";
+            $query_exames = $mysqli->query($sql_exames) or die($mysqli->error);
+            $num_exames = $query_exames->num_rows;
+                if($num_exames == 0) { 
+                ?> 
+                <tr>
+                    <td colspan="3">Nenhum exame foi encontrado!</td>
+                </tr>
+                <?php }
+                    else{ 
+                        while($exames = $query_exames->fetch_assoc()){?>     
+                    <tr>
+                        <td><?php echo $exames['exameid']?>     </td>
+                        <td><?php echo $exames['codigo']?>   </td>
+                        <td><?php echo $exames['descricao']?>  </td>   
+                        <td><a href="deletar_exame.php?id=<?php echo $exames['exameid'] ?>">Deletar exame</a></td>
+                    </tr>      
+                <?php     }
+                    } ?>
+            </tbody>
+        </table><br>
+    </div>
+    <button><a href="index.php">Pagina inicial</button> </a> 
+    <button onclick="abrir_modal()">Cadastrar exames</button>
 <?php 
 if(isset($sucess)){echo'<p class="sucess">'. $sucess . '</p>' ;}
 if($error){echo '<p class="error">'. $error . '</p>' ;}   
 ?>
-    </div>    
-<script src="../Arquivos JS/usuarios.js"></script>
-<script src="../Arquivos JS/index.js"></script>
+<script src="../Arquivos JS/script.js"></script>
+
 </body>
 </html>
