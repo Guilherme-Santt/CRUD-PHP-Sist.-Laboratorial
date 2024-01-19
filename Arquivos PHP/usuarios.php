@@ -109,30 +109,6 @@
 
 <!-- DIVISÃO MODAL -> CADASTRO DE USUARIOS -->
 <body> 
-    <div class="janela-modal" id="janela-modal">
-
-        <div class="modal">
-            <button class="fechar" id="fechar">X</button>
-            <form action="" method="POST">
-                <label>Email</label><br>
-                <input class="input_edit" type="email" value="<?php if(isset($_POST['email'])) echo $_POST['email']; ?>" name="email"><br><br>
-        
-                <label>Nome</label><br>
-                <input class="input_edit" type="text" value="<?php if(isset($_POST['nome'])) echo $_POST['nome']; ?>" name="nome"><br><br>
-        
-                <label>Nascimento</label><br>
-                <input class="input_edit" type="text" value="<?php if(isset($_POST['nascimento'])) echo $_POST['nascimento']; ?>" name="nascimento" placeholder="dia/mês/ano"><br><br>
-                
-                <label>Telefone:</label><br>
-                <input class="input_edit" value ="<?php if(isset($_POST['telefone'])) echo $_POST['telefone']; ?>" placeholder="(11) 98888-8888" type="text" name="telefone"><br><br>
-                
-                <label>Senha</label><br>
-                <input class="input_edit" type="password" value="<?php if(isset($_POST['senha'])) echo $_POST['senha']; ?>" name="senha"><br><br>
-                <button class="button_slide" type="submit" name="cadastrar">Enviar</button>
-            </form>
-        </div>
-    </div>
-    
     <!-- DIVISÃO TABELA DE USUARIOS CADASTRADOS -->
     <div class="janela_tabela">
         <h1>Esses são os usuários cadastrados no seu sistema</h1>
@@ -199,7 +175,31 @@
             </tbody>
         </table><br>
     </div>
+    
+    <div class="janela-modal" id="janela-modal">
 
-<script src="../Arquivos JS/script.js"></script>
+        <div class="modal">
+            <button class="fechar" id="fechar">X</button>
+            <form action="" method="POST">
+                <label>Email</label><br>
+                <input class="input_edit" type="email" value="<?php if(isset($_POST['email'])) echo $_POST['email']; ?>" name="email"><br><br>
+        
+                <label>Nome</label><br>
+                <input class="input_edit" type="text" value="<?php if(isset($_POST['nome'])) echo $_POST['nome']; ?>" name="nome"><br><br>
+        
+                <label>Nascimento</label><br>
+                <input class="input_edit" type="text" value="<?php if(isset($_POST['nascimento'])) echo $_POST['nascimento']; ?>" name="nascimento" placeholder="dia/mês/ano"><br><br>
+                
+                <label>Telefone:</label><br>
+                <input class="input_edit" value ="<?php if(isset($_POST['telefone'])) echo $_POST['telefone']; ?>" placeholder="(11) 98888-8888" type="text" name="telefone"><br><br>
+                
+                <label>Senha</label><br>
+                <input class="input_edit" type="password" value="<?php if(isset($_POST['senha'])) echo $_POST['senha']; ?>" name="senha"><br><br>
+                <button class="button_slide" type="submit" name="cadastrar">Enviar</button>
+            </form>
+        </div>
+    </div>
+    
+    <script src="../Arquivos JS/script.js"></script>
 </body>
 </html>

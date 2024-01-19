@@ -34,7 +34,7 @@ $usuario = $query->fetch_assoc();
             <a onclick="fmenu()">X</a>
             <Ul>
                 <a href="usuarios.php"><li>Usuários</li></a>
-                <a href="pacientes.php"><li>Listagem de pacientes</li></a>
+                <a href="pacientes.php"><li>Atendimentos</li></a>
                 <a href="exames.php"><li>Cadastro de exames</li></a>
                 <a href="logout.php"><li>Encerrar sessão</li></a>
             </Ul>

@@ -5,17 +5,18 @@
 .janela-modal{
     width: 100vw;
     height: 100vh;
-    position: relative;
+    position: fixed;
     top: 0;
     left: 0;
     display:none;
     align-items: center;
     justify-content: center;
-    z-index:999;
+    z-index: 1;
     background-color: rgba(0, 0, 0, 0.055);
 
 }
 .modal{
+    z-index: 1;
     display: flex;
     justify-content: center;
     width: 30%;

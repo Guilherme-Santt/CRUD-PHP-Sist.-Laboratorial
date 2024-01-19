@@ -4,12 +4,13 @@ h1{
     
     table, th, td {
     border: 1px solid black;
-    }
-    
-    table {
+    border-radius: 15px;
+}
+
+table {
     border-collapse: collapse;
     margin: auto;
-    }
+}
     
     th, td{
     padding: 7px;
