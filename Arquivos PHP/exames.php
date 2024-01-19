@@ -52,6 +52,7 @@ if(count($_POST) > 0){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<!-- CÓDIGOS CSS -->
 <link rel="stylesheet" href="../Arquivos CSS/normalize.css">
 <link rel="stylesheet" href="../Arquivos CSS/button.css">
 <link rel="stylesheet" href="../Arquivos CSS/tabela.css">
@@ -60,8 +61,7 @@ if(count($_POST) > 0){
 <link rel="stylesheet" href="../Arquivos CSS/input.css">
 <link rel="stylesheet" href="../Arquivos CSS/janela_tabela.css">
 
-
-
+<!-- JANELA MODAL->CADASTRO DE EXAMES NO SISTEMA -->
 <body> 
     <div class="janela-modal" id="janela-modal">
         <div class="modal">
@@ -80,9 +80,10 @@ if(count($_POST) > 0){
 
     <div class="janela-tabela">
     <!-- DIV PARA TABELA COM INFORMAÇÕES DOS EXAMES -->
-    <div class="tela1">
-        <h1>Tabela de exames</h1>
-        <p>Esses são os exames cadastrados no seu sistema</p>
+    <div class="janela_tabela">
+        <h1>Esses são os exames cadastrados no seu sistema</h1>
+        <button><a href="index.php">Pagina inicial</button> </a> 
+        <button onclick="abrir_modal()">Cadastrar exames</button>
         <table border="1" cellpadding="10">
             <thead>
                 <th>ID exame</th>
@@ -115,12 +116,10 @@ if(count($_POST) > 0){
             </tbody>
         </table><br>
     </div>
-    <button><a href="index.php">Pagina inicial</button> </a> 
-    <button onclick="abrir_modal()">Cadastrar exames</button>
-<?php 
-if(isset($sucess)){echo'<p class="sucess">'. $sucess . '</p>' ;}
-if($error){echo '<p class="error">'. $error . '</p>' ;}   
-?>
+    <?php 
+    if(isset($sucess)){echo'<p class="sucess">'. $sucess . '</p>' ;}
+    if($error){echo '<p class="error">'. $error . '</p>' ;}   
+    ?>
 <script src="../Arquivos JS/script.js"></script>
 
 </body>

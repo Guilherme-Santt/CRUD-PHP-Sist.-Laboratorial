@@ -11,19 +11,17 @@
     vertical-align:middle;
   } */
   button{
+    border-radius: 30px;
     background:#1AAB8A;
     color:#fff;
     border:none;
-    position:relative;
     width: 150px;;
     height: 50px;
     font-size:1.2em;
-    padding:0 2em;
     cursor:pointer;
     transition:800ms ease all;
     outline:none;
   }
-
 
   button:hover{
     background:#fff;
