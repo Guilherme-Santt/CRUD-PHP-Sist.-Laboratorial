@@ -5,15 +5,9 @@ if(!isset($_SESSION)){
         die('Você não está logado!' . '<a href="login.php">Clique aqui para logar</a>');
     }
 }
+
 $id = intval($_GET['id']);
 include('conexao.php');
-
-$sql_consulta = "SELECT * FROM pacientes_exames WHERE id = '$id'";
-$query_consulta = $mysqli->query($sql_consulta);
-$c_paciente = $query_consulta->fetch_assoc();
-$paciente = $c_paciente['paciente_id'];
-$exame = $c_paciente['exame_id'];
-
 
 if(isset($_POST['remover'])){
     $sql_remover = "DELETE FROM pacientes_exames WHERE id = '$id'";
@@ -23,6 +17,19 @@ if(isset($_POST['remover'])){
     }
 }
 
+?>
+<?php
+// CONSULTA TABELA PACIENTES_EXAMES PARA VERIFICAR O EXAME DO PACIENTE ATRAVÉS DO ID DO RELACIONAMENTO
+$sql_consulta = "SELECT * FROM pacientes_exames WHERE id = '$id'";
+$query_consulta = $mysqli->query($sql_consulta);
+$c_paciente = $query_consulta->fetch_assoc();
+$paciente = $c_paciente['paciente_id'];
+$exame = $c_paciente['exame_id'];
+// CONSULTA PARA VERIFICAR NOME ATRAVÉS DO ID PUXADO NA CONSULTA PACIENTES EXAMES
+$sql_consulta = "SELECT descricao FROM exames WHERE exameid = '$exame'";
+$query_exame = $mysqli->query($sql_consulta);
+$consulta_exame = $query_exame->fetch_assoc();
+$nomeex = $consulta_exame['descricao']
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,12 +42,6 @@ if(isset($_POST['remover'])){
 
 </head>
 <body>
-    <?php
-$sql_consulta = "SELECT descricao FROM exames WHERE exameid = '$exame'";
-$query_exame = $mysqli->query($sql_consulta);
-$consulta_exame = $query_exame->fetch_assoc();
-$nomeex = $consulta_exame['descricao']
-    ?>
     <form method="post">
     <h1>Deseja remover exame(<?php echo $nomeex?>) deste paciente?</h1>
         <button name="remover">Sim</button>
