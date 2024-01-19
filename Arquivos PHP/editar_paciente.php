@@ -181,7 +181,7 @@ $num_exames = $query_exames->num_rows;
             <tr>
                 <td colspan="7">Nenhum exame foi encontrado!</td>
             </tr> <?php } ?>
-            <h1>Exames cadastrados</h1>
+            <h1>Exames do paciente</h1>
         <?php while($exames = $query_exames->fetch_assoc()){?>
             <tr>
                 <td><?php echo $exames['exame_id']?></td>
