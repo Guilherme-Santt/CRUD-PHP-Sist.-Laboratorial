@@ -107,6 +107,7 @@ $num_pacientes = $query_pacientes->num_rows;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Listagem de pacientes</title>
 </head>
+<!-- CÓDIGOS CSS -->
 <link rel="stylesheet" href="../Arquivos CSS/usuarios.css">
 <link rel="stylesheet" href="../Arquivos CSS/button.css">
 <link rel="stylesheet" href="../Arquivos CSS/tabela.css">
@@ -115,8 +116,7 @@ $num_pacientes = $query_pacientes->num_rows;
 <link rel="stylesheet" href="../Arquivos CSS/input.css">
 <link rel="stylesheet" href="../Arquivos CSS/modal.css">
 
-
-
+<!-- TELA MODAL->CADASTRO DE PACIENTES -->
 <body>       
     <div class="janela-modal" id="janela-modal">
         <div class="modal">
@@ -144,9 +144,12 @@ $num_pacientes = $query_pacientes->num_rows;
             </form>
         </div>
     </div>
-
+    
+    <!-- TABELA DE PACIENTES CADASTRADOS -->
     <div class="janela-tabela"></div>        
-        <p>Esses são os pacientes cadastrados no seu sistema</p>
+        <h1>Esses são os pacientes cadastrados no seu sistema</h1>
+        <button><a href="index.php">Pagina inicial</button> </a> 
+        <button onclick="abrir_modal()">Cadastrar paciente</button><br><br>
         <table border="1" cellpadding="10">
             <thead>
                 <th>ID</th>
@@ -199,9 +202,6 @@ $num_pacientes = $query_pacientes->num_rows;
                     } 
                     ?>
             </tbody>
-        </table><br>
-        <button><a href="index.php">Pagina inicial</button> </a> 
-        <button onclick="abrir_modal()">Cadastrar paciente</button>
         <?php 
         if(isset($sucess)){echo'<p class="sucess">'. $sucess . '</p>' ;}
         if($error){echo '<p class="error">'. $error . '</p>' ;} ?>
