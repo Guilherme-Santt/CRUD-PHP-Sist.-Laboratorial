@@ -1,7 +1,7 @@
 h1{
     text-align: center;
     }
-    
+
     table, th, td {
     border: 1px solid black;
 }
@@ -12,26 +12,25 @@ table {
 }
 
 th, td{
-     border-radius: 15px; 
-    border: none;
+    border: 0.5px;
     padding: 7px;
     width: 80px;
     height: 50px;
     }
-    
+
     th{
     border-radius: 15px;
     font-weight: bold;
     }
-    
-    
+
+
     tr:nth-child(even) {
     background-color: rgb(221, 218, 218);
     }
-/*     
+/*
     tr:hover:nth-child(1n + 2) {
     border-radius: 15px;
     background-color: #06979e;
     color: #888585;
     } */
-    
+
