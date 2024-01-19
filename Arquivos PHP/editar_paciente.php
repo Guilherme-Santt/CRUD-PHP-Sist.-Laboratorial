@@ -125,7 +125,7 @@ $num_exames = $query_exames->num_rows;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro paciente</title>
+    <title>Informações do paciente</title>
 </head>
 <link rel="stylesheet" href="../Arquivos CSS/button.css">
 <link rel="stylesheet" href="../Arquivos CSS/tabela.css">
