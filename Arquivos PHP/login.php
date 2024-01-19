@@ -48,7 +48,10 @@ if(isset($_POST['email'])){
     <link rel="stylesheet" href="../Arquivos CSS/login.css">
     <link rel="stylesheet" href="../Arquivos CSS/normalize.css">
     <link rel="stylesheet" href="../Arquivos CSS/button.css">
-
+    <link rel="stylesheet" href="../Arquivos CSS/janela_tabela.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hedvig+Letters+Serif:opsz@12..24&family=Roboto+Condensed:ital,wght@1,200;1,300;1,400&display=swap" rel="stylesheet">
 </head>
 <style>
 
@@ -57,7 +60,7 @@ if(isset($_POST['email'])){
     <div class="full_mapa">    
         <div class="form_login">
             <form class="form_edit" action="" method="POST">
-                <h1>System Home</h1>
+                <h1>Local System</h1>
                 <label class="edit_label">Usuário</label><br>
                 <input class="input_edit" type="email" name="email"><br><br>
                 <Label class="edit_label">Senha</Label><br>

@@ -22,3 +22,7 @@ h1 {
   h1:after {
     margin-left:10px;
   }
+body{
+  font-family: 'Hedvig Letters Serif', serif;
+  font-family: 'Roboto Condensed', sans-serif;
+}
