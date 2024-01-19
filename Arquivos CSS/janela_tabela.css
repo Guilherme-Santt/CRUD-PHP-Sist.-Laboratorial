@@ -11,12 +11,13 @@ h1 {
     flex-direction: row;
     justify-content: center;
     text-align: center;
+    font-size: 20px;
   }
   h1:before, h1:after {
     background-color: #069968;
     content: '\a0';
     flex-grow: 1;
-    width: 220px;
+    width: 150px;
     height: 1px;
     position: relative;
     top: 0.5em;
