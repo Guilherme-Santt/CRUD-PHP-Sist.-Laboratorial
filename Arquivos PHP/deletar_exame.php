@@ -1,4 +1,11 @@
 <?php
+if(!isset($_SESSION)){
+    session_start();
+    if(!isset($_SESSION['usuario'])){
+        die('Você não está logado!' . '<a href="login.php">Clique aqui para logar</a>');
+    }    
+}
+
 // SELECT FROM NA COLUNA EXAMES PARA PUXAR NOME DO EXAME
 include('conexao.php');
 $id = intval($_GET['id']);

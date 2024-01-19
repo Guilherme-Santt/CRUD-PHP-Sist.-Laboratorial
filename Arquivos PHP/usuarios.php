@@ -1,11 +1,11 @@
 <?php
-// VERIFICAÇÃO SE O USUÁRIO ESTÁ LOGADO
-    if(!isset($_SESSION)){
-        session_start();
-        if(!isset($_SESSION['usuario'])){
-            die('Você não está logado!' . '<a href="login.php">Clique aqui para logar</a>');
-        }    
-}
+// // VERIFICAÇÃO SE O USUÁRIO ESTÁ LOGADO
+//     if(!isset($_SESSION)){
+//         session_start();
+//         if(!isset($_SESSION['usuario'])){
+//             die('Você não está logado!' . '<a href="login.php">Clique aqui para logar</a>');
+//         }    
+// }
     // FUNÇÃO FORMATAR DATA PARA VISUALIZAÇÃO PADRÃO BR
     function formatar_data($data){
         return implode('/', array_reverse(explode('-', $data)));
