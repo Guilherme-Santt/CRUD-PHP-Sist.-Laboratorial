@@ -7,7 +7,7 @@ if(isset($_POST['confirmar'])){
     $query_code = $mysqli->query($sql_code) or die($mysqli->error);    
         if($query_code) {?> 
             <h1>Usuário removido com sucesso!</h1>
-            <p><a href="usuarios.php">Clique aqui </a>para retornar a listagem de usuários</p>
+            <a href="usuarios.php">Clique aqui </a> para retornar a listagem de usuários</a>
             <?php
             die();
         }
@@ -29,7 +29,7 @@ $consulta = $query_consult->fetch_assoc();
 <body>
     <form action="" method="POST">
         <h1>Remover usuário: <?php echo $consulta['nome'] ?> ?</h1>
-        <a href="index.php">Não!</a>
+        <a href="usuarios.php">Não!</a>
         <Button name="confirmar" type="submit">Sim!</Button>
     </form>
 </body>

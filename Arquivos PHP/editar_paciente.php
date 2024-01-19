@@ -134,6 +134,7 @@ $num_exames = $query_exames->num_rows;
 
 <body>
     <!-- INSERÇÃO CAMPOS POST NO FORM -->
+    <button><a href="pacientes.php">Retornar</button> </a> <br><br>
     <button><a href="index.php">Pagina inicial</button> </a> <br><br>
 
     <form action="" method="POST">

@@ -101,9 +101,11 @@ $cliente = $query_cliente->fetch_assoc();
     <title>Listagem de usuários</title>
 </head>
 <link rel="stylesheet" href="../Arquivos CSS/button.css">
+<link rel="stylesheet" href="../Arquivos CSS/input.css">
+<link rel="stylesheet" href="../Arquivos CSS/efeito_a.css">
+
 
 <body>
-    <a href="usuarios.php">Retornar listagem de úsuarios</a>
     <form action="" method="POST">
         <p>
             <label>Nome:</label>
@@ -124,14 +126,17 @@ $cliente = $query_cliente->fetch_assoc();
             <label>Data de nascimento:</label>
             <input value ="<?php if(!empty($cliente['nascimento'])){ echo formatar_data($cliente['nascimento']);} ?>" placeholder="dia/mês/ano" type="text" name="nascimento">
         </p>
-        <p>
-            <button class="button_slide" type="submit">Enviar</button>
-        </p>
-<?php 
+        <?php 
 if(isset($error)){ echo $error;} 
 if(isset($sucess)){ echo $sucess;}
 ?>
+        <p>
+            <button class="button_slide" type="submit">Atualizar</button>
+        </p>
     </form>
+    <button class="button_slide"><a href="usuarios.php">Usuários</a></button><br><br>
+    <button class="button_slide"><a href="index.php">Pagina inicial</a></button
+
 </body>
 </html>
 
