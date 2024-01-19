@@ -17,3 +17,8 @@
     display: none;
 
 }
+.tel_tabela{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
