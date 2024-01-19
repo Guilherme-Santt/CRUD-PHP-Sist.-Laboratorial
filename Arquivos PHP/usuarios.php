@@ -88,7 +88,6 @@
     }   
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -96,6 +95,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Listagem de usuários</title>
 </head>
+<!-- ARQUIVOS CSS SITE -->
 <link rel="stylesheet" href="../Arquivos CSS/input.css">
 <link rel="stylesheet" href="../Arquivos CSS/janela_tabela.css">
 <link rel="stylesheet" href="../Arquivos CSS/normalize.css">
@@ -104,9 +104,7 @@
 <link rel="stylesheet" href="../Arquivos CSS/tabela.css">
 <link rel="stylesheet" href="../Arquivos CSS/modal.css">
 
-
-
-
+<!-- DIVISÃO MODAL -> CADASTRO DE USUARIOS -->
 <body> 
     <div class="janela-modal" id="janela-modal">
         <?php 
@@ -134,13 +132,12 @@
             </form>
         </div>
     </div>
-
-
-
-
-
+    
+    <!-- DIVISÃO TABELA DE USUARIOS CADASTRADOS -->
     <div class="janela_tabela">
-        <p>Esses são os usuários cadastrados no seu sistema</p>
+        <h1>Esses são os usuários cadastrados no seu sistema</h1>
+        <button><a href="index.php">Pagina inicial</button> </a>
+        <button onclick="abrir_modal()">Cadastrar usuário</button><br><br>    
         <table ID="alter" border="1" cellpadding="10">
             <thead>
                 <th>ID</th>
@@ -159,7 +156,7 @@
                 $query_clientes = $mysqli->query($sql_clientes) or die($mysqli->error);
                 $num_clientes = $query_clientes->num_rows;
                 if($num_clientes == 0) { 
-            ?> 
+                    ?> 
             <tr>
                 <td colspan="7">Nenhum usuário foi encontrado!</td>
             </tr>
@@ -195,8 +192,6 @@
             ?>
             </tbody>
         </table><br>
-        <button><a href="index.php">Pagina inicial</button> </a>
-        <button onclick="abrir_modal()">Cadastrar usuário</button><br><br>    
     </div>
 
 <script src="../Arquivos JS/script.js"></script>
