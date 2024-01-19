@@ -70,10 +70,10 @@ if(count($_POST) > 0){
         <div class="modal">
             <button class="fechar" id="fechar">X</button><br>
             <form action="" method="POST">
-                <label>Código exame</label>
+                <label>Código exame</label><br><br>
                 <input class="input_edit" type="text" value="<?php if(isset($_POST['codigo'])) echo $_POST['codigo']; ?>" name="codigo"><br><br>
     
-                <label>Descrição exame</label>
+                <label>Descrição exame</label></label><br><br>
                 <input class="input_edit" type="text" value="<?php if(isset($_POST['descricao'])) echo $_POST['descricao']; ?>" name="descricao"><br><br>
     
                 <button class="button_slide" type="submit" name="cadastrar">Cadastrar exame</button>

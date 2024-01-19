@@ -141,7 +141,6 @@ $num_pacientes = $query_pacientes->num_rows;
                     
                 <label>sexo</label><br>
                 <input class="input_edit" type="text" value="<?php if(isset($_POST['sexo'])) echo $_POST['sexo']; ?>"placeholder="MAS ou FEM" name="sexo"><br><br><br><br>
-    
                 <button class="button_slide" type="submit" name="cadastrar">Cadastrar</button>
             </form>
         </div>
