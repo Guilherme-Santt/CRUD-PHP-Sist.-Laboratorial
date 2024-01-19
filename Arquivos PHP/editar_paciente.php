@@ -181,7 +181,7 @@ $num_exames = $query_exames->num_rows;
                 <td><?php echo $exames['exame_id']?></td>
                 <td><?php echo $exames['codigo']?></td>
                 <td><?php echo $exames['descricao']?></td>
-                <td><a href="remover_exame?id=<?php echo $exames['id']?>"><button>x</button></a></td>
+                <td><a href="remover_exame.php?id=<?php echo $exames['id']?>"><button>x</button></a></td>
             </tr><?php }?> 
         </tbody>
     </table>
