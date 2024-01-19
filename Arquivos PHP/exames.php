@@ -58,6 +58,7 @@ if(count($_POST) > 0){
 <link rel="stylesheet" href="../Arquivos CSS/efeito_a.css">
 <link rel="stylesheet" href="../Arquivos CSS/modal.css">
 <link rel="stylesheet" href="../Arquivos CSS/input.css">
+<link rel="stylesheet" href="../Arquivos CSS/janela_tabela.css">
 
 
 
@@ -77,7 +78,7 @@ if(count($_POST) > 0){
         </div>
     </div>    
 
-    <div class="tabela">
+    <div class="janela-tabela">
     <!-- DIV PARA TABELA COM INFORMAÇÕES DOS EXAMES -->
     <div class="tela1">
         <h1>Tabela de exames</h1>

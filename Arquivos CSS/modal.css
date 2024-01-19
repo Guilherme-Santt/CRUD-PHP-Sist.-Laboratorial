@@ -16,9 +16,9 @@
 
 }
 .modal{
-    width: 60%;
-    min-height: 450px;
-    min-height: 400px;
+    align-items: center;
+    width: 30%;
+    min-height: 250px;
     background-color: rgba(255, 255, 255, 0.514);
     backdrop-filter: blur(10px);
     padding: 50px;

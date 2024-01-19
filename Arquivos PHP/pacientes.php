@@ -111,7 +111,7 @@ $num_pacientes = $query_pacientes->num_rows;
 <link rel="stylesheet" href="../Arquivos CSS/button.css">
 <link rel="stylesheet" href="../Arquivos CSS/tabela.css">
 <link rel="stylesheet" href="../Arquivos CSS/efeito_a.css">
-<link rel="stylesheet" href="../Arquivos CSS/FormatBody.css">
+<link rel="stylesheet" href="../Arquivos CSS/janela_tabela.css">
 <link rel="stylesheet" href="../Arquivos CSS/input.css">
 <link rel="stylesheet" href="../Arquivos CSS/modal.css">
 
@@ -145,7 +145,7 @@ $num_pacientes = $query_pacientes->num_rows;
         </div>
     </div>
 
-    <div class="tabela"></div>        
+    <div class="janela-tabela"></div>        
         <p>Esses são os pacientes cadastrados no seu sistema</p>
         <table border="1" cellpadding="10">
             <thead>

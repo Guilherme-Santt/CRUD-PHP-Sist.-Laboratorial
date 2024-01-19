@@ -87,6 +87,8 @@
         }
     }   
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -95,7 +97,7 @@
     <title>Listagem de usuários</title>
 </head>
 <link rel="stylesheet" href="../Arquivos CSS/input.css">
-<link rel="stylesheet" href="../Arquivos CSS/formatBody.css">
+<link rel="stylesheet" href="../Arquivos CSS/janela_tabela.css">
 <link rel="stylesheet" href="../Arquivos CSS/normalize.css">
 <link rel="stylesheet" href="../Arquivos CSS/button.css">
 <link rel="stylesheet" href="../Arquivos CSS/efeito_a.css">
@@ -131,7 +133,13 @@
                 <button class="button_slide" type="submit" name="cadastrar">Enviar</button>
             </form>
         </div>
-    </div> 
+    </div>
+
+
+
+
+
+    <div class="janela_tabela">
         <p>Esses são os usuários cadastrados no seu sistema</p>
         <table ID="alter" border="1" cellpadding="10">
             <thead>
@@ -188,10 +196,9 @@
             </tbody>
         </table><br>
         <button><a href="index.php">Pagina inicial</button> </a>
-        <button onclick="abrir_modal()">Cadastrar usuário</button><br><br>
-        
+        <button onclick="abrir_modal()">Cadastrar usuário</button><br><br>    
+    </div>
 
-    <script src="../Arquivos JS/usuarios.js"></script>
-    <script src="../Arquivos JS/script.js"></script>
+<script src="../Arquivos JS/script.js"></script>
 </body>
 </html>
