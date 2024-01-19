@@ -1,0 +1,16 @@
+<?php
+if(!isset($_SESSION)){
+    session_start();
+    if(!isset($_SESSION['usuario'])){
+        die('Você não está logado!' . '<a href="login.php">Clique aqui para logar</a>');
+    }    
+}
+
+$id = intval($GET_['id']);
+    include('conexao.php');
+    $sql_remover = "DELETE FROM pacientes_exames WHERE id = '$id'";
+    $query_remover = $mysqli->query($sql_remover);
+    if($query_remover){
+        header("location: editar_paciente.php");
+    }
+    ?>

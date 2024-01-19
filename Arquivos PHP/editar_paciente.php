@@ -147,6 +147,7 @@ $num_exames = $query_exames->num_rows;
             <input class="input_edit" value= "<?php if($cliente['sexo']) echo $cliente['sexo']; ?>" type="text" name="sexo">
 
             <label>E-mail:</label>
+            <input class="input_edit" value ="<?php if(!empty($cliente['telefone'])){ echo ($cliente['email']);} ?>" type="email" name="email">
 
             <label>Telefone:</label>
             <input class="input_edit" value ="<?php if(!empty($cliente['telefone'])){ echo formatar_telefone($cliente['telefone']);} ?>" placeholder="(11) 98888-8888" type="text" name="telefone">
@@ -156,9 +157,9 @@ $num_exames = $query_exames->num_rows;
         <p>
             <label>Exame ID</label>
             <input class="input_edit" type="text" name="id_exame">
+            <button class="button_slide" type="submit">Enviar</button>
         </p>
     </form>
-    <button class="button_slide" type="submit">Enviar</button>
     <?php
             if(isset($error)) echo $error;
             if(isset($sucess)) echo $sucess;
@@ -180,6 +181,7 @@ $num_exames = $query_exames->num_rows;
                 <td><?php echo $exames['exame_id']?></td>
                 <td><?php echo $exames['codigo']?></td>
                 <td><?php echo $exames['descricao']?></td>
+                <td><a href="remover_exame?id=<?php echo $exames['id']?>"><button>x</button></a></td>
             </tr><?php }?> 
         </tbody>
     </table>
