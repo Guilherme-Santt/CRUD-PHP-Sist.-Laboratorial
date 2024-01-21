@@ -113,22 +113,22 @@ $cliente = $query_cliente->fetch_assoc();
     <form action="" method="POST">
         <p>
             <label>Nome:</label>
-            <input value= "<?php echo $cliente['nome']; ?>" type="text" name="nome">
+            <input class="input_edit" value= "<?php echo $cliente['nome']; ?>" type="text" name="nome">
         </p>
         <p>
             <label>E-mail:</label>
-            <input value ="<?php echo $cliente['email']; ?>" type="email" name="email">
+            <input class="input_edit" value ="<?php echo $cliente['email']; ?>" type="email" name="email">
         </p>
         <label>Unidade:</label>
-            <input value ="<?php echo $cliente['unidade']; ?>" type="text" name="unidade">
+            <input class="input_edit" value ="<?php echo $cliente['unidade']; ?>" type="text" name="unidade">
         </p>
         <p>
             <label>Telefone:</label>
-            <input value ="<?php if(!empty($cliente['telefone'])){ echo formatar_telefone($cliente['telefone']);} ?>" placeholder="(11) 98888-8888" type="text" name="telefone">
+            <input class="input_edit" value ="<?php if(!empty($cliente['telefone'])){ echo formatar_telefone($cliente['telefone']);} ?>" placeholder="(11) 98888-8888" type="text" name="telefone">
         </p>
         <p>
             <label>Data de nascimento:</label>
-            <input value ="<?php if(!empty($cliente['nascimento'])){ echo formatar_data($cliente['nascimento']);} ?>" placeholder="dia/mês/ano" type="text" name="nascimento">
+            <input class="input_edit" value ="<?php if(!empty($cliente['nascimento'])){ echo formatar_data($cliente['nascimento']);} ?>" placeholder="dia/mês/ano" type="text" name="nascimento">
         </p>
         <?php 
         if(isset($error)){ echo $error;} 
@@ -138,9 +138,10 @@ $cliente = $query_cliente->fetch_assoc();
             <button class="button1" type="submit">Atualizar</button>
         </p>
     </form>
-    <a href="usuarios.php"><button class="button1">Usuários</button></a><br><br>
-    <a href="index.php"><button class="button1">Pagina inicial</button></a>
-
+    <div>
+        <a href="usuarios.php"><button class="button1">Retornar</button></a>
+        <a href="index.php"><button class="button1">Pagina inicial</button></a>
+    </div>
 </body>
 </html>
 

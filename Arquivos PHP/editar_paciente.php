@@ -32,7 +32,6 @@ if(count($_POST) > 0){
     $nome = $_POST['nome'];
     $email = $_POST['email'];
     $endereco = $_POST['endereco'];
-    // $sexo = $_POST['sexo'];
     $telefone = $_POST['telefone'];
     $nascimento = $_POST['nascimento'];
     $codigo = $_POST['id_exame'];
@@ -44,10 +43,6 @@ if(count($_POST) > 0){
     if(empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)){
         $error = "Por favor, Prencha o campo e-mail corretamente.";
     }  
-
-    if(empty($_POST['sexo'])){
-        $error = "Campo sexo obrigatório.";
-    }
 
     if(empty($nascimento) || strlen($nascimento) != 10){
         $error = "A data de nascimento deve ser preenchido no padrão dia/mes/ano*";
@@ -96,7 +91,6 @@ if(count($_POST) > 0){
     else{
         $sql_code = "UPDATE pacientes
         SET nome = '$nome', 
-        -- sexo = '$sexo',
         endereco = '$endereco',
         email      = '$email',
         telefone   = '$telefone',
