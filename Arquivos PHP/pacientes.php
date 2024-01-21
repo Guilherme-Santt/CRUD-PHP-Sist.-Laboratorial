@@ -26,10 +26,8 @@ if(count($_POST) > 0){
         $error = "Campo endereço obrigatório*";
         }
 
-    if(!empty($_POST['sexo']) ){
-        if(strlen($sexo) != 3){
-            $error = "Escreva campo FEM ou MAS";
-        }
+    if(empty($_POST['sexo']) ){
+            $error = "Campo sexo obrigatório*";
         }    
 
     if(empty($_POST['nome']) || Strlen($nome) < 3 || Strlen($nome) > 100){
@@ -149,8 +147,9 @@ body{
                 <label>Telefone:</label><br>
                 <input class="input_edit" value ="<?php if(isset($_POST['telefone'])) echo $_POST['telefone']; ?>" placeholder="(11) 98888-8888" type="text" name="telefone"><br><br>
                     
-                <label>sexo</label><br>
-                <input class="input_edit" type="text" value="<?php if(isset($_POST['sexo'])) echo $_POST['sexo']; ?>"placeholder="MAS ou FEM" name="sexo"><br><br><br><br>
+                <input type="radio" value="Feminino" name="sexo">Feminino<br>
+                <input type="radio" value="Masculino" name="sexo">Masculino<br><br>
+
                 <button class="button1" type="submit" name="cadastrar">Cadastrar</button>
             </form>
         </div>

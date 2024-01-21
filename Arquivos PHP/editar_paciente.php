@@ -32,7 +32,7 @@ if(count($_POST) > 0){
     $nome = $_POST['nome'];
     $email = $_POST['email'];
     $endereco = $_POST['endereco'];
-    $sexo = $_POST['sexo'];
+    // $sexo = $_POST['sexo'];
     $telefone = $_POST['telefone'];
     $nascimento = $_POST['nascimento'];
     $codigo = $_POST['id_exame'];
@@ -43,7 +43,11 @@ if(count($_POST) > 0){
 
     if(empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)){
         $error = "Por favor, Prencha o campo e-mail corretamente.";
-    }   
+    }  
+
+    if(empty($_POST['sexo'])){
+        $error = "Campo sexo obrigatório.";
+    }
 
     if(empty($nascimento) || strlen($nascimento) != 10){
         $error = "A data de nascimento deve ser preenchido no padrão dia/mes/ano*";
@@ -92,7 +96,7 @@ if(count($_POST) > 0){
     else{
         $sql_code = "UPDATE pacientes
         SET nome = '$nome', 
-        sexo = '$sexo',
+        -- sexo = '$sexo',
         endereco = '$endereco',
         email      = '$email',
         telefone   = '$telefone',
@@ -177,8 +181,8 @@ $num_exames = $query_exames->num_rows;
                     <label>Endereço:</label><br>
                     <input class="input_edit" value= "<?php echo $cliente['endereco']; ?>" type="text" name="endereco"><br><br>
 
-                    <label>Sexo:</label><br>
-                    <input class="input_edit" value= "<?php if($cliente['sexo']) echo $cliente['sexo']; ?>" type="text" name="sexo"><br><br>
+                    <!-- <input value= "Masculino" type="radio" name="sexo">Masculino<br><br>
+                    <input value= "Feminino" type="radio" name="sexo">Feminino<br><br> -->
 
                     <label>E-mail:</label><br>
                     <input class="input_edit" value ="<?php if(!empty($cliente['telefone'])){ echo ($cliente['email']);} ?>" type="email" name="email"><br><br>
