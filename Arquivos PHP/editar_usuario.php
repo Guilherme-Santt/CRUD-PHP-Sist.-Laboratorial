@@ -127,9 +127,9 @@ $cliente = $query_cliente->fetch_assoc();
             <input value ="<?php if(!empty($cliente['nascimento'])){ echo formatar_data($cliente['nascimento']);} ?>" placeholder="dia/mês/ano" type="text" name="nascimento">
         </p>
         <?php 
-if(isset($error)){ echo $error;} 
-if(isset($sucess)){ echo $sucess;}
-?>
+        if(isset($error)){ echo $error;} 
+        if(isset($sucess)){ echo $sucess;}
+        ?>
         <p>
             <button class="button_slide" type="submit">Atualizar</button>
         </p>
