@@ -107,6 +107,15 @@ $num_pacientes = $query_pacientes->num_rows;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Listagem de pacientes</title>
 </head>
+<style>
+body{
+  width: 100%;
+  height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+</style>
 <!-- CÓDIGOS CSS -->
 <link rel="stylesheet" href="../Arquivos CSS/usuarios.css">
 <link rel="stylesheet" href="../Arquivos CSS/button.css">
@@ -148,9 +157,11 @@ $num_pacientes = $query_pacientes->num_rows;
     
     <!-- TABELA DE PACIENTES CADASTRADOS -->
     <div class="janela_tabela">       
+        <div>
+            <button><a href="index.php">Pagina inicial</button> </a>
+            <button onclick="abrir_modal()">Cadastrar paciente</button>
+        </div>
         <h1>Esses são os pacientes cadastrados no seu sistema</h1>
-            <button><a href="index.php">Pagina inicial</button> </a><br>
-            <button onclick="abrir_modal()">Cadastrar paciente</button><br><br>
         <table border="1" cellpadding="10">
             <thead>
                 <th>ID</th>
