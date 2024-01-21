@@ -161,7 +161,7 @@ body{
             <button><a href="index.php">Pagina inicial</button> </a>
             <button onclick="abrir_modal()">Cadastrar paciente</button>
         </div>
-        <h1>Esses são os pacientes cadastrados no seu sistema</h1>
+        <h1>Atendimentos</h1>
         <table border="1" cellpadding="10">
             <thead>
                 <th>ID</th>

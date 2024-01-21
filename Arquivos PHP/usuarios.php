@@ -96,6 +96,15 @@
     <title>Listagem de usuários</title>
 </head>
 <!-- ARQUIVOS CSS SITE -->
+<style>
+body{
+  width: 100%;
+  height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+</style>
 <link rel="stylesheet" href="../Arquivos CSS/input.css">
 <link rel="stylesheet" href="../Arquivos CSS/janela_tabela.css">
 <link rel="stylesheet" href="../Arquivos CSS/normalize.css">
@@ -111,9 +120,11 @@
 <body> 
     <!-- DIVISÃO TABELA DE USUARIOS CADASTRADOS -->
     <div class="janela_tabela">
-        <h1>Esses são os usuários cadastrados no seu sistema</h1>
-        <button><a href="index.php">Pagina inicial</button> </a><br>
-        <button onclick="abrir_modal()">Cadastrar usuário</button><br><br>    
+        <div>
+            <button><a href="index.php">Pagina inicial</button> </a>
+            <button onclick="abrir_modal()">Cadastrar usuário</button>  
+        </div> 
+        <h1>Usuários</h1>
         <p>
             <?php 
             if(isset($sucess)){echo'<p class="sucess">'. $sucess . '</p>' ;}
