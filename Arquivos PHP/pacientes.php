@@ -105,7 +105,7 @@ $num_pacientes = $query_pacientes->num_rows;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Listagem de pacientes</title>
+    <title>Pacientes</title>
 </head>
 <style>
 body{

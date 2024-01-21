@@ -50,9 +50,18 @@ if(count($_POST) > 0){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Exames</title>
 </head>
 <!-- CÓDIGOS CSS -->
+<style>
+body{
+  width: 100%;
+  height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+</style>
 <link rel="stylesheet" href="../Arquivos CSS/normalize.css">
 <link rel="stylesheet" href="../Arquivos CSS/button.css">
 <link rel="stylesheet" href="../Arquivos CSS/tabela.css">
@@ -83,9 +92,12 @@ if(count($_POST) > 0){
 
     <!-- DIV PARA TABELA COM INFORMAÇÕES DOS EXAMES -->
     <div class="janela_tabela">
-        <h1>Esses são os exames cadastrados no seu sistema</h1>
-        <button><a href="index.php">Pagina inicial</button> </a><br> 
-        <button onclick="abrir_modal()">Cadastrar exames</button><br><br>
+        <div>
+            <button><a href="index.php">Pagina inicial</button> </a>
+            <button onclick="abrir_modal()">Cadastrar exames</button>
+        </div>
+        
+        <h1>Exames</h1>
         <?php 
         if(isset($sucess)){echo'<p class="sucess">'. $sucess . '</p>' ;}
         if($error){echo '<p class="error">'. $error . '</p>' ;}   

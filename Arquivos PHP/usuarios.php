@@ -93,7 +93,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Listagem de usuários</title>
+    <title>Usuários</title>
 </head>
 <!-- ARQUIVOS CSS SITE -->
 <style>
