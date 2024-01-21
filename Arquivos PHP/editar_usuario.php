@@ -103,6 +103,10 @@ $cliente = $query_cliente->fetch_assoc();
 <link rel="stylesheet" href="../Arquivos CSS/button.css">
 <link rel="stylesheet" href="../Arquivos CSS/input.css">
 <link rel="stylesheet" href="../Arquivos CSS/efeito_a.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hedvig+Letters+Serif:opsz@12..24&family=Roboto+Condensed:ital,wght@1,200;1,300;1,400&display=swap" rel="stylesheet">
+
 
 
 <body>
@@ -131,11 +135,11 @@ $cliente = $query_cliente->fetch_assoc();
         if(isset($sucess)){ echo $sucess;}
         ?>
         <p>
-            <button class="button_slide" type="submit">Atualizar</button>
+            <button class="button1" type="submit">Atualizar</button>
         </p>
     </form>
-    <button class="button_slide"><a href="usuarios.php">Usuários</a></button><br><br>
-    <button class="button_slide"><a href="index.php">Pagina inicial</a></button
+    <a href="usuarios.php"><button class="button1">Usuários</button></a><br><br>
+    <a href="index.php"><button class="button1">Pagina inicial</button></a>
 
 </body>
 </html>

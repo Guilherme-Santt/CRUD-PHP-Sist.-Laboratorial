@@ -49,9 +49,10 @@ if(isset($_POST['email'])){
     <link rel="stylesheet" href="../Arquivos CSS/normalize.css">
     <link rel="stylesheet" href="../Arquivos CSS/button.css">
     <link rel="stylesheet" href="../Arquivos CSS/janela_tabela.css">
+    <link rel="stylesheet" href="../Arquivos CSS/font.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Hedvig+Letters+Serif:opsz@12..24&family=Roboto+Condensed:ital,wght@1,200;1,300;1,400&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hedvig+Letters+Serif:opsz@12..24&family=Roboto+Condensed:ital,wght@1,200;1,300;1,400&display=swap" rel="stylesheet">
 </head>
 <style>
 
@@ -65,7 +66,7 @@ if(isset($_POST['email'])){
                 <input class="input_edit" type="email" name="email"><br><br>
                 <Label class="edit_label">Senha</Label><br>
                 <input class="input_edit"  type="password" name="senha"><br><br>
-                <button type="submit">Entrar</button>
+                <button class="button1" type="submit">Entrar</button>
                 <p>
                     <?php if(isset($error)){echo $error;}?> 
                 </p>

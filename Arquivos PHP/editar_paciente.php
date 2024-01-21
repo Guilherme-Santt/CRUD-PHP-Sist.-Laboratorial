@@ -155,14 +155,18 @@ $num_exames = $query_exames->num_rows;
 <link rel="stylesheet" href="../Arquivos CSS/efeito_a.css">
 <link rel="stylesheet" href="../Arquivos CSS/input.css">
 <link rel="stylesheet" href="../Arquivos CSS/janela_tabela.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hedvig+Letters+Serif:opsz@12..24&family=Roboto+Condensed:ital,wght@1,200;1,300;1,400&display=swap" rel="stylesheet">
+
 
 
 <body>
     <!-- INSERÇÃO CAMPOS POST NO FORM -->
     <div class="Info_pacientes">
         <div> 
-            <a href="pacientes.php"><button>Retornar</button></a> 
-            <a href="index.php">    <button>inicial</button></a>
+            <a href="pacientes.php"><button class="button1">Retornar</button></a> 
+            <a href="index.php">    <button class="button1">Pagina inicial</button></a>
         </div> 
         <div>   
             <h1>Informações do paciente:</h1>
@@ -188,7 +192,7 @@ $num_exames = $query_exames->num_rows;
                     <p>Adicionar um exame no atendimento:</p>
                     <label>Exame ID</label>
                     <input class="input_edit" type="text" name="id_exame"><br><br>
-                    <button class="button_slide" type="submit">Enviar</button>
+                    <button class="button1" type="submit">Enviar</button>
                 </p>
             </form>
             <?php
@@ -206,6 +210,8 @@ $num_exames = $query_exames->num_rows;
                 <th>ID Exames</th>
                 <th>código exame</th>
                 <th>Nome exame</th>
+                <th>Remover</th>
+
             </thead>
             <tbody> <?php if($num_exames == 0) {?>
                 <tr>
@@ -216,7 +222,7 @@ $num_exames = $query_exames->num_rows;
                     <td><?php echo $exames['exame_id']?></td>
                     <td><?php echo $exames['codigo']?></td>
                     <td><?php echo $exames['descricao']?></td>
-                    <td><a href="remover_exame.php?id=<?php echo $exames['id']?>"><button>x</button></a></td>
+                    <td><a href="remover_exame.php?id=<?php echo $exames['id']?>">X</a></td>
                 </tr><?php }?> 
             </tbody>
         </table>

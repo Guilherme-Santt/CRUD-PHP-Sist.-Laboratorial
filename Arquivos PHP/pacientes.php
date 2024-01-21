@@ -134,6 +134,7 @@ body{
             <button class="fechar" id="fechar">X</button>
             <!-- FORMULARIO POST INFORMAÇÕES DE CADASTRO -->
             <form action="" method="POST">
+                <p>Cadastrar paciente⤵</p>
                 <label>Email</label><br>
                 <input class="input_edit" type="email" value="<?php if(isset($_POST['email'])) echo $_POST['email']; ?>" name="email"><br><br>
                 <label>Endereço</label><br>
@@ -150,7 +151,7 @@ body{
                     
                 <label>sexo</label><br>
                 <input class="input_edit" type="text" value="<?php if(isset($_POST['sexo'])) echo $_POST['sexo']; ?>"placeholder="MAS ou FEM" name="sexo"><br><br><br><br>
-                <button class="button_slide" type="submit" name="cadastrar">Cadastrar</button>
+                <button class="button1" type="submit" name="cadastrar">Cadastrar</button>
             </form>
         </div>
     </div>
@@ -158,8 +159,8 @@ body{
     <!-- TABELA DE PACIENTES CADASTRADOS -->
     <div class="janela_tabela">       
         <div>
-            <button><a href="index.php">Pagina inicial</button> </a>
-            <button onclick="abrir_modal()">Cadastrar paciente</button>
+            <a href="index.php"><button class="button1">Pagina inicial</button> </a>
+            <button class="button1" onclick="abrir_modal()">Cadastrar paciente</button>
         </div>
         <h1>Atendimentos</h1>
         <table border="1" cellpadding="10">

@@ -35,11 +35,15 @@ $consulta = $consult_query->fetch_assoc();
 </head>
 <link rel="stylesheet" href="../Arquivos CSS/button.css">
 <link rel="stylesheet" href="../Arquivos CSS/efeito_a.css">
+<link rel="stylesheet" href="../Arquivos CSS/font.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hedvig+Letters+Serif:opsz@12..24&family=Roboto+Condensed:ital,wght@1,200;1,300;1,400&display=swap" rel="stylesheet">
 <body>
     <form action="" method="POST">
         <h1>Remover paciente: <?php echo $consulta['nome']; ?> ?</h1>
         <a href="pacientes.php">Não!</a>
-        <Button name="confirmar" type="submit">Sim!</Button>
+        <Button  class="button1" name="confirmar" type="submit">Sim!</Button>
     </form>
 </body>
 </html>

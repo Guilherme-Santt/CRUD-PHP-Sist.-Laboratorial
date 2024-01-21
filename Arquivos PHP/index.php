@@ -62,6 +62,11 @@ if(isset($_POST['sugestao'])){
 <link rel="stylesheet" href="../Arquivos CSS/inicial.css">
 <link rel="stylesheet" href="../Arquivos CSS/normalize.css">
 <link rel="stylesheet" href="../Arquivos CSS/modal.css">
+<link rel="stylesheet" href="../Arquivos CSS/button.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hedvig+Letters+Serif:opsz@12..24&family=Roboto+Condensed:ital,wght@1,200;1,300;1,400&display=swap" rel="stylesheet">
+
 
 
 <body >
@@ -76,6 +81,7 @@ if(isset($_POST['sugestao'])){
         <div id="lh" class="h-menu"><br>
             <a onclick="fmenu()">X</a>
             <Ul> 
+                <p>Local System <b><?php echo $usuario['unidade']?></b></p>
                 <a href="usuarios.php"><li>Usuários</li></a>
                 <a href="pacientes.php"><li>Atendimentos</li></a>
                 <a href="exames.php"><li>Exames</li></a>
@@ -102,9 +108,9 @@ if(isset($_POST['sugestao'])){
                 <div class="modal">
                     <button class="fechar" id="fechar">X</button>
                         <form method="post">
-                            <p>Envie sugestões para automação de suas operações⤵</p><br>
+                            <br><p>Envie sugestões para automação de suas operações⤵</p><br>
                             <textarea ows="50" cols="40" name="sugestao"></textarea><br>
-                            <button type="submit">Enviar</button>
+                            <button class="button1" type="submit">Enviar</button>
                             <?php if(isset($error)){ echo $error;}?>
                         </form>
                 </div>

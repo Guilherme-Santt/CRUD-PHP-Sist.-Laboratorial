@@ -34,6 +34,10 @@ $nomeex = $consulta_exame['descricao']
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hedvig+Letters+Serif:opsz@12..24&family=Roboto+Condensed:ital,wght@1,200;1,300;1,400&display=swap" rel="stylesheet">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Remover exame do paciente</title>
@@ -44,7 +48,7 @@ $nomeex = $consulta_exame['descricao']
 <body>
     <form method="post">
     <h1>Deseja remover exame(<?php echo $nomeex?>) deste paciente?</h1>
-        <button name="remover">Sim</button>
+        <button class="button1" name="remover">Sim</button>
         <a href="pacientes.php">Não</a>
     </form>
 </body>

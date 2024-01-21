@@ -121,8 +121,8 @@ body{
     <!-- DIVISÃO TABELA DE USUARIOS CADASTRADOS -->
     <div class="janela_tabela">
         <div>
-            <button><a href="index.php">Pagina inicial</button> </a>
-            <button onclick="abrir_modal()">Cadastrar usuário</button>  
+        <a href="index.php"><button class="button1">Pagina inicial</button> </a>
+        <button class="button1" onclick="abrir_modal()">Cadastrar usuário</button>  
         </div> 
         <h1>Usuários</h1>
         <p>
@@ -192,6 +192,7 @@ body{
         <div class="modal">
             <button class="fechar" id="fechar">X</button>
             <form action="" method="POST">
+                <p>Cadastrar usuário⤵</p>
                 <label>Email</label><br>
                 <input class="input_edit" type="email" value="<?php if(isset($_POST['email'])) echo $_POST['email']; ?>" name="email"><br><br>
         
@@ -206,7 +207,7 @@ body{
                 
                 <label>Senha</label><br>
                 <input class="input_edit" type="password" value="<?php if(isset($_POST['senha'])) echo $_POST['senha']; ?>" name="senha"><br><br>
-                <button class="button_slide" type="submit" name="cadastrar">Enviar</button>
+                <button class="button1" type="submit" name="cadastrar">Enviar</button>
             </form>
         </div>
     </div>

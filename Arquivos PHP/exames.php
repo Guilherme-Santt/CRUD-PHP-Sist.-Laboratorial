@@ -79,13 +79,14 @@ body{
         <div class="modal">
             <button class="fechar" id="fechar">X</button><br>
             <form action="" method="POST">
+                <p>Cadastrar exame⤵</p>
                 <label>Código exame</label><br><br>
                 <input class="input_edit" type="text" value="<?php if(isset($_POST['codigo'])) echo $_POST['codigo']; ?>" name="codigo"><br><br>
     
                 <label>Descrição exame</label></label><br><br>
                 <input class="input_edit" type="text" value="<?php if(isset($_POST['descricao'])) echo $_POST['descricao']; ?>" name="descricao"><br><br>
     
-                <button class="button_slide" type="submit" name="cadastrar">Cadastrar exame</button>
+                <button class="button1" type="submit" name="cadastrar">Cadastrar exame</button>
             </form>
         </div>
     </div>    
@@ -93,8 +94,8 @@ body{
     <!-- DIV PARA TABELA COM INFORMAÇÕES DOS EXAMES -->
     <div class="janela_tabela">
         <div>
-            <button><a href="index.php">Pagina inicial</button> </a>
-            <button onclick="abrir_modal()">Cadastrar exames</button>
+            <a href="index.php"><button class="button1">Pagina inicial</button> </a>
+            <button class="button1" onclick="abrir_modal()">Cadastrar exames</button>
         </div>
         
         <h1>Exames</h1>

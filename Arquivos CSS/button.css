@@ -10,28 +10,25 @@
     display:inline-block;
     vertical-align:middle;
   } */
-  button{
-    border-radius: 20px;
+  .button1{
+    border-radius: 10px;
     background:#1AAB8A;
     color:#fff;
     border:none;
     position:relative;
-    width: 120px;;
-    height: 50px;
-    font-size:15px;
-    padding:0 2em;
+    height: 30px;
+    font-size:15x;
     cursor:pointer;
     transition:800ms ease all;
     outline:none;
     text-align: center;
   }
 
-
-  button:hover{
+  .button1:hover{
     background:#fff;
     color:#1AAB8A;
   }
-  button:before,button:after{
+  .button1:before,button:after{
     content:'';
     position:absolute;
     top:0;
@@ -41,13 +38,13 @@
     background: #1AAB8A;
     transition:400ms ease all;
   }
-  button:after{
+  .button1:after{
     right:inherit;
     top:inherit;
     left:0;
     bottom:0;
   }
-  button:hover:before,button:hover:after{
+  .button1:hover:before,button:hover:after{
     width:100%;
     transition:800ms ease all;
   }
