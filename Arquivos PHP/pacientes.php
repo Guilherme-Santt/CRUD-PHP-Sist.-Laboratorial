@@ -12,7 +12,11 @@ if(!isset($_SESSION)){
 $error = "";
 if(count($_POST) > 0){
     $email = $_POST['email'];
-    $sexo = $_POST['sexo'];
+    if(!empty($_POST['sexo'])){
+        $sexo = $_POST['sexo'];
+    }else{
+        
+    }
     $nome = $_POST['nome'];
     $endereco = $_POST['endereco'];
     $telefone = $_POST['telefone'];
