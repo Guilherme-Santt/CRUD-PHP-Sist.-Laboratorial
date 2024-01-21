@@ -127,6 +127,29 @@ $num_exames = $query_exames->num_rows;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Informações do paciente</title>
 </head>
+<Style>
+    body{
+        width: 100%;
+        height: 600px;
+        display: flex;
+    }
+    .Info_pacientes{
+        width: 50%;
+        height: 600px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .info_exames{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 50%;
+        height: 600px;
+    }
+</style>    
 <link rel="stylesheet" href="../Arquivos CSS/button.css">
 <link rel="stylesheet" href="../Arquivos CSS/tabela.css">
 <link rel="stylesheet" href="../Arquivos CSS/efeito_a.css">
@@ -135,62 +158,69 @@ $num_exames = $query_exames->num_rows;
 
 
 <body>
-
-    <a href="pacientes.php"><button>Retornar</button></a> 
-    <a href="index.php">    <button>inicial</button></a><br><br>
-
     <!-- INSERÇÃO CAMPOS POST NO FORM -->
-    <p>Informações do paciente:</p>
-    <form action="" method="POST">
-            <label>Nome: </label><br>
-            <input class="input_edit" value="<?php echo $cliente['nome']; ?>" type="text" name="nome"><br><br>
- 
-            <label>Endereço:</label><br>
-            <input class="input_edit" value= "<?php echo $cliente['endereco']; ?>" type="text" name="endereco"><br><br>
+    <div class="Info_pacientes">
+        <div> 
+            <a href="pacientes.php"><button>Retornar</button></a> 
+            <a href="index.php">    <button>inicial</button></a>
+        </div> 
+        <div>   
+            <h1>Informações do paciente:</h1>
+            <form action="" method="POST">
+                    <label>Nome: </label><br>
+                    <input class="input_edit" value="<?php echo $cliente['nome']; ?>" type="text" name="nome"><br><br>
 
-            <label>Sexo:</label><br>
-            <input class="input_edit" value= "<?php if($cliente['sexo']) echo $cliente['sexo']; ?>" type="text" name="sexo"><br><br>
+                    <label>Endereço:</label><br>
+                    <input class="input_edit" value= "<?php echo $cliente['endereco']; ?>" type="text" name="endereco"><br><br>
 
-            <label>E-mail:</label><br>
-            <input class="input_edit" value ="<?php if(!empty($cliente['telefone'])){ echo ($cliente['email']);} ?>" type="email" name="email"><br><br>
+                    <label>Sexo:</label><br>
+                    <input class="input_edit" value= "<?php if($cliente['sexo']) echo $cliente['sexo']; ?>" type="text" name="sexo"><br><br>
 
-            <label>Telefone:</label><br>
-            <input class="input_edit" value ="<?php if(!empty($cliente['telefone'])){ echo formatar_telefone($cliente['telefone']);} ?>" placeholder="(11) 98888-8888" type="text" name="telefone"><br><br>
+                    <label>E-mail:</label><br>
+                    <input class="input_edit" value ="<?php if(!empty($cliente['telefone'])){ echo ($cliente['email']);} ?>" type="email" name="email"><br><br>
 
-            <label>Data de nascimento:</label><br>
-            <input class="input_edit" value ="<?php if(!empty($cliente['nascimento'])){ echo formatar_data($cliente['nascimento']);} ?>" placeholder="dia/mês/ano" type="text" name="nascimento"><br>
-        <p>
-            <p>Adicionar um exame no atendimento:</p>
-            <label>Exame ID</label>
-            <input class="input_edit" type="text" name="id_exame"><br><br>
-            <button class="button_slide" type="submit">Enviar</button>
-        </p>
-    </form>
-    <?php
-            if(isset($error)) echo $error;
-            if(isset($sucess)) echo $sucess;
+                    <label>Telefone:</label><br>
+                    <input class="input_edit" value ="<?php if(!empty($cliente['telefone'])){ echo formatar_telefone($cliente['telefone']);} ?>" placeholder="(11) 98888-8888" type="text" name="telefone"><br><br>
+
+                    <label>Data de nascimento:</label><br>
+                    <input class="input_edit" value ="<?php if(!empty($cliente['nascimento'])){ echo formatar_data($cliente['nascimento']);} ?>" placeholder="dia/mês/ano" type="text" name="nascimento"><br>
+                <p>
+                    <p>Adicionar um exame no atendimento:</p>
+                    <label>Exame ID</label>
+                    <input class="input_edit" type="text" name="id_exame"><br><br>
+                    <button class="button_slide" type="submit">Enviar</button>
+                </p>
+            </form>
+            <?php
+                    if(isset($error)) echo $error;
+                    if(isset($sucess)) echo $sucess;
             ?>
+        </div>
+    </div>
+
     <!-- TABELA DE INFORMAÇÕES EXAMES CADASTRADOS DO PACIENTE -->
-    <table border="1" cellpadding="10">
-        <thead>
-            <th>ID Exames</th>
-            <th>código exame</th>
-            <th>Nome exame</th>
-        </thead>
-        <tbody> <?php if($num_exames == 0) {?>
-            <tr>
-                <td colspan="7">Nenhum exame foi encontrado!</td>
-            </tr> <?php } ?>
-            <h1>Exames do paciente</h1>
-        <?php while($exames = $query_exames->fetch_assoc()){?>
-            <tr>
-                <td><?php echo $exames['exame_id']?></td>
-                <td><?php echo $exames['codigo']?></td>
-                <td><?php echo $exames['descricao']?></td>
-                <td><a href="remover_exame.php?id=<?php echo $exames['id']?>"><button>x</button></a></td>
-            </tr><?php }?> 
-        </tbody>
-    </table>
+    <div class="info_exames">    
+        <h1>Exames do paciente</h1>
+        <table border="1" cellpadding="10">
+            <thead>
+                <th>ID Exames</th>
+                <th>código exame</th>
+                <th>Nome exame</th>
+            </thead>
+            <tbody> <?php if($num_exames == 0) {?>
+                <tr>
+                    <td colspan="7">Nenhum exame foi encontrado!</td>
+                </tr> <?php } ?>
+            <?php while($exames = $query_exames->fetch_assoc()){?>
+                <tr>
+                    <td><?php echo $exames['exame_id']?></td>
+                    <td><?php echo $exames['codigo']?></td>
+                    <td><?php echo $exames['descricao']?></td>
+                    <td><a href="remover_exame.php?id=<?php echo $exames['id']?>"><button>x</button></a></td>
+                </tr><?php }?> 
+            </tbody>
+        </table>
+</div>
 </body>
 </html>
 

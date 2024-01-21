@@ -1,11 +1,11 @@
 <?php 
-// SESSÃO
-if(!isset($_SESSION)){
-    session_start();
-    if(!isset($_SESSION['usuario'])){
-        die('Você não está logado!' . '<a href="login.php">Clique aqui para logar</a>');
-    }    
-}
+// // SESSÃO
+// if(!isset($_SESSION)){
+//     session_start();
+//     if(!isset($_SESSION['usuario'])){
+//         die('Você não está logado!' . '<a href="login.php">Clique aqui para logar</a>');
+//     }    
+// }
 
 function formatar_data($data){
     return implode('/', array_reverse(explode('-', $data)));
