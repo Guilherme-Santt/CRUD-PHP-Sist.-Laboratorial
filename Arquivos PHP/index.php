@@ -26,20 +26,29 @@ $cont_exames = $query->num_rows;
 
 // POST PARA ENVIO DE SUGESTÕES
 if(isset($_POST['sugestao'])){
+    $error = "";
     $sugestao = $_POST['sugestao'];
+    if(empty($_POST['sugestao'])){
+        $error = "Campo obrigatório*";
+    }
+    if($error){
+
+    }else{
     $enviado = "";
     $sql_code = "SELECT * FROM sugestoes WHERE sugestao = '$sugestao'";
     $query = $query_sug = $mysqli->query($sql_code);
     $consulta_sugestao = $query->fetch_assoc();
         if($consulta_sugestao){
             echo "<script>alert('Sugestão já enviada. Caso tiver outra sugestão, será um prazer avaliar!');</script>";
-        }else{
+        }
+        else{
             $sql_code = "INSERT INTO sugestoes (id_user, sugestao) VALUES ('$id', '$sugestao')";
             $query_sug = $mysqli->query($sql_code);
             if($query_sug){
-                echo "<script>alert('Sugestão enviada com sucesso! Iremos avaliar a possibilidade e damos retorno no email cadastrado. Obrigado.');</script>";
+                echo "<script>alert('Sugestão enviada com sucesso! Iremos avaliar a possibilidade e dare mos retorno no email cadastrado. Obrigado.');</script>";
             }
         }    
+    }
 }
 ?>
 
@@ -96,6 +105,7 @@ if(isset($_POST['sugestao'])){
                             <p>Envie sugestões para automação de suas operações⤵</p><br>
                             <textarea ows="50" cols="40" name="sugestao"></textarea><br>
                             <button type="submit">Enviar</button>
+                            <?php if(isset($error)){ echo $error;}?>
                         </form>
                 </div>
             </div>
