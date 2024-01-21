@@ -23,6 +23,24 @@ $cont_pacientes = $query->num_rows;
 $sqlcode = "SELECT * FROM exames";
 $query = $mysqli->query($sqlcode);
 $cont_exames = $query->num_rows;
+
+// POST PARA ENVIO DE SUGESTÕES
+if(isset($_POST['sugestao'])){
+    $sugestao = $_POST['sugestao'];
+    $enviado = "";
+    $sql_code = "SELECT * FROM sugestoes WHERE sugestao = '$sugestao'";
+    $query = $query_sug = $mysqli->query($sql_code);
+    $consulta_sugestao = $query->fetch_assoc();
+        if($consulta_sugestao){
+            echo "<script>alert('Sugestão já enviada. Caso tiver outra sugestão, será um prazer avaliar!');</script>";
+        }else{
+            $sql_code = "INSERT INTO sugestoes (id_user, sugestao) VALUES ('$id', '$sugestao')";
+            $query_sug = $mysqli->query($sql_code);
+            if($query_sug){
+                echo "<script>alert('Sugestão enviada com sucesso! Iremos avaliar a possibilidade e damos retorno no email cadastrado. Obrigado.');</script>";
+            }
+        }    
+}
 ?>
 
 <!DOCTYPE html>
@@ -73,8 +91,12 @@ $cont_exames = $query->num_rows;
             </div>
             <div class="janela-modal" id="janela-modal">
                 <div class="modal">
-                <button class="fechar" id="fechar">X</button>
-                <p>Envie sugestões para automação de suas operações⤵</p>
+                    <button class="fechar" id="fechar">X</button>
+                        <form method="post">
+                            <p>Envie sugestões para automação de suas operações⤵</p><br>
+                            <textarea ows="50" cols="40" name="sugestao"></textarea><br>
+                            <button type="submit">Enviar</button>
+                        </form>
                 </div>
             </div>
     </div>
