@@ -20,5 +20,5 @@ Após feito os pasos para acessar o index do arquivo, digitar URL http://localho
 
 Login: admin@admin.com
 senha: 123
-Caso optar por criar um usuário, acessar http://127.0.0.1/CRUD_Laboratório/Arquivos%20PHP/cadastro.php
+Caso optar por criar um usuário, acessar http://127.0.0.1/CRUD_Laboratório/Arquivos%20PHP/usuario.php
 Deixei a session comentada (sem verificação) para conseguir criar usuário, caso necessário.
