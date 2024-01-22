@@ -208,6 +208,8 @@ $num_exames = $query_exames->num_rows;
                 <th>ID Exames</th>
                 <th>código exame</th>
                 <th>Nome exame</th>
+                <th>Resultado</th>
+                <th>Inserir Resultado</th>
                 <th>Remover</th>
 
             </thead>
@@ -220,6 +222,8 @@ $num_exames = $query_exames->num_rows;
                     <td><?php echo $exames['exame_id']?></td>
                     <td><?php echo $exames['codigo']?></td>
                     <td><?php echo $exames['descricao']?></td>
+                    <td><?php echo $exames['resultado']?></td>
+                    <td><a href="inserir_resultado.php?id=<?php echo $exames['id']?>">inserir</a></td>
                     <td><a href="remover_exame.php?id=<?php echo $exames['id']?>">X</a></td>
                 </tr><?php }?> 
             </tbody>
