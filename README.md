@@ -11,7 +11,7 @@ Passos para executar o projeto:
    
    ![image](https://github.com/Guilherme-Santt/CRUD-PHP-Sist.-Laboratorial/assets/133061692/05676a16-5ccb-4068-97a4-9d64a1bf16b2)
 
-5. Caso optar por outro nome no banco de dados no phpmyadmin, é necessário alterar o nome do mesmo na variavel $db_nome-> arquivo conexao.php, na pasta Arquivos PHP.
+5. Caso optar por outro nome no banco de dados no phpmyadmin, é necessário alterar o nome do mesmo na variavel $db_hostname-> arquivo conexao.php, na pasta Arquivos PHP.
    
    ![image](https://github.com/Guilherme-Santt/CRUD-PHP-Sist.-Laboratorial/assets/133061692/ef68fd44-038c-454a-9388-1ecd2d90b7e5)
 
