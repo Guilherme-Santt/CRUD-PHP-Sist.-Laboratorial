@@ -139,8 +139,8 @@ body{
                 <p>Cadastrar paciente⤵</p>
                 <label>Nome</label><br>
                 <input class="input_edit" type="text" value="<?php if(isset($_POST['nome'])) echo $_POST['nome']; ?>" name="nome"><br><br>
-                
-                <label>Email</label><br>
+
+                <label>E-mail</label><br>
                 <input class="input_edit" type="email" value="<?php if(isset($_POST['email'])) echo $_POST['email']; ?>" name="email"><br><br>
 
                 <label>Endereço</label><br>
