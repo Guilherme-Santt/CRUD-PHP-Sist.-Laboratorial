@@ -1,4 +1,5 @@
 Esse repositório Hospeda o código back_end desafio Worklab CRUD
+Sobre: Neste projeto, foi desenvolvido um CRUD, com finalidade cadastrar um paciente, alterar, remover & adicionar informações & exames tendo verificações que evitem inserção de informações duplas ou inexistentes. 
 
 Esses passos é necessário que o usuário tenhas seguintes ferramentas para gerenciar & executar os arquivos:
 1. Servidor XAMP, WAMP ou semelhantes.
