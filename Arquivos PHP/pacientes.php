@@ -137,14 +137,16 @@ body{
             <!-- FORMULARIO POST INFORMAÇÕES DE CADASTRO -->
             <form action="" method="POST">
                 <p>Cadastrar paciente⤵</p>
-                <label>Email</label><br>
-                <input class="input_edit" type="email" value="<?php if(isset($_POST['email'])) echo $_POST['email']; ?>" name="email"><br><br>
-                <label>Endereço</label><br>
-                <input class="input_edit" type="text" value="<?php if(isset($_POST['endereco'])) echo $_POST['endereco']; ?>" name="endereco"><br><br>
-    
                 <label>Nome</label><br>
                 <input class="input_edit" type="text" value="<?php if(isset($_POST['nome'])) echo $_POST['nome']; ?>" name="nome"><br><br>
-    
+                
+                <label>Email</label><br>
+                <input class="input_edit" type="email" value="<?php if(isset($_POST['email'])) echo $_POST['email']; ?>" name="email"><br><br>
+
+                <label>Endereço</label><br>
+                <input class="input_edit" type="text" value="<?php if(isset($_POST['endereco'])) echo $_POST['endereco']; ?>" name="endereco"><br><br>
+
+
                 <label>Nascimento</label><br>
                 <input class="input_edit" type="text" value="<?php if(isset($_POST['nascimento'])) echo $_POST['nascimento']; ?>" name="nascimento" placeholder="dia/mês/ano"><br><br>
                     
