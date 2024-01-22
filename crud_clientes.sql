@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 21/01/2024 às 20:31
--- Versão do servidor: 10.4.32-MariaDB
--- Versão do PHP: 8.2.12
+-- Tempo de geração: 22/01/2024 às 15:44
+-- Versão do servidor: 10.4.28-MariaDB
+-- Versão do PHP: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -63,10 +63,10 @@ CREATE TABLE `exames` (
 --
 
 INSERT INTO `exames` (`exameid`, `codigo`, `descricao`, `nome`) VALUES
-(2, 'COL', 'BIOQUIMICA', 'Colesterol'),
-(3, 'HDL', 'BIOQUIMICA', 'Colesterol HDL'),
-(4, 'TRI', 'BIOQUÍMICA', 'TRIGLICERIDES'),
-(5, 'HEM', 'HEMOGRAMA', 'HEMOGRAMA');
+(1, 'COL', 'BIOQUIMICA', 'Colesterol'),
+(2, 'HDL', 'BIOQUIMICA', 'Colesterol HDL'),
+(3, 'TRI', 'BIOQUÍMICA', 'TRIGLICERIDES'),
+(4, 'HEM', 'HEMOGRAMA', 'HEMOGRAMA');
 
 -- --------------------------------------------------------
 
@@ -104,20 +104,6 @@ CREATE TABLE `pacientes_exames` (
   `paciente_id` int(11) NOT NULL,
   `exame_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Despejando dados para a tabela `pacientes_exames`
---
-
-INSERT INTO `pacientes_exames` (`id`, `paciente_id`, `exame_id`) VALUES
-(17, 1, 2),
-(18, 1, 3),
-(19, 1, 4),
-(20, 1, 5),
-(21, 10, 2),
-(22, 10, 3),
-(23, 10, 4),
-(26, 10, 5);
 
 -- --------------------------------------------------------
 
@@ -200,7 +186,7 @@ ALTER TABLE `pacientes_exames`
 -- AUTO_INCREMENT de tabela `sugestoes`
 --
 ALTER TABLE `sugestoes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

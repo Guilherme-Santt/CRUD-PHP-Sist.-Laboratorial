@@ -38,6 +38,7 @@ if(isset($_POST['sugestao'])){
     $sql_code = "SELECT * FROM sugestoes WHERE sugestao = '$sugestao'";
     $query = $query_sug = $mysqli->query($sql_code);
     $consulta_sugestao = $query->fetch_assoc();
+    
         if($consulta_sugestao){
             echo "<script>alert('Sugestão já enviada. Caso tiver outra sugestão, será um prazer avaliar!');</script>";
         }
