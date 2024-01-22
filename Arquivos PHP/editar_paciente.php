@@ -133,20 +133,13 @@ $num_exames = $query_exames->num_rows;
     }
     .Info_pacientes{
         width: 50%;
-        height: 600px;
+        height: 800px;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
     }
-    .info_exames{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        width: 50%;
-        height: 600px;
-    }
+
 </style>    
 <link rel="stylesheet" href="../Arquivos CSS/button.css">
 <link rel="stylesheet" href="../Arquivos CSS/tabela.css">
@@ -198,11 +191,8 @@ $num_exames = $query_exames->num_rows;
                     if(isset($sucess)) echo $sucess;
             ?>
         </div>
-    </div>
-
+        
     <!-- TABELA DE INFORMAÇÕES EXAMES CADASTRADOS DO PACIENTE -->
-    <div class="info_exames">    
-        <h1>Exames do paciente</h1>
         <table border="1" cellpadding="10">
             <thead>
                 <th>ID Exames</th>
@@ -218,11 +208,13 @@ $num_exames = $query_exames->num_rows;
                     <td colspan="7">Nenhum exame foi encontrado!</td>
                 </tr> <?php } ?>
             <?php while($exames = $query_exames->fetch_assoc()){?>
+                    
                 <tr>
                     <td><?php echo $exames['exame_id']?></td>
                     <td><?php echo $exames['codigo']?></td>
                     <td><?php echo $exames['descricao']?></td>
-                    <td><?php echo $exames['resultado']?></td>
+                    
+                    <td><?php if($exames['resultado'] == 0){ }else echo number_format($exames['resultado'], 1, ',', '.')?></td>
                     <td><a href="inserir_resultado.php?id=<?php echo $exames['id']?>">inserir</a></td>
                     <td><a href="remover_exame.php?id=<?php echo $exames['id']?>">X</a></td>
                 </tr><?php }?> 

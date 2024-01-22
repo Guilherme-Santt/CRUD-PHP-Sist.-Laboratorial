@@ -37,9 +37,10 @@ if(isset($_POST['result'])){
     <title>Document</title>
 </head>
 <link rel="stylesheet" href="../Arquivos CSS/button.css">
+
 <body>
 
-    <a href="pacientes.php"><button class="button1">Retornar a listagem de atendimento</buttonv></a>
+    <a href="pacientes.php"><button class="button1">Retornar a listagem de atendimento</button></a>
     <a href="index.php"><button class="button1"> Pagina inicial</button></a>
 
     <p>Exame:<?php echo $nomeex ?> </p>
