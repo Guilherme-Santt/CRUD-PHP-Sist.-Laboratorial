@@ -16,7 +16,7 @@ Passos para executar o projeto:
    ![image](https://github.com/Guilherme-Santt/CRUD-PHP-Sist.-Laboratorial/assets/133061692/ef68fd44-038c-454a-9388-1ecd2d90b7e5)
 
 
-Após feito os pasos para acessar o index do arquivo, digitar URL http://localhost ou http://127.0.0.1/CRUD_Laboratório/Arquivos%20PHP/, com o servidor(xampp ou semelhante) online 
+Após feito os passos para acessar o index do arquivo, digitar URL http://localhost/CRUD_Laboratório/Arquivos%20PHP/ ou http://127.0.0.1/CRUD_Laboratório/Arquivos%20PHP/, com o servidor(xampp ou semelhante) online 
 
 ![image](https://github.com/Guilherme-Santt/CRUD-PHP-Sist.-Laboratorial/assets/133061692/cda7ee79-cd82-481b-82a9-ce63b7f4cb4d)
 
