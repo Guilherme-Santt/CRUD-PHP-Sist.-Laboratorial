@@ -49,7 +49,7 @@ $nomeex = $consulta_exame['descricao']
     <form method="post">
     <h1>Deseja remover exame(<?php echo $nomeex?>) deste paciente?</h1>
         <button class="button1" name="remover">Sim</button>
-        <a href="pacientes.php">Não</a>
+        <a href="editar_paciente.php?id=<?php echo $paciente ?>">Não</a>
     </form>
 </body>
 </html>
