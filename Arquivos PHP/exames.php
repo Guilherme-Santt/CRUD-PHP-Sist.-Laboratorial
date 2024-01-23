@@ -40,6 +40,7 @@ if(count($_POST) > 0){
                 $queryinsert = $mysqli->query($sqlinsert);
                     if($queryinsert){
                         $sucess = "Cadastrado com sucesso";
+                        unset($_POST);
                     }
             }
     }
