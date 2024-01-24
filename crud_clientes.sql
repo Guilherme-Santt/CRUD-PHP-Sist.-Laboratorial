@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 22/01/2024 às 15:44
--- Versão do servidor: 10.4.28-MariaDB
--- Versão do PHP: 8.0.28
+-- Tempo de geração: 23/01/2024 às 01:15
+-- Versão do servidor: 10.4.32-MariaDB
+-- Versão do PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -63,10 +63,12 @@ CREATE TABLE `exames` (
 --
 
 INSERT INTO `exames` (`exameid`, `codigo`, `descricao`, `nome`) VALUES
-(1, 'COL', 'BIOQUIMICA', 'Colesterol'),
-(2, 'HDL', 'BIOQUIMICA', 'Colesterol HDL'),
-(3, 'TRI', 'BIOQUÍMICA', 'TRIGLICERIDES'),
-(4, 'HEM', 'HEMOGRAMA', 'HEMOGRAMA');
+(1, 'COL', 'Colesterol', ''),
+(2, 'HDL', 'Colesterol HDL', ''),
+(3, 'TRI', 'Triglicerides', ''),
+(4, 'HEM', 'Hemograma', ''),
+(5, 'BIT', 'Bilirrubina direta', ''),
+(6, 'BID', 'Bilirrubina Total', '');
 
 -- --------------------------------------------------------
 
@@ -90,8 +92,7 @@ CREATE TABLE `pacientes` (
 --
 
 INSERT INTO `pacientes` (`ID`, `nome`, `email`, `endereco`, `telefone`, `sexo`, `data`, `nascimento`) VALUES
-(10, 'Guilherme', 'guisant@icloud.com', 'R.St', '11995910318', 'Masculino', '2024-01-21 15:41:36', '2001-03-12'),
-(11, 'Mayra', 'Mayra@icloud.com', 'R.St', '11995910318', 'Feminino', '2024-01-21 15:41:56', '2001-03-12');
+(10, 'Guilherme', 'guisant@icloud.com', 'R.St', '11995910318', 'Masculino', '2024-01-21 15:41:36', '2001-03-12');
 
 -- --------------------------------------------------------
 
@@ -102,7 +103,8 @@ INSERT INTO `pacientes` (`ID`, `nome`, `email`, `endereco`, `telefone`, `sexo`, 
 CREATE TABLE `pacientes_exames` (
   `id` int(11) NOT NULL,
   `paciente_id` int(11) NOT NULL,
-  `exame_id` int(11) NOT NULL
+  `exame_id` int(11) NOT NULL,
+  `resultado` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -168,7 +170,7 @@ ALTER TABLE `clientes`
 -- AUTO_INCREMENT de tabela `exames`
 --
 ALTER TABLE `exames`
-  MODIFY `exameid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `exameid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT de tabela `pacientes`
@@ -180,13 +182,13 @@ ALTER TABLE `pacientes`
 -- AUTO_INCREMENT de tabela `pacientes_exames`
 --
 ALTER TABLE `pacientes_exames`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT de tabela `sugestoes`
 --
 ALTER TABLE `sugestoes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -14,7 +14,7 @@ if(isset($_POST['confirmar'])){
     $query_code = $mysqli->query($sql_code) or die($mysqli->error);    
         if($query_code) {?> 
             <h1>Usuário removido com sucesso!</h1>
-            <a href="usuarios.php">Clique aqui </a> para retornar a listagem de usuários</a>
+            <a href="usuarios.php">Clique aqui   </a> para retornar a listagem de usuários</a>
             <?php
             die();
         }

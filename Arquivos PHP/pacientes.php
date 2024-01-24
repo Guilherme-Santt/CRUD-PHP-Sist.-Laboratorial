@@ -38,24 +38,24 @@ if(count($_POST) > 0){
         $error = "Campo nome obrigatório*";
         }
 
-        if(empty($nascimento) || strlen($nascimento) < 10 || strlen($nascimento) > 10 ){
-            $error = "A data de nascimento deve ser preenchido no padrão dia/mes/ano";
+    if(empty($nascimento) || strlen($nascimento) < 10 || strlen($nascimento) > 10 ){
+        $error = "A data de nascimento deve ser preenchido no padrão dia/mes/ano";
+    }
+    else{
+    $pedacos = explode('/', $nascimento);
+        if(count($pedacos) == 3){
+            $nascimento = implode ('-', array_reverse($pedacos)); 
         }
-        else{
-        $pedacos = explode('/', $nascimento);
-            if(count($pedacos) == 3){
-                $nascimento = implode ('-', array_reverse($pedacos)); 
-            }
         }      
 
-        if(empty($telefone)){
-            $error ="Campo telefone obrigatório";
-        }else{
-            $telefone = limpar_texto($telefone);
-            if(strlen($telefone) != 11){
-                $error = "O telefone deve ser preenchido no padrão (11) 98888-8888";
-            }
+    if(empty($telefone)){
+        $error ="Campo telefone obrigatório";
+    }else{
+        $telefone = limpar_texto($telefone);
+        if(strlen($telefone) != 11){
+            $error = "O telefone deve ser preenchido no padrão (11) 98888-8888";
         }
+    }
 
     if($error){
 

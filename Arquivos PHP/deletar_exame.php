@@ -12,6 +12,8 @@ $id = intval($_GET['id']);
 $from_id = "SELECT * FROM exames WHERE exameid = '$id'";
 $query_from = $mysqli->query($from_id);
 $exame = $query_from->fetch_assoc();
+$exame_nome = $exame['descricao'];
+
 // VERIFICAÇÃO DO SUBMITE CONFIRMAR,FAZENDO O DELETE DO ID EXAME VINDO DO GET
 if(isset($_POST['confirmar'])){
     $id = intval($_GET['id']);
@@ -41,7 +43,7 @@ if(isset($_POST['confirmar'])){
 
 <body>
     <form action="" method="POST">
-        <h1>Remover exame: <?php echo $exame['descricao']?>?</h1>
+        <h1>Remover exame: <?php echo $exame_nome?>?</h1>
         <a href="exames.php">Não!</a>
         <Button class="button1" name="confirmar" type="submit">Sim!</Button>
     </form>
