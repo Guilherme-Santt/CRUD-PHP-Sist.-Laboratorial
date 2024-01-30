@@ -1,3 +1,4 @@
+// AUTOMAMAÇÃO MODAL
 function abrir_modal(){
     const modal = document.getElementById('janela-modal')
     modal.classList.add('abrir')
