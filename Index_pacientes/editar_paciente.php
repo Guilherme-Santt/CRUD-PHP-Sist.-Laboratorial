@@ -183,7 +183,7 @@ $num_exames = $query_exames->num_rows;
         </div>
         
     <!-- TABELA DE INFORMAÇÕES EXAMES CADASTRADOS DO PACIENTE -->
-        <table border="1" cellpadding="10">
+        <table cellpadding="10">
             <thead>
                 <th>ID Exames</th>
                 <th>código exame</th>

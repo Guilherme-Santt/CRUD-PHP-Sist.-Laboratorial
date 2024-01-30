@@ -73,15 +73,7 @@ if(count($_POST) > 0){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pacientes</title>
 </head>
-<style>
-body{
-  width: 100%;
-  height: 600px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-</style>
+
 <!-- CÓDIGOS CSS -->
 <link rel="stylesheet" href="../Arquivos CSS/modal.css">
 
@@ -145,7 +137,7 @@ $num_pacientes = $query_pacientes->num_rows;
             <button class="button1" onclick="abrir_modal()">Cadastrar paciente</button>
         </div>
         <h1>Atendimentos</h1>
-        <table border="1" cellpadding="10">
+        <table  cellpadding="10">
             <thead>
                 <th>ID</th>
                 <th>Nome</th>
