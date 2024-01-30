@@ -9,7 +9,7 @@ if(!isset($_SESSION)){
 }      
    
 // VERIFICAÇÃO DA INSERÇÃO DOS CAMPOS POST NO FORM
-$error = ""
+$error = "";
 if(count($_POST) > 0){
     $email = $_POST['email']; 
     $nome = $_POST['nome'];
@@ -22,22 +22,28 @@ if(count($_POST) > 0){
     
     if(empty($_POST['email']) || !filter_var($email, FILTER_VALIDATE_EMAIL))
         $error = "CAMPO E-MAIL OBRIGATÓRIO";
+
     if(empty($_POST['endereco']))
         $error = "CAMPO ENDEREÇO OBRIGATÓRIO";
+
     if(empty($_POST['sexo']) )
-            $error = "SELEÇÃO SEXO OBRIGATÓRIA";
+        $error = "SELEÇÃO SEXO OBRIGATÓRIA";
+
     if(empty($_POST['nome']) || Strlen($nome) < 3 || Strlen($nome) > 100)
         $error = "CAMPO NOME OBRIGATÓRIO";
-    if(empty($nascimento) || strlen($nascimento) < 10 || strlen($nascimento) > 10 ){
+
+    if(empty($nascimento) || strlen($nascimento) < 10 || strlen($nascimento) > 10 )
         $error = "DATA DE NASCIMENTO DEVE SEGUIR PADRÃO DIA/MÊS/ANO";     
+
     if(empty($telefone)){
         $error ="CAMPO TELEFONE OBRIGATÓRIO";
-    }else{
-        $telefone = limpar_texto($telefone);
-        if(strlen($telefone) != 11){
-            $error = "TELEFONE DEVE SEGUIR O PADRÃO (11) 98888-8888";
         }
-    }
+        else{
+            $telefone = limpar_texto($telefone);
+            if(strlen($telefone) != 11){
+                $error = "TELEFONE DEVE SEGUIR O PADRÃO (11) 98888-8888";
+            }
+        }
     if($error){}
         else{
             $sql_codeverify = "SELECT * FROM pacientes WHERE email = '$email'";
@@ -47,17 +53,17 @@ if(count($_POST) > 0){
                 if($verify){
                     $error = "PACIENTE JÁ CADASTRADO";
                     }
-                else{
-                    $sqlinsert = "INSERT INTO pacientes (nome, email, endereco, telefone, nascimento, data, sexo)  
+                    else{
+                        $sqlinsert = "INSERT INTO pacientes (nome, email, endereco, telefone, nascimento, data, sexo)  
                         values ('$nome', '$email', '$endereco', '$telefone', '$nascimento', NOW(), '$sexo')";
-                    $queryinsert = $mysqli->query($sqlinsert);
-                        if($queryinsert){
-                            $sucess = "PACIENTE CADASTRADO COM SUCESSO";
+                        $queryinsert = $mysqli->query($sqlinsert);
+                            if($queryinsert){
+                                $sucess = "PACIENTE CADASTRADO COM SUCESSO";
                             }     
-                    }
-            }
+                        }   
+            }  
+}
 
-        }   
 ?>
 
 <!DOCTYPE html>
