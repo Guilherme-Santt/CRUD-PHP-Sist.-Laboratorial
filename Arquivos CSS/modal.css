@@ -58,3 +58,8 @@
 .abrir .modal{
     animation: abrirmodal 0.7s;
 }
+
+.modal input{
+    border: none;
+    border-bottom: 1px solid black;
+}

@@ -73,12 +73,12 @@ body{
             <form action="" method="POST">
                 <p>Cadastrar exame⤵</p>
                 <label>Código exame</label><br><br>
-                <input class="input_edit" type="text" value="<?php if(isset($_POST['codigo'])) echo $_POST['codigo']; ?>" name="codigo"><br><br>
+                <input type="text" value="<?php if(isset($_POST['codigo'])) echo $_POST['codigo']; ?>" name="codigo"><br><br>
     
                 <label>Descrição exame</label></label><br><br>
-                <input class="input_edit" type="text" value="<?php if(isset($_POST['descricao'])) echo $_POST['descricao']; ?>" name="descricao"><br><br>
+                <input type="text" value="<?php if(isset($_POST['descricao'])) echo $_POST['descricao']; ?>" name="descricao"><br><br>
     
-                <button class="button1" type="submit" name="cadastrar">Cadastrar exame</button>
+                <button type="submit" name="cadastrar">Cadastrar exame</button>
             </form>
         </div>
     </div>    

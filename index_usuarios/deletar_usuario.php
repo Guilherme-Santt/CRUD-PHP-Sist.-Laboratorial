@@ -36,7 +36,7 @@ $consulta = $query_consult->fetch_assoc();
     <form action="" method="POST">
         <h1>Remover usuário: <?php echo $consulta['nome'] ?> ?</h1>
         <a href="../index_usuarios/usuarios.php">Não!</a>
-        <Button class="button1" name="confirmar" type="submit">Sim!</Button>
+        <Button name="confirmar" type="submit">Sim!</Button>
     </form>
 </body>
 </html>

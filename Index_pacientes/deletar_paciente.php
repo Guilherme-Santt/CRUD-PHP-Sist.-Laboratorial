@@ -37,7 +37,7 @@ $consulta = $consult_query->fetch_assoc();
     <form action="" method="POST">
         <h1>Remover paciente: <?php echo $consulta['nome']; ?> ?</h1>
         <a href="pacientes.php">Não!</a>
-        <Button  class="button1" name="confirmar" type="submit">Sim!</Button>
+        <Button name="confirmar" type="submit">Sim!</Button>
     </form>
 </body>
 </html>

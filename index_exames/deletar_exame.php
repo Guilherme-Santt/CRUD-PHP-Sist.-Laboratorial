@@ -39,7 +39,7 @@ if(isset($_POST['confirmar'])){
     <form action="" method="POST">
         <h1>Remover exame: <?php echo $exame_nome?>?</h1>
         <a href="../index_exames/exames.php">Não!</a>
-        <Button class="button1" name="confirmar" type="submit">Sim!</Button>
+        <Button  name="confirmar" type="submit">Sim!</Button>
     </form>
 </body>
 </html>

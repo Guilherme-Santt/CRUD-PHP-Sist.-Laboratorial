@@ -153,27 +153,27 @@ $num_exames = $query_exames->num_rows;
             <h1>Informações do paciente:</h1>
             <form action="" method="POST">
                     <label>Nome: </label><br>
-                    <input class="input_edit" value="<?php echo $cliente['nome']; ?>" type="text" name="nome"><br><br>
+                    <input value="<?php echo $cliente['nome']; ?>" type="text" name="nome"><br><br>
 
                     <label>Endereço:</label><br>
-                    <input class="input_edit" value= "<?php echo $cliente['endereco']; ?>" type="text" name="endereco"><br><br>
+                    <input value= "<?php echo $cliente['endereco']; ?>" type="text" name="endereco"><br><br>
 
                     <!-- <input value= "Masculino" type="radio" name="sexo">Masculino<br><br>
                     <input value= "Feminino" type="radio" name="sexo">Feminino<br><br> -->
 
                     <label>E-mail:</label><br>
-                    <input class="input_edit" value ="<?php if(!empty($cliente['telefone'])){ echo ($cliente['email']);} ?>" type="email" name="email"><br><br>
+                    <input value ="<?php if(!empty($cliente['telefone'])){ echo ($cliente['email']);} ?>" type="email" name="email"><br><br>
 
                     <label>Telefone:</label><br>
-                    <input class="input_edit" value ="<?php if(!empty($cliente['telefone'])){ echo formatar_telefone($cliente['telefone']);} ?>" placeholder="(11) 98888-8888" type="text" name="telefone"><br><br>
+                    <input value ="<?php if(!empty($cliente['telefone'])){ echo formatar_telefone($cliente['telefone']);} ?>" placeholder="(11) 98888-8888" type="text" name="telefone"><br><br>
 
                     <label>Data de nascimento:</label><br>
-                    <input class="input_edit" value ="<?php if(!empty($cliente['nascimento'])){ echo formatar_data($cliente['nascimento']);} ?>" placeholder="dia/mês/ano" type="text" name="nascimento"><br>
+                    <input value ="<?php if(!empty($cliente['nascimento'])){ echo formatar_data($cliente['nascimento']);} ?>" placeholder="dia/mês/ano" type="text" name="nascimento"><br>
                 <p>
                     <p>Adicionar um exame no atendimento:</p>
                     <label>Exame ID</label>
-                    <input class="input_edit" type="text" name="id_exame"><br><br>
-                    <button class="button1" type="submit">Enviar</button>
+                    <input  type="text" name="id_exame"><br><br>
+                    <button type="submit">Enviar</button>
                 </p>
             </form>
             <?php

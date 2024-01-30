@@ -46,7 +46,7 @@ if(isset($_POST['result'])){
     <p>Exame:<?php echo $nomeex ?> </p>
     <form method="POST" action="">
         <input name='result' type="text" value="<?php echo $result_exame ?>">
-        <button  class="button1" type="submit">ok</button>
+        <button type="submit">ok</button>
     </form>
     <p><?php if(isset($sucess)) echo $sucess?></p>
     <a href="editar_paciente.php?id=<?php echo $paciente?>"><button class="button1">Retornar</button></a>

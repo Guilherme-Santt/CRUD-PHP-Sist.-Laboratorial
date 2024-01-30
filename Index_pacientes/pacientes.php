@@ -129,25 +129,25 @@ body{
             <form action="" method="POST">
                 <p>Cadastrar paciente⤵</p>
                 <label>Nome</label><br>
-                <input class="input_edit" type="text" value="<?php if(isset($_POST['nome'])) echo $_POST['nome']; ?>" name="nome"><br><br>
+                <input  type="text" value="<?php if(isset($_POST['nome'])) echo $_POST['nome']; ?>" name="nome"><br><br>
 
                 <label>E-mail</label><br>
-                <input class="input_edit" type="email" value="<?php if(isset($_POST['email'])) echo $_POST['email']; ?>" name="email"><br><br>
+                <input  type="email" value="<?php if(isset($_POST['email'])) echo $_POST['email']; ?>" name="email"><br><br>
 
                 <label>Endereço</label><br>
-                <input class="input_edit" type="text" value="<?php if(isset($_POST['endereco'])) echo $_POST['endereco']; ?>" name="endereco"><br><br>
+                <input  type="text" value="<?php if(isset($_POST['endereco'])) echo $_POST['endereco']; ?>" name="endereco"><br><br>
 
 
                 <label>Nascimento</label><br>
-                <input class="input_edit" type="text" value="<?php if(isset($_POST['nascimento'])) echo $_POST['nascimento']; ?>" name="nascimento" placeholder="dia/mês/ano"><br><br>
+                <input  type="text" value="<?php if(isset($_POST['nascimento'])) echo $_POST['nascimento']; ?>" name="nascimento" placeholder="dia/mês/ano"><br><br>
                     
                 <label>Telefone:</label><br>
-                <input class="input_edit" value ="<?php if(isset($_POST['telefone'])) echo $_POST['telefone']; ?>" placeholder="(11) 98888-8888" type="text" name="telefone"><br><br>
+                <input  value ="<?php if(isset($_POST['telefone'])) echo $_POST['telefone']; ?>" placeholder="(11) 98888-8888" type="text" name="telefone"><br><br>
                     
                 <input type="radio" value="Feminino" name="sexo">Feminino<br>
                 <input type="radio" value="Masculino" name="sexo">Masculino<br><br>
 
-                <button class="button1" type="submit" name="cadastrar">Cadastrar</button>
+                <button type="submit" name="cadastrar">Cadastrar</button>
             </form>
         </div>
     </div>
