@@ -73,24 +73,8 @@ if(isset($_POST['sugestao'])){
 
 <body >
     <!-- Header  *NAV* - Mensagem central superior -->
-    <div class="h-g">
-        <form class="h-f">
-            <p class="white">Usuário: <b><?php echo $usuario['nome']?></b></p>
-        </form>
-
-        <!-- *HEADER* Menu -->
-        <img onclick="lmenu()" class="h-img" src="../imagens/hamburger.png">
-        <div id="lh" class="h-menu"><br>
-            <a onclick="fmenu()">X</a>
-            <Ul> 
-                <p>Local System <b><?php echo $usuario['unidade']?></b></p>
-                <a href="../index_usuarios/usuarios.php"><li>Usuários</li></a>
-                <a href="../index_pacientes/pacientes.php"><li>Atendimentos</li></a>
-                <a href="../index_exames/exames.php"><li>Exames</li></a>
-                <a href="../index_login/logout.php"><li>Encerrar sessão</li></a>
-            </Ul>
-        </div>
-        <p class="white">Unidade: <b><?php echo $usuario['unidade']?></b></p>
+    <div class="body-header">
+       
     </div>
 <!-- DIVISÃO MENU DE SELEÇÕES INICIAL -->
     <div class="select-inic">
@@ -122,6 +106,9 @@ if(isset($_POST['sugestao'])){
     <div class="rodape">
         </div>
         <div class="consult">
+            <p class="white">Usuário: <b><?php echo $usuario['nome']?></b></p>
+            <p>Local System <b><?php echo $usuario['unidade']?></b></p>
+
             <p>Qnt. usuários cadastrados: <?php echo $cont_user ?></p>
             <p>Qnt. pacientes cadastrados: <?php echo $cont_pacientes ?></p>
             <p>Qnt. exames cadastrados: <?php echo $cont_exames ?></p>
@@ -137,6 +124,5 @@ if(isset($_POST['sugestao'])){
     </div>
 
 <script src="../Arquivos JS/script.js"></script>
-<script src="../Arquivos JS/index.js"></script>
 </body>
 </html>
