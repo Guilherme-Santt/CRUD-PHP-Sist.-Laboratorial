@@ -63,16 +63,7 @@ body{
   justify-content: center;
 }
 </style>
-<link rel="stylesheet" href="../Arquivos CSS/normalize.css">
-<link rel="stylesheet" href="../Arquivos CSS/button.css">
-<link rel="stylesheet" href="../Arquivos CSS/tabela.css">
-<link rel="stylesheet" href="../Arquivos CSS/efeito_a.css">
 <link rel="stylesheet" href="../Arquivos CSS/modal.css">
-<link rel="stylesheet" href="../Arquivos CSS/input.css">
-<link rel="stylesheet" href="../Arquivos CSS/janela_tabela.css">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Hedvig+Letters+Serif:opsz@12..24&family=Roboto+Condensed:ital,wght@1,200;1,300;1,400&display=swap" rel="stylesheet">
 
 <!-- JANELA MODAL->CADASTRO DE EXAMES NO SISTEMA -->
 <body> 
