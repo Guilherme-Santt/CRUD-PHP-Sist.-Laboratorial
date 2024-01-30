@@ -31,11 +31,6 @@ $consulta = $query_consult->fetch_assoc();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Deletar usuário</title>
 </head>
-<link rel="stylesheet" href="../Arquivos CSS/button.css">
-<link rel="stylesheet" href="../Arquivos CSS/efeito_a.css">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Hedvig+Letters+Serif:opsz@12..24&family=Roboto+Condensed:ital,wght@1,200;1,300;1,400&display=swap" rel="stylesheet">
 
 <body>
     <form action="" method="POST">

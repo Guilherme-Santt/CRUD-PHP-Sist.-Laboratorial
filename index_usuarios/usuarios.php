@@ -1,11 +1,11 @@
 <?php
 // // VERIFICAÇÃO SE O USUÁRIO ESTÁ LOGADO
-//     if(!isset($_SESSION)){
-//         session_start();
-//         if(!isset($_SESSION['usuario'])){
-//             die('Você não está logado!' . '<a href="login.php">Clique aqui para logar</a>');
-//         }    
-// }
+     if(!isset($_SESSION)){
+         session_start();
+         if(!isset($_SESSION['usuario'])){
+             die('Você não está logado!' . '<a href="login.php">Clique aqui para logar</a>');
+         }    
+}
     // FUNÇÃO FORMATAR DATA PARA VISUALIZAÇÃO PADRÃO BR
     function formatar_data($data){
         return implode('/', array_reverse(explode('-', $data)));
@@ -105,16 +105,8 @@ body{
   justify-content: center;
 }
 </style>
-<link rel="stylesheet" href="../Arquivos CSS/input.css">
-<link rel="stylesheet" href="../Arquivos CSS/janela_tabela.css">
-<link rel="stylesheet" href="../Arquivos CSS/normalize.css">
-<link rel="stylesheet" href="../Arquivos CSS/button.css">
-<link rel="stylesheet" href="../Arquivos CSS/efeito_a.css">
-<link rel="stylesheet" href="../Arquivos CSS/tabela.css">
 <link rel="stylesheet" href="../Arquivos CSS/modal.css">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Hedvig+Letters+Serif:opsz@12..24&family=Roboto+Condensed:ital,wght@1,200;1,300;1,400&display=swap" rel="stylesheet">
+
 
 <!-- DIVISÃO MODAL -> CADASTRO DE USUARIOS -->
 <body> 
