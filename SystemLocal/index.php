@@ -66,15 +66,10 @@ if(isset($_POST['sugestao'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tela inicial</title>    
 </head>
-<link rel="stylesheet" href="../Arquivos CSS/inicial.css">
-<link rel="stylesheet" href="../Arquivos CSS/normalize.css">
+
 <link rel="stylesheet" href="../Arquivos CSS/modal.css">
 <link rel="stylesheet" href="../Arquivos CSS/button.css">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Hedvig+Letters+Serif:opsz@12..24&family=Roboto+Condensed:ital,wght@1,200;1,300;1,400&display=swap" rel="stylesheet">
-
-
+<link rel="stylesheet" href="./css/style.css">
 
 <body >
     <!-- Header  *NAV* - Mensagem central superior -->
