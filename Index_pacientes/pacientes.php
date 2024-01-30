@@ -9,96 +9,55 @@ if(!isset($_SESSION)){
 }      
    
 // VERIFICAÇÃO DA INSERÇÃO DOS CAMPOS POST NO FORM
-$error = "";
+$error = ""
 if(count($_POST) > 0){
-    $email = $_POST['email'];
-    if(!empty($_POST['sexo'])){
-        $sexo = $_POST['sexo'];
-    }else{
-        
-    }
+    $email = $_POST['email']; 
     $nome = $_POST['nome'];
     $endereco = $_POST['endereco'];
     $telefone = $_POST['telefone'];
     $nascimento = $_POST['nascimento'];
-
-    if(empty($_POST['email']) || !filter_var($email, FILTER_VALIDATE_EMAIL)){
-        $error = "Campo e-mail obrigatório*";
-        }
-
-    if(empty($_POST['endereco'])){
-        $error = "Campo endereço obrigatório*";
-        }
-
-    if(empty($_POST['sexo']) ){
-            $error = "Campo sexo obrigatório*";
-        }    
-
-    if(empty($_POST['nome']) || Strlen($nome) < 3 || Strlen($nome) > 100){
-        $error = "Campo nome obrigatório*";
-        }
-
+    if(!empty($_POST['sexo'])){
+        $sexo = $_POST['sexo'];
+    }else{ } 
+    
+    if(empty($_POST['email']) || !filter_var($email, FILTER_VALIDATE_EMAIL))
+        $error = "CAMPO E-MAIL OBRIGATÓRIO";
+    if(empty($_POST['endereco']))
+        $error = "CAMPO ENDEREÇO OBRIGATÓRIO";
+    if(empty($_POST['sexo']) )
+            $error = "SELEÇÃO SEXO OBRIGATÓRIA";
+    if(empty($_POST['nome']) || Strlen($nome) < 3 || Strlen($nome) > 100)
+        $error = "CAMPO NOME OBRIGATÓRIO";
     if(empty($nascimento) || strlen($nascimento) < 10 || strlen($nascimento) > 10 ){
-        $error = "A data de nascimento deve ser preenchido no padrão dia/mes/ano";
-    }
-    else{
-    $pedacos = explode('/', $nascimento);
-        if(count($pedacos) == 3){
-            $nascimento = implode ('-', array_reverse($pedacos)); 
-        }
-        }      
-
+        $error = "DATA DE NASCIMENTO DEVE SEGUIR PADRÃO DIA/MÊS/ANO";     
     if(empty($telefone)){
-        $error ="Campo telefone obrigatório";
+        $error ="CAMPO TELEFONE OBRIGATÓRIO";
     }else{
         $telefone = limpar_texto($telefone);
         if(strlen($telefone) != 11){
-            $error = "O telefone deve ser preenchido no padrão (11) 98888-8888";
+            $error = "TELEFONE DEVE SEGUIR O PADRÃO (11) 98888-8888";
         }
     }
+    if($error){}
+        else{
+            $sql_codeverify = "SELECT * FROM pacientes WHERE email = '$email'";
+            $query_c = $mysqli->query($sql_codeverify);
+            $paciente = $query_c->fetch_assoc();
+            $verify = $query_c->num_rows;
+                if($verify){
+                    $error = "PACIENTE JÁ CADASTRADO";
+                    }
+                else{
+                    $sqlinsert = "INSERT INTO pacientes (nome, email, endereco, telefone, nascimento, data, sexo)  
+                        values ('$nome', '$email', '$endereco', '$telefone', '$nascimento', NOW(), '$sexo')";
+                    $queryinsert = $mysqli->query($sqlinsert);
+                        if($queryinsert){
+                            $sucess = "PACIENTE CADASTRADO COM SUCESSO";
+                            }     
+                    }
+            }
 
-    if($error){
-
-    }else{
-        $sql_codeverify = "SELECT * FROM pacientes WHERE email = '$email'";
-        $query_c = $mysqli->query($sql_codeverify);
-        $paciente = $query_c->fetch_assoc();
-        $verify = $query_c->num_rows;
-            if($verify){
-                $error = "paciente já cadastrado!";
-                }
-            else{
-                $sqlinsert = "INSERT INTO pacientes (nome, email, endereco, telefone, nascimento, data, sexo)  
-                    values ('$nome', '$email', '$endereco', '$telefone', '$nascimento', NOW(), '$sexo')";
-                $queryinsert = $mysqli->query($sqlinsert);
-                    if($queryinsert){
-                        $sucess = "Cadastrado com sucesso";
-                        }
-                        
-                }
-        }
-
-    }   
-    
-// FUNÇÃO FORMATAR DATA PADRÃO BRASILEIRO VISUALIZAÇÃO 
-function formatar_data($data){
-    return implode('/', array_reverse(explode('-', $data)));
-};
-// FORMATAR TELEFONE PARA VISUALIZAÇÃO COM CARACTERES
-function formatar_telefone($telefone){
-    $ddd = substr ($telefone, 0, 2);
-    $parte1 = substr ($telefone, 2, 5);
-    $parte2 = substr ($telefone, 7);
-    return "($ddd) $parte1-$parte2";
-}
-// FUNÇÃO LIMPA TEXTO AO INSERIR TELEFONE 
-function limpar_texto($str){ 
-    return preg_replace("/[^0-9]/", "", $str); 
-}
-// COMANDO SQL PARA CONSULTAR QUANTIDADE DE CLIENTES NO SISTEMA
-$sql_pacientes   = "SELECT * FROM pacientes";
-$query_pacientes = $mysqli->query($sql_pacientes) or die($mysqli->error);
-$num_pacientes = $query_pacientes->num_rows; 
+        }   
 ?>
 
 <!DOCTYPE html>
@@ -139,7 +98,7 @@ body{
 
 
                 <label>Nascimento</label><br>
-                <input  type="text" value="<?php if(isset($_POST['nascimento'])) echo $_POST['nascimento']; ?>" name="nascimento" placeholder="dia/mês/ano"><br><br>
+                <input  type="date" value="<?php if(isset($_POST['nascimento'])) echo $_POST['nascimento']; ?>" name="nascimento" placeholder="dia/mês/ano"><br><br>
                     
                 <label>Telefone:</label><br>
                 <input  value ="<?php if(isset($_POST['telefone'])) echo $_POST['telefone']; ?>" placeholder="(11) 98888-8888" type="text" name="telefone"><br><br>
@@ -152,6 +111,27 @@ body{
         </div>
     </div>
     
+<?php  
+// FUNÇÃO FORMATAR DATA PADRÃO BRASILEIRO VISUALIZAÇÃO 
+function formatar_data($data){
+    return implode('/', array_reverse(explode('-', $data)));
+};
+// FORMATAR TELEFONE PARA VISUALIZAÇÃO COM CARACTERES
+function formatar_telefone($telefone){
+    $ddd = substr ($telefone, 0, 2);
+    $parte1 = substr ($telefone, 2, 5);
+    $parte2 = substr ($telefone, 7);
+    return "($ddd) $parte1-$parte2";
+}
+// FUNÇÃO LIMPA TEXTO AO INSERIR TELEFONE 
+function limpar_texto($str){ 
+    return preg_replace("/[^0-9]/", "", $str); 
+}
+// COMANDO SQL PARA CONSULTAR QUANTIDADE DE CLIENTES NO SISTEMA
+$sql_pacientes   = "SELECT * FROM pacientes";
+$query_pacientes = $mysqli->query($sql_pacientes) or die($mysqli->error);
+$num_pacientes = $query_pacientes->num_rows; 
+?>
     <!-- TABELA DE PACIENTES CADASTRADOS -->
     <div class="janela_tabela">       
         <div>
