@@ -1,5 +1,5 @@
 <?php
-include('conexao.php');
+include('../conexao/conexao.php');
 $error = "";
 // VERIFICAÇÃO POST Á PARTIR DO EMAIL
 if(isset($_POST['email'])){
@@ -27,7 +27,7 @@ if(isset($_POST['email'])){
                 if(!isset($_SESSION)){
                     session_start();
                     $_SESSION['usuario'] = $usuario['id'];
-                    header("location: index.php");
+                    header("location: ../SystemLocal/index.php");
                 }
             }else{
                 $error = '<p class="error">Usuário ou senha incorretos!*</p>';

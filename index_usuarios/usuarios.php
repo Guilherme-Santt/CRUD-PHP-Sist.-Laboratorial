@@ -22,7 +22,7 @@
         $parte2 = substr ($telefone, 7);
         return "($ddd) $parte1-$parte2";
     }
-    include('conexao.php');
+    include('../conexao/conexao.php');
 
 ?>
 
@@ -121,7 +121,7 @@ body{
     <!-- DIVISÃO TABELA DE USUARIOS CADASTRADOS -->
     <div class="janela_tabela">
         <div>
-        <a href="index.php"><button class="button1">Pagina inicial</button> </a>
+        <a href="../SystemLocal/index.php"><button class="button1">Pagina inicial</button> </a>
         <button class="button1" onclick="abrir_modal()">Cadastrar usuário</button>  
         </div> 
         <h1>Usuários</h1>

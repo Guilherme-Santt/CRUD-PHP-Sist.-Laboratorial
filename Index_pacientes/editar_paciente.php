@@ -24,7 +24,7 @@ function limpar_texto($str){
 }
     
 $id = intval($_GET['id']);
-include('conexao.php');
+include('../conexao/conexao.php');
 $error = "";
 $sucess = "";
 
@@ -104,7 +104,7 @@ if(count($_POST) > 0){
     
 }
 // VISUALIZAÇÃO INFORMAÇÕES USUÁRIO NO CAMPO EDIÇÃO
-include('conexao.php');
+include('../conexao/conexao.php');
 $sql_cliente = "SELECT * FROM pacientes WHERE id = '$id'";
 $query_cliente = $mysqli->query($sql_cliente) or die ($mysqli->error);
 $cliente = $query_cliente->fetch_assoc();
@@ -156,8 +156,8 @@ $num_exames = $query_exames->num_rows;
     <!-- INSERÇÃO CAMPOS POST NO FORM -->
     <div class="Info_pacientes">
         <div> 
-            <a href="pacientes.php"><button class="button1">Retornar</button></a> 
-            <a href="index.php">    <button class="button1">Pagina inicial</button></a>
+            <a href="../index_pacientes/pacientes.php"><button class="button1">Retornar</button></a> 
+            <a href="../SystemLocal/index.php">    <button class="button1">Pagina inicial</button></a>
         </div> 
         <div>   
             <h1>Informações do paciente:</h1>

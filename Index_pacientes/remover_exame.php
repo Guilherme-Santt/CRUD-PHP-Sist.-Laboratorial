@@ -7,13 +7,13 @@ if(!isset($_SESSION)){
 }
 
 $id = intval($_GET['id']);
-include('conexao.php');
+include('../conexao/conexao.php');
 
 if(isset($_POST['remover'])){
     $sql_remover = "DELETE FROM pacientes_exames WHERE id = '$id'";
     $query_remover = $mysqli->query($sql_remover);
     if($query_remover){
-        header("location: pacientes.php");
+        header("location: ../index_pacientes/pacientes.php");
     }
 }
 

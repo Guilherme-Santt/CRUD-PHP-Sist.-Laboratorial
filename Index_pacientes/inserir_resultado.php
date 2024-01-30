@@ -1,6 +1,6 @@
 <?php
 $id = intval($_GET['id']);
-include('conexao.php');
+include('../conexao/conexao.php');
 
 // CONSULTA TABELA PACIENTES_EXAMES PARA VERIFICAR O EXAME DO PACIENTE ATRAVÉS DO ID DO RELACIONAMENTO
 $sql_consulta = "SELECT * FROM pacientes_exames WHERE id = '$id'";
@@ -40,8 +40,8 @@ if(isset($_POST['result'])){
 
 <body>
 
-    <a href="pacientes.php"><button class="button1">Retornar a listagem de atendimento</button></a>
-    <a href="index.php"><button class="button1"> Pagina inicial</button></a>
+    <a href="../index_pacientes/pacientes.php"><button class="button1">Retornar a listagem de atendimento</button></a>
+    <a href="../SystemLocal/index.php"><button class="button1"> Pagina inicial</button></a>
 
     <p>Exame:<?php echo $nomeex ?> </p>
     <form method="POST" action="">

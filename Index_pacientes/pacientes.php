@@ -1,6 +1,6 @@
 <?php 
 // VERICIAÇÃO DE SESSÃO
-include('conexao.php');
+include('../conexao/conexao.php');
 if(!isset($_SESSION)){
     session_start();
     if(!isset($_SESSION['usuario'])){
@@ -95,7 +95,6 @@ function formatar_telefone($telefone){
 function limpar_texto($str){ 
     return preg_replace("/[^0-9]/", "", $str); 
 }
-include('conexao.php');
 // COMANDO SQL PARA CONSULTAR QUANTIDADE DE CLIENTES NO SISTEMA
 $sql_pacientes   = "SELECT * FROM pacientes";
 $query_pacientes = $mysqli->query($sql_pacientes) or die($mysqli->error);
@@ -164,7 +163,7 @@ body{
     <!-- TABELA DE PACIENTES CADASTRADOS -->
     <div class="janela_tabela">       
         <div>
-            <a href="index.php"><button class="button1">Pagina inicial</button> </a>
+            <a href="../SystemLocal/index.php"><button class="button1">Pagina inicial</button> </a>
             <button class="button1" onclick="abrir_modal()">Cadastrar paciente</button>
         </div>
         <h1>Atendimentos</h1>

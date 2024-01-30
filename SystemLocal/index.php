@@ -1,5 +1,5 @@
 <?php
-include('conexao.php');
+include('../conexao/conexao.php');
 if(!isset($_SESSION)){
     session_start();
     if(!isset($_SESSION['usuario'])){
@@ -89,10 +89,10 @@ if(isset($_POST['sugestao'])){
             <a onclick="fmenu()">X</a>
             <Ul> 
                 <p>Local System <b><?php echo $usuario['unidade']?></b></p>
-                <a href="usuarios.php"><li>Usuários</li></a>
-                <a href="pacientes.php"><li>Atendimentos</li></a>
-                <a href="exames.php"><li>Exames</li></a>
-                <a href="logout.php"><li>Encerrar sessão</li></a>
+                <a href="../index_usuarios/usuarios.php"><li>Usuários</li></a>
+                <a href="../index_pacientes/pacientes.php"><li>Atendimentos</li></a>
+                <a href="../index_exames/exames.php"><li>Exames</li></a>
+                <a href="../index_login/logout.php"><li>Encerrar sessão</li></a>
             </Ul>
         </div>
         <p class="white">Unidade: <b><?php echo $usuario['unidade']?></b></p>
@@ -101,11 +101,11 @@ if(isset($_POST['sugestao'])){
     <div class="select-inic">
             <div class="select">
                 <h1>Atendimentos⤵ </h1>
-                <a href="pacientes.php"><img src="../imagens/modeloatendimento.jpg"></a>
+                <a href="../index_pacientes/pacientes.php"><img src="../imagens/modeloatendimento.jpg"></a>
             </div>
             <div class="select">
                 <h1>Usuários⤵</h1>
-                <a href="usuarios.php"> <img src="../imagens/modelousuarios.jpg"></a>
+                <a href="../index_usuarios/usuarios.php"> <img src="../imagens/modelousuarios.jpg"></a>
             </div>
             <div class="select">
                 <h1>Sugestões⤵</h1>
