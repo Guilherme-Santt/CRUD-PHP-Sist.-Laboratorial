@@ -74,7 +74,8 @@ if(isset($_POST['sugestao'])){
 <body >
     <!-- Header  *NAV* - Mensagem central superior -->
     <div class="body-header">
-       
+       <a href="../index_exames/exames.php">Cadastro de exames</a>
+
     </div>
 <!-- DIVISÃO MENU DE SELEÇÕES INICIAL -->
     <div class="select-inic">

@@ -96,15 +96,7 @@
     <title>Usuários</title>
 </head>
 <!-- ARQUIVOS CSS SITE -->
-<style>
-body{
-  width: 100%;
-  height: 600px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-</style>
+
 <link rel="stylesheet" href="../Arquivos CSS/modal.css">
 
 
@@ -123,7 +115,7 @@ body{
             if($error){echo '<p class="error">'. $error . '</p>' ;}   
             ?>
         </p>    
-        <table ID="alter" border="1" cellpadding="10">
+        <table ID="alter" cellpadding="10">
             <thead>
                 <th>ID</th>
                 <th>Nome</th>

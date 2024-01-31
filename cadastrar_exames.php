@@ -55,13 +55,7 @@ if(count($_POST) > 0){
 </head>
 <!-- CÓDIGOS CSS -->
 <style>
-body{
-  width: 100%;
-  height: 600px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+
 </style>
 <link rel="stylesheet" href="../Arquivos CSS/modal.css">
 
@@ -95,7 +89,7 @@ body{
         if(isset($sucess)){echo'<p class="sucess">'. $sucess . '</p>' ;}
         if($error){echo '<p class="error">'. $error . '</p>' ;}   
         ?>
-        <table border="1" cellpadding="10">
+        <table cellpadding="10">
             <thead>
                 <th>ID exame</th>
                 <th>Código exame</th>
