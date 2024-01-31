@@ -5,7 +5,7 @@ if(!isset($_SESSION)){
         die('Você não está logado!' . '<a href="login.php">Clique aqui para logar</a>');
     }    
 }
-include('../conexao/conexao.php');
+include('conexao.php');
 $id = $_SESSION['usuario'];
 
 $error = "";
@@ -86,7 +86,7 @@ body{
     <!-- DIV PARA TABELA COM INFORMAÇÕES DOS EXAMES -->
     <div class="janela_tabela">
         <div>
-            <a href="../SystemLocal/index.php"><button class="button1">Pagina inicial</button> </a>
+            <a href="index_login.php"><button class="button1">Pagina inicial</button> </a>
             <button class="button1" onclick="abrir_modal()">Cadastrar exames</button>
         </div>
         
