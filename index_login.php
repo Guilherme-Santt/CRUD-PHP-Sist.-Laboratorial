@@ -1,5 +1,5 @@
 <?php
-include('../conexao/conexao.php');
+include('conexao.php');
 $error = "";
 // VERIFICAÇÃO POST Á PARTIR DO EMAIL
 if(isset($_POST['email'])){
@@ -45,24 +45,29 @@ if(isset($_POST['email'])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tela de login</title>
-    <link rel="stylesheet" href="./css/">
 </head>
-<style>
+<link rel ="stylesheet" href="./css/login.css">
+<link rel ="stylesheet" href="./css/button.css">
 
-</style>
 <body>
     <div class="full_mapa">    
         <div class="form_login">
-            <form class="form_edit" action="" method="POST">
-                <h1>Local System</h1>
-                <label>Usuário</label><br>
-                <input type="email" name="email"><br><br>
-                <Label>Senha</Label><br>
-                <input type="password" name="senha"><br><br>
-                <button type="submit">Entrar</button>
-                <p>
-                    <?php if(isset($error)){echo $error;}?> 
-                </p>
+            <form  action="" method="POST">
+                <div class="form_edit">
+                    <h1>Sant</h1>
+                    <div class="input_edit">
+                        <label>Usuário</label><br>
+                        <input type="email" name="email">
+                    </div>
+                    <div class="input_edit">
+                        <Label>Senha</Label><br>
+                        <input type="password" name="senha">
+                    </div>
+                    <button class="btn_style" type="submit">Entrar</button>
+                    <p>
+                        <?php if(isset($error)){echo $error;}?> 
+                    </p>
+                </div>
             </form>
         </div>
         <div class="img_banner">

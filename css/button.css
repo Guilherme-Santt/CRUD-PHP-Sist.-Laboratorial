@@ -10,12 +10,13 @@
     display:inline-block;
     vertical-align:middle;
   } */
-  .button1{
+  .btn_style{
     border-radius: 10px;
-    background:#1AAB8A;
+    background:rgba(101, 4, 196, 1);
     color:#fff;
     border:none;
     position:relative;
+    height: 50px;
     height: 30px;
     font-size:15x;
     cursor:pointer;
@@ -24,29 +25,29 @@
     text-align: center;
   }
 
-  .button1:hover{
+  .btn_style:hover{
     background:#000000;
     color: white;
-    color:#1AAB8A;
+    color:rgba(101, 4, 196, 1);
   }
-  .button1:before,button:after{
+  .btn_style:before,button:after{
     content:'';
     position:absolute;
     top:0;
     right:6;
     height:2px;
     width:0;
-    background: #1AAB8A;
+    background:rgba(101, 4, 196, 1);
     transition:400ms ease all;
   }
-  .button1:after{
+  .btn_style:after{
     right:inherit;
     top:inherit;
     left:6;
     right: 6px;
     bottom:0;
   }
-  .button1:hover:before,.button1:hover:after{
+  .btn_style:hover:before,.btn_style:hover:after{
     width:70%;
     transition:900ms ease all;
   }
