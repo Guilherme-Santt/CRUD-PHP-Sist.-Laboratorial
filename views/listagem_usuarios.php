@@ -43,7 +43,7 @@ include('../Control/function.php');
             </div>
             <div class="select_header">
                 <div>
-                    <img class="icon_select" src="../icons/arquivo (1).png">
+                    <a href="../views/listagem_pacientes.php"><img class="icon_select" src="../icons/arquivo (1).png"></a>
                 </div>
                 <div>
                     <h3>

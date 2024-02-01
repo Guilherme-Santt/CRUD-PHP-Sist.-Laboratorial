@@ -29,7 +29,7 @@ include('../Control/SelectFrom.php');
         <div class="seletc_g">
             <div class="select_header">
                 <div>
-                    <img class="icon_select" src="../icons/monitor (2).png">
+                    <a href="../views/index.php"><img class="icon_select" src="../icons/monitor (2).png"></a>
                 </div>
             </div>
             <div class="select_header">
@@ -116,9 +116,9 @@ include('../Control/SelectFrom.php');
         <div class="container_son">       
             <div>
                 <button class="btn_style" onclick="abrir_modal()">Cadastrar paciente</button>
-            </div>
-            <h1>Atendimentos</h1>
-            <table  cellpadding="10">
+            </div><br>
+            <p>Seus pacientes cadastrados</p>
+            <table  border="1px" cellpadding="10">
                 <thead>
                     <th>ID</th>
                     <th>Nome</th>
@@ -162,7 +162,7 @@ include('../Control/SelectFrom.php');
                                 <td><?php echo $data_cadastro;?>    </td>
                                 <td>
                                 <a class="edit" href="editar_paciente.php?id=<?php echo $pacientes['ID']?>">Editar</a>
-                                <a class="error" href="deletar_paciente.php?id=<?php echo $pacientes['ID']?>">Deletar</a>
+                                <a class="error" href="../Control/deletar_paciente.php?id=<?php echo $pacientes['ID']?>">Deletar</a>
                             </td>
                             </tr>
                             <?php

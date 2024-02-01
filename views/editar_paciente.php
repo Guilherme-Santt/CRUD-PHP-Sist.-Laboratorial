@@ -6,25 +6,10 @@ if(!isset($_SESSION)){
         die('Você não está logado!' . '<a href="login.php">Clique aqui para logar</a>');
     }    
 }
-// FUNÇÃO VISUALIZAÇÕES DE CAMPO DATA E SENHA PADRÃO BR
-function formatar_data($data){
-    return implode('/', array_reverse(explode('-', $data)));
-}
-
-// FUNÇÃO FORMATAR TELEFONE PARA VISUALIZAÇÃO COM CARACTERES
-function formatar_telefone($telefone){
-    $ddd = substr ($telefone, 0, 2);
-    $parte1 = substr ($telefone, 2, 5);
-    $parte2 = substr ($telefone, 7);
-        return "($ddd) $parte1-$parte2";
-}
-// FUNÇÃO LIMPAR CARACTERES 
-function limpar_texto($str){ 
-    return preg_replace("/[^0-9]/", "", $str); 
-}
-    
+include('../Control/function.php');
+include('../Control/SelectFrom.php');
+include('conexao.php');
 $id = intval($_GET['id']);
-include('../conexao/conexao.php');
 $error = "";
 $sucess = "";
 
@@ -104,7 +89,6 @@ if(count($_POST) > 0){
     
 }
 // VISUALIZAÇÃO INFORMAÇÕES USUÁRIO NO CAMPO EDIÇÃO
-include('../conexao/conexao.php');
 $sql_cliente = "SELECT * FROM pacientes WHERE id = '$id'";
 $query_cliente = $mysqli->query($sql_cliente) or die ($mysqli->error);
 $cliente = $query_cliente->fetch_assoc();
@@ -112,7 +96,6 @@ $cliente = $query_cliente->fetch_assoc();
 // CAMPOS EXAMES DO PACIENTE / ID DO EXAME / ID DO PACIENTE
 $sql_exame = "SELECT * FROM pacientes_exames AS pacex
     INNER JOIN exames ON exames.exameid = pacex.exame_id WHERE pacex.paciente_id = '$id'";
-
 $query_exames = $mysqli->query($sql_exame);
 $num_exames = $query_exames->num_rows;
 
@@ -125,92 +108,163 @@ $num_exames = $query_exames->num_rows;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Informações do paciente</title>
 </head>
-<Style>
-    body{
-        width: 100%;
-        height: 600px;
-        display: flex;
-    }
-    .Info_pacientes{
-        width: 50%;
-        height: 800px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-
-</style>    
-
+<link rel="stylesheet" href="../css/index.css">    
+<link rel="stylesheet" href="../css/button.css">
 <body>
+    <div class="body-header">
+        <div class="seletc_g">
+            <div class="select_header">
+                <div>
+                    <img class="icon_select" src="../icons/monitor (2).png">
+                </div>
+            </div>
+            <div class="select_header">
+                <div>
+                    <a href="listagem_usuarios.php"><img  class="icon_select" src="../icons/monitor (2).png"></a>
+                </div>
+                <div>
+                    <h3>
+                        Usuários
+                    </h3>
+                </div>
+            </div>
+            <div class="select_header">
+                <div>
+                    <a href="../views/listagem_pacientes.php"><img class="icon_select" src="../icons/arquivo (1).png"></a>
+                </div>
+                <div>
+                    <h3>
+                        Pacientes
+                    </h3>
+                </div>
+            </div>
+            <div class="select_header">
+                <div>
+                    <img class="icon_select" src="../icons/grafico.png">
+                </div>
+                <div>
+                    <h3>
+                        Exames
+                    </h3>      
+                </div>
+            </div>
+            <div class="select_header">
+                <div>
+                    <img class="icon_select" src="../icons/moeda-de-dolar.png">
+                </div>
+                <div>
+                    <h3>
+                        Financeiro
+                    </h3>        
+                </div>
+            </div>
+            <div class="select_header">
+                <div>
+                    <img class="icon_select" src="../icons/bate-papo.png">
+                </div>
+                <div>
+                    <h3>
+                        Suporte
+                    </h3>           
+                </div>
+            </div>
+            <div class="select_header">
+                <div>
+                    <img onclick="abrir_modal()" class="icon_select" src="../icons/calendario.png">
+                </div>
+                <div>
+                    <h3>
+                        Sugestões
+                    </h3>
+                </div>       
+            </div>
+            <div class="select_header">
+                <div>
+                    <img class="icon_select" src="../icons/fracassado.png">
+                </div>
+                <div>
+                    <h3>
+                        Encerrar
+                    </h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- !-- DIVISÃO Á BAIXO DO HEADER, PARA INFOS & AVISOS  -->
+    <div class="Bottom_header">
+        <p class="white">Usuário: <b><?php echo $usuario['nome']?></b></p>
+        <p>Local System <b><?php echo $usuario['unidade']?></b></p>
+    </div>
+
     <!-- INSERÇÃO CAMPOS POST NO FORM -->
-    <div class="Info_pacientes">
-        <div> 
-            <a href="../index_pacientes/pacientes.php"><button class="button1">Retornar</button></a> 
-            <a href="../SystemLocal/index.php">    <button class="button1">Pagina inicial</button></a>
-        </div> 
-        <div>   
-            <h1>Informações do paciente:</h1>
+    <div class="container_body">
+        <div class="container_son">   
+            <p>Informações do paciente:</p>
             <form action="" method="POST">
+                <div>
                     <label>Nome: </label><br>
                     <input value="<?php echo $cliente['nome']; ?>" type="text" name="nome"><br><br>
+                </div>
 
+                <div>
                     <label>Endereço:</label><br>
                     <input value= "<?php echo $cliente['endereco']; ?>" type="text" name="endereco"><br><br>
+                </div>
 
-                    <!-- <input value= "Masculino" type="radio" name="sexo">Masculino<br><br>
-                    <input value= "Feminino" type="radio" name="sexo">Feminino<br><br> -->
-
+                <div>
                     <label>E-mail:</label><br>
                     <input value ="<?php if(!empty($cliente['telefone'])){ echo ($cliente['email']);} ?>" type="email" name="email"><br><br>
+                </div>
 
+                <div>
                     <label>Telefone:</label><br>
                     <input value ="<?php if(!empty($cliente['telefone'])){ echo formatar_telefone($cliente['telefone']);} ?>" placeholder="(11) 98888-8888" type="text" name="telefone"><br><br>
-
+                </div>
                     <label>Data de nascimento:</label><br>
                     <input value ="<?php if(!empty($cliente['nascimento'])){ echo formatar_data($cliente['nascimento']);} ?>" placeholder="dia/mês/ano" type="text" name="nascimento"><br>
                 <p>
                     <p>Adicionar um exame no atendimento:</p>
                     <label>Exame ID</label>
                     <input  type="text" name="id_exame"><br><br>
-                    <button type="submit">Enviar</button>
+                    <button class="btn_style"type="submit">Enviar</button><br><br>
                 </p>
             </form>
             <?php
                     if(isset($error)) echo $error;
                     if(isset($sucess)) echo $sucess;
             ?>
-        </div>
         
-    <!-- TABELA DE INFORMAÇÕES EXAMES CADASTRADOS DO PACIENTE -->
-        <table cellpadding="10">
-            <thead>
-                <th>ID Exames</th>
-                <th>código exame</th>
-                <th>Nome exame</th>
-                <th>Resultado</th>
-                <th>Inserir Resultado</th>
-                <th>Remover</th>
+            <!-- TABELA DE INFORMAÇÕES EXAMES CADASTRADOS DO PACIENTE -->
+            <table border="1px"cellpadding="10">
+                <thead>
+                    <th>ID Exames</th>
+                    <th>código exame</th>
+                    <th>Nome exame</th>
+                    <th>Resultado</th>
+                    <th>Inserir Resultado</th>
+                    <th>Remover</th>
 
-            </thead>
-            <tbody> <?php if($num_exames == 0) {?>
-                <tr>
-                    <td colspan="7">Nenhum exame foi encontrado!</td>
-                </tr> <?php } ?>
-            <?php while($exames = $query_exames->fetch_assoc()){?>
-                    
-                <tr>
-                    <td><?php echo $exames['exame_id']?></td>
-                    <td><?php echo $exames['codigo']?></td>
-                    <td><?php echo $exames['descricao']?></td>
-                    
-                    <td><?php if($exames['resultado'] == 0){ }else echo number_format($exames['resultado'], 1, ',', '.')?></td>
-                    <td><a href="inserir_resultado.php?id=<?php echo $exames['id']?>">inserir</a></td>
-                    <td><a href="remover_exame.php?id=<?php echo $exames['id']?>">X</a></td>
-                </tr><?php }?> 
-            </tbody>
-        </table>
-</div>
+                </thead>
+                <tbody> <?php if($num_exames == 0) {?>
+                    <tr>
+                        <td colspan="7">Nenhum exame foi encontrado!</td>
+                    </tr> <?php } ?>
+                <?php while($exames = $query_exames->fetch_assoc()){?>
+                        
+                    <tr>
+                        <td><?php echo $exames['exame_id']?></td>
+                        <td><?php echo $exames['codigo']?></td>
+                        <td><?php echo $exames['descricao']?></td>
+                        
+                        <td><?php if($exames['resultado'] == 0){ }else echo number_format($exames['resultado'], 1, ',', '.')?></td>
+                        <td><a href="inserir_resultado.php?id=<?php echo $exames['id']?>">inserir</a></td>
+                        <td><a href="../Control/remover_exame_paciente.php?id=<?php echo $exames['id']?>">X</a></td>
+                    </tr><?php }?> 
+                </tbody>
+            </table>
+        </div>
+    </div>
 </body>
 </html>
 

@@ -5,6 +5,7 @@ if(!isset($_SESSION)){
         die('Você não está logado!' . '<a href="login.php">Clique aqui para logar</a>');
     }    
 }
+include('../views/conexao.php');
 $id = intval($_GET['id']);
 $sql_code = "DELETE FROM pacientes WHERE id = '$id'";
 $query_code = $mysqli->query($sql_code) or die($mysqli->error);
