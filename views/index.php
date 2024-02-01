@@ -61,10 +61,10 @@ if(isset($_POST['sugestao'])){
     <title>Tela inicial</title>    
 </head>
 
-<link rel="stylesheet" href="./css/modal.css">
-<link rel="stylesheet" href="./css/button.css">
-<link rel="stylesheet" href="./css/style.css">
-<link rel="stylesheet" href="./css/index.css">
+<link rel="stylesheet" href="../css/modal.css">
+<link rel="stylesheet" href="../css/button.css">
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/index.css">
 
 <body >
     <!-- HEADER SUPERIOR -->
@@ -72,12 +72,12 @@ if(isset($_POST['sugestao'])){
         <div class="seletc_g">
             <div class="select_header">
                 <div>
-                    <img class="icon_select" src="./icons/monitor (2).png">
+                    <img class="icon_select" src="../icons/monitor (2).png">
                 </div>
             </div>
             <div class="select_header">
                 <div>
-                    <img class="icon_select" src="./icons/monitor (2).png">
+                    <a href="listagem_usuarios.php"><img  class="icon_select" src="../icons/monitor (2).png"></a>
                 </div>
                 <div>
                     <h3>
@@ -87,7 +87,7 @@ if(isset($_POST['sugestao'])){
             </div>
             <div class="select_header">
                 <div>
-                    <img class="icon_select" src="./icons/arquivo (1).png">
+                    <img class="icon_select" src="../icons/arquivo (1).png">
                 </div>
                 <div>
                     <h3>
@@ -97,7 +97,7 @@ if(isset($_POST['sugestao'])){
             </div>
             <div class="select_header">
                 <div>
-                    <img class="icon_select" src="./icons/grafico.png">
+                    <img class="icon_select" src="../icons/grafico.png">
                 </div>
                 <div>
                     <h3>
@@ -107,7 +107,7 @@ if(isset($_POST['sugestao'])){
             </div>
             <div class="select_header">
                 <div>
-                    <img class="icon_select" src="./icons/moeda-de-dolar.png">
+                    <img class="icon_select" src="../icons/moeda-de-dolar.png">
                 </div>
                 <div>
                     <h3>
@@ -117,7 +117,7 @@ if(isset($_POST['sugestao'])){
             </div>
             <div class="select_header">
                 <div>
-                    <img class="icon_select" src="./icons/bate-papo.png">
+                    <img class="icon_select" src="../icons/bate-papo.png">
                 </div>
                 <div>
                     <h3>
@@ -127,7 +127,7 @@ if(isset($_POST['sugestao'])){
             </div>
             <div class="select_header">
                 <div>
-                    <img onclick="abrir_modal()" class="icon_select" src="./icons/calendario.png">
+                    <img onclick="abrir_modal()" class="icon_select" src="../icons/calendario.png">
                 </div>
                 <div>
                     <h3>
@@ -137,7 +137,7 @@ if(isset($_POST['sugestao'])){
             </div>
             <div class="select_header">
                 <div>
-                    <img class="icon_select" src="./icons/fracassado.png">
+                    <img class="icon_select" src="../icons/fracassado.png">
                 </div>
                 <div>
                     <h3>
@@ -187,6 +187,6 @@ if(isset($_POST['sugestao'])){
         <p>Qnt. exames cadastrados: <?php echo $cont_exames ?></p>
     </div>
 
-<script src="./src/script.js"></script>
+<script src="../src/script.js"></script>
 </body>
 </html>

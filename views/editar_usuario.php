@@ -25,7 +25,7 @@ function limpar_texto($str){
 
 <?php
 $id = intval($_GET['id']);
-include('../conexao/conexao.php');
+include('conexao.php');
 
 $error = "";
 if(count($_POST) > 0){
@@ -72,7 +72,6 @@ if(count($_POST) > 0){
 }
 // }
 // SELECT FROM NA TABELA CLIENTES, PARA PUXAR INFORMAÇÕES DOS PACIENTES PARA OS CAMPOS INPUT
-include('../conexao/conexao.php');
 $sql_cliente = "SELECT * FROM clientes WHERE id = '$id'";
 $query_cliente = $mysqli->query($sql_cliente) or die ($mysqli->error);
 $cliente = $query_cliente->fetch_assoc();
@@ -117,8 +116,8 @@ $cliente = $query_cliente->fetch_assoc();
         </p>
     </form>
     <div>
-        <a href="../index_usuarios/usuarios.php"><button class="button1">Retornar</button></a>
-        <a href="../SystemLocal/index.php"><button class="button1">Pagina inicial</button></a>
+        <a href="listagem_usuarios.php"><button class="button1">Retornar</button></a>
+        <a href="index.php"><button class="button1">Pagina inicial</button></a>
     </div>
 </body>
 </html>

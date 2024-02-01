@@ -25,6 +25,7 @@
 }
 /* IMAGEM DO SELETOR HEADER */
 .icon_select{
+    cursor: grab;
     width: 80px;
     height: 80px;
 }
@@ -44,7 +45,7 @@
     gap: 2px;
 }
 .container_son{
-    width: 33%;
+    width: auto;
     height:440px;
     background-color: rgba(127, 255, 212, 0.315);
 }
