@@ -53,7 +53,7 @@ include('../Control/function.php');
             </div>
             <div class="select_header">
                 <div>
-                    <img class="icon_select" src="../icons/grafico.png">
+                    <a href="listagem_exames.php"><img class="icon_select" src="../icons/grafico.png"></a>
                 </div>
                 <div>
                     <h3>

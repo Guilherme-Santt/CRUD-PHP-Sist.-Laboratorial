@@ -6,73 +6,27 @@ if(!isset($_SESSION)){
     }    
 }
 include('conexao.php');
-$id = $_SESSION['usuario'];
-
-// INFORMAÇÕES DE USUARIOS & QUANTIDADE DE USUARIOS
-$sqlcode = "SELECT * FROM clientes WHERE id = '$id'";
-$query = $mysqli->query($sqlcode);
-$usuario = $query->fetch_assoc();
-$cont_user = $query->num_rows; 
-
-// QUANTIDADE E INFORMAÇÕES DE PACIENTES
-$sqlcode = "SELECT * FROM pacientes";
-$query = $mysqli->query($sqlcode);
-$cont_pacientes = $query->num_rows;
-
-// QUANTIDADE E INFORMAÇÕES DE EXAMES
-$sqlcode = "SELECT * FROM exames";
-$query = $mysqli->query($sqlcode);
-$cont_exames = $query->num_rows;
-
-// POST PARA ENVIO DE SUGESTÕES
-if(isset($_POST['sugestao'])){
-    $error = "";
-    $sugestao = $_POST['sugestao'];
-    if(empty($_POST['sugestao'])){
-        $error = "Campo obrigatório*";
-    }
-    if($error){
-
-    }else{
-    $enviado = "";
-    $sql_code = "SELECT * FROM sugestoes WHERE sugestao = '$sugestao'";
-    $query = $query_sug = $mysqli->query($sql_code);
-    $consulta_sugestao = $query->fetch_assoc();
-    
-        if($consulta_sugestao){
-            echo "<script>alert('Sugestão já enviada. Caso tiver outra sugestão, será um prazer avaliar!');</script>";
-        }
-        else{
-            $sql_code = "INSERT INTO sugestoes (id_user, sugestao) VALUES ('$id', '$sugestao')";
-            $query_sug = $mysqli->query($sql_code);
-            if($query_sug){
-                echo "<script>alert('Sugestão enviada com sucesso! Iremos avaliar a possibilidade e dare mos retorno no email cadastrado. Obrigado.');</script>";
-            }
-        }    
-    }
-}
+include('../Control/SelectFrom.php');
+  
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tela inicial</title>    
+    <title>Exames</title>
 </head>
-
-<link rel="stylesheet" href="../css/modal.css">
-<link rel="stylesheet" href="../css/button.css">
-<link rel="stylesheet" href="../css/style.css">
+<!-- CÓDIGOS CSS -->
 <link rel="stylesheet" href="../css/index.css">
+<link rel="stylesheet" href="../css/modal.css">
 
-<body >
+<body> 
     <!-- HEADER SUPERIOR -->
     <div class="body-header">
         <div class="seletc_g">
             <div class="select_header">
                 <div>
-                    <img class="icon_select" src="../icons/monitor (2).png">
+                    <a href="index.php"><img class="icon_select" src="../icons/monitor (2).png"></a>
                 </div>
             </div>
             <div class="select_header">
@@ -97,7 +51,7 @@ if(isset($_POST['sugestao'])){
             </div>
             <div class="select_header">
                 <div>
-                    <a href="listagem_exames.php"><img class="icon_select" src="../icons/grafico.png"></a>
+                    <a href=""><img class="icon_select" src="../icons/grafico.png"></a>
                 </div>
                 <div>
                     <h3>
@@ -147,46 +101,71 @@ if(isset($_POST['sugestao'])){
             </div>
         </div>
     </div>
-    <div class="select-inic">
-        <!-- MENU DE SUGESTÕES -->
-        <div class="janela-modal" id="janela-modal">
-            <div class="modal">
-                <button class="fechar" id="fechar">X</button>
-                    <form method="post">
-                        <br><p>Envie sugestões para automação de suas operações⤵</p><br>
-                        <textarea ows="50" cols="40" name="sugestao"></textarea><br>
-                        <button class="button1" type="submit">Enviar</button>
-                        <?php if(isset($error)){ echo $error;}?>
-                    </form>
-            </div>
-        </div>
 
-    </div>
     <!-- DIVISÃO Á BAIXO DO HEADER, PARA INFOS & AVISOS -->
     <div class="Bottom_header">
         <p class="white">Usuário: <b><?php echo $usuario['nome']?></b></p>
         <p>Local System <b><?php echo $usuario['unidade']?></b></p>
     </div>
-    <!-- DIVISÃO CONTAINER -->
+
+    <!-- DIV PARA TABELA COM INFORMAÇÕES DOS EXAMES -->
     <div class="container_body">
         <div class="container_son">
-
-        </div>
-        <div class="container_son">
-
-        </div>
-        <div class="container_son">
-
+            <div>
+                <button class="button1" onclick="abrir_modal()">Cadastrar exames</button>
+            </div>
+            
+            <h1>Exames</h1>
+            <table cellpadding="10">
+                <thead>
+                    <th>ID exame</th>
+                    <th>Código exame</th>
+                    <th>Descrição exame</th>
+                    <th>Deletar exame</th>
+                </thead>
+                <tbody> 
+                <?php 
+                // COMANDO SQL PARA CONSULTAR QUANTIDADE DE CLIENTES NO SISTEMA
+                $sql_exames  = "SELECT * FROM exames";
+                $query_exames = $mysqli->query($sql_exames) or die($mysqli->error);
+                $num_exames = $query_exames->num_rows;
+                    if($num_exames == 0) { 
+                    ?> 
+                    <tr>
+                        <td colspan="3">Nenhum exame foi encontrado!</td>
+                    </tr>
+                    <?php }
+                        else{ 
+                            while($exames = $query_exames->fetch_assoc()){?>     
+                        <tr>
+                            <td><?php echo $exames['exameid']?>     </td>
+                            <td><?php echo $exames['codigo']?>   </td>
+                            <td><?php echo $exames['descricao']?>  </td>   
+                            <td><a href="../Control/deletar_exame.php?id=<?php echo $exames['exameid'] ?>">Deletar exame</a></td>
+                        </tr>      
+                    <?php     }
+                        } ?>
+                </tbody>
+            </table><br>
         </div>
     </div>
 
-    <!-- DIVISÃO RODA PÉ DE INFORMAÇÕES -->
-    <div class="rodape">
-        <p>Qnt. usuários cadastrados: <?php echo $cont_user ?></p>
-        <p>Qnt. pacientes cadastrados: <?php echo $cont_pacientes ?></p>
-        <p>Qnt. exames cadastrados: <?php echo $cont_exames ?></p>
-    </div>
-
+    <!-- JANELA MODAL->CADASTRO DE EXAMES NO SISTEMA -->
+    <div class="janela-modal" id="janela-modal">
+        <div class="modal">
+            <button class="fechar" id="fechar">X</button><br>
+            <form action="../Control/Post_CriarExames.php" method="POST">
+                <p>Cadastrar exame⤵</p>
+                <label>Código exame</label><br><br>
+                <input type="text" value="<?php if(isset($_POST['codigo'])) echo $_POST['codigo']; ?>" name="codigo"><br><br>
+    
+                <label>Descrição exame</label></label><br><br>
+                <input type="text" value="<?php if(isset($_POST['descricao'])) echo $_POST['descricao']; ?>" name="descricao"><br><br>
+    
+                <button type="submit" name="cadastrar">Cadastrar exame</button>
+            </form>
+        </div>
+    </div>    
 <script src="../src/script.js"></script>
 </body>
 </html>
