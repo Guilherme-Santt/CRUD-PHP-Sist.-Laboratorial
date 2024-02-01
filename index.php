@@ -147,35 +147,45 @@ if(isset($_POST['sugestao'])){
             </div>
         </div>
     </div>
-<!-- DIVISÃO MENU DE SELEÇÕES INICIAL -->
     <div class="select-inic">
-            <div class="select">
-                <h1>Sugestões⤵</h1>
-                <button onclick="abrir_modal()">Sugestões</button>
+        <!-- MENU DE SUGESTÕES -->
+        <div class="janela-modal" id="janela-modal">
+            <div class="modal">
+                <button class="fechar" id="fechar">X</button>
+                    <form method="post">
+                        <br><p>Envie sugestões para automação de suas operações⤵</p><br>
+                        <textarea ows="50" cols="40" name="sugestao"></textarea><br>
+                        <button class="button1" type="submit">Enviar</button>
+                        <?php if(isset($error)){ echo $error;}?>
+                    </form>
             </div>
-            <div class="janela-modal" id="janela-modal">
-                <div class="modal">
-                    <button class="fechar" id="fechar">X</button>
-                        <form method="post">
-                            <br><p>Envie sugestões para automação de suas operações⤵</p><br>
-                            <textarea ows="50" cols="40" name="sugestao"></textarea><br>
-                            <button class="button1" type="submit">Enviar</button>
-                            <?php if(isset($error)){ echo $error;}?>
-                        </form>
-                </div>
-            </div>
-    </div>
-<!-- DIVISÃO RODA PÉ DE INFORMAÇÕES -->
-    <div class="rodape">
         </div>
-        <div class="consult">
-            <p class="white">Usuário: <b><?php echo $usuario['nome']?></b></p>
-            <p>Local System <b><?php echo $usuario['unidade']?></b></p>
 
-            <p>Qnt. usuários cadastrados: <?php echo $cont_user ?></p>
-            <p>Qnt. pacientes cadastrados: <?php echo $cont_pacientes ?></p>
-            <p>Qnt. exames cadastrados: <?php echo $cont_exames ?></p>
+    </div>
+    <!-- DIVISÃO Á BAIXO DO HEADER, PARA INFOS & AVISOS -->
+    <div class="Bottom_header">
+        <p class="white">Usuário: <b><?php echo $usuario['nome']?></b></p>
+        <p>Local System <b><?php echo $usuario['unidade']?></b></p>
+    </div>
+    <!-- DIVISÃO CONTAINER -->
+    <div class="container_body">
+        <div class="container_son">
+
         </div>
+        <div class="container_son">
+
+        </div>
+        <div class="container_son">
+
+        </div>
+    </div>
+
+    <!-- DIVISÃO RODA PÉ DE INFORMAÇÕES -->
+    <div class="rodape">
+        <p>Qnt. usuários cadastrados: <?php echo $cont_user ?></p>
+        <p>Qnt. pacientes cadastrados: <?php echo $cont_pacientes ?></p>
+        <p>Qnt. exames cadastrados: <?php echo $cont_exames ?></p>
+    </div>
 
 <script src="./src/script.js"></script>
 </body>
