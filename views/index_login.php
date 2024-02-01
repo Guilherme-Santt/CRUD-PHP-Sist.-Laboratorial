@@ -46,8 +46,8 @@ if(isset($_POST['email'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tela de login</title>
 </head>
-<link rel ="stylesheet" href="./css/login.css">
-<link rel ="stylesheet" href="./css/button.css">
+<link rel ="stylesheet" href="../css/login.css">
+<link rel ="stylesheet" href="../css/button.css">
 
 <body>
     <div class="full_mapa">    

@@ -3,14 +3,14 @@
 if(!isset($_SESSION)){
     session_start();
     if(!isset($_SESSION['usuario'])){
-        die('Você não está logado!' . '<a href="login.php">Clique aqui para logar</a>');
+        die('Você não está logado!' . '<a href="../views/index_login.php">Clique aqui para logar</a>');
     }    
 }
 include('../Control/function.php');
 include('../Control/SelectFrom.php');
 include('conexao.php');
 $id = intval($_GET['id']);
-$error = "";
+$alert = "";
 $sucess = "";
 
 if(count($_POST) > 0){
@@ -21,32 +21,21 @@ if(count($_POST) > 0){
     $nascimento = $_POST['nascimento'];
     $codigo = $_POST['id_exame'];
 
-    if(empty($nome) || Strlen($nome) < 3 || Strlen($nome) > 100){
-        $error = "Por favor, Prencha o campo nome corretamente. Capacidade mínima 3 dígitos! ";
-    }
+    if(empty($nome))
+        $alert = "CAMPO NOME OBRIGATÓRIO ";
+    if(Strlen($nome) < 3 || Strlen($nome) > 100)
+        $alert = "NOME INCORRETO";
+    if(empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL))
+        $alert = "CAMPO E-MAIL INCORRETO";
+    if(empty($nascimento))
+        $alert = "DATA DE NASCIMENTO OBRIGATÓRIO";
+    if(strlen($nascimento) != 10)
+        $alert = "DATA DE NASCIMENTO INCORRETA";
+    if(empty($telefone))
+        $alert = "TELEFONE OBRIGATÓRIO";
+    if(strlen($telefone) != 11)
+        $alert = "TELEFONE INCORRETO";
 
-    if(empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)){
-        $error = "Por favor, Prencha o campo e-mail corretamente.";
-    }  
-
-    if(empty($nascimento) || strlen($nascimento) != 10){
-        $error = "A data de nascimento deve ser preenchido no padrão dia/mes/ano*";
-    }
-    else{
-        $pedacos = explode('/', $nascimento);
-        if(count($pedacos) == 3){
-        $nascimento = implode ('-', array_reverse($pedacos)); 
-        } 
-    }   
-
-    if(empty($telefone)){
-        $error = "campo telefone obrigatório*";}
-        else{
-            $telefone = limpar_texto($telefone);
-            if(strlen($telefone) != 11){
-                $error = "O telefone deve ser preenchido no padrão (11) 98888-8888";
-        }   
-    }
     // INSERÇÃO CAMPO EXAME NA TABELA PACIENTES_EXAMES
     if(!empty($codigo)){
         // VERIFICAÇÃO SE O EXAME EXISTE NA TABELA EXAMES
@@ -59,18 +48,19 @@ if(count($_POST) > 0){
                 $query_verify = $mysqli->query($sql_verify);
                 $verify_cadastro_exame_no_paciente = $query_verify->fetch_assoc();
                         if($verify_cadastro_exame_no_paciente){
-                            $error = "Exame já inserido*";
+                            $alert = "EXAME JÁ INSERIDO";
                             }
                             else{
                                 $ql_insert = "INSERT INTO pacientes_exames (paciente_id, exame_id) VALUES ('$id', '$codigo')";
                                 $query_insert = $mysqli->query($ql_insert);
                             }
             }else{
-                $error = "Exame não existe";
+                $alert = "EXAME INEXISTENTE";
             }
     }
+
     // VERIFICAÇÃO SE EXISTE ALGUM ERRO    
-    if($error){
+    if($alert){
     }
     // ATUALIZAÇÃO DAS INFORMAÇÕES ALTERADAS
     else{
@@ -82,12 +72,12 @@ if(count($_POST) > 0){
         nascimento = '$nascimento' WHERE id  = '$id'";
         $deu_certo = $mysqli->query($sql_code);
             if($deu_certo){
-                $sucess = "Atualizado com Sucesso!";
+                $alert = "ATUALIZADO COM SUCESSO";
                 unset($_POST);
             }
     }
-    
 }
+
 // VISUALIZAÇÃO INFORMAÇÕES USUÁRIO NO CAMPO EDIÇÃO
 $sql_cliente = "SELECT * FROM pacientes WHERE id = '$id'";
 $query_cliente = $mysqli->query($sql_cliente) or die ($mysqli->error);
@@ -180,7 +170,7 @@ $num_exames = $query_exames->num_rows;
             </div>
             <div class="select_header">
                 <div>
-                    <img class="icon_select" src="../icons/fracassado.png">
+                <a href="../Control/logout.php"><img class="icon_select" src="../icons/fracassado.png"></a>
                 </div>
                 <div>
                     <h3>
@@ -219,10 +209,10 @@ $num_exames = $query_exames->num_rows;
 
                 <div>
                     <label>Telefone:</label><br>
-                    <input value ="<?php if(!empty($cliente['telefone'])){ echo formatar_telefone($cliente['telefone']);} ?>" placeholder="(11) 98888-8888" type="text" name="telefone"><br><br>
+                    <input value ="<?php if(!empty($cliente['telefone'])){ echo $cliente['telefone'];} ?>" placeholder="11988888888" type="text" name="telefone"><br><br>
                 </div>
                     <label>Data de nascimento:</label><br>
-                    <input value ="<?php if(!empty($cliente['nascimento'])){ echo formatar_data($cliente['nascimento']);} ?>" placeholder="dia/mês/ano" type="text" name="nascimento"><br>
+                    <input value ="<?php if(!empty($cliente['nascimento'])){ echo $cliente['nascimento'];} ?>" placeholder="dia/mês/ano" type="date" name="nascimento"><br>
                 <p>
                     <p>Adicionar um exame no atendimento:</p>
                     <label>Exame ID</label>
@@ -231,10 +221,10 @@ $num_exames = $query_exames->num_rows;
                 </p>
             </form>
             <?php
-                    if(isset($error)) echo $error;
-                    if(isset($sucess)) echo $sucess;
+                if(isset($alert)) echo $alert;
             ?>
-        
+        </div>
+        <div class="container_son">   
             <!-- TABELA DE INFORMAÇÕES EXAMES CADASTRADOS DO PACIENTE -->
             <table border="1px"cellpadding="10">
                 <thead>

@@ -3,7 +3,7 @@ include('conexao.php');
 if(!isset($_SESSION)){
     session_start();
     if(!isset($_SESSION['usuario'])){
-        die('Você não está logado!' . '<a href="login.php">Clique aqui para logar</a>');
+        die('Você não está logado!' . '<a href="../views/index_login.php">Clique aqui para logar</a>');
     }  
 } 
 include('../Control/SelectFrom.php');     
@@ -94,7 +94,7 @@ include('../Control/SelectFrom.php');
             </div>
             <div class="select_header">
                 <div>
-                    <img class="icon_select" src="../icons/fracassado.png">
+                    <a href="../Control/logout.php"><img class="icon_select" src="../icons/fracassado.png"></a>
                 </div>
                 <div>
                     <h3>
