@@ -2,16 +2,29 @@
     margin: 0px;
     padding: 0px;
 }
+/* DIVISÃO HEADER */
 .body-header{
-    height: 130px;
+    height: 110px;
     background-color: rgba(145, 134, 134, 0.247);
     box-shadow: 2px -3px 30px 3px rgba(0,0,0,0.79);
     display: flex;
-    gap: 1px;
-    justify-content: space-around;
+    justify-content: center;
 }
-.icon_header{
-width: 150px;
-height: 130px;
-background-color: aqua;
+.seletc_g{
+    display: flex;
+    flex-direction: row;
+}
+/* MENU SELETOR DO HEADER */
+.select_header{
+    width: 150px;
+    height: 110px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+/* IMAGEM DO SELETOR HEADER */
+.icon_select{
+    width: 80px;
+    height: 80px;
 }

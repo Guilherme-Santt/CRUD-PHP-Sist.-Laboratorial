@@ -67,16 +67,85 @@ if(isset($_POST['sugestao'])){
 <link rel="stylesheet" href="./css/index.css">
 
 <body >
-    <!-- Header  *NAV* - Mensagem central superior -->
+    <!-- HEADER SUPERIOR -->
     <div class="body-header">
-        <div class="icon_header"></div>
-        <div class="icon_header"></div>
-        <div class="icon_header"></div>
-        <div class="icon_header"></div>
-        <div class="icon_header"></div>
-        <div class="icon_header"></div>
-        <div class="icon_header"></div>
-
+        <div class="seletc_g">
+            <div class="select_header">
+                <div>
+                    <img class="icon_select" src="./icons/monitor (2).png">
+                </div>
+            </div>
+            <div class="select_header">
+                <div>
+                    <img class="icon_select" src="./icons/monitor (2).png">
+                </div>
+                <div>
+                    <h3>
+                        Usuários
+                    </h3>
+                </div>
+            </div>
+            <div class="select_header">
+                <div>
+                    <img class="icon_select" src="./icons/arquivo (1).png">
+                </div>
+                <div>
+                    <h3>
+                        Pacientes
+                    </h3>
+                </div>
+            </div>
+            <div class="select_header">
+                <div>
+                    <img class="icon_select" src="./icons/grafico.png">
+                </div>
+                <div>
+                    <h3>
+                        Exames
+                    </h3>      
+                </div>
+            </div>
+            <div class="select_header">
+                <div>
+                    <img class="icon_select" src="./icons/moeda-de-dolar.png">
+                </div>
+                <div>
+                    <h3>
+                        Financeiro
+                    </h3>        
+                </div>
+            </div>
+            <div class="select_header">
+                <div>
+                    <img class="icon_select" src="./icons/bate-papo.png">
+                </div>
+                <div>
+                    <h3>
+                        Suporte
+                    </h3>           
+                </div>
+            </div>
+            <div class="select_header">
+                <div>
+                    <img class="icon_select" src="./icons/calendario.png">
+                </div>
+                <div>
+                    <h3>
+                        Sugestões
+                    </h3>
+                </div>       
+            </div>
+            <div class="select_header">
+                <div>
+                    <img class="icon_select" src="./icons/fracassado.png">
+                </div>
+                <div>
+                    <h3>
+                        Encerrar
+                    </h3>
+                </div>
+            </div>
+        </div>
     </div>
 <!-- DIVISÃO MENU DE SELEÇÕES INICIAL -->
     <div class="select-inic">
