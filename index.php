@@ -127,7 +127,7 @@ if(isset($_POST['sugestao'])){
             </div>
             <div class="select_header">
                 <div>
-                    <img class="icon_select" src="./icons/calendario.png">
+                    <img onclick="abrir_modal()" class="icon_select" src="./icons/calendario.png">
                 </div>
                 <div>
                     <h3>
