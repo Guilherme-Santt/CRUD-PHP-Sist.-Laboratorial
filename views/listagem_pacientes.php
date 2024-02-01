@@ -1,5 +1,4 @@
 <?php 
-// VERICIAÇÃO DE SESSÃO
 include('conexao.php');
 if(!isset($_SESSION)){
     session_start();
@@ -23,6 +22,7 @@ include('../Control/SelectFrom.php');
 <!-- CÓDIGOS CSS -->
 <link rel="stylesheet" href="../css/modal.css">
 <link rel="stylesheet" href="../css/index.css">
+<link rel="stylesheet" href="../css/button.css"
 <body>
  <!-- HEADER SUPERIOR -->
     <div class="body-header">
@@ -115,7 +115,7 @@ include('../Control/SelectFrom.php');
     <div class="container_body">
         <div class="container_son">       
             <div>
-                <button class="button1" onclick="abrir_modal()">Cadastrar paciente</button>
+                <button class="btn_style" onclick="abrir_modal()">Cadastrar paciente</button>
             </div>
             <h1>Atendimentos</h1>
             <table  cellpadding="10">
