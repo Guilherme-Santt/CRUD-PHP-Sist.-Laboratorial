@@ -1,31 +1,14 @@
 <?php 
-// // SESSÃO
-// if(!isset($_SESSION)){
-//     session_start();
-//     if(!isset($_SESSION['usuario'])){
-//         die('Você não está logado!' . '<a href="login.php">Clique aqui para logar</a>');
-//     }    
-// }
-
-function formatar_data($data){
-    return implode('/', array_reverse(explode('-', $data)));
-};
-
-function formatar_telefone($telefone){
-    $ddd = substr ($telefone, 0, 2);
-    $parte1 = substr ($telefone, 2, 5);
-    $parte2 = substr ($telefone, 7);
-        return "($ddd) $parte1-$parte2";
+// SESSÃO
+if(!isset($_SESSION)){
+    session_start();
+    if(!isset($_SESSION['usuario'])){
+        die('Você não está logado!' . '<a href="login.php">Clique aqui para logar</a>');
+    }    
 }
-
-function limpar_texto($str){ 
-    return preg_replace("/[^0-9]/", "", $str); 
-}
-?>
-
-<?php
-$id = intval($_GET['id']);
+include('../Control/function.php');
 include('conexao.php');
+$id = intval($_GET['id']);
 
 $error = "";
 if(count($_POST) > 0){
@@ -101,11 +84,11 @@ $cliente = $query_cliente->fetch_assoc();
         </p>
         <p>
             <label>Telefone:</label>
-            <input value ="<?php if(!empty($cliente['telefone'])){ echo formatar_telefone($cliente['telefone']);} ?>" placeholder="(11) 98888-8888" type="text" name="telefone">
+            <input value ="<?php if(!empty($cliente['telefone'])){ echo $cliente['telefone'];} ?>" type="text" name="telefone">
         </p>
         <p>
             <label>Data de nascimento:</label>
-            <input value ="<?php if(!empty($cliente['nascimento'])){ echo formatar_data($cliente['nascimento']);} ?>" placeholder="dia/mês/ano" type="text" name="nascimento">
+            <input value ="<?php if(!empty($cliente['nascimento'])){ echo $cliente['nascimento'];} ?>" type="date" name="nascimento">
         </p>
         <?php 
         if(isset($error)){ echo $error;} 

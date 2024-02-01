@@ -5,16 +5,10 @@
              die('Você não está logado!' . '<a href="login.php">Clique aqui para logar</a>');
          }    
 }
-
 include('conexao.php');
 include('../Control/function.php');
-
 ?>
 
-<?php
-
-     $error = "";
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -121,12 +115,11 @@ include('../Control/function.php');
         <div class="container_son">
             <div>
                 <button class="btn_style" onclick="abrir_modal()">Cadastrar usuário</button>  
-            </div> 
+            </div><br>
             <p>Usuários cadastrados no seu sistema</p>
             <p>
                 <?php 
-                if(isset($sucess)){echo'<p class="sucess">'. $sucess . '</p>' ;}
-                if($error){echo '<p class="error">'. $error . '</p>' ;}   
+                // if($alert){echo '<p>'. $alert . '</p>' ;}   
                 ?>
             </p>    
             <table border="1px" ID="alter" cellpadding="10">
@@ -174,7 +167,7 @@ include('../Control/function.php');
                         <td><?php echo $data_cadastro;?>    </td>
                         <td>
                             <a class="edit" href="editar_usuario.php?id=<?php echo $cliente['id']?>">Editar</a>
-                            <a class="error" href="deletar_usuario.php?id=<?php echo $cliente['id']?>">Deletar</a>
+                            <a class="error" href="../Control/deletar_usuario.php?id=<?php echo $cliente['id']?>">Deletar</a>
                         </td>
                     </tr>             
                     <?php
@@ -186,14 +179,13 @@ include('../Control/function.php');
         </div>
 
         <div class="container_son">
-                
         </div>
     </div>            
     <!-- DIVISÃO DE MODAL CONTRALADA POR CSS/MODAL.CSS -->
     <div class="janela-modal" id="janela-modal">
         <div class="modal">
             <button class="fechar" id="fechar">X</button>
-            <form action="./Control/Post_CriarUsuarios.php" method="POST">
+            <form action="../Control/Post_CriarUsuarios.php" method="POST">
                 <p>Cadastrar usuário⤵</p>
                 <label>Email</label><br>
                 <input  type="email" value="<?php if(isset($_POST['email'])) echo $_POST['email']; ?>" name="email"><br><br>
@@ -202,10 +194,10 @@ include('../Control/function.php');
                 <input  type="text" value="<?php if(isset($_POST['nome'])) echo $_POST['nome']; ?>" name="nome"><br><br>
         
                 <label>Nascimento</label><br>
-                <input  type="date" value="<?php if(isset($_POST['nascimento'])) echo $_POST['nascimento']; ?>" name="nascimento" placeholder="dia/mês/ano"><br><br>
+                <input  type="date" value="<?php if(isset($_POST['nascimento'])) echo $_POST['nascimento']; ?>" name="nascimento"><br><br>
                 
                 <label>Telefone:</label><br>
-                <input  value ="<?php if(isset($_POST['telefone'])) echo $_POST['telefone']; ?>" placeholder="(11) 98888-8888" type="text" name="telefone"><br><br>
+                <input  value ="<?php if(isset($_POST['telefone'])) echo $_POST['telefone']; ?>" placeholder="11988888888" type="text" name="telefone"><br><br>
                 
                 <label>Senha</label><br>
                 <input  type="password" value="<?php if(isset($_POST['senha'])) echo $_POST['senha']; ?>" name="senha"><br><br>

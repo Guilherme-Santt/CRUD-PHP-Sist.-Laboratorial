@@ -1,8 +1,8 @@
 <?php
-include('../conexao.php');
+include('../views/conexao.php');
 
 // VERIFICAÇÃO DE INSERÇÃO NOS CAMPOS POST DO FORMULÁRIO
-    $error = "";
+    $alert = "";
     if(count($_POST) > 0){
         $email = $_POST['email'];
         $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
@@ -10,30 +10,23 @@ include('../conexao.php');
         $telefone = $_POST['telefone'];
         $nascimento = $_POST['nascimento'];
 
-        if(empty($_POST['email']) || !filter_var($email, FILTER_VALIDATE_EMAIL)){
-        $error = "preencha o campo email!";
-        }
-        if(empty($_POST['senha'])){
-            $error = "preencha o campo senha!";
-        }  
-        if(empty($_POST['nome']) || Strlen($nome) < 3 || Strlen($nome) > 100){
-            $error = "preencha o campo nome!";
-        }
-
-        if(empty($nascimento) || strlen($nascimento) < 10 || strlen($nascimento) > 10 ){
-            $error = "A data de nascimento deve ser preenchido no padrão dia/mes/ano";
-        }
-   
-        if(empty($telefone)){
-            $error ="Campo telefone obrigatório";
-            // }else{
-            //     $telefone = limpar_texto($telefone);
-            //     if(strlen($telefone) != 11){
-            //         $error = "O telefone deve ser preenchido no padrão (11) 98888-8888";
-            //     }
-            }
+        if(empty($_POST['email']) || !filter_var($email, FILTER_VALIDATE_EMAIL))
+        $alert = "CAMPO E-MAIL OBRIGATÓRIO";
         
-        if($error){
+        if(empty($_POST['senha']))
+            $alert = "CAMPO SENHA OBRIGATÓRIO";
+         
+        if(empty($_POST['nome']) || Strlen($nome) < 3 || Strlen($nome) > 100)
+            $alert = "CAMPO NOME OBRIGATÓRIO";
+        
+
+        if(empty($nascimento) || strlen($nascimento) < 10 || strlen($nascimento) > 10 )
+            $alert = "NASCIMENTO DEVE SEGUIR DIA/MÊS/ANO";
+        
+        if(empty($telefone))
+            $alert ="TELEFONE OBRIGATÓRIO";
+            
+        if($alert){
             
         }
         // VERIFICAÇÃO SE O POST EMAIL EXISTE NO BANCO DE DADOS
@@ -42,7 +35,7 @@ include('../conexao.php');
             $query_c = $mysqli->query($sql_codeverify);
             $usuario = $query_c->fetch_assoc();
                 if($usuario){
-                    $error = "usuário já cadastrado!";
+                    $alert = "USUÁRIO JÁ CADASTRADO";
                 }
             // INSERÇÃO DAS INFORMAÇÕES NO BANCO, CASO NÃO EXISTIR
                 else{
@@ -50,8 +43,8 @@ include('../conexao.php');
                     $queryinsert = $mysqli->query($sqlinsert);
                         if($queryinsert){
                             header("location: ../views/listagem_usuarios.php");
-                            $sucess = "Cadastrado com sucesso";
-                            
+                            $sucess = "CADASTRADO COM SUCESSO";
+
                         }
                 }
         }
