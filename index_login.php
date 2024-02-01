@@ -27,7 +27,7 @@ if(isset($_POST['email'])){
                 if(!isset($_SESSION)){
                     session_start();
                     $_SESSION['usuario'] = $usuario['id'];
-                    header("location: ../SystemLocal/index.php");
+                    header("location: index.php");
                 }
             }else{
                 $error = '<p class="error">Usuário ou senha incorretos!*</p>';

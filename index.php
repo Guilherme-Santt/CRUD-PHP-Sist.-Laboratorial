@@ -1,21 +1,15 @@
 <?php
-include('../conexao/conexao.php');
 if(!isset($_SESSION)){
     session_start();
     if(!isset($_SESSION['usuario'])){
         die('Você não está logado!' . '<a href="login.php">Clique aqui para logar</a>');
     }    
 }
-
+include('conexao.php');
 $id = $_SESSION['usuario'];
 
-// INFORMAÇÕES DE USUARIOS
+// INFORMAÇÕES DE USUARIOS & QUANTIDADE DE USUARIOS
 $sqlcode = "SELECT * FROM clientes WHERE id = '$id'";
-$query = $mysqli->query($sqlcode);
-$usuario = $query->fetch_assoc();
-
-// QUANTIDADE DE USUARIOS
-$sqlcode = "SELECT * FROM clientes WHERE id";
 $query = $mysqli->query($sqlcode);
 $usuario = $query->fetch_assoc();
 $cont_user = $query->num_rows; 
@@ -67,29 +61,28 @@ if(isset($_POST['sugestao'])){
     <title>Tela inicial</title>    
 </head>
 
-<link rel="stylesheet" href="../Arquivos CSS/modal.css">
-<link rel="stylesheet" href="../Arquivos CSS/button.css">
+<link rel="stylesheet" href="./css/modal.css">
+<link rel="stylesheet" href="./css/button.css">
 <link rel="stylesheet" href="./css/style.css">
+<link rel="stylesheet" href="./css/index.css">
 
 <body >
     <!-- Header  *NAV* - Mensagem central superior -->
     <div class="body-header">
-       <a href="../index_exames/exames.php">Cadastro de exames</a>
+        <div class="icon_header"></div>
+        <div class="icon_header"></div>
+        <div class="icon_header"></div>
+        <div class="icon_header"></div>
+        <div class="icon_header"></div>
+        <div class="icon_header"></div>
+        <div class="icon_header"></div>
 
     </div>
 <!-- DIVISÃO MENU DE SELEÇÕES INICIAL -->
     <div class="select-inic">
             <div class="select">
-                <h1>Atendimentos⤵ </h1>
-                <a href="../index_pacientes/pacientes.php"><img src="../imagens/modeloatendimento.jpg"></a>
-            </div>
-            <div class="select">
-                <h1>Usuários⤵</h1>
-                <a href="../index_usuarios/usuarios.php"> <img src="../imagens/modelousuarios.jpg"></a>
-            </div>
-            <div class="select">
                 <h1>Sugestões⤵</h1>
-                <img onclick="abrir_modal()" src="../imagens/modelo2.jpg">
+                <button onclick="abrir_modal()">Sugestões</button>
             </div>
             <div class="janela-modal" id="janela-modal">
                 <div class="modal">
@@ -114,16 +107,7 @@ if(isset($_POST['sugestao'])){
             <p>Qnt. pacientes cadastrados: <?php echo $cont_pacientes ?></p>
             <p>Qnt. exames cadastrados: <?php echo $cont_exames ?></p>
         </div>
-        <div class="redes">
-            <p>@SYSTEMLOCAL</p> 
-            <img src="../imagens/facebook.png">
-            <img src="../imagens/instagram.png">
-            <img src="../imagens/tiktok.png">
-            <img src="../imagens/whatsapp.png">
-            <img src="../imagens/youtube.png">
-            <img src="../imagens/o-email.png">
-    </div>
 
-<script src="../Arquivos JS/script.js"></script>
+<script src="./src/script.js"></script>
 </body>
 </html>

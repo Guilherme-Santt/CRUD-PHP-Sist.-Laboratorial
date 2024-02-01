@@ -1,0 +1,17 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+.body-header{
+    height: 130px;
+    background-color: rgba(145, 134, 134, 0.247);
+    box-shadow: 2px -3px 30px 3px rgba(0,0,0,0.79);
+    display: flex;
+    gap: 1px;
+    justify-content: space-around;
+}
+.icon_header{
+width: 150px;
+height: 130px;
+background-color: aqua;
+}
