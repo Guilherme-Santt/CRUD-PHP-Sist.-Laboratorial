@@ -8,6 +8,7 @@ if(!isset($_SESSION)){
 }
 include('../Control/function.php');
 include('conexao.php');
+include('../Control/SelectFrom.php');
 $id = intval($_GET['id']);
 
 $error = "";
@@ -67,41 +68,125 @@ $cliente = $query_cliente->fetch_assoc();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Listagem de usuários</title>
 </head>
-
+<link rel="stylesheet" href="../css/index.css">
+<link rel="stylesheet" href="../css/button.css">
 
 <body>
-    <form action="" method="POST">
-        <p>
-            <label>Nome:</label>
-            <input value= "<?php echo $cliente['nome']; ?>" type="text" name="nome">
-        </p>
-        <p>
-            <label>E-mail:</label>
-            <input value ="<?php echo $cliente['email']; ?>" type="email" name="email">
-        </p>
-        <label>Unidade:</label>
-            <input value ="<?php echo $cliente['unidade']; ?>" type="text" name="unidade">
-        </p>
-        <p>
-            <label>Telefone:</label>
-            <input value ="<?php if(!empty($cliente['telefone'])){ echo $cliente['telefone'];} ?>" type="text" name="telefone">
-        </p>
-        <p>
-            <label>Data de nascimento:</label>
-            <input value ="<?php if(!empty($cliente['nascimento'])){ echo $cliente['nascimento'];} ?>" type="date" name="nascimento">
-        </p>
-        <?php 
-        if(isset($error)){ echo $error;} 
-        if(isset($sucess)){ echo $sucess;}
-        ?>
-        <p>
-            <button type="submit">Atualizar</button>
-        </p>
-    </form>
-    <div>
-        <a href="listagem_usuarios.php"><button class="button1">Retornar</button></a>
-        <a href="index.php"><button class="button1">Pagina inicial</button></a>
+    <div class="body-header">
+        <div class="seletc_g">
+            <div class="select_header">
+                <div>
+                    <a href="../views/index.php"><img class="icon_select" src="../icons/monitor (2).png">
+                </div>
+            </div>
+            <div class="select_header">
+                <div>
+                    <a href="listagem_usuarios.php"><img  class="icon_select" src="../icons/monitor (2).png"></a>
+                </div>
+                <div>
+                    <h3>
+                        Usuários
+                    </h3>
+                </div>
+            </div>
+            <div class="select_header">
+                <div>
+                    <a href="../views/listagem_pacientes.php"><img class="icon_select" src="../icons/arquivo (1).png"></a>
+                </div>
+                <div>
+                    <h3>
+                        Pacientes
+                    </h3>
+                </div>
+            </div>
+            <div class="select_header">
+                <div>
+                    <a href="listagem_exames.php"><img class="icon_select" src="../icons/grafico.png"></a>
+                </div>
+                <div>
+                    <h3>
+                        Exames
+                    </h3>      
+                </div>
+            </div>
+            <div class="select_header">
+                <div>
+                    <img class="icon_select" src="../icons/moeda-de-dolar.png">
+                </div>
+                <div>
+                    <h3>
+                        Financeiro
+                    </h3>        
+                </div>
+            </div>
+            <div class="select_header">
+                <div>
+                    <img class="icon_select" src="../icons/bate-papo.png">
+                </div>
+                <div>
+                    <h3>
+                        Suporte
+                    </h3>           
+                </div>
+            </div>
+            <div class="select_header">
+                <div>
+                    <img onclick="abrir_modal()" class="icon_select" src="../icons/calendario.png">
+                </div>
+                <div>
+                    <h3>
+                        Sugestões
+                    </h3>
+                </div>       
+            </div>
+            <div class="select_header">
+                <div>
+                <a href="../Control/logout.php"><img class="icon_select" src="../icons/fracassado.png"></a>
+                </div>
+                <div>
+                    <h3>
+                        Encerrar
+                    </h3>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <!-- !-- DIVISÃO Á BAIXO DO HEADER, PARA INFOS & AVISOS  -->
+    <div class="Bottom_header">
+        <p class="white">Usuário: <b><?php echo $usuario['nome']?></b></p>
+        <p>Local System <b><?php echo $usuario['unidade']?></b></p>
+    </div>
+
+    <div class="container_body">
+        <div class="container_son"> 
+            <form action="" method="POST">
+                <label>Nome:</label>
+                <input value= "<?php echo $cliente['nome']; ?>" type="text" name="nome">
+
+                <label>E-mail:</label>
+                <input value ="<?php echo $cliente['email']; ?>" type="email" name="email">
+
+                <label>Unidade:</label>
+                <input value ="<?php echo $cliente['unidade']; ?>" type="text" name="unidade">
+
+                <label>Telefone:</label>
+                <input value ="<?php if(!empty($cliente['telefone'])){ echo $cliente['telefone'];} ?>" type="text" name="telefone">
+
+                <label>Data de nascimento:</label>
+                <input value ="<?php if(!empty($cliente['nascimento'])){ echo $cliente['nascimento'];} ?>" type="date" name="nascimento"><br><br>
+                <?php 
+                if(isset($error)){ echo $error;} 
+                if(isset($sucess)){ echo $sucess;}
+                ?>
+                    <button class="btn_style" type="submit">Atualizar</button>
+                    <a href="listagem_usuarios.php"><button class="btn_style">Retornar</button></a>
+                    <a href="index.php"><button class="btn_style">Welcome</button></a>
+            </form>
+            <div>
+            </div>
+        </div>
+    </div>        
 </body>
 </html>
 

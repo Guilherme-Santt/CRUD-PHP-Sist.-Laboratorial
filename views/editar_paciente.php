@@ -190,10 +190,10 @@ $num_exames = $query_exames->num_rows;
     <!-- INSERÇÃO CAMPOS POST NO FORM -->
     <div class="container_body">
         <div class="container_son">   
-            <p>Informações do paciente:</p>
+            <p>Informações do paciente:</p><br>
             <form action="" method="POST">
                 <div>
-                    <label>Nome: </label><br>
+                    <label>Nome: </label>
                     <input value="<?php echo $cliente['nome']; ?>" type="text" name="nome">
 
                     <label>Endereço:</label>
@@ -207,6 +207,7 @@ $num_exames = $query_exames->num_rows;
 
                     <label>Data de nascimento:</label>
                     <input value ="<?php if(!empty($cliente['nascimento'])){ echo $cliente['nascimento'];} ?>" placeholder="dia/mês/ano" type="date" name="nascimento"><br><br>
+
                 
                     <p>Adicionar um exame no atendimento:</p>
                     <label>Exame ID</label>
