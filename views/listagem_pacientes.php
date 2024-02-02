@@ -115,7 +115,7 @@ include('../Control/SelectFrom.php');
     <div class="container_body">
         <div class="container_son">       
             <div>
-                <button class="btn_style" onclick="abrir_modal()">Cadastrar paciente</button>
+                <button class="btn_style" onclick="abrir_modal()">Cadastro rápido</button>
             </div><br>
             <p>Seus pacientes cadastrados</p>
             <table  border="1px" cellpadding="10">
@@ -180,7 +180,7 @@ include('../Control/SelectFrom.php');
         <div class="modal">
             <button class="fechar" id="fechar">X</button>
             <!-- FORMULARIO POST INFORMAÇÕES DE CADASTRO -->
-            <form action="../Control/Post_CriarPacientes.php" method="POST">
+            <form action="../Control/Post_CriarPacientesRapido.php" method="POST">
                 <p>Cadastrar paciente⤵</p>
                 <label>Nome</label><br>
                 <input  type="text" value="<?php if(isset($_POST['nome'])) echo $_POST['nome']; ?>" name="nome"><br><br>
