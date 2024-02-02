@@ -96,15 +96,14 @@ if(!isset($_SESSION)){
         </div>
     </div>
 
-
     <div class="container_body">
         <div class="container_son">
-            <form action="../Control/Post_CriarPacientesCompleto.php" method="POST">
+            <form action="../Control/Post_CriarPacienteCompleto.php" method="POST">
                     <label>Nome</label>
                     <input  type="text" value="<?php if(isset($_POST['nome'])) echo $_POST['nome']; ?>" name="nome">
                     
                     <label>CPF</label>
-                    <input  type="text" value="<?php if(isset($_POST['CPF'])) echo $_POST['CPF']; ?>" name="endereco">
+                    <input  type="text" value="<?php if(isset($_POST['CPF'])) echo $_POST['CPF']; ?>" name="CPF">
 
                     <label>RG</label>
                     <input  type="text" value="<?php if(isset($_POST['RG'])) echo $_POST['RG']; ?>" name="RG">
@@ -118,6 +117,9 @@ if(!isset($_SESSION)){
                     <label>CEP</label>
                     <input  type="text" value="<?php if(isset($_POST['CEP'])) echo $_POST['CEP']; ?>" name="CEP"><br><br>
                     
+                    <label>Nome da mãe</label>
+                    <input  type="text" value="<?php if(isset($_POST['mae'])) echo $_POST['mae']; ?>" name="mae">
+
                     <label>Cidade</label>
                     <input  type="text" value="<?php if(isset($_POST['cidade'])) echo $_POST['cidade']; ?>" name="cidade">
 
@@ -130,8 +132,12 @@ if(!isset($_SESSION)){
                     <label>Convênio</label>
                     <input  type="text" value="<?php if(isset($_POST['convenio'])) echo $_POST['convenio']; ?>" name="convenio">
 
+                    
+                    <label>Diagnostico</label>
+                    <input  type="text" value="<?php if(isset($_POST['diagnostico'])) echo $_POST['diagnostico']; ?>" name="diagnostico"><br><br>
+
                     <label>Medicamentos</label>
-                    <input  type="text" value="<?php if(isset($_POST['medicamentos'])) echo $_POST['medicamentos']; ?>" name="medicamentos"><br><br>
+                    <input  type="text" value="<?php if(isset($_POST['medicamentos'])) echo $_POST['medicamentos']; ?>" name="medicamentos">
 
                     <label>Observações</label>
                     <input  type="text" value="<?php if(isset($_POST['observacoes'])) echo $_POST['observacoes']; ?>" name="observacoes">
