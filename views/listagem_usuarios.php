@@ -1,9 +1,9 @@
 <?php
-     if(!isset($_SESSION)){
-         session_start();
-         if(!isset($_SESSION['usuario'])){
-             die('Você não está logado!' . '<a href="../views/index_login.php">Clique aqui para logar</a>');
-         }    
+if(!isset($_SESSION)){
+    session_start();
+    if(!isset($_SESSION['usuario'])){
+        header("location: ../views/index_login.php");
+    }    
 }
 include('conexao.php');
 include('../Control/function.php');

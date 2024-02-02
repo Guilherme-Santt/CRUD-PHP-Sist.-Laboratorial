@@ -1,6 +1,11 @@
 <?php
+if(!isset($_SESSION)){
+    session_start();
+    if(!isset($_SESSION['usuario'])){
+        header("location: ../views/index_login.php");
+    }    
+}
 $id = intval($_GET['id']);
-
 include('../views/conexao.php');
 $sql_pacientes_exames = "SELECT * FROM pacientes_exames WHERE id = '$id'";
 $query_p_e = $mysqli->query($sql_pacientes_exames);

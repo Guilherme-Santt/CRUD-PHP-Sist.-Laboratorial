@@ -1,4 +1,10 @@
 <?php
+if(!isset($_SESSION)){
+    session_start();
+    if(!isset($_SESSION['usuario'])){
+        header("location: ../views/index_login.php");
+    }    
+}
 include('../views/conexao.php');
 
 // VERIFICAÇÃO DE INSERÇÃO NOS CAMPOS POST DO FORMULÁRIO

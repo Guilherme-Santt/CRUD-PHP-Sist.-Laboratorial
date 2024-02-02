@@ -3,7 +3,7 @@
 if(!isset($_SESSION)){
     session_start();
     if(!isset($_SESSION['usuario'])){
-        die('Você não está logado!' . '<a href="../views/index_login.php">Clique aqui para logar</a>');
+        header("location: ../views/index_login.php");
     }    
 }
 include('../Control/function.php');
