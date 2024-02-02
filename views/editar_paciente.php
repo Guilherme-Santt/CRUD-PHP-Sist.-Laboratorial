@@ -37,6 +37,14 @@ if(count($_POST) > 0){
     if(empty($convenio))
         $alert = "CAMPO CONVENIO OBRIGATÓRIO ";
 
+    $verify_convenio = $mysqli->query("SELECT * FROM convenio WHERE nome = '$convenio'");
+    $verifyc = $verify_convenio->fetch_assoc();
+    if($verifyc){
+        $convenio;
+    }else{
+        $alert = "CONVÊNIO NÃO CADASTRADO";
+    }
+
     if(empty($RG))
         $alert = "CAMPO RG OBRIGATÓRIO ";
 
@@ -69,7 +77,7 @@ if(count($_POST) > 0){
 
     if(strlen($telefone) != 11)
         $alert = "TELEFONE INCORRETO";
-
+    
     // INSERÇÃO CAMPO EXAME NA TABELA PACIENTES_EXAMES
     if(!empty($codigo)){
         // VERIFICAÇÃO SE O EXAME EXISTE NA TABELA EXAMES
@@ -88,20 +96,30 @@ if(count($_POST) > 0){
                                 $ql_insert = "INSERT INTO pacientes_exames (paciente_id, exame_id) VALUES ('$id', '$codigo')";
                                 $query_insert = $mysqli->query($ql_insert);
                             }
-            }else{
-                $alert = "EXAME INEXISTENTE";
-            }
-    }
-
+                        }else{
+                            $alert = "EXAME INEXISTENTE";
+                        }
+                    }
+                    
     // VERIFICAÇÃO SE EXISTE ALGUM ERRO    
     if($alert){
-        die('$alert');
+        die($alert);
     }
     // ATUALIZAÇÃO DAS INFORMAÇÕES ALTERADAS
     else{
         $sql_code = "UPDATE pacientes
         SET nome = '$nome', 
         endereco = '$endereco',
+        RG = '$RG',
+        CEP = '$CEP',
+        CPF = '$CPF',
+        nome_mae = '$mae',
+        cidade = '$cidade',
+        CRM = '$CRM',
+        Convenio = '$convenio',
+        diagnostico = '$diagnostico',
+        medicamentos = '$medicamentos',
+        observacoes = '$observacoes',
         email      = '$email',
         telefone   = '$telefone',
         nascimento = '$nascimento' WHERE id  = '$id'";
@@ -235,7 +253,7 @@ $num_exames = $query_exames->num_rows;
                     <input value="<?php echo $cliente['RG']; ?>" placeholder="RG do paciente" type="text" name="RG">
 
                     <label>CPF: </label>
-                    <input value="<?php echo $cliente['CPF']; ?>" placeholder="CPF do paciente" ="text" name="CPF">
+                    <input value="<?php echo $cliente['CPF']; ?>" placeholder="CPF do paciente" type="text" name="CPF">
 
                     <label>Nome da mãe: </label>
                     <input value="<?php echo $cliente['nome_mae']; ?>" type="text" name="mae">
@@ -257,9 +275,15 @@ $num_exames = $query_exames->num_rows;
 
                     <label>Data de nascimento:</label>
                     <input value ="<?php if(!empty($cliente['nascimento'])){ echo $cliente['nascimento'];} ?>" placeholder="dia/mês/ano" type="date" name="nascimento"><br><br>
+                   
+                    <label>CRM: </label>
+                    <input value="<?php echo $cliente['CRM']; ?>" placeholder="CRM do médico" ="text" name="CRM">
 
                     <label>Convênio:</label>
-                    <input value ="<?php if(!empty($cliente['convenio'])){ echo $cliente['convenio'];} ?>" placeholder="Convênio do paciente?" type="text" name="convenio">
+                    <input value ="<?php if(!empty($cliente['Convenio'])){ echo $cliente['Convenio'];} ?>" placeholder="Convênio do paciente?" type="text" name="convenio">
+
+                    <label>Diagnóstico: </label>
+                    <input value="<?php echo $cliente['diagnostico']; ?>" placeholder="diagnóstico" type="text" name="diagnostico">
 
                     <label>Medicamentos:</label>
                     <input value ="<?php if(!empty($cliente['medicamentos'])){ echo $cliente['medicamentos'];} ?>" placeholder="Medicamentos prescritos?" type="text" name="medicamentos">

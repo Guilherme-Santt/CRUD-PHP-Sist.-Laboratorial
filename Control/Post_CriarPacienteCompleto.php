@@ -42,6 +42,17 @@ if(count($_POST) > 0){
     if(empty($_POST['cidade']))
         $alert ="CAMPO CIDADE OBRIGATÓRIO";
 
+    if(empty($_POST['convenio']))
+        $alert = "CONVÊNIO OBRIGATÓRIO";
+
+    $verify_convenio = $mysqli->query("SELECT * FROM convenio WHERE nome = '$convenio'");
+    $verifyc = $verify_convenio->fetch_assoc();
+    if($verifyc){
+        $convenio;
+    }else{
+        $alert = "CONVÊNIO NÃO CADASTRADO";
+    }
+
     if(empty($_POST['sexo']) )
         $alert ="SELEÇÃO SEXO OBRIGATÓRIA";
 
