@@ -105,7 +105,7 @@ $num_exames = $query_exames->num_rows;
         <div class="seletc_g">
             <div class="select_header">
                 <div>
-                    <a href="../views/index.php"><img class="icon_select" src="../icons/monitor (2).png"><
+                    <a href="../views/index.php"><img class="icon_select" src="../icons/monitor (2).png">
                 </div>
             </div>
             <div class="select_header">
