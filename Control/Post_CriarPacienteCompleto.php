@@ -53,6 +53,17 @@ if(count($_POST) > 0){
         $alert = "CONVÊNIO NÃO CADASTRADO";
     }
 
+    if(empty($_POST['CRM']))
+    $alert = "CRM OBRIGATÓRIO";
+
+    $verify_crm = $mysqli->query("SELECT * FROM medico WHERE CRM = '$CRM'");
+    $verifycrm = $verify_crm->fetch_assoc();
+    if($verifycrm){
+        $CRM;
+    }else{
+        $alert = "CRM DO MÉDICO NÃO CADASTRADO";
+    }   
+
     if(empty($_POST['sexo']) )
         $alert ="SELEÇÃO SEXO OBRIGATÓRIA";
 
