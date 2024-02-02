@@ -19,6 +19,7 @@ include('../Control/SelectFrom.php');
 <!-- CÓDIGOS CSS -->
 <link rel="stylesheet" href="../css/index.css">
 <link rel="stylesheet" href="../css/modal.css">
+<link rel="stylesheet" href="../css/button.css">
 
 <body> 
     <!-- HEADER SUPERIOR -->
@@ -112,11 +113,11 @@ include('../Control/SelectFrom.php');
     <div class="container_body">
         <div class="container_son">
             <div>
-                <button class="button1" onclick="abrir_modal()">Cadastrar exames</button>
+                <button class="btn_style" onclick="abrir_modal()">Cadastrar exames</button>
             </div>
             
-            <h1>Exames</h1>
-            <table cellpadding="10">
+            <p>Exames cadastrados em seu sistema</p>
+            <table border="1px">
                 <thead>
                     <th>ID exame</th>
                     <th>Código exame</th>
@@ -162,7 +163,7 @@ include('../Control/SelectFrom.php');
                 <label>Descrição exame</label></label><br><br>
                 <input type="text" value="<?php if(isset($_POST['descricao'])) echo $_POST['descricao']; ?>" name="descricao"><br><br>
     
-                <button type="submit" name="cadastrar">Cadastrar exame</button>
+                <button class="btn_style" type="submit" name="cadastrar">Cadastrar exame</button>
             </form>
         </div>
     </div>    

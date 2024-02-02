@@ -1,18 +1,6 @@
-/* html,body{
-    height:100%;
-  } */
-  /* body{
-    text-align:center;
-  } */
-  /* body:before{
-    content:'';
-    height:100%;
-    display:inline-block;
-    vertical-align:middle;
-  } */
   .btn_style{
-    background:rgba(101, 4, 196, 1);
-    color:#fff;
+    background:rgb(22, 114, 201);
+    color:#0a0202;
     border:none;
     position:relative;
     width: 70px;
@@ -25,9 +13,9 @@
   }
 
   .btn_style:hover{
-    background:#000000;
-    color: white;
-    color:rgba(101, 4, 196, 1);
+    background:#eeeaea62;
+    color: rgb(15, 1, 1);
+    color:rgb(22, 114, 201);
   }
   .btn_style:before,button:after{
     content:'';
@@ -36,7 +24,7 @@
     right:6;
     height:2px;
     width:0;
-    background:rgba(101, 4, 196, 1);
+    background:rgb(22, 114, 201);
     transition:400ms ease all;
   }
   .btn_style:after{
