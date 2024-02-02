@@ -20,19 +20,53 @@ if(count($_POST) > 0){
     $telefone = $_POST['telefone'];
     $nascimento = $_POST['nascimento'];
     $codigo = $_POST['id_exame'];
+    $CRM = $_POST['CRM'];
+    $convenio = $_POST['convenio'];
+    $diagnostico = $_POST['diagnostico'];
+    $medicamentos = $_POST['medicamentos'];
+    $observacoes = $_POST['observacoes'];
+    $RG = $_POST['RG'];
+    $CPF = $_POST['CPF'];
+    $mae = $_POST['mae'];
+    $CEP = $_POST['CEP'];
+    $cidade = $_POST['cidade'];
+
+    if(empty($CRM))
+        $alert = "CAMPO CRM OBRIGATÓRIO ";
+
+    if(empty($convenio))
+        $alert = "CAMPO CONVENIO OBRIGATÓRIO ";
+
+    if(empty($RG))
+        $alert = "CAMPO RG OBRIGATÓRIO ";
+
+    if(empty($CPF))
+        $alert = "CAMPO RG OBRIGATÓRIO ";
+
+    if(empty($CEP))
+        $alert = "CAMPO CEP OBRIGATÓRIO ";
+
+    if(empty($cidade))
+        $alert = "CAMPO CIDADE OBRIGATÓRIO ";
 
     if(empty($nome))
         $alert = "CAMPO NOME OBRIGATÓRIO ";
+
     if(Strlen($nome) < 3 || Strlen($nome) > 100)
         $alert = "NOME INCORRETO";
+
     if(empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL))
         $alert = "CAMPO E-MAIL INCORRETO";
+
     if(empty($nascimento))
         $alert = "DATA DE NASCIMENTO OBRIGATÓRIO";
+
     if(strlen($nascimento) != 10)
         $alert = "DATA DE NASCIMENTO INCORRETA";
+
     if(empty($telefone))
         $alert = "TELEFONE OBRIGATÓRIO";
+
     if(strlen($telefone) != 11)
         $alert = "TELEFONE INCORRETO";
 
@@ -61,6 +95,7 @@ if(count($_POST) > 0){
 
     // VERIFICAÇÃO SE EXISTE ALGUM ERRO    
     if($alert){
+        die('$alert');
     }
     // ATUALIZAÇÃO DAS INFORMAÇÕES ALTERADAS
     else{
