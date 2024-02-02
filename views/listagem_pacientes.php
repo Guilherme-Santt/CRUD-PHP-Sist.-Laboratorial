@@ -8,7 +8,10 @@ if(!isset($_SESSION)){
 }
 include('../Control/SelectFrom.php');     
 include('../Control/function.php');
-include('../Control/SelectFrom.php');
+$sql_pacientes   = "SELECT * FROM pacientes";
+$query_pacientes = $mysqli->query($sql_pacientes) or die($mysqli->error);
+$num_pacientes = $query_pacientes->num_rows; 
+
 ?>
 
 <!DOCTYPE html>
@@ -122,13 +125,14 @@ include('../Control/SelectFrom.php');
             <p>Seus pacientes cadastrados</p>
             <table  border="1px" cellpadding="10">
                 <thead>
-                    <th>ID</th>
+                    <th>Atendimento</th>
                     <th>Nome</th>
                     <th>Endereço</th>
                     <th>Sexo</th>
                     <th>E-mail</th>
-                    <th>Telefone</th>
+                    <th>Celular</th>
                     <th>Nascimento</th>
+                    <th>Convênio</th>
                     <th>Data de cadastro</th>
                     <th>Ações</th>
                 </thead>
@@ -161,6 +165,7 @@ include('../Control/SelectFrom.php');
                                 <td><?php echo $pacientes['email']?>  </td>
                                 <td><?php echo $telefone; ?>  </td>
                                 <td><?php echo $nascimento ?>   </td>
+                                <td><?php if(isset($paciente['Convenio'])){echo $pacientes['Convenio'];}else{ echo "Convênio não informado";}?>  </td>
                                 <td><?php echo $data_cadastro;?>    </td>
                                 <td>
                                 <a class="edit" href="editar_paciente.php?id=<?php echo $pacientes['ID']?>">Editar</a>
@@ -173,6 +178,7 @@ include('../Control/SelectFrom.php');
                     ?>
                 </tbody>
             </table>
+            <p>Caso for realizado o cadastro através da opção "Cadastro rápido" será necessário completar as informações do paciente posteriormente para ter êxito ao conferi-lo.</p>
         </div>
     </div>
     

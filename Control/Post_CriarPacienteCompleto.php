@@ -1,6 +1,14 @@
 <?php 
-
+// VERICIAÇÃO DE SESSÃO
+if(!isset($_SESSION)){
+    session_start();
+    if(!isset($_SESSION['usuario'])){
+        header("location: ../views/index_login.php");
+    }    
+}
+$id = $_SESSION['id'];
 $alert = "";
+
 if(count($_POST) > 0){
     $email = $_POST['email']; 
     $nome = $_POST['nome'];
@@ -56,8 +64,8 @@ if(count($_POST) > 0){
         die("$alert");
     }else{
         include('../views/conexao.php');
-        $sqlinsert = "INSERT INTO pacientes (nome, RG, CPF, email, endereco, CEP, cidade, telefone, nascimento, CRM, convenio, diagnostico, medicamentos, observacoes, mae, data, sexo)  
-        values                              ('$nome', '$RG', '$CPF', '$email', '$endereco', '$CEP', '$cidade', '$telefone', '$nascimento', '$CRM', '$convenio', '$diagnostico','$medicamentos', '$observacoes', '$mae', NOW(), '$sexo')";
+        $sqlinsert = "INSERT INTO pacientes (nome, RG, CPF, email, endereco, CEP, cidade, telefone, nascimento, CRM, convenio, diagnostico, medicamentos, observacoes, mae, data, sexo, id_user)  
+        values  ('$nome', '$RG', '$CPF', '$email', '$endereco', '$CEP', '$cidade', '$telefone', '$nascimento', '$CRM', '$convenio', '$diagnostico','$medicamentos', '$observacoes', '$mae', NOW(), '$sexo', '$id')";
         $queryinsert = $mysqli->query($sqlinsert) or die($mysqli->error);
         if($queryinsert)
             header("location: ../views/Criar_Paciente.php");

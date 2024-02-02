@@ -5,7 +5,7 @@ if(!isset($_SESSION)){
         header("location: ../views/index_login.php");
     }    
 }
-include('conexao.php');
+include('../views/conexao.php');
 $id = $_SESSION['usuario'];
 // INFORMAÇÕES DE USUARIOS & QUANTIDADE DE USUARIOS
 
@@ -15,9 +15,6 @@ $usuario = $query->fetch_assoc();
 $cont_user = $query->num_rows; 
 
 
-// COMANDO SQL PARA CONSULTAR QUANTIDADE DE CLIENTES NO SISTEMA
-$sql_pacientes   = "SELECT * FROM pacientes";
-$query_pacientes = $mysqli->query($sql_pacientes) or die($mysqli->error);
-$num_pacientes = $query_pacientes->num_rows; 
+
 
 ?>

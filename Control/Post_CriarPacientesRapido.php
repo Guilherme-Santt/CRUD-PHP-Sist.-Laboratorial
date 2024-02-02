@@ -8,7 +8,10 @@ if(!isset($_SESSION)){
 }     
 
 include('../views/conexao.php');
-   // VERIFICAÇÃO DA INSERÇÃO DOS CAMPOS POST NO FORM
+$id = $_SESSION['usuario'];
+
+// VERIFICAÇÃO DA INSERÇÃO DOS CAMPOS POST NO FORM
+
 $alert = "";
 if(count($_POST) > 0){
     $email = $_POST['email']; 
@@ -35,29 +38,29 @@ if(count($_POST) > 0){
     if(empty($nascimento) || strlen($nascimento) < 10 || strlen($nascimento) > 10 )
         $alert = "DATA DE NASCIMENTO DEVE SEGUIR PADRÃO DIA/MÊS/ANO";     
 
-    if(empty($telefone))
+    if(empty($telefone) || strlen($telefone) > 11 || strlen($telefone) < 11)
         $alert ="CAMPO TELEFONE OBRIGATÓRIO";
         
-    if($alert){}
-        else{
-            $sql_codeverify = "SELECT * FROM pacientes WHERE email = '$email'";
-            $query_c = $mysqli->query($sql_codeverify);
-            $paciente = $query_c->fetch_assoc();
-            $verify = $query_c->num_rows;
-                if($verify){
-                    $alert = "PACIENTE JÁ CADASTRADO";
-                    }
-                    else{
-                        $sqlinsert = "INSERT INTO pacientes (nome, email, endereco, telefone, nascimento, data, sexo)  
-                        values ('$nome', '$email', '$endereco', '$telefone', '$nascimento', NOW(), '$sexo')";
-                        $queryinsert = $mysqli->query($sqlinsert);
-                            if($queryinsert){
-                                $alert = "PACIENTE CADASTRADO COM SUCESSO";
-                                header("location: ../views/listagem_pacientes.php");
+    if($alert){
+        die($alert);
+    }
+    else{
+        $sqlcode = "SELECT * FROM clientes WHERE id = '$id'";
+        $query = $mysqli->query($sqlcode);
+        $id_user = $query->fetch_assoc();
 
-                            }     
-                    }   
-                }  
+        $sqlinsert = "INSERT INTO pacientes (nome, email, endereco, telefone, nascimento, data, sexo, id_user)  
+        values ('$nome', '$email', '$endereco', '$telefone', '$nascimento', NOW(), '$sexo', '$id')";
+        $queryinsert = $mysqli->query($sqlinsert);
+            if($queryinsert){
+                $alert = "PACIENTE CADASTRADO COM SUCESSO";
+                header("location: ../views/listagem_pacientes.php");
+
+            }     
+        }
 }
+
+     
+
 
 ?>
