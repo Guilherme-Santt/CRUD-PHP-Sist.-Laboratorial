@@ -105,7 +105,7 @@ $num_exames = $query_exames->num_rows;
         <div class="seletc_g">
             <div class="select_header">
                 <div>
-                    <img class="icon_select" src="../icons/monitor (2).png">
+                    <a href="../views/index.php"><img class="icon_select" src="../icons/monitor (2).png"><
                 </div>
             </div>
             <div class="select_header">
@@ -194,26 +194,20 @@ $num_exames = $query_exames->num_rows;
             <form action="" method="POST">
                 <div>
                     <label>Nome: </label><br>
-                    <input value="<?php echo $cliente['nome']; ?>" type="text" name="nome"><br><br>
-                </div>
+                    <input value="<?php echo $cliente['nome']; ?>" type="text" name="nome">
 
-                <div>
-                    <label>Endereço:</label><br>
-                    <input value= "<?php echo $cliente['endereco']; ?>" type="text" name="endereco"><br><br>
-                </div>
+                    <label>Endereço:</label>
+                    <input value= "<?php echo $cliente['endereco']; ?>" type="text" name="endereco">
 
-                <div>
-                    <label>E-mail:</label><br>
-                    <input value ="<?php if(!empty($cliente['telefone'])){ echo ($cliente['email']);} ?>" type="email" name="email"><br><br>
-                </div>
+                    <label>E-mail:</label>
+                    <input value ="<?php if(!empty($cliente['telefone'])){ echo ($cliente['email']);} ?>" type="email" name="email">
 
-                <div>
-                    <label>Telefone:</label><br>
-                    <input value ="<?php if(!empty($cliente['telefone'])){ echo $cliente['telefone'];} ?>" placeholder="11988888888" type="text" name="telefone"><br><br>
-                </div>
-                    <label>Data de nascimento:</label><br>
-                    <input value ="<?php if(!empty($cliente['nascimento'])){ echo $cliente['nascimento'];} ?>" placeholder="dia/mês/ano" type="date" name="nascimento"><br>
-                <p>
+                    <label>Telefone:</label>
+                    <input value ="<?php if(!empty($cliente['telefone'])){ echo $cliente['telefone'];} ?>" placeholder="11988888888" type="text" name="telefone">
+
+                    <label>Data de nascimento:</label>
+                    <input value ="<?php if(!empty($cliente['nascimento'])){ echo $cliente['nascimento'];} ?>" placeholder="dia/mês/ano" type="date" name="nascimento"><br><br>
+                
                     <p>Adicionar um exame no atendimento:</p>
                     <label>Exame ID</label>
                     <input  type="text" name="id_exame"><br><br>
