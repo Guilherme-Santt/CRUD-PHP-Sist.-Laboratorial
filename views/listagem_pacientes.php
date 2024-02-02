@@ -115,7 +115,9 @@ include('../Control/SelectFrom.php');
     <div class="container_body">
         <div class="container_son">       
             <div>
-                <button class="btn_style" onclick="abrir_modal()">Cadastro rápido</button>
+                <button class="btn_style" onclick="abrir_modal()">Cadastro rápido</button>       
+                <a href="Criar_Paciente.php"><button class="btn_style">Cadastro Completo</button></a>
+
             </div><br>
             <p>Seus pacientes cadastrados</p>
             <table  border="1px" cellpadding="10">

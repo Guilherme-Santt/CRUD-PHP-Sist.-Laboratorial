@@ -196,8 +196,23 @@ $num_exames = $query_exames->num_rows;
                     <label>Nome: </label>
                     <input value="<?php echo $cliente['nome']; ?>" type="text" name="nome">
 
+                    <label>RG: </label>
+                    <input value="<?php echo $cliente['RG']; ?>" placeholder="RG do paciente" type="text" name="RG">
+
+                    <label>CPF: </label>
+                    <input value="<?php echo $cliente['CPF']; ?>" placeholder="CPF do paciente" ="text" name="CPF">
+
+                    <label>Nome da mãe: </label>
+                    <input value="<?php echo $cliente['nome_mae']; ?>" type="text" name="mae">
+
                     <label>Endereço:</label>
-                    <input value= "<?php echo $cliente['endereco']; ?>" type="text" name="endereco">
+                    <input value= "<?php echo $cliente['endereco']; ?>" type="text" name="endereco"><br><br>
+                    
+                    <label>Cidade:</label>
+                    <input value ="<?php if(!empty($cliente['cidade'])){ echo $cliente['cidade'];} ?>"  type="text" name="cidade">
+
+                    <label>CEP:</label>
+                    <input value ="<?php if(!empty($cliente['CEP'])){ echo $cliente['CEP'];} ?>" type="text" name="CEP">
 
                     <label>E-mail:</label>
                     <input value ="<?php if(!empty($cliente['telefone'])){ echo ($cliente['email']);} ?>" type="email" name="email">
@@ -207,6 +222,16 @@ $num_exames = $query_exames->num_rows;
 
                     <label>Data de nascimento:</label>
                     <input value ="<?php if(!empty($cliente['nascimento'])){ echo $cliente['nascimento'];} ?>" placeholder="dia/mês/ano" type="date" name="nascimento"><br><br>
+
+                    <label>Convênio:</label>
+                    <input value ="<?php if(!empty($cliente['convenio'])){ echo $cliente['convenio'];} ?>" placeholder="Convênio do paciente?" type="text" name="convenio">
+
+                    <label>Medicamentos:</label>
+                    <input value ="<?php if(!empty($cliente['medicamentos'])){ echo $cliente['medicamentos'];} ?>" placeholder="Medicamentos prescritos?" type="text" name="medicamentos">
+
+                    <label>Observações:</label>
+                    <input value ="<?php if(!empty($cliente['telefone'])){ echo $cliente['observacoes'];} ?>" placeholder="Alguma observação?" type="text" name="observacoes"><br><br>
+
 
                 
                     <p>Adicionar um exame no atendimento:</p>
