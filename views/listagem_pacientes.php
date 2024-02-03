@@ -85,16 +85,7 @@ $num_pacientes = $query_pacientes->num_rows;
                     </h3>           
                 </div>
             </div>
-            <div class="select_header">
-                <div>
-                    <img onclick="abrir_modal()" class="icon_select" src="../icons/calendario.png">
-                </div>
-                <div>
-                    <h3>
-                        Sugestões
-                    </h3>
-                </div>       
-            </div>
+
             <div class="select_header">
                 <div>
                     <a href="../Control/logout.php"><img class="icon_select" src="../icons/fracassado.png"></a>

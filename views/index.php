@@ -171,6 +171,8 @@ if(isset($_POST['sugestao'])){
     <!-- DIVISÃO CONTAINER -->
     <div class="container_body">
         <div class="container_son">
+            <a href="listagem_convenios.php">LISTAGEM CONVÊNIOS</a><BR><br>
+            <a href="listagem_medicos.php">LISTAGEM MÉDICOS</a>
 
         </div>
         <div class="container_son">
