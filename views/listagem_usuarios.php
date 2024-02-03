@@ -181,6 +181,47 @@ include('../Control/function.php');
         </div>
 
         <div class="container_son">
+        <p>Médicos cadastrados no seu sistema</p>
+            <p>
+                <?php 
+                // if($alert){echo '<p>'. $alert . '</p>' ;}   
+                ?>
+            </p>    
+            <table border="1px" ID="alter" cellpadding="10">
+                <thead>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>CRM</th>
+                </thead>
+                <tbody> 
+                    <?php 
+                    // COMANDO SQL PARA CONSULTAR QUANTIDADE DE CLIENTES NO SISTEMA
+                    $sql_medicos   = "SELECT * FROM medicos";
+                    $query_medicos = $mysqli->query($sql_medicos) or die($mysqli->error);
+                    $num_medicos = $query_medicos->num_rows;
+                    if($num_medicos == 0) { 
+                        ?> 
+                <tr>
+                    <td colspan="7">Nenhum usuário foi encontrado!</td>
+                </tr>
+                <?php }
+                    else{ 
+                        while($medico = $query_medicos->fetch_assoc()){
+                    ?>     
+                    <tr>
+                        <td><?php echo $medico['id']?>     </td>
+                        <td><?php echo $medico['nome']?>   </td>
+                        <td><?php echo $medico['CRM']?>     </td>
+                        <td>
+                            <a class="error" href="../Control/deletar_usuario.php?id=<?php echo $cliente['id']?>">Remover</a>
+                        </td>
+                    </tr>             
+                    <?php
+                    }
+                }
+                ?>
+                </tbody>
+            </table>
         </div>
     </div>            
     <!-- DIVISÃO DE MODAL CONTRALADA POR CSS/MODAL.CSS -->
