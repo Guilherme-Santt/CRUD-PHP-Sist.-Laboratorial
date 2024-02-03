@@ -109,20 +109,21 @@ include('../Control/function.php');
         <p class="white">Usuário: <b><?php echo $usuario['nome']?></b></p>
         <p>Local System <b><?php echo $usuario['unidade']?></b></p>
     </div>
+
+                    <!-- DIVISÕES DE TABELAS DE INFORMAÇÕES -->
+                    <!-- ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ -->
+                    <!-- ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ -->
+
+
     <!-- DIVISÃO GERAL DAS INFORMAÇÕES NO CONTAINER -->
     <div class="container_body">
         <!-- DIVISÃO TABELA DE USUARIOS CADASTRADOS NO CONTAINER -->
         <div class="container_son">
             <div>
                 <button class="btn_style" onclick="abrir_modal()">Cadastrar usuário</button>  
-                <button class="btn_style" >Cadastrar Convênio</button>  
+                <button class="btn_style" onclick="abrir_modal_convenio()">Cadastrar Convênio</button>  
             </div><br>
-            <p>Usuários cadastrados no seu sistema</p>
-            <p>
-                <?php 
-                // if($alert){echo '<p>'. $alert . '</p>' ;}   
-                ?>
-            </p>    
+            <p>Usuários cadastrados no seu sistema</p>  
             <table border="1px" ID="alter" cellpadding="10">
                 <thead>
                     <th>ID</th>
@@ -136,7 +137,7 @@ include('../Control/function.php');
                 </thead>
                 <tbody> 
                     <?php 
-                    // COMANDO SQL PARA CONSULTAR QUANTIDADE DE CLIENTES NO SISTEMA
+                    // COMANDO SQL PARA CONSULTAR QUANTIDADE DE USUÁRIOS NO SISTEMA
                     $sql_clientes   = "SELECT * FROM clientes";
                     $query_clientes = $mysqli->query($sql_clientes) or die($mysqli->error);
                     $num_clientes = $query_clientes->num_rows;
@@ -178,7 +179,8 @@ include('../Control/function.php');
                 </tbody>
             </table>
         </div>
-
+        
+        <!-- TABELA DE INFORMAÇÕES DOS MÉDICOS CADASTRADOS -->
         <div class="container_son">
             <div>   
                 <button class="btn_style" onclick="abrir_modal_medico()">Cadastrar Médico</button> 
@@ -211,7 +213,7 @@ include('../Control/function.php');
                         <td><?php echo $medico['nome']?>   </td>
                         <td><?php echo $medico['CRM']?>     </td>
                         <td>
-                            <a class="error" href="../Control/deletar_usuario.php?id=<?php echo $cliente['id']?>">Deletar</a>
+                            <a class="error" href="../Control/deletar_medico.php?id=<?php echo $medico['id']?>">Deletar</a>
                         </td>
                     </tr>             
                     <?php
@@ -220,9 +222,62 @@ include('../Control/function.php');
                 ?>
                 </tbody>
             </table>
-        </div>
-    </div>            
-    <!-- DIVISÃO DE MODAL CONTRALADA POR CSS/MODAL.CSS -->
+        </div>  
+
+
+
+        <!-- TABELA DE INFORMAÇÕES DOS CONVÊNIOS CADASTRADOS -->
+        <div class="container_son">
+            <div>   
+                <button class="btn_style" onclick="abrir_modal_convenio()">Cadastrar Convênio</button> 
+            </div><br>
+            <p>Convenios cadastrados no seu sistema</p>
+   
+            <table border="1px" ID="alter" cellpadding="10">
+                <thead>
+                    <th>ID</th>
+                    <th>Nome</th>
+                </thead>
+                <tbody> 
+                    <?php 
+                    // COMANDO SQL PARA CONSULTAR QUANTIDADE DE CLIENTES NO SISTEMA
+                    $sql_convenio   = "SELECT * FROM convenio";
+                    $query_convenio = $mysqli->query($sql_convenio) or die($mysqli->error);
+                    $num_convenio = $query_convenio->num_rows;
+                    if($num_convenio == 0) { 
+                        ?> 
+                <tr>
+                    <td colspan="7">Nenhum convênio foi encontrado!</td>
+                </tr>
+                <?php }
+                    else{ 
+                        while($convenio = $query_convenio->fetch_assoc()){
+                    ?>     
+                    <tr>
+                        <td><?php echo $convenio['id']?>     </td>
+                        <td><?php echo $convenio['nome']?>   </td>
+                        <td>
+                            <a class="error" href="../Control/deletar_convenio.php?id=<?php echo $convenio['id']?>">Deletar</a>
+                        </td>
+                    </tr>             
+                    <?php
+                    }
+                }
+                ?>
+                </tbody>
+            </table>
+        </div>  
+
+
+    </div>     
+    
+
+                <!-- MODAIS DE CADASTROS Á BAIXO -->
+                <!-- ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ -->
+                <!-- ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ -->
+
+
+    <!-- DIVISÃO DE MODAL CADASTRO DE PACIENTES CONTRALADA POR CSS/MODAL.CSS -->
     <div class="janela-modal" id="janela-modal">
         <div class="modal">
             <button class="fechar" id="fechar">X</button>
@@ -246,7 +301,8 @@ include('../Control/function.php');
             </form>
         </div>
     </div>
-    
+
+    <!-- DIVISÃO DE MODAL CADASTRO DE MÉDICOS CONTRALADA POR CSS/MODAL.CSS -->
     <div class="janela-modal" id="janela-modal-medico">
         <div class="modal">
             <div>
@@ -261,11 +317,27 @@ include('../Control/function.php');
                     <button type="submit" class="btn_style">Enviar</button> 
                 </form>
             </div>
-
         </div>
     </div>
+
+    <!-- DIVISÃO DE MODAL CADASTRO DE CONVÊNIO CONTRALADA POR CSS/MODAL.CSS -->
+    <div class="janela-modal" id="janela-modal-convenio">
+        <div class="modal">
+            <div>
+                <button class="fechar" id="fechar">X</button>
+
+                <form action="../Control/Post_CriarConvenio.php" method="POST">
+                    <p>Cadastrar convênio em seu sistema</p><br><br>
+                    <label>Nome Convênio</label>
+                    <input name="nome" type="text"><br><br>
+                    <button type="submit" class="btn_style">Enviar</button> 
+                </form>
+            </div>
+        </div>
+    
 <script src="../src/modal.js"></script>
 <script src="../src/modalmedico.js"></script>
+<script src="../src/modalconvenio.js"></script>
 
 </body>
 </html>
