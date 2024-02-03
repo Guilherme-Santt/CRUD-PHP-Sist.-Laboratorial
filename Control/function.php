@@ -1,10 +1,5 @@
 <?php
-if(!isset($_SESSION)){
-    session_start();
-    if(!isset($_SESSION['usuario'])){
-        header("location: ../views/index_login.php");
-    }    
-}
+
 // FUNÇÃO LIMPAR CARACTERES NO CAMPO TELEFONE
 function limpar_texto($str){ 
     return preg_replace("/[^0-9]/", "", $str); 

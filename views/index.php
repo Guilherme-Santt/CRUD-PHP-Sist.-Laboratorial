@@ -5,6 +5,7 @@ if(!isset($_SESSION)){
         header("location: ../views/index_login.php");
     }    
 }
+
 include('conexao.php');
 $id = $_SESSION['usuario'];
 

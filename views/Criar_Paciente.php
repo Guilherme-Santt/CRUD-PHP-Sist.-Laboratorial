@@ -5,6 +5,8 @@ if(!isset($_SESSION)){
         header("location: ../views/index_login.php");
     }    
 }
+$id = $_SESSION['usuario'];
+include('conexao.php')
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -130,11 +132,11 @@ if(!isset($_SESSION)){
                     <input  type="text" value="<?php if(isset($_POST['CRM'])) echo $_POST['CRM']; ?>" name="CRM" placeholder="CRM do médico">
 
                     <label>Convênio</label>
-                    <input  type="text" value="<?php if(isset($_POST['convenio'])) echo $_POST['convenio']; ?>" name="convenio">
+                    <input  type="text" value="<?php if(isset($_POST['convenio'])) echo $_POST['convenio']; ?>" name="convenio"><br><br>
 
                     
                     <label>Diagnostico</label>
-                    <input  type="text" value="<?php if(isset($_POST['diagnostico'])) echo $_POST['diagnostico']; ?>" name="diagnostico"><br><br>
+                    <input  type="text" value="<?php if(isset($_POST['diagnostico'])) echo $_POST['diagnostico']; ?>" name="diagnostico">
 
                     <label>Medicamentos</label>
                     <input  type="text" value="<?php if(isset($_POST['medicamentos'])) echo $_POST['medicamentos']; ?>" name="medicamentos">

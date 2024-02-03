@@ -165,7 +165,7 @@ $num_pacientes = $query_pacientes->num_rows;
                                 <td><?php echo $pacientes['email']?>  </td>
                                 <td><?php echo $telefone; ?>  </td>
                                 <td><?php echo $nascimento ?>   </td>
-                                <td><?php if(isset($paciente['Convenio'])){echo $pacientes['Convenio'];}else{ echo "Convênio não informado";}?>  </td>
+                                <td><?php if(!empty($pacientes['Convenio'])){echo $pacientes['Convenio'];}else{ echo "Convênio não informado";}?>  </td>
                                 <td><?php echo $data_cadastro;?>    </td>
                                 <td>
                                 <a class="edit" href="editar_paciente.php?id=<?php echo $pacientes['ID']?>">Editar</a>

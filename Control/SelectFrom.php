@@ -1,10 +1,5 @@
 <?php
-if(!isset($_SESSION)){
-    session_start();
-    if(!isset($_SESSION['usuario'])){
-        header("location: ../views/index_login.php");
-    }    
-}
+
 include('../views/conexao.php');
 $id = $_SESSION['usuario'];
 // INFORMAÇÕES DE USUARIOS & QUANTIDADE DE USUARIOS

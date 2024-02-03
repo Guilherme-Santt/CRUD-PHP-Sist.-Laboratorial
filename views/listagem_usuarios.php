@@ -115,6 +115,8 @@ include('../Control/function.php');
         <div class="container_son">
             <div>
                 <button class="btn_style" onclick="abrir_modal()">Cadastrar usuário</button>  
+                <button class="btn_style" onclick="abrir_modal_medico()">Cadastrar Médico</button> 
+                <button class="btn_style" >Cadastrar Convênio</button>  
             </div><br>
             <p>Usuários cadastrados no seu sistema</p>
             <p>
@@ -206,6 +208,25 @@ include('../Control/function.php');
         </div>
     </div>
     
-<script src="../src/script.js"></script>
+    <div class="janela-modal" id="janela-modal-medico">
+        <div class="modal">
+            <div>
+                <button class="fechar" id="fechar">X</button>
+
+                <form action="../Control/Post_CriarMedico.php" method="POST">
+                    <p>Cadastrar médico em seu sistema</p><br><br>
+                    <label>Nome médico</label>
+                    <input name="nome" type="text"><br><br>
+                    <label>CRM do médico</label>
+                    <input name="CRM" type="text"><br><br>
+                    <button type="submit" class="btn_style">Enviar</button> 
+                </form>
+            </div>
+
+        </div>
+    </div>
+<script src="../src/modal.js"></script>
+<script src="../src/modalmedico.js"></script>
+
 </body>
 </html>

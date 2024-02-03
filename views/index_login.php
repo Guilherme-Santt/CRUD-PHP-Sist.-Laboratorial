@@ -1,7 +1,7 @@
 <?php
 include('conexao.php');
-$error = "";
 // VERIFICAÇÃO POST Á PARTIR DO EMAIL
+$error = "";
 if(isset($_POST['email'])){
     $email = $_POST['email'];
     $senha = $_POST['senha'];
@@ -34,6 +34,7 @@ if(isset($_POST['email'])){
             }
         }
         if($error){
+            die($error);
         }
     }
 }

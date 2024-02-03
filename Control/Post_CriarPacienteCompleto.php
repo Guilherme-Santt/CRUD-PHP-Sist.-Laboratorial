@@ -6,7 +6,8 @@ if(!isset($_SESSION)){
         header("location: ../views/index_login.php");
     }    
 }
-$id = $_SESSION['id'];
+include('../views/conexao.php');
+$id = $_SESSION['usuario'];
 $alert = "";
 
 if(count($_POST) > 0){
@@ -53,16 +54,17 @@ if(count($_POST) > 0){
         $alert = "CONVÊNIO NÃO CADASTRADO";
     }
 
-    if(empty($_POST['CRM']))
-    $alert = "CRM OBRIGATÓRIO";
-
-    $verify_crm = $mysqli->query("SELECT * FROM medico WHERE CRM = '$CRM'");
-    $verifycrm = $verify_crm->fetch_assoc();
-    if($verifycrm){
-        $CRM;
+    if(empty($_POST['CRM'])){
+        $alert = "CRM OBRIGATÓRIO";
     }else{
-        $alert = "CRM DO MÉDICO NÃO CADASTRADO";
-    }   
+        $verify_crm = $mysqli->query("SELECT * FROM medicos WHERE CRM = '$CRM'");
+        $verifycrm = $verify_crm->fetch_assoc();
+            if($verifycrm){
+                $CRM;
+            }else{
+                $alert = "CRM DO MÉDICO NÃO CADASTRADO";
+            }   
+    }
 
     if(empty($_POST['sexo']) )
         $alert ="SELEÇÃO SEXO OBRIGATÓRIA";
@@ -85,8 +87,7 @@ if(count($_POST) > 0){
     if($alert){
         die("$alert");
     }else{
-        include('../views/conexao.php');
-        $sqlinsert = "INSERT INTO pacientes (nome, RG, CPF, email, endereco, CEP, cidade, telefone, nascimento, CRM, convenio, diagnostico, medicamentos, observacoes, mae, data, sexo, id_user)  
+        $sqlinsert = "INSERT INTO pacientes (nome, RG, CPF, email, endereco, CEP, cidade, telefone, nascimento, CRM, convenio, diagnostico, medicamentos, observacoes, nome_mae, data, sexo, id_user)  
         values  ('$nome', '$RG', '$CPF', '$email', '$endereco', '$CEP', '$cidade', '$telefone', '$nascimento', '$CRM', '$convenio', '$diagnostico','$medicamentos', '$observacoes', '$mae', NOW(), '$sexo', '$id')";
         $queryinsert = $mysqli->query($sqlinsert) or die($mysqli->error);
         if($queryinsert)

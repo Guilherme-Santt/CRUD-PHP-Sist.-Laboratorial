@@ -1,12 +1,6 @@
 <?php
-if(!isset($_SESSION)){
-    session_start();
-    if(!isset($_SESSION['usuario'])){
-        header("location: ../views/index_login.php");
-    }    
-}
 $db_hostname = "localhost";
-$db_bancodedados = "crud_clientes";
+$db_bancodedados = "system";
 $db_usuario = "root";
 $db_senha = "";
 

@@ -31,28 +31,30 @@ if(count($_POST) > 0){
     $CEP = $_POST['CEP'];
     $cidade = $_POST['cidade'];
 
-    if(empty($CRM))
+    if(empty($CRM)){
         $alert = "CAMPO CRM OBRIGATÓRIO ";
-
-    $verify_crm = $mysqli->query("SELECT * FROM medico WHERE CRM = '$CRM'");
-    $verifycrm = $verify_crm->fetch_assoc();
-    if($verifycrm){
-        $CRM;
     }else{
-        $alert = "CRM DO MÉDICO NÃO CADASTRADO";
-    } 
-
-    if(empty($convenio))
-        $alert = "CAMPO CONVENIO OBRIGATÓRIO ";
-
-    $verify_convenio = $mysqli->query("SELECT * FROM convenio WHERE nome = '$convenio'");
-    $verifyc = $verify_convenio->fetch_assoc();
-    if($verifyc){
-        $convenio;
-    }else{
-        $alert = "CONVÊNIO NÃO CADASTRADO";
+        $verify_crm = $mysqli->query("SELECT * FROM medicos WHERE CRM = '$CRM'");
+        $verifycrm = $verify_crm->fetch_assoc();
+        if($verifycrm){
+            $CRM;
+        }else{
+            $alert = "CRM DO MÉDICO NÃO CADASTRADO";
+        } 
     }
 
+    if(empty($convenio)){
+        $alert = "CAMPO CONVENIO OBRIGATÓRIO ";
+    }else{
+        $verify_convenio = $mysqli->query("SELECT * FROM convenio WHERE nome = '$convenio'");
+        $verifyc = $verify_convenio->fetch_assoc();
+        if($verifyc){
+            $convenio;
+        }else{
+            $alert = "CONVÊNIO NÃO CADASTRADO";
+        }
+    }
+    
     if(empty($RG))
         $alert = "CAMPO RG OBRIGATÓRIO ";
 
