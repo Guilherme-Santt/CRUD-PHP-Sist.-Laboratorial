@@ -115,7 +115,6 @@ include('../Control/function.php');
         <div class="container_son">
             <div>
                 <button class="btn_style" onclick="abrir_modal()">Cadastrar usuário</button>  
-                <button class="btn_style" onclick="abrir_modal_medico()">Cadastrar Médico</button> 
                 <button class="btn_style" >Cadastrar Convênio</button>  
             </div><br>
             <p>Usuários cadastrados no seu sistema</p>
@@ -181,12 +180,11 @@ include('../Control/function.php');
         </div>
 
         <div class="container_son">
-        <p>Médicos cadastrados no seu sistema</p>
-            <p>
-                <?php 
-                // if($alert){echo '<p>'. $alert . '</p>' ;}   
-                ?>
-            </p>    
+            <div>   
+                <button class="btn_style" onclick="abrir_modal_medico()">Cadastrar Médico</button> 
+            </div><br>
+            <p>Médicos cadastrados no seu sistema</p>
+   
             <table border="1px" ID="alter" cellpadding="10">
                 <thead>
                     <th>ID</th>
@@ -213,7 +211,7 @@ include('../Control/function.php');
                         <td><?php echo $medico['nome']?>   </td>
                         <td><?php echo $medico['CRM']?>     </td>
                         <td>
-                            <a class="error" href="../Control/deletar_usuario.php?id=<?php echo $cliente['id']?>">Remover</a>
+                            <a class="error" href="../Control/deletar_usuario.php?id=<?php echo $cliente['id']?>">Deletar</a>
                         </td>
                     </tr>             
                     <?php
