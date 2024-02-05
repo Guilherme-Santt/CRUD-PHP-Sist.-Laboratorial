@@ -170,51 +170,7 @@ include('../Control/function.php');
                 </tbody>
             </table>
         </div>
-        
-
-        <!-- TABELA DE INFORMAÇÕES DOS CONVÊNIOS CADASTRADOS -->
-        <div class="container_son">
-            <div>   
-                <button class="btn_style" onclick="abrir_modal_convenio()">Cadastrar Convênio</button> 
-            </div><br>
-            <p>Convenios cadastrados no seu sistema</p>
-   
-            <table border="1px" ID="alter" cellpadding="10">
-                <thead>
-                    <th>ID</th>
-                    <th>Nome</th>
-                </thead>
-                <tbody> 
-                    <?php 
-                    // COMANDO SQL PARA CONSULTAR QUANTIDADE DE CLIENTES NO SISTEMA
-                    $sql_convenio   = "SELECT * FROM convenio";
-                    $query_convenio = $mysqli->query($sql_convenio) or die($mysqli->error);
-                    $num_convenio = $query_convenio->num_rows;
-                    if($num_convenio == 0) { 
-                        ?> 
-                <tr>
-                    <td colspan="7">Nenhum convênio foi encontrado!</td>
-                </tr>
-                <?php }
-                    else{ 
-                        while($convenio = $query_convenio->fetch_assoc()){
-                    ?>     
-                    <tr>
-                        <td><?php echo $convenio['id']?>     </td>
-                        <td><?php echo $convenio['nome']?>   </td>
-                        <td>
-                            <a class="error" href="../Control/deletar_convenio.php?id=<?php echo $convenio['id']?>">Deletar</a>
-                        </td>
-                    </tr>             
-                    <?php
-                    }
-                }
-                ?>
-                </tbody>
-            </table>
-        </div>  
-
-
+    
     </div>     
     
 
@@ -248,21 +204,6 @@ include('../Control/function.php');
         </div>
     </div>
 
-
-    <!-- DIVISÃO DE MODAL CADASTRO DE CONVÊNIO CONTRALADA POR CSS/MODAL.CSS -->
-    <div class="janela-modal" id="janela-modal-convenio">
-        <div class="modal">
-            <div>
-                <button class="fechar" id="fechar">X</button>
-
-                <form action="../Control/Post_CriarConvenio.php" method="POST">
-                    <p>Cadastrar convênio em seu sistema</p><br><br>
-                    <label>Nome Convênio</label>
-                    <input name="nome" type="text"><br><br>
-                    <button type="submit" class="btn_style">Enviar</button> 
-                </form>
-            </div>
-        </div>
     
 <script src="../src/modal.js"></script>
 <script src="../src/modalmedico.js"></script>
