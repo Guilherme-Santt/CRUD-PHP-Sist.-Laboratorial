@@ -171,51 +171,6 @@ include('../Control/function.php');
             </table>
         </div>
         
-        <!-- TABELA DE INFORMAÇÕES DOS MÉDICOS CADASTRADOS -->
-        <div class="container_son">
-            <div>   
-                <button class="btn_style" onclick="abrir_modal_medico()">Cadastrar Médico</button> 
-            </div><br>
-            <p>Médicos cadastrados no seu sistema</p>
-   
-            <table border="1px" ID="alter" cellpadding="10">
-                <thead>
-                    <th>ID</th>
-                    <th>Nome</th>
-                    <th>CRM</th>
-                </thead>
-                <tbody> 
-                    <?php 
-                    // COMANDO SQL PARA CONSULTAR QUANTIDADE DE CLIENTES NO SISTEMA
-                    $sql_medicos   = "SELECT * FROM medicos";
-                    $query_medicos = $mysqli->query($sql_medicos) or die($mysqli->error);
-                    $num_medicos = $query_medicos->num_rows;
-                    if($num_medicos == 0) { 
-                        ?> 
-                <tr>
-                    <td colspan="7">Nenhum usuário foi encontrado!</td>
-                </tr>
-                <?php }
-                    else{ 
-                        while($medico = $query_medicos->fetch_assoc()){
-                    ?>     
-                    <tr>
-                        <td><?php echo $medico['id']?>     </td>
-                        <td><?php echo $medico['nome']?>   </td>
-                        <td><?php echo $medico['CRM']?>     </td>
-                        <td>
-                            <a class="error" href="../Control/deletar_medico.php?id=<?php echo $medico['id']?>">Deletar</a>
-                        </td>
-                    </tr>             
-                    <?php
-                    }
-                }
-                ?>
-                </tbody>
-            </table>
-        </div>  
-
-
 
         <!-- TABELA DE INFORMAÇÕES DOS CONVÊNIOS CADASTRADOS -->
         <div class="container_son">
@@ -293,23 +248,6 @@ include('../Control/function.php');
         </div>
     </div>
 
-    <!-- DIVISÃO DE MODAL CADASTRO DE MÉDICOS CONTRALADA POR CSS/MODAL.CSS -->
-    <div class="janela-modal" id="janela-modal-medico">
-        <div class="modal">
-            <div>
-                <button class="fechar" id="fechar">X</button>
-
-                <form action="../Control/Post_CriarMedico.php" method="POST">
-                    <p>Cadastrar médico em seu sistema</p><br><br>
-                    <label>Nome médico</label>
-                    <input name="nome" type="text"><br><br>
-                    <label>CRM do médico</label>
-                    <input name="CRM" type="text"><br><br>
-                    <button type="submit" class="btn_style">Enviar</button> 
-                </form>
-            </div>
-        </div>
-    </div>
 
     <!-- DIVISÃO DE MODAL CADASTRO DE CONVÊNIO CONTRALADA POR CSS/MODAL.CSS -->
     <div class="janela-modal" id="janela-modal-convenio">
