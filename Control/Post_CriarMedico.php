@@ -24,7 +24,7 @@ if(count($_POST) > 0){
         }else{
             $query = $mysqli->query("INSERT INTO medicos (nome, CRM) VALUES ('$nomemedico','$CRM')");
             if($query)
-                header("location: ../views/listagem_usuarios.php");
+                header("location: ../views/listagem_medicos.php");
         }
     }
 }
