@@ -196,9 +196,9 @@ $cliente = $query_cliente->fetch_assoc();
                     <button class="fechar" id="fechar">X</button><br>
 
                     <form enctype="multipart/form-data" action="../Control/Post_InserirAssinatura.php" method="POST">
-                        <label>Assinatura</label>
+                        <label>Assinatura</label>   
                         <input type="file" name="signature"><br><br>
-                        <buttton class="btn_style" type="submit">Enviar</buttton>
+                        <button class="btn_style" type="submit">Enviar</button>
                     </form>
 
                 </div>

@@ -1,13 +1,14 @@
 <?php
 if(!isset($_SESSION)){
     session_start();
-    if(!isset($_SESSION['usuario']));
+    if(!isset($_SESSION['usuario'])){
         header("location: ../views/index_login.php");
+    }    
 }
 $id = $_SESSION['usuario'];
-
 include('../views/conexao.php');
-if(isset($_POST['authorization'])){
+
+if(isset($_POST['signature'])){
     $arquivo = $_FILES['signature'];
     
     if($arquivo['error'])
@@ -23,8 +24,7 @@ if(isset($_POST['authorization'])){
 
     if($extensao === 'jpg' || $extensao === 'jpeg' || $extensao === 'png'){
         $assinatura =  $pasta . $novoNomeDoArquivo . "." . $extensao;
-
-    $deu_certo = move_uploaded_file($arquivo['tmp_name'], $assinatura);
+        $deu_certo = move_uploaded_file($arquivo['tmp_name'], $assinatura);
     }else{
         $alert = "TIPO DE ARQUIVO NÃO SUPORTADO";
     }
@@ -32,7 +32,7 @@ if(isset($_POST['authorization'])){
     if($alert){
         die($alert);
     }else{
-        $query = $mysqli->query("UPDATE clientes SET assinatura = '$assinatura'"); 
+        $query = $mysqli->query("UPDATE clientes SET assinatura = '$assinatura'") or die($mysqli->error); 
             if($query){
                 echo  "<script>alert('ASSINATURA ATUALIZADA');</script>";
                     header("location: ../views/editar_usuario.php?id=$id");
