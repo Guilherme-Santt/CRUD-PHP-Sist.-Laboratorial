@@ -11,36 +11,42 @@ include('conexao.php');
 include('../Control/SelectFrom.php');
 $id = intval($_GET['id']);
 
-$error = "";
+$alert = "";
 if(count($_POST) > 0){
+    $authorization = $_POST['authorization'];
+        if(!isset($authorization))
+            $alert ="ERROR";
+
     $nome = $_POST['nome'];
+        if(empty($nome))
+            $alert = "CAMPO VÁZIO";
     $email = $_POST['email'];
+        if(empty($email))    
+            $alert = "CAMPO VÁZIO";
     $unidade = $_POST['unidade'];
+        if(empty($unidade))
+            $alert = "CAMPO VÁZIO";
     $telefone = $_POST['telefone'];
+        if(empty($telefone))
+            $alert = "CAMPO VÁZIO";
     $nascimento = $_POST['nascimento'];
+        if(empty($nascimento))
+            $alert = "CAMPO VÁZIO";
+
     if(empty($nome) || Strlen($nome) < 3 || Strlen($nome) > 100)
-        $error = "Por favor, Prencha o campo nome corretamente. Capacidade mínima 3 dígitos! ";
+        $alert = "CAMPO NOME INVÁLIDO OU INCORRETO ";
     if(empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL))
-        $error = "Por favor, Prencha o campo e-mail corretamente.";
-    if(empty($nascimento) || strlen($nascimento) != 10){
-        $error = "Campo nascimento deve ser preenchido no padrão dia/mês/ano";
-    }else{
-        $pedacos = explode('/', $nascimento);
-        if(count($pedacos) == 3){
-            $nascimento = implode ('-', array_reverse($pedacos)); 
-        }
-    }    
-    if(empty($telefone)){
-        $error ="Campo telefone obrigatório";
-    }else{
-        $telefone = limpar_texto($telefone);
-        if(strlen($telefone) != 11){
-            $error = "O telefone deve ser preenchido no padrão (11) 98888-8888";
-        }
+        $alert = "CAMPO E-MAIL INVÁLIDO OU INCORRETO.";
+    if(empty($nascimento) || strlen($nascimento) != 10)
+        $alert = "CAMPO NASCIMENTO INCORRÉTO";
+        
+    if(empty($telefone) || strlen($telefone) != 11)
+        $alert ="CAMPO TELEFONE INVÁLIDO OU INCORRÉTO";
+
+    if($alert){
+        die($alert);
     }
-    if($error){
-    }
-    else{
+     else{
         $sql_code = "UPDATE clientes
         SET nome   = '$nome', 
         email      = '$email',
@@ -49,12 +55,11 @@ if(count($_POST) > 0){
         nascimento = '$nascimento' WHERE id   = '$id'";
         $deu_certo = $mysqli->query($sql_code);
             if($deu_certo){
-                $sucess ="Atualizado com sucesso";
-                unset($_POST);
+                echo  "<script>alert('ATUALIZADO COM SUCESSO');</script>";
             }     
     }         
+
 }
-// }
 // SELECT FROM NA TABELA CLIENTES, PARA PUXAR INFORMAÇÕES DOS PACIENTES PARA OS CAMPOS INPUT
 $sql_cliente = "SELECT * FROM clientes WHERE id = '$id'";
 $query_cliente = $mysqli->query($sql_cliente) or die ($mysqli->error);
@@ -68,6 +73,7 @@ $cliente = $query_cliente->fetch_assoc();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Listagem de usuários</title>
 </head>
+<link rel="stylesheet" href="../css/modal.css">
 <link rel="stylesheet" href="../css/index.css">
 <link rel="stylesheet" href="../css/button.css">
 
@@ -154,8 +160,7 @@ $cliente = $query_cliente->fetch_assoc();
 
     <!-- !-- DIVISÃO Á BAIXO DO HEADER, PARA INFOS & AVISOS  -->
     <div class="Bottom_header">
-        <p class="white">Usuário: <b><?php echo $usuario['nome']?></b></p>
-        <p>Local System <b><?php echo $usuario['unidade']?></b></p>
+        
     </div>
 
     <div class="container_body">
@@ -174,19 +179,33 @@ $cliente = $query_cliente->fetch_assoc();
                 <input value ="<?php if(!empty($cliente['telefone'])){ echo $cliente['telefone'];} ?>" type="text" name="telefone">
 
                 <label>Data de nascimento:</label>
-                <input value ="<?php if(!empty($cliente['nascimento'])){ echo $cliente['nascimento'];} ?>" type="date" name="nascimento"><br><br>
+                <input value ="<?php if(!empty($cliente['nascimento'])){ echo $cliente['nascimento'];} ?>" type="date" name="nascimento">
                 <?php 
                 if(isset($error)){ echo $error;} 
                 if(isset($sucess)){ echo $sucess;}
                 ?>
-                    <button class="btn_style" type="submit">Atualizar</button>
-                    <a href="listagem_usuarios.php"><button class="btn_style">Retornar</button></a>
-                    <a href="index.php"><button class="btn_style">Welcome</button></a>
+                <button class="btn_style" name="authorization" type="submit">Atualizar</button>
             </form>
-            <div>
+            
+            <button onclick="abrir_modal()" class="btn_style">Assinatura</button>
+            <a href="listagem_usuarios.php"><button class="btn_style">Retornar</button></a>
+            <a href="index.php"><button class="btn_style">Welcome</button></a>
+
+            <div class="janela-modal" id="janela-modal">
+                <div class="modal" >
+                    <button class="fechar" id="fechar">X</button><br>
+
+                    <form enctype="multipart/form-data" action="../Control/Post_InserirAssinatura.php" method="POST">
+                        <label>Assinatura</label>
+                        <input type="file" name="signature"><br><br>
+                        <buttton class="btn_style" type="submit">Enviar</buttton>
+                    </form>
+
+                </div>
             </div>
-        </div>
-    </div>        
+        <div>
+    </div>       
+<script src="../src/modal.js"></script> 
 </body>
 </html>
 
