@@ -5,7 +5,7 @@
 /* DIVISÃO HEADER */
 .body-header{
     height: 110px;
-    background-color: rgba(145, 134, 134, 0.247);
+    /* background-color: rgba(145, 134, 134, 0.247); */
     box-shadow: 2px -3px 30px 3px rgba(0,0,0,0.79);
     display: flex;
     justify-content: center;
@@ -46,7 +46,7 @@
 .container_son{
     padding-left: 20px;
     height:440px;
-    background-color: rgba(127, 255, 212, 0.315);
+    /* background-color: rgba(127, 255, 212, 0.315); */
 
 }
 

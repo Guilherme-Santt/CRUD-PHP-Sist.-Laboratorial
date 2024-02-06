@@ -186,23 +186,9 @@ $cliente = $query_cliente->fetch_assoc();
                 ?>
                 <button class="btn_style" name="authorization" type="submit">Atualizar</button>
             </form>
-            
-            <button onclick="abrir_modal()" class="btn_style">Assinatura</button>
             <a href="listagem_usuarios.php"><button class="btn_style">Retornar</button></a>
             <a href="index.php"><button class="btn_style">Welcome</button></a>
-
-            <div class="janela-modal" id="janela-modal">
-                <div class="modal" >
-                    <button class="fechar" id="fechar">X</button><br>
-
-                    <form enctype="multipart/form-data" action="../Control/Post_InserirAssinatura.php" method="POST">
-                        <label>Assinatura</label>   
-                        <input type="file" name="signature"><br><br>
-                        <button class="btn_style" type="submit">Enviar</button>
-                    </form>
-
-                </div>
-            </div>
+            
         <div>
     </div>       
 <script src="../src/modal.js"></script> 

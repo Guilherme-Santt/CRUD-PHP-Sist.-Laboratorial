@@ -7,7 +7,7 @@ Passos para executar o projeto:
 
    ![image](https://github.com/Guilherme-Santt/CRUD-PHP-Sist.-Laboratorial/assets/133061692/c05caf50-0747-4154-a1a5-bca59e6dbc3f)
 
-3. No phpmyadmin, Criar banco de dados "crud_clientes", importar o anexo de tabelas, disponível nos arquivos deste repositório(crud_clientes.sql)
+3. No phpmyadmin, Criar banco de dados "system", importar o anexo de tabelas, disponível nos arquivos deste repositório SQL/(system.sql)
    
    ![image](https://github.com/Guilherme-Santt/CRUD-PHP-Sist.-Laboratorial/assets/133061692/05676a16-5ccb-4068-97a4-9d64a1bf16b2)
 
@@ -22,5 +22,5 @@ Após feito os passos para acessar o index do arquivo, digitar URL http://localh
 
 Login: admin@admin.com
 senha: 123
-Caso optar por criar um usuário, acessar http://127.0.0.1/CRUD_Laboratório/Arquivos%20PHP/usuario.php
+Caso optar por criar um usuário, acessar http://127.0.0.1/CRUD_Laboratório/Arquivos%20PHP/listagem_usuarios.php
 Deixei a session comentada (sem verificação) para conseguir criar usuário, caso necessário.

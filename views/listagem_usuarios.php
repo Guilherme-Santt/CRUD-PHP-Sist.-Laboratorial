@@ -1,10 +1,10 @@
 <?php
-if(!isset($_SESSION)){
-    session_start();
-    if(!isset($_SESSION['usuario'])){
-        header("location: ../views/index_login.php");
-    }    
-}
+// if(!isset($_SESSION)){
+//     session_start();
+//     if(!isset($_SESSION['usuario'])){
+//         header("location: ../views/index_login.php");
+//     }    
+// }
 include('conexao.php');
 include('../Control/function.php');
 ?>
