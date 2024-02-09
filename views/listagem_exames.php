@@ -107,7 +107,7 @@ include('../Control/SelectFrom.php');
             </div>
             
             <p>Exames cadastrados em seu sistema</p>
-            <table border="1px">
+            <table >
                 <thead>
                     <th>ID exame</th>
                     <th>Código exame</th>

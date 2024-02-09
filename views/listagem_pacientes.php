@@ -113,7 +113,7 @@ $num_pacientes = $query_pacientes->num_rows;
 
             </div><br>
             <p>Seus pacientes cadastrados</p>
-            <table  border="1px" cellpadding="10">
+            <table cellpadding="10">
                 <thead>
                     <th>Atendimento</th>
                     <th>Nome</th>

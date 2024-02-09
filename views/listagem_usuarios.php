@@ -106,7 +106,7 @@ include('../Control/function.php');
                 <button class="btn_style" onclick="abrir_modal()">Cadastrar usuário</button>  
             </div><br>
             <p>Usuários cadastrados no seu sistema</p>  
-            <table border="1px" ID="alter" cellpadding="10">
+            <table ID="alter" cellpadding="10">
                 <thead>
                     <th>ID</th>
                     <th>Nome</th>
