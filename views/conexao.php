@@ -1,8 +1,8 @@
 <?php
-$db_hostname = "localhost";
+$db_hostname     = "localhost";
 $db_bancodedados = "system";
-$db_usuario = "root";
-$db_senha = "";
+$db_usuario      = "root";
+$db_senha        = "";
 
 $mysqli = new mysqli($db_hostname, $db_usuario, $db_senha, $db_bancodedados);
 if($mysqli->connect_errno){
