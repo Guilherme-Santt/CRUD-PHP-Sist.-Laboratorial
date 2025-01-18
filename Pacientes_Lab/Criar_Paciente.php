@@ -22,7 +22,7 @@ include('../views/conexao.php')
   </div>
   <div class="container_body">
     <div class="container_son">
-      <form action="../Control/Post_CriarPacienteCompleto.php" method="POST">
+      <form action="../Pacientes_Lab/Post.CriarPaciente.php" method="POST">
         <label>Nome</label>
         <input type="text" value="<?php if(isset($_POST['nome'])) echo $_POST['nome']; ?>" name="nome">
 

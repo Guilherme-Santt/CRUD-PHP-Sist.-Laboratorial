@@ -1,0 +1,31 @@
+body {
+    margin: 0rem;
+    padding: 0rem;
+    border: 0rem;
+}
+
+.header {
+    background-color: rgb(2, 141, 65);
+    display: grid;
+    height: 4rem;
+    max-height: 4rem;
+    justify-content: center;
+    align-items: center;
+    max-width: 100%;
+    min-width: 50rem;
+}
+
+.list-header {
+    /* Icones de opção no hader */
+    display: flex;
+    gap: 1rem;
+    list-style: none;
+    margin: 0;
+    margin-left: 0;
+    padding: top 13%;
+}
+
+.list-header a {
+    display: inline-block;
+    text-decoration: none;
+}
