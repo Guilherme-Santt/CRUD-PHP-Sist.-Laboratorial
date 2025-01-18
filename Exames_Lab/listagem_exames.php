@@ -17,15 +17,11 @@ include('../views/conexao.php');
   <title>Exames</title>
 </head>
 <!-- CÓDIGOS CSS -->
-<link rel="stylesheet" href="../css/button.css">
 
 <body>
   <!-- DIV PARA TABELA COM INFORMAÇÕES DOS EXAMES -->
-  <div class="container_body">
-    <div class="container_son">
-      <div>
-        <button class="btn_style" onclick="abrir_modal()">Cadastrar exames</button>
-      </div>
+  <div>
+    <div>
 
       <p>Exames cadastrados em seu sistema</p>
       <table>
@@ -65,7 +61,7 @@ include('../views/conexao.php');
   <!-- JANELA MODAL->CADASTRO DE EXAMES NO SISTEMA -->
   <div>
     <div>
-      <form action="../Exames_Lab/Post_CriarExames.php" method=" POST">
+      <form action="../Exames_Lab/Post_CriarExames.php" method="POST">
         <p>Cadastrar exame⤵</p>
         <label>Código exame</label><br><br>
         <input type="text" value="<?php if(isset($_POST['codigo'])) echo $_POST['codigo']; ?>" name="codigo"><br><br>
