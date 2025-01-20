@@ -8,7 +8,7 @@ if(!isset($_SESSION)){
 }
 include('../Control/function.php');
 include('../views/conexao.php');
-    $id = intval($_GET['id']);
+$id = intval($_GET['id']);
 
 $alert = "";
 if(count($_POST) > 0){

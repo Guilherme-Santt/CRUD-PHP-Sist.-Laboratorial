@@ -1,0 +1,35 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.janela-cadastro {
+    height: 100vh;
+    background-color: #e7e7e7;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+}
+
+.lista-cadastro h1 {
+    color: rgb(117, 115, 115);
+}
+
+.lista-cadastro {
+    display: grid;
+    gap: 0.5rem;
+    list-style: none;
+    background-color: white;
+    padding: 3rem 6rem;
+    border-radius: 1rem;
+    font-size: 1.2rem;
+}
+
+.lista-cadastro li {
+    display: grid;
+    justify-content: center;
+}
+
+.lista-cadastro input {
+    grid-column: 2;
+}

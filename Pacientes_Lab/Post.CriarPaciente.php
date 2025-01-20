@@ -1,23 +1,38 @@
 <?php 
+if(!isset($_SESSION)){
+  session_start();
+  if(!isset($_SESSION['usuario'])){
+      header("location: ../Loguin_Lab/index_login.php");
+  }    
+}
 include('../views/conexao.php');
+include('../Control/function.php');
 
 if(count($_POST) > 0){
   $nome        = $_POST['nome'];
+  $nome        = verificar_vazio($nome);
   $cpf         = $_POST['CPF'];
+  $cpf         = verificar_vazio($cpf);
   $rg          = $_POST['RG'];
+  $rg          = verificar_vazio($rg);
   $email       = $_POST['email'];
+  $email       = Formatar_campoEmBranco($email);
+  $endereco    = $_POST['endereco'];
+  $endereco    = formatar_data($endereco);
   $cep         = $_POST['CEP'];
-  $mae         = $_POST['mae'];
+  $cep         = verificar_vazio($cep);
   $cidade      = $_POST['cidade'];
   $nascimento  = $_POST['nascimento'];
-  $crm         = $_POST['CRM'];
-  $convenio    = $_POST['convenio'];
-  $diagnostico = $_POST['diagnostico'];
-  $observacoes = $_POST['observacoes'];
+  $nascimento  = verificar_vazio($nascimento);
   $telefone    = $_POST['telefone'];
-
-  if(empty($nome)){
-    die(strtoupper("Nome obrigatório."));
-  }
+  $telefone    = Formatar_campoEmBranco($telefone);
+  $sexo        = $_POST['sexo'];
+  
+  $sql_code = "INSERT INTO pacientes (nome, CPF, RG, email, endereco, CEP, cidade, nascimento, telefone, sexo) values ('$nome', '$cpf', '$rg', '$email', '$endereco', '$cep', '$cidade', '$nascimento', '$telefone', '$sexo')";
+  var_dump($sql_code);
+  $query = $mysqli->query($sql_code);
+  if($query > 0)
+      header("location: ../Pacientes_Lab/listagem_pacientes.php");
 };
+
 ?>

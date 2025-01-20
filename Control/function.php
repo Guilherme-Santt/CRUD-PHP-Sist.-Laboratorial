@@ -13,8 +13,22 @@ function formatar_telefone($telefone){
     return "($ddd) $parte1-$parte2";
 }
 // FUNÇÃO FORMATAR DATA PARA VISUALIZAÇÃO PADRÃO BR
-    function formatar_data($data){
-        return implode('/', array_reverse(explode('-', $data)));
-    };
+function formatar_data($data){
+    return implode('/', array_reverse(explode('-', $data)));
+};
+
+// VERIFICAÇÃO SE O CAMPO ESTÁ VAZIO
+function verificar_vazio($i) {
+    if(empty($i)){
+        return die(strtoupper("Campo obrigatório."));
+    }
+}
+
+// SE FOR DÍGITADO SEM VALOR, VAI ADICIONAR VALOR "EM BRANCO"
+function Formatar_campoEmBranco($i){
+    if(empty($i) || Strlen($i) < 3){
+        $i = "Não informado";
+    }
+};    
     
 ?>
