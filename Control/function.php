@@ -29,7 +29,7 @@ function verificar_vazio($i) {
 // SE FOR DÍGITADO SEM VALOR, VAI ADICIONAR VALOR "EM BRANCO"
 function Formatar_campoEmBranco($i){
     if(empty($i) || Strlen($i) < 3){
-        return die(strtoupper("{$i} Não informado";))
+        die("{$i} Não informado");
     }
 };    
 
