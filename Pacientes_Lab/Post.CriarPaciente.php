@@ -16,7 +16,7 @@ if(count($_POST) > 0){
   $rg          = $_POST['RG'];
   $rg          = verificar_vazio($rg);
   $email       = $_POST['email'];
-  $email       = Formatar_campoEmBranco($email);
+  $email       = filtro_email($email);
   $endereco    = $_POST['endereco'];
   $endereco    = formatar_data($endereco);
   $cep         = $_POST['CEP'];
@@ -25,7 +25,7 @@ if(count($_POST) > 0){
   $nascimento  = $_POST['nascimento'];
   $nascimento  = verificar_vazio($nascimento);
   $telefone    = $_POST['telefone'];
-  $telefone    = Formatar_campoEmBranco($telefone);
+  $telefone    = filtro_telefone($telefone);
   $sexo        = $_POST['sexo'];
   
   $sql_code = "INSERT INTO pacientes (nome, CPF, RG, email, endereco, CEP, cidade, nascimento, telefone, sexo) values ('$nome', '$cpf', '$rg', '$email', '$endereco', '$cep', '$cidade', '$nascimento', '$telefone', '$sexo')";

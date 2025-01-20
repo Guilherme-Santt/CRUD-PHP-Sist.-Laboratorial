@@ -30,5 +30,16 @@ function Formatar_campoEmBranco($i){
         $i = "Não informado";
     }
 };    
-    
+
+// FILTRO DE VALIDAÇÃO DE E-MAIL
+function filtro_email($i){
+    if(!filter_var($i, FILTER_VALIDATE_EMAIL))  
+    die(strtoupper("campo e-mail inválido"));
+}
+
+//FILTRO DE VALIDÇÃO TELEFONE
+function filtro_telefone($telefone){
+    if(empty($telefone) || strlen($telefone) != 11)
+    die(strtoupper("campo telefone inválido"));
+}
 ?>
