@@ -68,7 +68,7 @@ include('../views/conexao.php')
         <li>
           <button type="submit" name="cadastrar">Enviar</button>
         </li>
-      </ul>
+    </ul>
     </form>
   </div>
 

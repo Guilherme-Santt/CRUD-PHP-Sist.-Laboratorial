@@ -18,18 +18,23 @@ function formatar_data($data){
 };
 
 // VERIFICAÇÃO SE O CAMPO ESTÁ VAZIO
-function verificar_vazio($i) {
-    if(empty($i)){
-        for($x = 0; $i > $x; $x++){
-            return die(strtoupper("Campo {$i} obrigatório."));
+function verificar_vazio($i){
+    
+    $string = '';
+
+    foreach ($i as $key => $value) {
+        if(empty($value)){
+            $string = $key . ",";
         }
-    }
+    };
+
+    return $string;
 }
 
 // SE FOR DÍGITADO SEM VALOR, VAI ADICIONAR VALOR "EM BRANCO"
 function Formatar_campoEmBranco($i){
     if(empty($i) || Strlen($i) < 3){
-        die("{$i} Não informado");
+      $i = "Não informado";
     }
 };    
 
