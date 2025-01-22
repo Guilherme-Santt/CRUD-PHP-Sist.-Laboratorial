@@ -1,0 +1,21 @@
+<!-- COMANDOS PARA ACESSAR O PROJETO PELO DOCKER -->
+
+1.Primeiro, baixe a imagem oficial do MYSQL do Docker Hub. Abra o terminal e execute:
+docker pull mysql:latest
+
+2.Agora, você pode criar um container com o MySQL:
+docker run --name mysql-container -e MYSQL_ROOT_PASSWORD=12345 -p 3306:3306 -d mysql:latest
+
+3.Para verificar se o container está executando, execute o comando: 
+docker ps
+3.1.Caso não estiver executando, execute: 
+docker ps -a
+
+3.2. Agora, vamos executar o container com seguinte comando:
+docker start [ID do container]
+
+
+4.Agora, vamos acessar o MYSQL dentro do container:
+docker exec -it mysql-container mysql -u root -p
+
+

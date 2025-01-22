@@ -45,7 +45,7 @@ $cont_exames = $query->num_rows;
       <ul class="list-header">
 
         <!-- PACIENTES -->
-        <li><a href="../Pacientes_Lab/listagem_pacientes.php">Listagem Pacientes</a></li>
+        <li><a href="../Pacientes_Lab/listagem_pacientes.php" class="button">Listagem Pacientes</a></li>
         <li><a href="../Pacientes_Lab/Criar_Paciente.php">Cadastrar Pacientes</a></li>
 
         <!-- USUÁRIOS -->
@@ -68,7 +68,7 @@ $cont_exames = $query->num_rows;
     <p>Qnt. pacientes cadastrados: <?php echo $cont_pacientes ?></p>
     <p>Qnt. exames cadastrados: <?php echo $cont_exames ?></p>
   </footer>
-  <script src="../Home_Lab/script.js"> </script>
+  <script src="..//script.js"> </script>
 </body>
 
 </html>
