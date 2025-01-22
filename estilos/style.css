@@ -1,0 +1,30 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+.header{
+    background-color: #c0bbbb;
+    height: 7rem;
+    display: grid;
+    align-items: center;
+    box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0);
+}
+.list-header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    list-style: none;
+    height: 4rem;
+}
+.list-header a{
+    text-decoration: none;
+    color: white;
+    background-color: rgb(164, 96, 228);
+    padding: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 1rem;
+}
+.btn:hover{
+    box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0);
+}

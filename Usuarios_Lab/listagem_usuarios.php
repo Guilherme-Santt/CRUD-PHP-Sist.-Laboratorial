@@ -17,9 +17,26 @@ include('../Control/function.php');
   <title>Usuários</title>
 </head>
 <!-- ARQUIVOS CSS SITE -->
-<link rel="stylesheet" href="../css/button.css">
+<link rel="stylesheet" href="../estilos/style.css">
 
 <body>
+    <!-- HEADER DE INFORMAÇÕES -->
+  <header class="header">
+    <nav>
+      <ul class="list-header">
+        <li><a class="btn" href="../Home_Lab/index.php">Home</a></li>
+        <!-- PACIENTES -->
+        <li><a class="btn" href="../Pacientes_Lab/listagem_pacientes.php">Listagem Pacientes</a></li>
+        <li><a class="btn" href="../Pacientes_Lab/Criar_Paciente.php">Cadastrar Pacientes</a></li>
+
+        <!-- USUÁRIOS -->
+        <li><a class="btn" href=" ../Usuarios_Lab/listagem_usuarios.php">Configurações de usuários</a></li>
+
+        <!-- EXAMES -->
+        <li><a class="btn" href="../Exames_Lab/listagem_exames.php">Cadastro de exames</a></li>
+      </ul>
+    </nav>
+  </header>
   <!-- DIVISÃO GERAL DAS INFORMAÇÕES NO CONTAINER -->
   <div class="container_body">
     <!-- TABELA DE USUARIOS CADASTRADOS LABORATÓRIO -->

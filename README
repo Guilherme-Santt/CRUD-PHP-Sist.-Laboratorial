@@ -8,7 +8,7 @@ docker run --name mysql-container -e MYSQL_ROOT_PASSWORD=12345 -p 3306:3306 -d m
 
 3.Para verificar se o container está executando, execute o comando: 
 docker ps
-3.1.Caso não estiver executando, execute: 
+3.1.Vamos copiar o ID na interface do docker ou utilize este comando para saber o ID do seu container: 
 docker ps -a
 
 3.2. Agora, vamos executar o container com seguinte comando:
@@ -17,6 +17,7 @@ docker start [ID do container]
 
 4.Agora, vamos acessar o MYSQL dentro do container:
 docker exec -it mysql-container mysql -u root -p
+4.1. A senha é a mesma qual foi criada o container: 12345
 
 5.Caso optar por dígitar o código a mão para criar as tabelas dentro do docker, vou disponibilizar o código SQL aqui em baixo. Caso NÃO, ignorar e partir para próximo passo á baixo:
 
@@ -77,7 +78,7 @@ CREATE TABLE `pacientes_exames` (
 INSERT INTO `clientes` (`id`, `nome`, `email`, `telefone`, `nascimento`, `data`, `senha`, `unidade`, `assinatura`) VALUES
 (46, 'José Guilherme Santos Silva', 'admin@admin.com', '11995910318', '2001-03-12', '2024-01-16 14:00:05', '$2y$10$KXKZ1xev.tnfU6yplONhM.a/pZBrG/my.2Zh/pX9Eq9S3Doi/KLdu', 'Cotia', NULL);
 
-6.Agora vou mostrar como inserir as tabelas no banco de dados pelo PhpAdmin. Primeiro vamos criar uma container no docker para o php admin, com seguind comando:
+6.Agora vou mostrar como inserir as tabelas no banco de dados pelo PhpAdmin. Primeiro vamos criar uma container no docker para o php admin, com seguinte comando:
 docker run --name phpmyadmin --link mysql-container:db -p 8080:80 -d phpmyadmin/phpmyadmin 
 
 7.Após criar o container, e ambos estiver rodando, vamos acessar a interface do PHPAdmin na web.
