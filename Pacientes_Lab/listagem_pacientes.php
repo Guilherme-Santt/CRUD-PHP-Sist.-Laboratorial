@@ -1,5 +1,5 @@
 <?php 
-include('../views/conexao.php');
+include('../Control/conexao.php');
 if(!isset($_SESSION)){
     session_start();
     if(!isset($_SESSION['usuario'])){
@@ -30,15 +30,22 @@ $num_pacientes = $query_pacientes->num_rows;
   <header class="header">
     <nav>
       <ul class="list-header">
-        <li><a class="btn" href="../Home_Lab/index.php">Home</a></li>
-        <!-- PACIENTES -->
-        <li><a class="btn" href="../Pacientes_Lab/listagem_pacientes.php">Listagem Pacientes</a></li>
-
-        <!-- USUÁRIOS -->
-        <li><a class="btn" href=" ../Usuarios_Lab/listagem_usuarios.php">Configurações de usuários</a></li>
-
-        <!-- EXAMES -->
-        <li><a class="btn" href="../Exames_Lab/listagem_exames.php">Cadastro de exames</a></li>
+        <li>
+          <!-- TELA INICIAL -->
+          <a class="btn" href="../Home_Lab/index.php">Home</a></li>
+        <li>
+          <!-- PACIENTES -->
+          <a class="btn" href="../Pacientes_Lab/listagem_pacientes.php">Listagem Pacientes</a></li>
+        <li>
+          <!-- USUÁRIOS -->
+          <a class="btn" href=" ../Usuarios_Lab/listagem_usuarios.php">Configurações de usuários</a></li>
+        <li>
+          <!-- EXAMES -->
+          <a class="btn" href="../Exames_Lab/listagem_exames.php">Cadastro de exames</a></li>
+        <li>
+          <!-- SAIR -->
+          <a class="btn" href="../Loguin_Lab/logout.php">Encerrar</a>
+        </li>
       </ul>
     </nav>
   </header>

@@ -7,7 +7,7 @@ if(!isset($_SESSION)){
 }
 // CÓDIGO PHP
 // VERIFICANDO SE O CAMPO DESCRIÇÃO ESTÁ VAZIO
-include('../views//conexao.php');
+include('../Control/conexao.php');
 
 // VERIFICAÇÃO DE INSERÇÃO NOS CAMPOS POST DO FORMULÁRIO
 if(count($_POST) > 0){

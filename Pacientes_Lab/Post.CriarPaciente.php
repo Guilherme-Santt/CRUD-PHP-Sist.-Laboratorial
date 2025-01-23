@@ -2,10 +2,10 @@
 if(!isset($_SESSION)){
   session_start();
   if(!isset($_SESSION['usuario'])){
-      header("location: ../Loguin_Lab/index_login.php");
+include('../Control/conexao.php');
   }    
 }
-include('../views/conexao.php');
+include('../Control/conexao.php');
 include('../Control/function.php');
 if(count($_POST)){
     $nome        = $_POST['nome'];
@@ -18,9 +18,11 @@ if(count($_POST)){
     $nascimento  = $_POST['nascimento'];
     $telefone    = $_POST['telefone'];
     $sexo        = $_POST['sexo'];
+
     
     if(empty($nome) || empty($cpf) || empty($rg) || empty($email) || empty($endereco) || empty($cep) || empty($cidade) || empty($nascimento) || empty($telefone) || empty($sexo)){
         die("Todos campos são obrigatórios");
+        var_dump($sexo);
         exit;
     }else{
         $sql_code = "INSERT INTO pacientes (nome, CPF, RG, email, endereco, CEP, cidade, nascimento, telefone, sexo, data) 

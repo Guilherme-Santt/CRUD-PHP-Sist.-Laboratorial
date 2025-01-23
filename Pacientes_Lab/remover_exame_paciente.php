@@ -1,5 +1,5 @@
 <?php
-include('../views/conexao.php');
+include('../Control/conexao.php');
 $id_exame = intval($_GET['id']);
 
 $sql_code   = "DELETE FROM pacientes_exames WHERE exame_id = '$id_exame' AND paciente_id = ''";

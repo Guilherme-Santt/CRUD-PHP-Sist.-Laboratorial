@@ -7,7 +7,7 @@ if(!isset($_SESSION)){
 }
 
 $id = intval($_GET['id']);
-include('conexao.php');
+include('../Control/conexao.php');
 
 // CONSULTA TABELA PACIENTES_EXAMES PARA VERIFICAR O EXAME DO PACIENTE ATRAVÉS DO ID DO RELACIONAMENTO
 $sql_consulta = "SELECT * FROM pacientes_exames WHERE id = '$id'";

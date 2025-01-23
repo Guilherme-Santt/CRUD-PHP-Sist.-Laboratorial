@@ -6,7 +6,7 @@ if(!isset($_SESSION)){
     }    
 }
 $id = intval($_GET['id']);
-include('../views/conexao.php');
+include('../Control/conexao.php');
 $sql_pacientes_exames = "SELECT * FROM pacientes_exames WHERE id = '$id'";
 $query_p_e            = $mysqli->query($sql_pacientes_exames);
 $id_paciente          = $query_p_e->fetch_assoc();

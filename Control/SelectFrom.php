@@ -1,6 +1,6 @@
 <?php
 
-include('../views/conexao.php');
+include('../Control/conexao.php');
 $id = $_SESSION['usuario'];
 // INFORMAÇÕES DE USUARIOS & QUANTIDADE DE USUARIOS
 

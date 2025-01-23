@@ -1,5 +1,5 @@
 <?php
-include('../views/conexao.php');
+include('../Control/conexao.php');
 // VERIFICAÇÃO POST Á PARTIR DO EMAIL
 $error = "";
 if(isset($_POST['email'])){

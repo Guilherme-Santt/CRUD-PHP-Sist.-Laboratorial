@@ -5,7 +5,7 @@ if(!isset($_SESSION)){
         header("location: ../views/index_login.php");
     }    
 }
-include('../views/conexao.php');
+include('../Control/conexao.php');
 
 ?>
 <!DOCTYPE html>
@@ -24,15 +24,27 @@ include('../views/conexao.php');
   <header class="header">
     <nav>
       <ul class="list-header">
-        <li><a class="btn" href="../Home_Lab/index.php">Home</a></li>
+        <li>
+          <a class="btn" href="../Home_Lab/index.php">Home</a>
+        </li>
         <!-- PACIENTES -->
-        <li><a class="btn" href="../Pacientes_Lab/listagem_pacientes.php">Listagem Pacientes</a></li>
+        <li>
+          <a class="btn" href="../Pacientes_Lab/listagem_pacientes.php">Listagem Pacientes</a>
+        </li>
 
         <!-- USUÁRIOS -->
-        <li><a class="btn" href=" ../Usuarios_Lab/listagem_usuarios.php">Configurações de usuários</a></li>
+        <li>
+          <a class="btn" href=" ../Usuarios_Lab/listagem_usuarios.php">Configurações de usuários</a>
+        </li>
 
         <!-- EXAMES -->
-        <li><a class="btn" href="../Exames_Lab/listagem_exames.php">Cadastro de exames</a></li>
+        <li>
+          <a class="btn" href="../Exames_Lab/listagem_exames.php">Cadastro de exames</a>
+        </li>
+        <li>
+          <!-- SAIR -->
+          <a class="btn" href="../Loguin_Lab/logout.php">Encerrar</a>
+        </li>
       </ul>
     </nav>
   </header>

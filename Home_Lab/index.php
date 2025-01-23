@@ -6,7 +6,7 @@
         }    
       }
 
-include('../views/conexao.php'); 
+      include('../Control/conexao.php');
 $id = $_SESSION['usuario'];
 
 // // INFORMAÇÕES DE USUARIOS & QUANTIDADE DE USUARIOS
@@ -44,24 +44,57 @@ $cont_exames = $query->num_rows;
   <header class="header">
     <nav>
       <ul class="list-header">
-        <li><a class="btn" href="../Home_Lab/index.php">Home</a></li>
+        <li>
+          <a class="btn" href="../Home_Lab/index.php">Home</a>
+        </li>
 
         <!-- PACIENTES -->
-        <li><a class="btn" href="../Pacientes_Lab/listagem_pacientes.php">Listagem Pacientes</a></li>
+        <li>
+          <a class="btn" href="../Pacientes_Lab/listagem_pacientes.php">Listagem Pacientes</a>
+        </li>
 
         <!-- USUÁRIOS -->
-        <li><a class="btn" href=" ../Usuarios_Lab/listagem_usuarios.php">Configurações de usuários</a></li>
+        <li>
+          <a class="btn" href=" ../Usuarios_Lab/listagem_usuarios.php">Configurações de usuários</a>
+        </li>
 
         <!-- EXAMES -->
-        <li><a class="btn" href="../Exames_Lab/listagem_exames.php">Cadastro de exames</a></li>
+        <li>
+          <a class="btn" href="../Exames_Lab/listagem_exames.php">Cadastro de exames</a>
+        </li>
+        <!-- SAIR -->
+        <li>
+          <a class="btn" href="../Loguin_Lab/logout.php">Encerrar</a>
+        </li>
       </ul>
     </nav>
   </header>
-  <!-- END HEADER -->
   <main>
     <h1>
-      Aqui ficará as informações principais
+      Instroções de uso de nosso sistema
     </h1>
+    <ol>
+      <li>
+        Em cadastro de exames, vamos conseguir cadastrar os exames para ser inserido nos pacientes. Para criar um exame, basta digitar o código do exame(qnt. máx de 3 dígitos), junto da descrição do exame. NÃO É PERMITIDO EXAMES COM CÓDIGOS IGUAIS.
+      </li>
+      <li>
+        Em listagem de pacientes, nós temos todos pacientes cadastrados em seu sistema. Para cadastrar um paciente novo, deve clicar no botão "cadastrar paciente", ele vai abrir um modal para ser inserido as informações(todas são obrigatórios.)
+      </li>
+      <ol>
+        <li>
+          Ainda na listagem de pacientes. Após cadastrar um paciente e ele estiver em visualização, no final da linha, terão as opções editar e remover. Na opção editar, vamos conseguir atualizar as informações do paciente e adicionar os exames.
+        </li>
+        <li>
+        Após entrar em editar, teremos as opções de atualização do paciente e tambem a inserção do exame. Para inserir um exame, é necessário que o exame esteja criado no nosso sistema.
+        </li>
+      </ol>
+      <li>
+        Configuração de usuários, é onde nós cadastramos o usuário para conseguir acessar o nosso sistema. Todos campos são obrigatórios. O campo para entrar em nosso sistema é o e-mail, a senha é criptografada. Portanto, cadastre uma senha que se lembre.
+      </li>
+      <li>
+        Sugestões de correção, report ou dicas. Pode me contatar neste endereço de email: guisant@icloud.com
+      </li>
+    </ol>
   </main>
 
   <!-- DIVISÃO RODA PÉ DE INFORMAÇÕES -->
