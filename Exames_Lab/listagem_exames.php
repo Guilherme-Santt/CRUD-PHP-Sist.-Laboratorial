@@ -86,7 +86,6 @@ include('../views/conexao.php');
             <label>Código exame</label>
             <input type="text" value="<?php if(isset($_POST['codigo'])) echo $_POST['codigo']; ?>" name="codigo">
           </li>
-
           <li>
             <label>Descrição exame</label></label>
             <input type="text" value="<?php if(isset($_POST['descricao'])) echo $_POST['descricao']; ?>" name="descricao">

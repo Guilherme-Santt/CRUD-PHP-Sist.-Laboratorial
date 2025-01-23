@@ -36,18 +36,18 @@ $cont_exames = $query->num_rows;
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tela inicial</title>
 </head>
-
+<!-- LINKS CSS -->
 <link rel="stylesheet" href="../estilos/style.css">
 
 <body>
-    <!-- HEADER DE INFORMAÇÕES -->
+  <!-- HEADER DE INFORMAÇÕES -->
   <header class="header">
     <nav>
       <ul class="list-header">
         <li><a class="btn" href="../Home_Lab/index.php">Home</a></li>
+
         <!-- PACIENTES -->
         <li><a class="btn" href="../Pacientes_Lab/listagem_pacientes.php">Listagem Pacientes</a></li>
-        <li><a class="btn" href="../Pacientes_Lab/Criar_Paciente.php">Cadastrar Pacientes</a></li>
 
         <!-- USUÁRIOS -->
         <li><a class="btn" href=" ../Usuarios_Lab/listagem_usuarios.php">Configurações de usuários</a></li>
@@ -57,6 +57,7 @@ $cont_exames = $query->num_rows;
       </ul>
     </nav>
   </header>
+  <!-- END HEADER -->
   <main>
     <h1>
       Aqui ficará as informações principais
