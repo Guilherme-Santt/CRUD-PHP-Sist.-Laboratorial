@@ -36,10 +36,10 @@ include('../Control/function.php');
   </header>
   <!-- END HEADER -->
   <!-- DIVISÃO GERAL DAS INFORMAÇÕES NO CONTAINER -->
-  <div class="container_body">
+  <div class="container">
     <!-- TABELA DE USUARIOS CADASTRADOS LABORATÓRIO -->
     <div class="container_son">
-      <button id="AbrirModal">Cadastrar Paciente</button>
+      <button class="btn-cadastro" id="AbrirModal">Cadastrar Paciente</button>
       <p>Usuários cadastrados no seu sistema</p>
       <table ID="alter" cellpadding="10">
         <thead>
@@ -85,7 +85,7 @@ include('../Control/function.php');
             <td><?php echo $nascimento ?> </td>
             <td><?php echo $data_cadastro;?> </td>
             <td>
-              <a class="edit" href="editar_usuario.php?id=<?php echo $cliente['id']?>">Editar</a>
+              <a class="edit" href="editar_usuario.php?id=<?php echo $cliente['id']?>">Editar</a><hr>
               <a class="error" href="../Usuarios_Lab/deletar_usuario.php?id=<?php echo $cliente['id']?>">Deletar</a>
             </td>
           </tr>

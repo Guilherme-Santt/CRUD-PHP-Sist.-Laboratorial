@@ -37,10 +37,11 @@ include('../views/conexao.php');
     </nav>
   </header>
   <!-- DIV PARA TABELA COM INFORMAÇÕES DOS EXAMES -->
-  <div>
-    <button id="AbrirModal">CADASTRAR EXAMES</button>
-    <div>
-
+  <div class="container">
+    <div class="container_son">
+      <div>
+        <button class="btn-cadastro" id="AbrirModal">CADASTRAR EXAMES</button>
+      <div>
       <p>Exames cadastrados em seu sistema</p>
       <table>
         <thead>

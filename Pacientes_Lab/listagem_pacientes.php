@@ -101,9 +101,9 @@ $num_pacientes = $query_pacientes->num_rows;
 
 
   <!-- TABELA DE PACIENTES CADASTRADOS -->
-  <div>
-    <div>
-      <button id="AbrirModal">Cadastrar Paciente</button>
+  <div class="container">
+    <div class="container_son">
+      <button class="btn-cadastro" id="AbrirModal">Cadastrar Paciente</button>
       <p>Seus pacientes cadastrados</p>
       <table cellpadding="10">
         <thead>
@@ -149,7 +149,7 @@ $num_pacientes = $query_pacientes->num_rows;
             <td><?php if(!empty($pacientes['Convenio'])){echo $pacientes['Convenio'];}else{ echo "Convênio não informado";}?> </td>
             <td><?php echo $data_cadastro;?> </td>
             <td>
-              <a class="edit" href="editar_paciente.php?id=<?php echo $pacientes['ID']?>">Editar</a>
+              <a class="edit" href="editar_paciente.php?id=<?php echo $pacientes['ID']?>">Editar</a><hr>
               <a class="error" href="../Pacientes_Lab/deletar_paciente.php?id=<?php echo $pacientes['ID']?>">Deletar</a>
             </td>
           </tr>

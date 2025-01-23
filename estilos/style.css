@@ -88,10 +88,8 @@ INICIO CONFIGURAÇÕES HEADER*/
 }
 
 .close {
-    color: #e60f0f;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
+    display: none;
+
 }
 
 .close:hover,
@@ -99,4 +97,49 @@ INICIO CONFIGURAÇÕES HEADER*/
     color: rgb(139, 132, 132);
     text-decoration: none;
     cursor: pointer;
+}
+/* END CONTAINER MODAL */
+
+/* CONFIGURAÇÕES DAS CLASSES ONDE FICAM AS TABELAS */
+.btn-cadastro{
+    padding: 0.5rem;
+    color: white;
+    text-transform: uppercase;
+    border-radius: 1rem;
+    border: none;
+    background-color: rgb(164, 96, 228);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    cursor: pointer;
+}
+.btn-cadastro:hover {
+box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0);
+}
+
+.container{
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    height: 50vh;
+}
+.container_son{
+    width: 170vh;
+}
+.container_son a{
+    text-decoration: none;
+    color: rgb(87, 87, 87);
+}
+/* CONFIGURAÇÕES TABELAS */
+table {
+    width: 100%;
+    border-collapse: collapse; /* Para que as bordas não se sobreponham */
+}
+
+th, td {
+    border: 1px solid black; /* Borda de 1px, cor preta */
+    padding: 2px;
+    text-align: center;
+}
+
+th {
+    background-color: #f2f2f2; /* Cor de fundo para o cabeçalho */
 }
