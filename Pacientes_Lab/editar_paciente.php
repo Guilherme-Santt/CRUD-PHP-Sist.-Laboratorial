@@ -122,59 +122,61 @@ $num_exames = $query_exames->num_rows;
 
   <!-- INSERÇÃO CAMPOS POST NO FORM PARA ATUALIZAÇÃO DE DADOS-->
   <div class="container_body">
-    <div class="container_son">
-      <p>Informações do paciente:</p><br>
+    <div class="att-infos">
+      <p>Informações do paciente:</p>
       <form action="" method="POST">
         <ul>
           <li>
-            <label>Nome: </label>
+            <label>Nome............: </label>
             <input value="<?php echo $cliente['nome']; ?>" type="text" name="nome">
           </li>
           <li>
-            <label>RG: </label>
+            <label>RG................: </label>
             <input value="<?php echo $cliente['RG']; ?>" placeholder="RG do paciente" type="text" name="RG">
           </li>
           <li>
-            <label>CPF: </label>
+            <label>CPF...............: </label>
             <input value="<?php echo $cliente['CPF']; ?>" placeholder="CPF do paciente" type="text" name="CPF">
           </li>
 
           <li>
-            <label>Endereço:</label>
+            <label>Endereço.......:</label>
             <input value="<?php echo $cliente['endereco']; ?>" type="text" name="endereco">
           </li>
           <li>
-            <label>Cidade:</label>
+            <label>Cidade..........:</label>
             <input value="<?php if(!empty($cliente['cidade'])){ echo $cliente['cidade'];} ?>" type="text" name="cidade">
           </li>
           <li>
-            <label>CEP:</label>
+            <label>CEP..............:</label>
             <input value="<?php if(!empty($cliente['CEP'])){ echo $cliente['CEP'];} ?>" type="text" name="CEP">
           </li>
           <li>
-            <label>E-mail:</label>
+            <label>E-mail..........:</label>
             <input value="<?php if(!empty($cliente['telefone'])){ echo ($cliente['email']);} ?>" type="email" name="email">
           </li>
           <li>
-            <label>Telefone:</label>
+            <label>Telefone.......:</label>
             <input value="<?php if(!empty($cliente['telefone'])){ echo $cliente['telefone'];} ?>" placeholder="11988888888" type="text" name="telefone">
           </li>
           <li>
-            <label>Data de nascimento:</label>
+            <label>Nascimento..:</label>
             <input value="<?php if(!empty($cliente['nascimento'])){ echo $cliente['nascimento'];} ?>" placeholder="dia/mês/ano" type="date" name="nascimento">
           </li>
 
-          <p>Adicionar um exame no atendimento:</p>
-          <label>Exame ID</label>
-          <input type="text" name="id_exame"><br><br>
-          <button class="btn_style" type="submit">Enviar</button><br><br>
-          </p>
+          <li>
+            <p>Adicionar um exame no atendimento:</p>
+            <label>Exame ID</label>
+            <input type="text" name="id_exame">
+          </li>
+
+        <button class="btn-cadastro" type="submit">Enviar</button><br><br>
         </ul>
       </form>
       <?php if(isset($alert)) echo $alert; ?>
     </div>
 
-    <div class="container_son">
+    <div class="Table-infos">
       <!-- TABELA DE INFORMAÇÕES EXAMES CADASTRADOS DO PACIENTE -->
       <table border="1px" cellpadding="10">
         <thead>

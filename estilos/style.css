@@ -143,3 +143,31 @@ th, td {
 th {
     background-color: #f2f2f2; /* Cor de fundo para o cabeçalho */
 }
+
+
+/* CONFIGURAÇÕES SOMENTE DA TELA DE EDITAR PACIENTES */
+
+/* CONTAINER -> RESPONSÁVEL POR TODA TELA */
+.container_body{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+}
+.att-infos{
+    display: grid;
+    justify-content: center;
+}
+.att-infos li{
+    list-style: none;
+
+}
+.att-infos ul{
+    display: grid;
+    gap: 0.5rem;
+}
+
+.Table-infos{
+    grid-column: 2;
+    display: grid;
+    justify-content: center;
+}
