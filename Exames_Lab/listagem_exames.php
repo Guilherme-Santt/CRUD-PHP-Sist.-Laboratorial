@@ -27,7 +27,6 @@ include('../views/conexao.php');
         <li><a class="btn" href="../Home_Lab/index.php">Home</a></li>
         <!-- PACIENTES -->
         <li><a class="btn" href="../Pacientes_Lab/listagem_pacientes.php">Listagem Pacientes</a></li>
-        <li><a class="btn" href="../Pacientes_Lab/Criar_Paciente.php">Cadastrar Pacientes</a></li>
 
         <!-- USUÁRIOS -->
         <li><a class="btn" href=" ../Usuarios_Lab/listagem_usuarios.php">Configurações de usuários</a></li>
@@ -39,6 +38,7 @@ include('../views/conexao.php');
   </header>
   <!-- DIV PARA TABELA COM INFORMAÇÕES DOS EXAMES -->
   <div>
+    <button id="AbrirModal">CADASTRAR EXAMES</button>
     <div>
 
       <p>Exames cadastrados em seu sistema</p>
@@ -75,22 +75,31 @@ include('../views/conexao.php');
       </table><br>
     </div>
   </div>
-
+  <!-- END VISUALIZAÇÃO DE EXAMES NO SISTEMA -->
   <!-- JANELA MODAL->CADASTRO DE EXAMES NO SISTEMA -->
-  <div>
-    <div>
+  <div class="container-modal" id="container-modal">
+    <div class="janela-cadastro">
       <form action="../Exames_Lab/Post_CriarExames.php" method="POST">
-        <p>Cadastrar exame⤵</p>
-        <label>Código exame</label><br><br>
-        <input type="text" value="<?php if(isset($_POST['codigo'])) echo $_POST['codigo']; ?>" name="codigo"><br><br>
+        <button class="close">x</button>
+        <ul class="lista-cadastro">
+          <li>
+            <label>Código exame</label>
+            <input type="text" value="<?php if(isset($_POST['codigo'])) echo $_POST['codigo']; ?>" name="codigo">
+          </li>
 
-        <label>Descrição exame</label></label><br><br>
-        <input type="text" value="<?php if(isset($_POST['descricao'])) echo $_POST['descricao']; ?>" name="descricao"><br><br>
-
-        <button type="submit" name="cadastrar">Cadastrar exame</button>
+          <li>
+            <label>Descrição exame</label></label>
+            <input type="text" value="<?php if(isset($_POST['descricao'])) echo $_POST['descricao']; ?>" name="descricao">
+          </li>
+          <li>
+            <button type="submit" name="cadastrar">Cadastrar exame</button>
+          </li>
+        </ul>
       </form>
     </div>
   </div>
+  <!-- END MODAL -->
 </body>
+<script src="../src/script.js"></script>
 
 </html>

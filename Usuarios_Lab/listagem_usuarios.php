@@ -20,27 +20,26 @@ include('../Control/function.php');
 <link rel="stylesheet" href="../estilos/style.css">
 
 <body>
-    <!-- HEADER DE INFORMAÇÕES -->
+  <!-- HEADER DE INFORMAÇÕES -->
   <header class="header">
     <nav>
       <ul class="list-header">
         <li><a class="btn" href="../Home_Lab/index.php">Home</a></li>
         <!-- PACIENTES -->
         <li><a class="btn" href="../Pacientes_Lab/listagem_pacientes.php">Listagem Pacientes</a></li>
-        <li><a class="btn" href="../Pacientes_Lab/Criar_Paciente.php">Cadastrar Pacientes</a></li>
-
         <!-- USUÁRIOS -->
         <li><a class="btn" href=" ../Usuarios_Lab/listagem_usuarios.php">Configurações de usuários</a></li>
-
         <!-- EXAMES -->
         <li><a class="btn" href="../Exames_Lab/listagem_exames.php">Cadastro de exames</a></li>
       </ul>
     </nav>
   </header>
+  <!-- END HEADER -->
   <!-- DIVISÃO GERAL DAS INFORMAÇÕES NO CONTAINER -->
   <div class="container_body">
     <!-- TABELA DE USUARIOS CADASTRADOS LABORATÓRIO -->
     <div class="container_son">
+      <button id="AbrirModal">Cadastrar Paciente</button>
       <p>Usuários cadastrados no seu sistema</p>
       <table ID="alter" cellpadding="10">
         <thead>
@@ -98,30 +97,44 @@ include('../Control/function.php');
       </table>
     </div>
   </div>
-
-  <!-- CASTRO DE PACIENTES -->
-  <div>
-    <div">
+  <!-- END VISUALIZAÇÃO DE USUARIOS -->
+  <!-- MODAL CADASTRO DE USUARIOS -->
+  <div class="container-modal" id="container-modal">
+    <div class="janela-cadastro">
       <form action="../Usuarios_Lab/Post_CriarUsuarios.php" method="POST">
-        <p>Cadastrar usuário⤵</p>
-        <label>Email</label><br>
-        <input type="email" value="<?php if(isset($_POST['email'])) echo $_POST['email']; ?>" name="email"><br><br>
+        <ul class="lista-cadastro">
+          <button class="close">x</button>
+          <li>
+            <label>Email.........:</label>
+            <input type="email" value="<?php if(isset($_POST['email'])) echo $_POST['email']; ?>" name="email">
+          </li>
 
-        <label>Nome</label><br>
-        <input type="text" value="<?php if(isset($_POST['nome'])) echo $_POST['nome']; ?>" name="nome"><br><br>
+          <li>
+            <label>Nome.........:</label>
+            <input type="text" value="<?php if(isset($_POST['nome'])) echo $_POST['nome']; ?>" name="nome">
+          </li>
 
-        <label>Nascimento</label><br>
-        <input type="date" value="<?php if(isset($_POST['nascimento'])) echo $_POST['nascimento']; ?>" name="nascimento"><br><br>
-
-        <label>Telefone:</label><br>
-        <input value="<?php if(isset($_POST['telefone'])) echo $_POST['telefone']; ?>" placeholder="11988888888" type="text" name="telefone"><br><br>
-
-        <label>Senha</label><br>
-        <input type="password" value="<?php if(isset($_POST['senha'])) echo $_POST['senha']; ?>" name="senha"><br><br>
-        <button type="submit" name="cadastrar">Enviar </button>
+          <li>
+            <Label> Nascimento.:</Label>
+            <input type="date" value="<?php if(isset($_POST['nascimento'])) echo $_POST['nascimento']; ?>" name="nascimento">
+          </li>
+          <li>
+            <label>Telefone.....:</label>
+            <input value="<?php if(isset($_POST['telefone'])) echo $_POST['telefone']; ?>" placeholder="11988888888" type="text" name="telefone">
+          </li>
+          <li>
+            <label>Senha........:</label>
+            <input type="password" value="<?php if(isset($_POST['senha'])) echo $_POST['senha']; ?>" name="senha">
+          </li>
+          <li>
+            <button type="submit" name="cadastrar">Enviar </button>
+          </li>
+        </ul>
       </form>
       </dv>
-  </div>
+    </div>
+    <!-- END MODAL -->
+    <script src="../src/script.js"></script>
 </body>
 
 </html>
