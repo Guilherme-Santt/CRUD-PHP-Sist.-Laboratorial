@@ -30,10 +30,6 @@ $num_pacientes = $query_pacientes->num_rows;
   <header class="header">
     <nav>
       <ul class="list-header">
-        <li>
-          <!-- TELA INICIAL -->
-          <a class="btn" href="../Home_Lab/index.php">Home</a></li>
-        <li>
           <!-- PACIENTES -->
           <a class="btn" href="../Pacientes_Lab/listagem_pacientes.php">Listagem Pacientes</a></li>
         <li>
@@ -98,7 +94,7 @@ $num_pacientes = $query_pacientes->num_rows;
             <input type="radio" value="Masculino" name="sexo">
           </li>
           <li>
-            <button type="submit" name="cadastrar">Enviar</button>
+            <button class="btn-cadastro" type="submit" name="cadastrar">Enviar</button>
           </li>
         </ul>
       </form>
@@ -110,9 +106,15 @@ $num_pacientes = $query_pacientes->num_rows;
   <!-- TABELA DE PACIENTES CADASTRADOS -->
   <div class="container">
     <div class="container_son">
-      <button class="btn-cadastro" id="AbrirModal">Cadastrar Paciente</button>
-      <p>Seus pacientes cadastrados</p>
       <table cellpadding="10">
+        <thead>
+          <th>
+          <button class="btn-cadastro" id="AbrirModal">Cadastrar Paciente</button>
+          </th>
+          <th colspan="9">
+            <h1>LISTAGEM DE PACIENTES</h1>
+          </th>
+        </thead>
         <thead>
           <th>Atendimento</th>
           <th>Nome</th>
@@ -121,7 +123,6 @@ $num_pacientes = $query_pacientes->num_rows;
           <th>E-mail</th>
           <th>Celular</th>
           <th>Nascimento</th>
-          <th>Convênio</th>
           <th>Data de cadastro</th>
           <th>Ações</th>
         </thead>
@@ -153,7 +154,6 @@ $num_pacientes = $query_pacientes->num_rows;
             <td><?php echo $pacientes['email']?> </td>
             <td><?php echo $telefone; ?> </td>
             <td><?php echo $nascimento ?> </td>
-            <td><?php if(!empty($pacientes['Convenio'])){echo $pacientes['Convenio'];}else{ echo "Convênio não informado";}?> </td>
             <td><?php echo $data_cadastro;?> </td>
             <td>
               <a class="edit" href="editar_paciente.php?id=<?php echo $pacientes['ID']?>">Editar</a><hr>

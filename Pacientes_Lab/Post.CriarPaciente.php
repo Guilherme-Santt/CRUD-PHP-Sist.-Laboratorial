@@ -17,7 +17,7 @@ if(count($_POST)){
     $cidade      = $_POST['cidade'];
     $nascimento  = $_POST['nascimento'];
     $telefone    = $_POST['telefone'];
-    $sexo        = $_POST['sexo'];
+    $sexo        = isset($_POST['sexo']) ? $_POST['sexo'] : null;
 
     
     if(empty($nome) || empty($cpf) || empty($rg) || empty($email) || empty($endereco) || empty($cep) || empty($cidade) || empty($nascimento) || empty($telefone) || empty($sexo)){

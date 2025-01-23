@@ -7,7 +7,7 @@ if(!isset($_SESSION)){
     }    
 }
 include('../Control/function.php');
-include('../views/conexao.php');
+include('../Control/conexao.php');
 $id = intval($_GET['id']);
 
 $alert = "";

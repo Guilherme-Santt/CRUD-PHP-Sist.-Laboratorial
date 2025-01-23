@@ -24,9 +24,6 @@ include('../Control/conexao.php');
   <header class="header">
     <nav>
       <ul class="list-header">
-        <li>
-          <a class="btn" href="../Home_Lab/index.php">Home</a>
-        </li>
         <!-- PACIENTES -->
         <li>
           <a class="btn" href="../Pacientes_Lab/listagem_pacientes.php">Listagem Pacientes</a>
@@ -51,11 +48,13 @@ include('../Control/conexao.php');
   <!-- DIV PARA TABELA COM INFORMAÇÕES DOS EXAMES -->
   <div class="container">
     <div class="container_son">
-      <div>
-        <button class="btn-cadastro" id="AbrirModal">CADASTRAR EXAMES</button>
-      <div>
-      <p>Exames cadastrados em seu sistema</p>
       <table>
+      <thead>
+          <th>
+          <button class="btn-cadastro" id="AbrirModal">Cadastrar exame</button>
+          </th>
+          <th colspan="3"><h1>CADASTRO DE EXAMES</h1></th>
+        </thead>
         <thead>
           <th>ID exame</th>
           <th>Código exame</th>
@@ -96,15 +95,15 @@ include('../Control/conexao.php');
         <button class="close">x</button>
         <ul class="lista-cadastro">
           <li>
-            <label>Código exame</label>
+            <label>Código exame.....:</label>
             <input type="text" value="<?php if(isset($_POST['codigo'])) echo $_POST['codigo']; ?>" name="codigo">
           </li>
           <li>
-            <label>Descrição exame</label></label>
+            <label>Descrição exame.:</label></label>
             <input type="text" value="<?php if(isset($_POST['descricao'])) echo $_POST['descricao']; ?>" name="descricao">
           </li>
           <li>
-            <button type="submit" name="cadastrar">Cadastrar exame</button>
+            <button class="btn-cadastro" type="submit" name="cadastrar">Cadastrar exame</button>
           </li>
         </ul>
       </form>

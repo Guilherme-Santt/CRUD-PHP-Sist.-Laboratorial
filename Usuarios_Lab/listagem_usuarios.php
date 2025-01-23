@@ -24,10 +24,6 @@ include('../Control/function.php');
   <header class="header">
     <nav>
       <ul class="list-header">
-        <!-- TELA INICIAL -->
-        <li>
-          <a class="btn" href="../Home_Lab/index.php">Home</a>
-        </li>
         <!-- PACIENTES -->
         <li>
           <a class="btn" href="../Pacientes_Lab/listagem_pacientes.php">Listagem Pacientes</a>
@@ -52,9 +48,13 @@ include('../Control/function.php');
   <div class="container">
     <!-- TABELA DE USUARIOS CADASTRADOS LABORATÓRIO -->
     <div class="container_son">
-      <button class="btn-cadastro" id="AbrirModal">Cadastrar Paciente</button>
-      <p>Usuários cadastrados no seu sistema</p>
       <table ID="alter" cellpadding="10">
+        <thead>
+          <th>
+          <button class="btn-cadastro" id="AbrirModal">Cadastrar usuários</button>
+          </th>
+          <th colspan="9"><h1> USUÁRIOS</h1></th>
+        </thead>
         <thead>
           <th>ID</th>
           <th>Nome</th>
@@ -92,7 +92,7 @@ include('../Control/function.php');
           <tr>
             <td><?php echo $cliente['id']?> </td>
             <td><?php echo $cliente['nome']?> </td>
-            <td><?php echo $cliente['unidade']?> </td>
+            <td><?php if(!isset($cliente['unidade'])){ echo "Não informado";}else{ echo $cliente['unidade'];};?> </td>
             <td><?php echo $cliente['email']?> </td>
             <td><?php echo $telefone; ?> </td>
             <td><?php echo $nascimento ?> </td>
@@ -140,7 +140,7 @@ include('../Control/function.php');
             <input type="password" value="<?php if(isset($_POST['senha'])) echo $_POST['senha']; ?>" name="senha">
           </li>
           <li>
-            <button type="submit" name="cadastrar">Enviar </button>
+            <button class="btn-cadastro" type="submit" name="cadastrar">Enviar </button>
           </li>
         </ul>
       </form>

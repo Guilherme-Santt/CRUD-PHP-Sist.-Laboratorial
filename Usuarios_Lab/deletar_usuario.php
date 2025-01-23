@@ -1,6 +1,6 @@
 <?php
 
-include('../views/conexao.php');
+include('../Control/conexao.php');
 $id = intval($_GET['id']);
 
 // REMOVER USUARIO PUXANDO ID DO GET

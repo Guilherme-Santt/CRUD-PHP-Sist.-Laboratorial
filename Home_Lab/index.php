@@ -71,7 +71,7 @@ $cont_exames = $query->num_rows;
   </header>
   <main>
     <h1>
-      Instroções de uso de nosso sistema
+      Instruções de uso de nosso sistema
     </h1>
     <ol>
       <li>

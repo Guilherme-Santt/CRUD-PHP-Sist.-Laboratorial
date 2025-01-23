@@ -109,9 +109,6 @@ $num_exames = $query_exames->num_rows;
   <header class=" header">
     <nav>
       <ul class="list-header">
-        <li>
-          <a class="btn" href="../Home_Lab/index.php">Home</a>
-        </li>
         <!-- PACIENTES -->
         <li>
           <a class="btn" href="../Pacientes_Lab/listagem_pacientes.php">Listagem Pacientes</a>
