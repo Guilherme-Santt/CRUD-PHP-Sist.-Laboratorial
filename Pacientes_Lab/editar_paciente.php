@@ -102,6 +102,7 @@ $num_exames = $query_exames->num_rows;
 
 <!-- LINK DOS ARQUIVOS CSS -->
 <link rel="stylesheet" href="../estilos/style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.2/html2pdf.bundle.min.js" integrity="sha512-MpDFIChbcXl2QgipQrt1VcPHMldRILetapBl5MPCA9Y8r7qvlwx1/Mc9hNTzY+kS5kX6PdoDq41ws1HiVNLdZA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <body>
 
@@ -134,6 +135,7 @@ $num_exames = $query_exames->num_rows;
   <div class="container_body">
     <div class="att-infos">
       <p>Informações do paciente:</p>
+      <button class="btn-cadastro" id="generate-pdf">Gerar PDF</button>
       <form action="" method="POST">
         <ul>
           <li>
@@ -186,16 +188,15 @@ $num_exames = $query_exames->num_rows;
       <?php if(isset($alert)) echo $alert; ?>
     </div>
 
-    <div class="Table-infos">
+    <div class="Table-infos" id="content">
       <!-- TABELA DE INFORMAÇÕES EXAMES CADASTRADOS DO PACIENTE -->
       <table border="1px" cellpadding="10">
         <thead>
           <th>ID Exames</th>
           <th>código exame</th>
           <th>Nome exame</th>
-          <th>Resultado</th>
-          <th>Inserir Resultado</th>
-          <th>Remover</th>
+          <th>Valor</th>
+          <th>Ação</th>
 
         </thead>
         <tbody> <?php if($num_exames == 0) {?>
@@ -208,15 +209,13 @@ $num_exames = $query_exames->num_rows;
             <td><?php echo $exames['exame_id']?></td>
             <td><?php echo $exames['codigo']?></td>
             <td><?php echo $exames['descricao']?></td>
-
-            <td><?php if($exames['resultado'] == 0){ }else echo number_format($exames['resultado'], 1, ',', '.')?></td>
-            <td><a href="inserir_resultado.php?id=<?php echo $exames['id']?>">inserir</a></td>
-            <td><a href="../Pacientes_Lab/remover_exame_paciente.php?id=<?php echo $exames['id']?>">X</a></td>
+            <td><?php echo number_format($exames['valor'], 2, ',', '. '); ?></td>
+            <td><a href="../Pacientes_Lab/remover_exame_paciente.php?id=<?php echo $exames['id']?>">Remover</a></td>
           </tr><?php }?>
         </tbody>
       </table>
     </div>
   </div>
-</body>
-
+  <script src="./src/script.js"></script>
+  </body>
 </html>
