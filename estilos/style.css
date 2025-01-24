@@ -9,7 +9,7 @@ body {
 INICIO CONFIGURAÇÕES HEADER*/
 
 .header {
-    background-color: #c0bbbb;
+    background-color: #d8d3d3;
     height: 7rem;
     display: grid;
     align-items: center;
@@ -133,9 +133,11 @@ box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0);
     align-items: center;
     justify-content: center;
     height: 70vh;
+
+    
 }
 .container_son{
-    width: auto;
+    width: 120vh;
 }
 
 
@@ -165,17 +167,14 @@ th {
 
 
 /* CONFIGURAÇÕES SOMENTE DA TELA DE EDITAR PACIENTES */
-.container{
-    background-color: #dacbcb;
-    display: grid;
-    justify-content: center;
-}
+
 .att-infos{
     display: grid;
     justify-content: left;
-    background-color: #cac7c7;
+    background-color: #d8d3d3;
     width: 35rem;
     border-radius: 1rem;
+    font-size: 0.8rem;
 }
 
 .att-infos a{

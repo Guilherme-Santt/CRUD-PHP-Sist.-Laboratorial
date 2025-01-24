@@ -3,10 +3,10 @@
 if(!isset($_SESSION)){
     session_start();
     if(!isset($_SESSION['usuario'])){
-        header("location: ../loguin_Lab/index_login.php");
+        header("location: index.php");
     }    
 }
-include('../Control/conexao.php');
+include('Control/conexao.php');
 $id     = intval($_GET['id']);
 $alert  = "";
 
@@ -105,30 +105,29 @@ $num_exames = $query_exames->num_rows;
 </head>
 
 <!-- LINK DOS ARQUIVOS CSS -->
-<link rel="stylesheet" href="../estilos/style.css">
+<link rel="stylesheet" href="estilos/style.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.2/html2pdf.bundle.min.js" integrity="sha512-MpDFIChbcXl2QgipQrt1VcPHMldRILetapBl5MPCA9Y8r7qvlwx1/Mc9hNTzY+kS5kX6PdoDq41ws1HiVNLdZA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <body>
-
   <!-- !-- DIVISÃO Á BAIXO DO HEADER, PARA INFOS & AVISOS  -->
   <header class=" header">
     <nav>
       <ul class="list-header">
         <!-- PACIENTES -->
         <li>
-          <a class="btn" href="../Pacientes_Lab/listagem_pacientes.php">Listagem Pacientes</a>
+          <a class="btn" href="listagem_pacientes.php">Listagem Pacientes</a>
         </li>
         <!-- USUÁRIOS -->
         <li>
-          <a class="btn" href=" ../Usuarios_Lab/listagem_usuarios.php">Configurações de usuários</a>
+          <a class="btn" href="listagem_usuarios.php">Configurações de usuários</a>
         </li>
         <!-- EXAMES -->
         <li>
-          <a class="btn" href="../Exames_Lab/listagem_exames.php">Cadastro de exames</a>
+          <a class="btn" href="listagem_exames.php">Cadastro de exames</a>
         </li>
         <li>
         <!-- SAIR -->
-        <a class="btn" href="../Loguin_Lab/logout.php">Encerrar</a>
+        <a class="btn" href="Login_Lab/logout.php">Encerrar</a>
         </li>
 
       </ul>
@@ -136,79 +135,89 @@ $num_exames = $query_exames->num_rows;
   </header>
 
     <!-- INSERÇÃO CAMPOS POST NO FORM PARA ATUALIZAÇÃO DE DADOS-->
-<div class="container">
-  <div class="att-infos">
-    <form action="" method="POST">
-      <ul>
-        <p>Informações do paciente:</p>
-        <li>
-          <label>Nome............: </label>
-          <input value="<?php echo $cliente['nome']; ?>" type="text" name="nome">
-        </li>
-        <li>
-          <label>RG................: </label>
-          <input value="<?php echo $cliente['RG']; ?>" placeholder="RG do paciente" type="text" name="RG">
-        </li>
-        <li>
-          <label>CPF...............: </label>
-          <input value="<?php echo $cliente['CPF']; ?>" placeholder="CPF do paciente" type="text" name="CPF">
-        </li>
+  <div class="container">
+    <div class="att-infos">
+      <form action="" method="POST">
+        <ul >
+          <li>
+            <label>Nome............: </label>
+            <input value="<?php echo $cliente['nome']; ?>" type="text" name="nome">
+          </li>
+          <li>
+            <label>RG................: </label>
+            <input value="<?php echo $cliente['RG']; ?>" placeholder="RG do paciente" type="text" name="RG">
+          </li>
+          <li>
+            <label>CPF...............: </label>
+            <input value="<?php echo $cliente['CPF']; ?>" placeholder="CPF do paciente" type="text" name="CPF">
+          </li>
 
-        <li>
-          <label>Endereço.......:</label>
-          <input value="<?php echo $cliente['endereco']; ?>" type="text" name="endereco">
-        </li>
-        <li>
-          <label>Cidade..........:</label>
-          <input value="<?php if(!empty($cliente['cidade'])){ echo $cliente['cidade'];} ?>" type="text" name="cidade">
-        </li>
-        <li>
-          <label>CEP..............:</label>
-          <input value="<?php if(!empty($cliente['CEP'])){ echo $cliente['CEP'];} ?>" type="text" name="CEP">
-        </li>
-        <li>
-          <label>E-mail..........:</label>
-          <input value="<?php if(!empty($cliente['telefone'])){ echo ($cliente['email']);} ?>" type="email" name="email">
-        </li>
-        <li>
-          <label>Telefone.......:</label>
-          <input value="<?php if(!empty($cliente['telefone'])){ echo $cliente['telefone'];} ?>" placeholder="11988888888" type="text" name="telefone">
-        </li>
-        <li>
-          <label>Nascimento..:</label>
-          <input value="<?php if(!empty($cliente['nascimento'])){ echo $cliente['nascimento'];} ?>" placeholder="dia/mês/ano" type="date" name="nascimento">
-        </li>
-       
-        <div clas="exames-paciente">
-          <div>
-            <?php if($num_exames == 0) {?>
-            <!-- MENSAGEM CASO NÃO TIVER NENHUM EXAME CADASTRADO -->
-            <p>Nenhum exame foi encontrado!</p> 
-            <?php } ?>
-            
-          <!-- CÓDIGO DOS EXAMES INSERIDOS NO PACIENTE -->
-          <p>Exames cadastrados:</p>
-          <?php while($exames = $query_exames->fetch_assoc()){?>
-            <button><a href="remover_exame_paciente.php?=><?php echo $exames['codigo']?>"> <?php echo $exames['codigo']?> </a></button> <?php }?>
+          <li>
+            <label>Endereço.......:</label>
+            <input value="<?php echo $cliente['endereco']; ?>" type="text" name="endereco">
+          </li>
+          <li>
+            <label>Cidade..........:</label>
+            <input value="<?php if(!empty($cliente['cidade'])){ echo $cliente['cidade'];} ?>" type="text" name="cidade">
+          </li>
+          <li>
+            <label>CEP..............:</label>
+            <input value="<?php if(!empty($cliente['CEP'])){ echo $cliente['CEP'];} ?>" type="text" name="CEP">
+          </li>
+          <li>
+            <label>E-mail..........:</label>
+            <input value="<?php if(!empty($cliente['telefone'])){ echo ($cliente['email']);} ?>" type="email" name="email">
+          </li>
+          <li>
+            <label>Telefone.......:</label>
+            <input value="<?php if(!empty($cliente['telefone'])){ echo $cliente['telefone'];} ?>" placeholder="11988888888" type="text" name="telefone">
+          </li>
+          <li>
+            <label>Nascimento..:</label>
+            <input value="<?php if(!empty($cliente['nascimento'])){ echo $cliente['nascimento'];} ?>" placeholder="dia/mês/ano" type="date" name="nascimento">
+          </li>
+        
+          <div clas="exames-paciente">
+            <div>
+              <?php if($num_exames == 0) {?>
+              <!-- MENSAGEM CASO NÃO TIVER NENHUM EXAME CADASTRADO -->
+              <p>Nenhum exame foi encontrado!</p> 
+              <?php } ?>
+              
+            <!-- CÓDIGO DOS EXAMES INSERIDOS NO PACIENTE -->
+            <p>Exames cadastrados:</p>
+            <?php while($exames = $query_exames->fetch_assoc()){?>
+              <button><a href="remover_exame_paciente.php?=><?php echo $exames['codigo']?>"> <?php echo $exames['codigo']?> </a></button> <?php }?>
+            </div>
           </div>
+          <li>
+            <p>Adicionar um exame no atendimento:</p>
+            <label>Exame ID</label>
+            <input type="text" name="id_exame">
+          </li>
+          <!-- <?php if(isset($alert)){?> <script>alert("ATUALIZADO COM SUCESSO")</script><?php }?> -->
+          <button class="btn-cadastro" type="submit">Enviar</button>
+        </ul>
+      </form>
+      <!-- <p id="content">Jean quer rebolar pro biel lentinho</p>  -->
+      <button class="btn-cadastro" id="AbrirModal">Gerar relatório</button>
+      
+      
+      <div class="container-modal" id="container-modal">
+        <div class="janela-cadastro">
+          <div class=" lista-cadastro">
+            <button class="close">x</button>
+            <button id="generate-pdf" class="btn-cadastro">Gerar PDF</button>
+            <div id="content">
+              <p>teste</p>
+            </div>
+              
+            </div>
         </div>
-        <li>
-          <p>Adicionar um exame no atendimento:</p>
-          <label>Exame ID</label>
-          <input type="text" name="id_exame">
-        </li>
-        <button class="btn-cadastro" type="submit">Enviar</button>
-        <button class="btn-cadastro" id="generate-pdf">Gerar relatório</button>
-        <button class="btn-cadastro" id="generate-pdf">Gerar PDF</button>
-      </ul>
-    </form>
-</div>
-    
-
-    <?php if(isset($alert)) echo $alert; ?>
-
-    <script src="./src/script.js"></script>
+      </div>    
+  </body>
+  <script src="./src/script.js"></script>
+  <script src="../src/script.js"></script>
 
 
-</body>
 </html>

@@ -3,11 +3,11 @@
 if(!isset($_SESSION)){
     session_start();
     if(!isset($_SESSION['usuario'])){
-        header("location: ../Loguin_Lab/index_login.php");
+        header("location: Login_Lab/index_login.php");
     }    
 }
-include('../Control/function.php');
-include('../Control/conexao.php');
+include('Control/function.php');
+include('Control/conexao.php');
 $id = intval($_GET['id']);
 
 $alert = "";
@@ -43,7 +43,7 @@ if(count($_POST) > 0){
     nascimento = '$nascimento' WHERE id   = '$id'";
     $deu_certo = $mysqli->query($sql_code);
         if($deu_certo){
-            header("location: ../Usuarios_Lab/listagem_usuarios.php");
+            header("location: editar_usuario.php?id=$id");
         }     
 }         
 
@@ -62,7 +62,7 @@ $cliente = $query_cliente->fetch_assoc();
 </head>
 
 <!-- ARQUIVOS CSS SITE -->
-<link rel="stylesheet" href="../estilos/style.css">
+<link rel="stylesheet" href="estilos/style.css">
 
 <body>
   <!-- HEADER DE INFORMAÇÕES -->
@@ -71,19 +71,19 @@ $cliente = $query_cliente->fetch_assoc();
       <ul class="list-header">
         <!-- PACIENTES -->
         <li>
-          <a class="btn" href="../Pacientes_Lab/listagem_pacientes.php">Listagem Pacientes</a>
+          <a class="btn" href="listagem_pacientes.php">Listagem Pacientes</a>
         </li>
         <!-- USUÁRIOS -->
         <li>
-          <a class="btn" href=" ../Usuarios_Lab/listagem_usuarios.php">Configurações de usuários</a>
+          <a class="btn" href="listagem_usuarios.php">Configurações de usuários</a>
         </li>
         <!-- EXAMES -->
         <li>
-          <a class="btn" href="../Exames_Lab/listagem_exames.php">Cadastro de exames</a>
+          <a class="btn" href="listagem_exames.php">Cadastro de exames</a>
         </li>
         <li>
           <!-- SAIR -->
-          <a class="btn" href="../Loguin_Lab/logout.php">Encerrar</a>
+          <a class="btn" href="Login_Lab/logout.php">Encerrar</a>
         </li>
       </ul>
     </nav>

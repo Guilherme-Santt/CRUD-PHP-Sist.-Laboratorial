@@ -1,5 +1,6 @@
+console.log("teste");
 // GERADOR DE PDF
-const btnGenerate = document.querySelector("#generate-pdf");
+const btnGenerate = document.querySelector("#generate-pdf")
 
 btnGenerate.addEventListener("click", () => {
     console.log("Usuario clicou em gerar PDF")

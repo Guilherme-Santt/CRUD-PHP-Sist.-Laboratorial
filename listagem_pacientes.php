@@ -1,12 +1,12 @@
 <?php 
-include('../Control/conexao.php');
+include('Control/conexao.php');
 if(!isset($_SESSION)){
     session_start();
     if(!isset($_SESSION['usuario'])){
-        header("location: ../views/index_login.php");
+        header("location: index_login.php");
     }    
 }
-include('../Control/function.php');
+include('Control/function.php');
 
 $sql_pacientes   = "SELECT * FROM pacientes";
 $query_pacientes = $mysqli->query($sql_pacientes) or die($mysqli->error);
@@ -20,27 +20,24 @@ $num_pacientes = $query_pacientes->num_rows;
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pacientes</title>
 </head>
-
-<!-- CÓDIGOS CSS -->
-<link rel="stylesheet" href="../estilos/style.css">
+<link rel="stylesheet" href="estilos/style.css">
 
 <body>
-  <link rel="stylesheet" href="../estilos/style.css">
   <!-- HEADER DE INFORMAÇÕES -->
   <header class="header">
     <nav>
       <ul class="list-header">
           <!-- PACIENTES -->
-          <a class="btn" href="../Pacientes_Lab/listagem_pacientes.php">Listagem Pacientes</a></li>
+          <a class="btn" href="listagem_pacientes.php">Listagem Pacientes</a></li>
         <li>
           <!-- USUÁRIOS -->
-          <a class="btn" href=" ../Usuarios_Lab/listagem_usuarios.php">Configurações de usuários</a></li>
+          <a class="btn" href="listagem_usuarios.php">Configurações de usuários</a></li>
         <li>
           <!-- EXAMES -->
-          <a class="btn" href="../Exames_Lab/listagem_exames.php">Cadastro de exames</a></li>
+          <a class="btn" href="listagem_exames.php">Cadastro de exames</a></li>
         <li>
           <!-- SAIR -->
-          <a class="btn" href="../Loguin_Lab/logout.php">Encerrar</a>
+          <a class="btn" href="Login_Lab/logout.php">Encerrar</a>
         </li>
       </ul>
     </nav>
@@ -48,7 +45,7 @@ $num_pacientes = $query_pacientes->num_rows;
   <!-- MODAL CADASTRADO DE PACIENTES -->
   <div class="container-modal" id="container-modal">
     <div class="janela-cadastro">
-      <form action="../Pacientes_Lab/Post.CriarPaciente.php" method=POST>
+      <form action="Pacientes_Lab/Post.CriarPaciente.php" method=POST>
         <ul class=" lista-cadastro">
           <button class="close">x</button>
           <li>
@@ -118,11 +115,8 @@ $num_pacientes = $query_pacientes->num_rows;
         <thead>
           <th>Atendimento</th>
           <th>Nome</th>
-          <th>Endereço</th>
-          <th>Sexo</th>
           <th>E-mail</th>
           <th>Celular</th>
-          <th>Nascimento</th>
           <th>Data de cadastro</th>
           <th>Ações</th>
         </thead>
@@ -149,11 +143,8 @@ $num_pacientes = $query_pacientes->num_rows;
           <tr>
             <td><?php echo $pacientes['ID']?> </td>
             <td><?php echo $pacientes['nome']?> </td>
-            <td><?php echo $pacientes['endereco']?> </td>
-            <td><?php echo $pacientes['sexo']?> </td>
             <td><?php echo $pacientes['email']?> </td>
             <td><?php echo $telefone; ?> </td>
-            <td><?php echo $nascimento ?> </td>
             <td><?php echo $data_cadastro;?> </td>
             <td>
               <a class="edit" href="editar_paciente.php?id=<?php echo $pacientes['ID']?>">Editar</a><hr>
@@ -170,7 +161,7 @@ $num_pacientes = $query_pacientes->num_rows;
   </div>
   <!-- FINAL TABELA DE PACIENTES -->
 
-  <script src="../src/script.js"></script>
+  <script src=" src/script.js"></script>
 </body>
 
 </html>

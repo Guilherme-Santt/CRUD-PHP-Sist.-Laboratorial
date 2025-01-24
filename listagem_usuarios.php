@@ -2,11 +2,11 @@
 if(!isset($_SESSION)){
     session_start();
     if(!isset($_SESSION['usuario'])){
-        header("location: ../Loguin_Lab/index_login.php");
+        header("location: Login_Lab/index_login.php");
     }    
 }
-include('../Control/conexao.php');
-include('../Control/function.php');
+include('Control/conexao.php');
+include('Control/function.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,7 +17,7 @@ include('../Control/function.php');
   <title>Usuários</title>
 </head>
 <!-- ARQUIVOS CSS SITE -->
-<link rel="stylesheet" href="../estilos/style.css">
+<link rel="stylesheet" href="estilos/style.css">
 
 <body>
   <!-- HEADER DE INFORMAÇÕES -->
@@ -26,24 +26,26 @@ include('../Control/function.php');
       <ul class="list-header">
         <!-- PACIENTES -->
         <li>
-          <a class="btn" href="../Pacientes_Lab/listagem_pacientes.php">Listagem Pacientes</a>
+          <a class="btn" href="listagem_pacientes.php">Listagem Pacientes</a>
         </li>
         <!-- USUÁRIOS -->
         <li>
-          <a class="btn" href=" ../Usuarios_Lab/listagem_usuarios.php">Configurações de usuários</a>
+          <a class="btn" href="listagem_usuarios.php">Configurações de usuários</a>
         </li>
         <!-- EXAMES -->
         <li>
-          <a class="btn" href="../Exames_Lab/listagem_exames.php">Cadastro de exames</a>
+          <a class="btn" href="listagem_exames.php">Cadastro de exames</a>
         </li>
         <li>
           <!-- SAIR -->
-          <a class="btn" href="../Loguin_Lab/logout.php">Encerrar</a>
+          <a class="btn" href="Login_Lab/logout.php">Encerrar</a>
         </li>
       </ul>
     </nav>
   </header>
   <!-- END HEADER -->
+
+
   <!-- DIVISÃO GERAL DAS INFORMAÇÕES NO CONTAINER -->
   <div class="container">
     <!-- TABELA DE USUARIOS CADASTRADOS LABORATÓRIO -->
@@ -60,7 +62,6 @@ include('../Control/function.php');
           <th>Nome</th>
           <th>E-mail</th>
           <th>Telefone</th>
-          <th>Data de nascimento</th>
           <th>Data de cadastro</th>
           <th>Ações</th>
         </thead>
@@ -93,11 +94,10 @@ include('../Control/function.php');
             <td><?php echo $cliente['nome']?> </td>
             <td><?php echo $cliente['email']?> </td>
             <td><?php echo $telefone; ?> </td>
-            <td><?php echo $nascimento ?> </td>
             <td><?php echo $data_cadastro;?> </td>
             <td>
               <a class="edit" href="editar_usuario.php?id=<?php echo $cliente['id']?>">Editar</a><hr>
-              <a class="error" href="../Usuarios_Lab/deletar_usuario.php?id=<?php echo $cliente['id']?>">Deletar</a>
+              <a class="error" href="Usuarios_Lab/deletar_usuario.php?id=<?php echo $cliente['id']?>">Deletar</a>
             </td>
           </tr>
           <?php
@@ -107,12 +107,11 @@ include('../Control/function.php');
         </tbody>
       </table>
     </div>
-  </div>
   <!-- END VISUALIZAÇÃO DE USUARIOS -->
   <!-- MODAL CADASTRO DE USUARIOS -->
   <div class="container-modal" id="container-modal">
     <div class="janela-cadastro">
-      <form action="../Usuarios_Lab/Post_CriarUsuarios.php" method="POST">
+      <form action="Usuarios_Lab/Post_CriarUsuarios.php" method="POST">
         <ul class="lista-cadastro">
           <button class="close">x</button>
           <li>
@@ -142,10 +141,12 @@ include('../Control/function.php');
           </li>
         </ul>
       </form>
-      </dv>
     </div>
+  </div>
+</div>
+  
     <!-- END MODAL -->
-    <script src="../src/script.js"></script>
+    <script src="src/script.js"></script>
 </body>
 
 </html>

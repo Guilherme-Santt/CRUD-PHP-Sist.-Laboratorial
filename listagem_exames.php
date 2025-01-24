@@ -5,7 +5,7 @@ if(!isset($_SESSION)){
         header("location: ../views/index_login.php");
     }    
 }
-include('../Control/conexao.php');
+include('Control/conexao.php');
 
 ?>
 <!DOCTYPE html>
@@ -17,7 +17,7 @@ include('../Control/conexao.php');
   <title>Exames</title>
 </head>
 <!-- CÓDIGOS CSS -->
-<link rel="stylesheet" href="../estilos/style.css">
+<link rel="stylesheet" href="estilos/style.css">
 
 <body>
   <!-- HEADER DE INFORMAÇÕES -->
@@ -26,21 +26,21 @@ include('../Control/conexao.php');
       <ul class="list-header">
         <!-- PACIENTES -->
         <li>
-          <a class="btn" href="../Pacientes_Lab/listagem_pacientes.php">Listagem Pacientes</a>
+          <a class="btn" href="listagem_pacientes.php">Listagem Pacientes</a>
         </li>
 
         <!-- USUÁRIOS -->
         <li>
-          <a class="btn" href=" ../Usuarios_Lab/listagem_usuarios.php">Configurações de usuários</a>
+          <a class="btn" href="listagem_usuarios.php">Configurações de usuários</a>
         </li>
 
         <!-- EXAMES -->
         <li>
-          <a class="btn" href="../Exames_Lab/listagem_exames.php">Cadastro de exames</a>
+          <a class="btn" href="listagem_exames.php">Cadastro de exames</a>
         </li>
         <li>
           <!-- SAIR -->
-          <a class="btn" href="../Loguin_Lab/logout.php">Encerrar</a>
+          <a class="btn" href="Login_Lab/logout.php">Encerrar</a>
         </li>
       </ul>
     </nav>
@@ -80,7 +80,7 @@ include('../Control/conexao.php');
             <td><?php echo $exames['exameid']?> </td>
             <td><?php echo $exames['codigo']?> </td>
             <td><?php echo $exames['descricao']?> </td>
-            <td><a href="../Exames_Lab/deletar_exame.php?id=<?php echo $exames['exameid'] ?>">Deletar exame</a></td>
+            <td><a href="Exames_Lab/deletar_exame.php?id=<?php echo $exames['exameid'] ?>">Deletar exame</a></td>
           </tr>
           <?php     }
                         } ?>
@@ -93,7 +93,7 @@ include('../Control/conexao.php');
   <!-- JANELA MODAL->CADASTRO DE EXAMES NO SISTEMA -->
   <div class="container-modal" id="container-modal">
     <div class="janela-cadastro">
-      <form action="../Exames_Lab/Post_CriarExames.php" method="POST">
+      <form action="Exames_Lab/Post_CriarExames.php" method="POST">
         <button class="close">x</button>
         <ul class="lista-cadastro">
           <li>
@@ -113,6 +113,6 @@ include('../Control/conexao.php');
   </div>
   <!-- END MODAL -->
 </body>
-<script src="../src/script.js"></script>
+<script src="src/script.js"></script>
 
 </html>
