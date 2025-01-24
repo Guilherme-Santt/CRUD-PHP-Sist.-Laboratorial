@@ -7,10 +7,12 @@ if(isset($_POST['email'])){
     $senha = $_POST['senha'];
 
     if(empty($email)){
-        $error = '<p class="error">Preencha o campo email*</p>';
+      // VERIFICAÇÃO SE O CAMPO EMAIL FOI PREENCHIDO
+      die("Preencha o campo email");
     }
     else if(empty($senha)){
-        $error = '<p class="error">Preencha o campo senha*</p>';
+        // VERIFICAÇÃO SE A SENHA ESTÁ PREENCHIDA
+        die("Preencha o campo senha");
     }
     // VERIFICAÇÃO SE EXISTE O USUÁRIO NO BANCO
     else{
@@ -18,25 +20,21 @@ if(isset($_POST['email'])){
         $sql_exec = $mysqli->query($sql_code);
         $usuario = $sql_exec->fetch_assoc();
         if (!$usuario) {
-            $error = '<p class="error">Usuário inexistente*</p>';    
+            die("Usuário inexistente");    
         }
-        else 
-        // VERIFICAÇÃO SE A SENHA BATE COM A SENHA DO BANCO->SESSION OU MENSAGEM DE ERRO
-        {
-            if(password_verify($senha, $usuario['senha'] )){
-                if(!isset($_SESSION)){
-                    session_start();
-                    $_SESSION['usuario'] = $usuario['id'];
-                    header("location: ../Pacientes_Lab/listagem_pacientes.php");
-                }
-            }else{
-                $error = '<p class="error">Usuário ou senha incorretos!*</p>';
+        else {
+          // VERIFICAÇÃO SE A SENHA BATE COM A SENHA DO BANCO->SESSION OU MENSAGEM DE ERRO
+          if(password_verify($senha, $usuario['senha'] )){
+            if(!isset($_SESSION)){
+              session_start();
+              $_SESSION['usuario'] = $usuario['id'];
+              header("location: ../Pacientes_Lab/listagem_pacientes.php");
             }
+          }else{
+              $error = '<p class="error">Usuário ou senha incorretos!*</p>';
+          }
         }
-        if($error){
-            die($error);
-        }
-    }
+      }
 }
 ?>
 

@@ -76,6 +76,7 @@ include('../Control/conexao.php');
                         else{ 
                             while($exames = $query_exames->fetch_assoc()){?>
           <tr>
+            <!-- VISUALIZAÇÃO DOS CAMPOS NA TABELA -->
             <td><?php echo $exames['exameid']?> </td>
             <td><?php echo $exames['codigo']?> </td>
             <td><?php echo $exames['descricao']?> </td>
@@ -88,6 +89,7 @@ include('../Control/conexao.php');
     </div>
   </div>
   <!-- END VISUALIZAÇÃO DE EXAMES NO SISTEMA -->
+   
   <!-- JANELA MODAL->CADASTRO DE EXAMES NO SISTEMA -->
   <div class="container-modal" id="container-modal">
     <div class="janela-cadastro">

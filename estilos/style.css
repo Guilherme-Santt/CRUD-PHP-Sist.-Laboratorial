@@ -135,7 +135,7 @@ box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0);
     height: 70vh;
 }
 .container_son{
-    width: 150vh;
+    width: auto;
 }
 
 
@@ -163,29 +163,39 @@ th {
     color: #6d6c6c;
  }
 
-/* CONFIGURAÇÕES SOMENTE DA TELA DE EDITAR PACIENTES */
 
-/* CONTAINER -> RESPONSÁVEL POR TODA TELA */
-.container_body{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-}
-.att-infos{
+/* CONFIGURAÇÕES SOMENTE DA TELA DE EDITAR PACIENTES */
+.container{
+    background-color: #dacbcb;
     display: grid;
     justify-content: center;
 }
+.att-infos{
+    display: grid;
+    justify-content: left;
+    background-color: #cac7c7;
+    width: 35rem;
+    border-radius: 1rem;
+}
+
+.att-infos a{
+    text-decoration: none;
+    color: black;
+}
 .att-infos li{
     list-style: none;
-
+    border: none;
 }
 .att-infos ul{
     display: grid;
     gap: 0.5rem;
 }
 
-.Table-infos{
-    grid-column: 2;
-    display: grid;
-    justify-content: center;
+.exames-paciente{
+    list-style-type: none; /* Remove os marcadores da lista */
+    padding: 0; /* Remove o padding padrão */
+    display: flex; /* Faz os itens ficarem lado a lado */
+    gap: 10px; /* Adiciona espaçamento entre os itens */
 }
+
+

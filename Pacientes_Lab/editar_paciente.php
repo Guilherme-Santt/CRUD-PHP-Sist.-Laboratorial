@@ -11,55 +11,59 @@ $id     = intval($_GET['id']);
 $alert  = "";
 
 if(count($_POST) > 0){
-    $nome         = $_POST['nome'];
-    $email        = $_POST['email'];
-    $endereco     = $_POST['endereco'];
-    $telefone     = $_POST['telefone'];
-    $nascimento   = $_POST['nascimento'];
-    $codigo       = $_POST['id_exame'];
-    $RG           = $_POST['RG'];
-    $CPF          = $_POST['CPF'];
-    $CEP          = $_POST['CEP'];
-    $cidade       = $_POST['cidade'];
-    
-    // VERIFICAÇÕES DE SEGURANÇA DOS INPUTS 
-    if(empty($RG) || empty($CPF) || empty($cidade) || empty($CEP) || empty($cidade) || empty($nome) ||  empty($nascimento) || empty($telefone)) 
-        $alert = "Todos Campos são obrigatórios";
-
-    if(Strlen($nome) < 3 || Strlen($nome) > 100)
-        $alert = "NOME INCORRETO";
-
-    if(empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL))
-        $alert = "CAMPO E-MAIL INCORRETO";
-
-    if(strlen($nascimento) != 10)
-        $alert = "DATA DE NASCIMENTO INCORRETA";
-
-    if(strlen($telefone) != 11)
-        $alert = "TELEFONE INCORRETO";
-    
-    // INSERÇÃO CAMPO EXAME NA TABELA PACIENTES_EXAMES
-    if(!empty($codigo)){
-        // VERIFICAÇÃO SE O EXAME EXISTE NA TABELA EXAMES
-        $sql_verify = "SELECT * FROM exames WHERE exameid = '$codigo'";
-        $query_verify = $mysqli->query($sql_verify);
-        $verify_existencia_exame = $query_verify->fetch_assoc();
-        if($verify_existencia_exame){
-                $sql_verify = "SELECT * FROM pacientes_exames WHERE exame_id = '$codigo' AND paciente_id = '$id' ";
-                $query_verify = $mysqli->query($sql_verify);
-                $verify_cadastro_exame_no_paciente = $query_verify->fetch_assoc();
-                        if($verify_cadastro_exame_no_paciente){
-                            $alert = "EXAME JÁ INSERIDO";
-                            }
-                            else{
-                                $ql_insert = "INSERT INTO pacientes_exames (paciente_id, exame_id) VALUES ('$id', '$codigo')";
-                                $query_insert = $mysqli->query($ql_insert);
-                            }
-                        }else{
-                            $alert = "EXAME INEXISTENTE";
-                        }
-                    }    
-    else{  // ATUALIZAÇÃO DAS INFORMAÇÕES ALTERADAS
+  $nome         = $_POST['nome'];
+  $email        = $_POST['email'];
+  $endereco     = $_POST['endereco'];
+  $telefone     = $_POST['telefone'];
+  $nascimento   = $_POST['nascimento'];
+  $codigo       = $_POST['id_exame'];
+  $RG           = $_POST['RG'];
+  $CPF          = $_POST['CPF'];
+  $CEP          = $_POST['CEP'];
+  $cidade       = $_POST['cidade'];
+  
+  // VERIFICAÇÕES DE SEGURANÇA DOS INPUTS 
+  if(empty($RG) || empty($CPF) || empty($cidade) || empty($CEP) || empty($cidade) || empty($nome) ||  empty($nascimento) || empty($telefone)) 
+      $alert = "Todos Campos são obrigatórios";
+  // VERIFICAÇÃO SE O NOME TEM DE 3 Á 100 DÍGOTOS
+  if(Strlen($nome) < 3 || Strlen($nome) > 100)
+      $alert = "NOME INCORRETO";
+  // VERIFICAÇÃO DE FILTRO DE E-MAIL
+  if(empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL))
+      $alert = "CAMPO E-MAIL INCORRETO";
+  // VERIFICAÇÃO SE DATA DE NASCIMENTO É DIFERENTE DE 10 DÍGITOS
+  if(strlen($nascimento) != 10)
+      $alert = "DATA DE NASCIMENTO INCORRETA";
+  // VERIFICAÇÃO SE O INPUT TELEFONE NÃO TEM 11 DÍGITOS
+  if(strlen($telefone) != 11)
+      $alert = "TELEFONE INCORRETO";
+  
+  // INSERÇÃO CAMPO EXAME NA TABELA PACIENTES_EXAMES
+  if(!empty($codigo)){
+      // VERIFICAÇÃO SE O EXAME EXISTE NA TABELA EXAMES
+      $sql_verify = "SELECT * FROM exames WHERE exameid = '$codigo'";
+      $query_verify = $mysqli->query($sql_verify);
+      $verify_existencia_exame = $query_verify->fetch_assoc();
+      if($verify_existencia_exame){
+              // VERIFICANDO SE O EXAME JÁ ESTÁ INSERIDO NO PACIENTE NA TABELA PACIENTES_EXAMES
+              $sql_verify = "SELECT * FROM pacientes_exames WHERE exame_id = '$codigo' AND paciente_id = '$id' ";
+              $query_verify = $mysqli->query($sql_verify);
+              $verify_cadastro_exame_no_paciente = $query_verify->fetch_assoc();
+              // VERIFICAÇÃO SE  EXAME JÁ ESTÁ INSERIDO
+                if($verify_cadastro_exame_no_paciente){
+                    $alert = "EXAME JÁ INSERIDO";
+                    }
+                    else{
+                      // SE NÃO ESTIVER INSERIDO, VAI INSERIR
+                        $ql_insert = "INSERT INTO pacientes_exames (paciente_id, exame_id) VALUES ('$id', '$codigo')";
+                        $query_insert = $mysqli->query($ql_insert);
+                    }
+          }else{
+            // SE O EXAME NÃO EXISTIR, VAI RETORNAR ERRO
+            $alert = "EXAME INEXISTENTE";
+          }
+    }    
+    else{  //ATUALIZAÇÃO DAS INFORMAÇÕES ALTERADAS
         $sql_code = "UPDATE pacientes
         SET nome     = '$nome', 
         endereco     = '$endereco',
@@ -131,91 +135,80 @@ $num_exames = $query_exames->num_rows;
     </nav>
   </header>
 
-  <!-- INSERÇÃO CAMPOS POST NO FORM PARA ATUALIZAÇÃO DE DADOS-->
-  <div class="container_body">
-    <div class="att-infos">
-      <p>Informações do paciente:</p>
-      <button class="btn-cadastro" id="generate-pdf">Gerar PDF</button>
-      <form action="" method="POST">
-        <ul>
-          <li>
-            <label>Nome............: </label>
-            <input value="<?php echo $cliente['nome']; ?>" type="text" name="nome">
-          </li>
-          <li>
-            <label>RG................: </label>
-            <input value="<?php echo $cliente['RG']; ?>" placeholder="RG do paciente" type="text" name="RG">
-          </li>
-          <li>
-            <label>CPF...............: </label>
-            <input value="<?php echo $cliente['CPF']; ?>" placeholder="CPF do paciente" type="text" name="CPF">
-          </li>
+    <!-- INSERÇÃO CAMPOS POST NO FORM PARA ATUALIZAÇÃO DE DADOS-->
+<div class="container">
+  <div class="att-infos">
+    <form action="" method="POST">
+      <ul>
+        <p>Informações do paciente:</p>
+        <li>
+          <label>Nome............: </label>
+          <input value="<?php echo $cliente['nome']; ?>" type="text" name="nome">
+        </li>
+        <li>
+          <label>RG................: </label>
+          <input value="<?php echo $cliente['RG']; ?>" placeholder="RG do paciente" type="text" name="RG">
+        </li>
+        <li>
+          <label>CPF...............: </label>
+          <input value="<?php echo $cliente['CPF']; ?>" placeholder="CPF do paciente" type="text" name="CPF">
+        </li>
 
-          <li>
-            <label>Endereço.......:</label>
-            <input value="<?php echo $cliente['endereco']; ?>" type="text" name="endereco">
-          </li>
-          <li>
-            <label>Cidade..........:</label>
-            <input value="<?php if(!empty($cliente['cidade'])){ echo $cliente['cidade'];} ?>" type="text" name="cidade">
-          </li>
-          <li>
-            <label>CEP..............:</label>
-            <input value="<?php if(!empty($cliente['CEP'])){ echo $cliente['CEP'];} ?>" type="text" name="CEP">
-          </li>
-          <li>
-            <label>E-mail..........:</label>
-            <input value="<?php if(!empty($cliente['telefone'])){ echo ($cliente['email']);} ?>" type="email" name="email">
-          </li>
-          <li>
-            <label>Telefone.......:</label>
-            <input value="<?php if(!empty($cliente['telefone'])){ echo $cliente['telefone'];} ?>" placeholder="11988888888" type="text" name="telefone">
-          </li>
-          <li>
-            <label>Nascimento..:</label>
-            <input value="<?php if(!empty($cliente['nascimento'])){ echo $cliente['nascimento'];} ?>" placeholder="dia/mês/ano" type="date" name="nascimento">
-          </li>
-
-          <li>
-            <p>Adicionar um exame no atendimento:</p>
-            <label>Exame ID</label>
-            <input type="text" name="id_exame">
-          </li>
-
-        <button class="btn-cadastro" type="submit">Enviar</button><br><br>
-        </ul>
-      </form>
-      <?php if(isset($alert)) echo $alert; ?>
-    </div>
-
-    <div class="Table-infos" id="content">
-      <!-- TABELA DE INFORMAÇÕES EXAMES CADASTRADOS DO PACIENTE -->
-      <table border="1px" cellpadding="10">
-        <thead>
-          <th>ID Exames</th>
-          <th>código exame</th>
-          <th>Nome exame</th>
-          <th>Valor</th>
-          <th>Ação</th>
-
-        </thead>
-        <tbody> <?php if($num_exames == 0) {?>
-          <tr>
-            <td colspan="7">Nenhum exame foi encontrado!</td>
-          </tr> <?php } ?>
+        <li>
+          <label>Endereço.......:</label>
+          <input value="<?php echo $cliente['endereco']; ?>" type="text" name="endereco">
+        </li>
+        <li>
+          <label>Cidade..........:</label>
+          <input value="<?php if(!empty($cliente['cidade'])){ echo $cliente['cidade'];} ?>" type="text" name="cidade">
+        </li>
+        <li>
+          <label>CEP..............:</label>
+          <input value="<?php if(!empty($cliente['CEP'])){ echo $cliente['CEP'];} ?>" type="text" name="CEP">
+        </li>
+        <li>
+          <label>E-mail..........:</label>
+          <input value="<?php if(!empty($cliente['telefone'])){ echo ($cliente['email']);} ?>" type="email" name="email">
+        </li>
+        <li>
+          <label>Telefone.......:</label>
+          <input value="<?php if(!empty($cliente['telefone'])){ echo $cliente['telefone'];} ?>" placeholder="11988888888" type="text" name="telefone">
+        </li>
+        <li>
+          <label>Nascimento..:</label>
+          <input value="<?php if(!empty($cliente['nascimento'])){ echo $cliente['nascimento'];} ?>" placeholder="dia/mês/ano" type="date" name="nascimento">
+        </li>
+       
+        <div clas="exames-paciente">
+          <div>
+            <?php if($num_exames == 0) {?>
+            <!-- MENSAGEM CASO NÃO TIVER NENHUM EXAME CADASTRADO -->
+            <p>Nenhum exame foi encontrado!</p> 
+            <?php } ?>
+            
+          <!-- CÓDIGO DOS EXAMES INSERIDOS NO PACIENTE -->
+          <p>Exames cadastrados:</p>
           <?php while($exames = $query_exames->fetch_assoc()){?>
+            <button><a href="remover_exame_paciente.php?=><?php echo $exames['codigo']?>"> <?php echo $exames['codigo']?> </a></button> <?php }?>
+          </div>
+        </div>
+        <li>
+          <p>Adicionar um exame no atendimento:</p>
+          <label>Exame ID</label>
+          <input type="text" name="id_exame">
+        </li>
+        <button class="btn-cadastro" type="submit">Enviar</button>
+        <button class="btn-cadastro" id="generate-pdf">Gerar relatório</button>
+        <button class="btn-cadastro" id="generate-pdf">Gerar PDF</button>
+      </ul>
+    </form>
+</div>
+    
 
-          <tr>
-            <td><?php echo $exames['exame_id']?></td>
-            <td><?php echo $exames['codigo']?></td>
-            <td><?php echo $exames['descricao']?></td>
-            <td><?php echo number_format($exames['valor'], 2, ',', '. '); ?></td>
-            <td><a href="../Pacientes_Lab/remover_exame_paciente.php?id=<?php echo $exames['id']?>">Remover</a></td>
-          </tr><?php }?>
-        </tbody>
-      </table>
-    </div>
-  </div>
-  <script src="./src/script.js"></script>
-  </body>
+    <?php if(isset($alert)) echo $alert; ?>
+
+    <script src="./src/script.js"></script>
+
+
+</body>
 </html>
