@@ -6,6 +6,7 @@ if(!isset($_SESSION)){
     }    
 }
 include('Control/conexao.php');
+include('Control/function.php');
 
 ?>
 <!DOCTYPE html>
@@ -49,16 +50,19 @@ include('Control/conexao.php');
   <div class="container">
     <div class="container_son">
       <table>
-      <thead>
+        <thead>
           <th>
-          <button class="btn-cadastro" id="AbrirModal">Cadastrar exame</button>
+            <button class="btn-cadastro" id="AbrirModal">Cadastrar exame</button>
           </th>
-          <th colspan="3"><h1>CADASTRO DE EXAMES</h1></th>
+          <th colspan="4">
+            <h1>CADASTRO DE EXAMES</h1>
+          </th>
         </thead>
         <thead>
           <th>ID exame</th>
           <th>Código exame</th>
           <th>Descrição exame</th>
+          <th>Valor</th>
           <th>Deletar exame</th>
         </thead>
         <tbody>
@@ -80,6 +84,7 @@ include('Control/conexao.php');
             <td><?php echo $exames['exameid']?> </td>
             <td><?php echo $exames['codigo']?> </td>
             <td><?php echo $exames['descricao']?> </td>
+            <td><?php echo $exames['valor'];?> </td>
             <td><a href="Exames_Lab/deletar_exame.php?id=<?php echo $exames['exameid'] ?>">Deletar exame</a></td>
           </tr>
           <?php     }
@@ -89,7 +94,7 @@ include('Control/conexao.php');
     </div>
   </div>
   <!-- END VISUALIZAÇÃO DE EXAMES NO SISTEMA -->
-   
+
   <!-- JANELA MODAL->CADASTRO DE EXAMES NO SISTEMA -->
   <div class="container-modal" id="container-modal">
     <div class="janela-cadastro">
@@ -103,6 +108,10 @@ include('Control/conexao.php');
           <li>
             <label>Descrição exame.:</label></label>
             <input type="text" value="<?php if(isset($_POST['descricao'])) echo $_POST['descricao']; ?>" name="descricao">
+          </li>
+          <li>
+            <label>Valor..........:</label></label>
+            <input type="number" value="<?php if(isset($_POST['valor'])) echo $_POST['valor']; ?>" name="valor">
           </li>
           <li>
             <button class="btn-cadastro" type="submit" name="cadastrar">Cadastrar exame</button>

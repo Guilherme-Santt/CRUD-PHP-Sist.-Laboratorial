@@ -53,9 +53,11 @@ include('Control/function.php');
       <table ID="alter" cellpadding="10">
         <thead>
           <th>
-          <button class="btn-cadastro" id="AbrirModal">Cadastrar usuários</button>
+            <button class="btn-cadastro" id="AbrirModal">Cadastrar usuários</button>
           </th>
-          <th colspan="9"><h1> USUÁRIOS</h1></th>
+          <th colspan="9">
+            <h1> USUÁRIOS</h1>
+          </th>
         </thead>
         <thead>
           <th>ID</th>
@@ -96,7 +98,8 @@ include('Control/function.php');
             <td><?php echo $telefone; ?> </td>
             <td><?php echo $data_cadastro;?> </td>
             <td>
-              <a class="edit" href="editar_usuario.php?id=<?php echo $cliente['id']?>">Editar</a><hr>
+              <a class="edit" href="editar_usuario.php?id=<?php echo $cliente['id']?>">Editar</a>
+              <hr>
               <a class="error" href="Usuarios_Lab/deletar_usuario.php?id=<?php echo $cliente['id']?>">Deletar</a>
             </td>
           </tr>
@@ -107,46 +110,46 @@ include('Control/function.php');
         </tbody>
       </table>
     </div>
-  <!-- END VISUALIZAÇÃO DE USUARIOS -->
-  <!-- MODAL CADASTRO DE USUARIOS -->
-  <div class="container-modal" id="container-modal">
-    <div class="janela-cadastro">
-      <form action="Usuarios_Lab/Post_CriarUsuarios.php" method="POST">
-        <ul class="lista-cadastro">
-          <button class="close">x</button>
-          <li>
-            <label>Email.........:</label>
-            <input type="email" value="<?php if(isset($_POST['email'])) echo $_POST['email']; ?>" name="email">
-          </li>
+    <!-- END VISUALIZAÇÃO DE USUARIOS -->
+    <!-- MODAL CADASTRO DE USUARIOS -->
+    <div class="container-modal" id="container-modal">
+      <div class="janela-cadastro">
+        <form action="Usuarios_Lab/Post_CriarUsuarios.php" method="POST">
+          <ul class="lista-cadastro">
+            <button class="close">x</button>
+            <li>
+              <label>Email.........:</label>
+              <input type="email" value="<?php if(isset($_POST['email'])) echo $_POST['email']; ?>" name="email">
+            </li>
 
-          <li>
-            <label>Nome.........:</label>
-            <input type="text" value="<?php if(isset($_POST['nome'])) echo $_POST['nome']; ?>" name="nome">
-          </li>
+            <li>
+              <label>Nome.........:</label>
+              <input type="text" value="<?php if(isset($_POST['nome'])) echo $_POST['nome']; ?>" name="nome">
+            </li>
 
-          <li>
-            <Label> Nascimento.:</Label>
-            <input type="date" value="<?php if(isset($_POST['nascimento'])) echo $_POST['nascimento']; ?>" name="nascimento">
-          </li>
-          <li>
-            <label>Telefone.....:</label>
-            <input value="<?php if(isset($_POST['telefone'])) echo $_POST['telefone']; ?>" placeholder="11988888888" type="text" name="telefone">
-          </li>
-          <li>
-            <label>Senha........:</label>
-            <input type="password" value="<?php if(isset($_POST['senha'])) echo $_POST['senha']; ?>" name="senha">
-          </li>
-          <li>
-            <button class="btn-cadastro" type="submit" name="cadastrar">Enviar </button>
-          </li>
-        </ul>
-      </form>
+            <li>
+              <Label> Nascimento.:</Label>
+              <input type="date" value="<?php if(isset($_POST['nascimento'])) echo $_POST['nascimento']; ?>" name="nascimento">
+            </li>
+            <li>
+              <label>Telefone.....:</label>
+              <input value="<?php if(isset($_POST['telefone'])) echo $_POST['telefone']; ?>" placeholder="11988888888" type="text" name="telefone">
+            </li>
+            <li>
+              <label>Senha........:</label>
+              <input type="password" value="<?php if(isset($_POST['senha'])) echo $_POST['senha']; ?>" name="senha">
+            </li>
+            <li>
+              <button class="btn-cadastro" type="submit" name="cadastrar">Enviar </button>
+            </li>
+          </ul>
+        </form>
+      </div>
     </div>
   </div>
-</div>
-  
-    <!-- END MODAL -->
-    <script src="src/script.js"></script>
+
+  <!-- END MODAL -->
+  <script src="src/script.js"></script>
 </body>
 
 </html>

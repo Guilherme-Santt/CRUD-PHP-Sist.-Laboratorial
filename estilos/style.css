@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 
@@ -13,6 +13,7 @@ INICIO CONFIGURAÇÕES HEADER*/
     height: 7rem;
     display: grid;
     align-items: center;
+    margin-bottom: 30px;
     box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0);
 }
 
@@ -90,7 +91,6 @@ INICIO CONFIGURAÇÕES HEADER*/
 
 .close {
     display: none;
-
 }
 
 .close:hover,
@@ -99,22 +99,32 @@ INICIO CONFIGURAÇÕES HEADER*/
     text-decoration: none;
     cursor: pointer;
 }
+
 #MyModal {
-    display: none; /* Inicialmente o modal está oculto */
+    display: none;
+    /* Inicialmente o modal está oculto */
     opacity: 0;
-    transition: opacity 0.3s ease, transform 0.3s ease; /* Transição suave para opacidade e transformação */
-    transform: scale(0.9); /* Começar com uma escala menor */
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    /* Transição suave para opacidade e transformação */
+    transform: scale(0.9);
+    /* Começar com uma escala menor */
 }
 
 #MyModal.show {
     display: block;
     opacity: 1;
-    transform: scale(1); /* Modal se expande para seu tamanho normal */
+    transform: scale(1);
+    /* Modal se expande para seu tamanho normal */
 }
+
+
 /* END CONTAINER MODAL */
 
+
 /* CONFIGURAÇÕES DAS CLASSES ONDE FICAM AS TABELAS */
-.btn-cadastro{
+
+.btn-cadastro {
+    justify-self: start;
     padding: 0.5rem;
     color: white;
     text-transform: uppercase;
@@ -124,77 +134,97 @@ INICIO CONFIGURAÇÕES HEADER*/
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     cursor: pointer;
 }
+
 .btn-cadastro:hover {
-box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0);
+    box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0);
 }
 
-.container{
+.container {
     display: grid;
     align-items: center;
     justify-content: center;
     height: 70vh;
-
-    
 }
-.container_son{
+
+.container_son {
     width: 120vh;
 }
 
-
-.container_son a{
+.container_son a {
     text-decoration: none;
     color: rgb(87, 87, 87);
 }
+
+
 /* CONFIGURAÇÕES TABELAS */
+
 table {
     width: 100%;
-    border-collapse: collapse; /* Para que as bordas não se sobreponham */
+    border-collapse: collapse;
+    /* Para que as bordas não se sobreponham */
 }
 
-th, td {
-    border: 1px solid black; /* Borda de 1px, cor preta */
+th,
+td {
+    border: 1px solid black;
+    /* Borda de 1px, cor preta */
     padding: 2px;
     text-align: center;
 }
 
 th {
-    background-color: #f2f2f2; /* Cor de fundo para o cabeçalho */
+    background-color: #f2f2f2;
+    /* Cor de fundo para o cabeçalho */
 }
- th h1{
+
+th h1 {
     font-size: 1.5rem;
     color: #6d6c6c;
- }
+}
 
 
 /* CONFIGURAÇÕES SOMENTE DA TELA DE EDITAR PACIENTES */
 
-.att-infos{
+.att-infos {
     display: grid;
-    justify-content: left;
+    justify-content: center;
     background-color: #d8d3d3;
     width: 35rem;
     border-radius: 1rem;
     font-size: 0.8rem;
 }
 
-.att-infos a{
+.att-infos a {
     text-decoration: none;
     color: black;
 }
-.att-infos li{
+
+.att-infos li {
     list-style: none;
     border: none;
 }
-.att-infos ul{
+
+.att-infos ul {
     display: grid;
     gap: 0.5rem;
 }
 
-.exames-paciente{
-    list-style-type: none; /* Remove os marcadores da lista */
-    padding: 0; /* Remove o padding padrão */
-    display: flex; /* Faz os itens ficarem lado a lado */
-    gap: 10px; /* Adiciona espaçamento entre os itens */
+.exames-paciente {
+    list-style-type: none;
+    /* Remove os marcadores da lista */
+    padding: 0;
+    /* Remove o padding padrão */
+    display: flex;
+    /* Faz os itens ficarem lado a lado */
+    gap: 10px;
+    /* Adiciona espaçamento entre os itens */
 }
 
+.remover-exame-paciente {
+    border: none;
+    padding: 0.3rem;
+}
 
+.remover-exame-paciente:hover {
+    background-color: rgba(196, 10, 10, 0.87);
+}

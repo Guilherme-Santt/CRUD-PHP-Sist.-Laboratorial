@@ -27,14 +27,22 @@ $num_pacientes = $query_pacientes->num_rows;
   <header class="header">
     <nav>
       <ul class="list-header">
+        <li>
           <!-- PACIENTES -->
-          <a class="btn" href="listagem_pacientes.php">Listagem Pacientes</a></li>
+          <a class="btn" href="listagem_pacientes.php">Listagem Pacientes</a>
+        </li>
         <li>
           <!-- USUÁRIOS -->
-          <a class="btn" href="listagem_usuarios.php">Configurações de usuários</a></li>
+          <a class="btn" href="listagem_usuarios.php">Configurações de usuários</a>
+        </li>
         <li>
           <!-- EXAMES -->
-          <a class="btn" href="listagem_exames.php">Cadastro de exames</a></li>
+          <a class="btn" href="listagem_exames.php">Cadastro de exames</a>
+        </li>
+        <li>
+          <!-- RELATÓRIO -->
+          <a class="btn" href="relatorio_pacientes.php">Relatório</a>
+        </li>
         <li>
           <!-- SAIR -->
           <a class="btn" href="Login_Lab/logout.php">Encerrar</a>
@@ -106,7 +114,7 @@ $num_pacientes = $query_pacientes->num_rows;
       <table cellpadding="10">
         <thead>
           <th>
-          <button class="btn-cadastro" id="AbrirModal">Cadastrar Paciente</button>
+            <button class="btn-cadastro" id="AbrirModal">Cadastrar Paciente</button>
           </th>
           <th colspan="9">
             <h1>LISTAGEM DE PACIENTES</h1>
@@ -147,7 +155,8 @@ $num_pacientes = $query_pacientes->num_rows;
             <td><?php echo $telefone; ?> </td>
             <td><?php echo $data_cadastro;?> </td>
             <td>
-              <a class="edit" href="editar_paciente.php?id=<?php echo $pacientes['ID']?>">Editar</a><hr>
+              <a class="edit" href="editar_paciente.php?id=<?php echo $pacientes['ID']?>">Editar</a>
+              <hr>
               <a class="error" href="../Pacientes_Lab/deletar_paciente.php?id=<?php echo $pacientes['ID']?>">Deletar</a>
             </td>
           </tr>

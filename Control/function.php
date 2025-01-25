@@ -16,7 +16,10 @@ function formatar_telefone($telefone){
 function formatar_data($data){
     return implode('/', array_reverse(explode('-', $data)));
 };
-
+// FUNÇÃO FORMATAR NUMERO
+function formatar($valor, $casas=2) {
+    return number_format($valor, $casas, '.', '');
+}
 // VERIFICAÇÃO SE O CAMPO ESTÁ VAZIO
 function verificar_vazio($i){
     

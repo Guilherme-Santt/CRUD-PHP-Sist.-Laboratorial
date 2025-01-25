@@ -45,7 +45,7 @@ include('../Control/conexao.php');
                     $sqlinsert = "INSERT INTO clientes (nome, email, telefone, nascimento, data, senha)  values ('$nome', '$email', '$telefone', '$nascimento', NOW(), '$senha')";
                     $queryinsert = $mysqli->query($sqlinsert);
                         if($queryinsert){
-                            header("location: ../Usuarios_Lab/listagem_usuarios.php");
+                            header("location: ../listagem_usuarios.php");
                         }
                     }
         }

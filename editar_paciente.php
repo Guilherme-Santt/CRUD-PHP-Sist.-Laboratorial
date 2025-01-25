@@ -7,6 +7,7 @@ if(!isset($_SESSION)){
     }    
 }
 include('Control/conexao.php');
+include('Control/function.php');
 $id     = intval($_GET['id']);
 $alert  = "";
 
@@ -41,9 +42,10 @@ if(count($_POST) > 0){
   // INSERÇÃO CAMPO EXAME NA TABELA PACIENTES_EXAMES
   if(!empty($codigo)){
       // VERIFICAÇÃO SE O EXAME EXISTE NA TABELA EXAMES
-      $sql_verify = "SELECT * FROM exames WHERE exameid = '$codigo'";
+      $sql_verify = "SELECT * FROM exames WHERE codigo = '$codigo'";
       $query_verify = $mysqli->query($sql_verify);
       $verify_existencia_exame = $query_verify->fetch_assoc();
+      $codigo = $verify_existencia_exame['exameid'];      
       if($verify_existencia_exame){
               // VERIFICANDO SE O EXAME JÁ ESTÁ INSERIDO NO PACIENTE NA TABELA PACIENTES_EXAMES
               $sql_verify = "SELECT * FROM pacientes_exames WHERE exame_id = '$codigo' AND paciente_id = '$id' ";
@@ -92,7 +94,6 @@ $sql_exame = "SELECT * FROM pacientes_exames AS pacex
     INNER JOIN exames ON exames.exameid = pacex.exame_id WHERE pacex.paciente_id = '$id'";
 $query_exames = $mysqli->query($sql_exame);
 $num_exames = $query_exames->num_rows;
-
  ?>
 
 <!DOCTYPE html>
@@ -126,19 +127,20 @@ $num_exames = $query_exames->num_rows;
           <a class="btn" href="listagem_exames.php">Cadastro de exames</a>
         </li>
         <li>
-        <!-- SAIR -->
-        <a class="btn" href="Login_Lab/logout.php">Encerrar</a>
+          <!-- SAIR -->
+          <a class="btn" href="Login_Lab/logout.php">Encerrar</a>
         </li>
 
       </ul>
     </nav>
   </header>
 
-    <!-- INSERÇÃO CAMPOS POST NO FORM PARA ATUALIZAÇÃO DE DADOS-->
+  <!-- INSERÇÃO CAMPOS POST NO FORM PARA ATUALIZAÇÃO DE DADOS-->
   <div class="container">
     <div class="att-infos">
       <form action="" method="POST">
-        <ul >
+        <ul>
+          <h2>Paciente: <?php echo $cliente['nome'];?></h2>
           <li>
             <label>Nome............: </label>
             <input value="<?php echo $cliente['nome']; ?>" type="text" name="nome">
@@ -176,18 +178,20 @@ $num_exames = $query_exames->num_rows;
             <label>Nascimento..:</label>
             <input value="<?php if(!empty($cliente['nascimento'])){ echo $cliente['nascimento'];} ?>" placeholder="dia/mês/ano" type="date" name="nascimento">
           </li>
-        
+
           <div clas="exames-paciente">
             <div>
               <?php if($num_exames == 0) {?>
               <!-- MENSAGEM CASO NÃO TIVER NENHUM EXAME CADASTRADO -->
-              <p>Nenhum exame foi encontrado!</p> 
+              <p>Nenhum exame foi encontrado!</p>
               <?php } ?>
-              
-            <!-- CÓDIGO DOS EXAMES INSERIDOS NO PACIENTE -->
-            <p>Exames cadastrados:</p>
-            <?php while($exames = $query_exames->fetch_assoc()){?>
-              <button><a href="remover_exame_paciente.php?=><?php echo $exames['codigo']?>"> <?php echo $exames['codigo']?> </a></button> <?php }?>
+
+              <!-- CÓDIGO DOS EXAMES INSERIDOS NO PACIENTE -->
+              <p>Exames cadastrados:</p>
+              <?php while($exames = $query_exames->fetch_assoc()){?>
+              <button class="remover-exame-paciente">
+                <a href="./Pacientes_Lab/remover_exame_paciente.php?id=<?php echo $exames['id']?>"> <?php echo $exames['codigo']?> </a>
+              </button> <?php }?>
             </div>
           </div>
           <li>
@@ -195,29 +199,14 @@ $num_exames = $query_exames->num_rows;
             <label>Exame ID</label>
             <input type="text" name="id_exame">
           </li>
-          <!-- <?php if(isset($alert)){?> <script>alert("ATUALIZADO COM SUCESSO")</script><?php }?> -->
+          <?php if(isset($alert)){echo $alert; unset($_POST);}?>
           <button class="btn-cadastro" type="submit">Enviar</button>
         </ul>
       </form>
-      <!-- <p id="content">Jean quer rebolar pro biel lentinho</p>  -->
-      <button class="btn-cadastro" id="AbrirModal">Gerar relatório</button>
-      
-      
-      <div class="container-modal" id="container-modal">
-        <div class="janela-cadastro">
-          <div class=" lista-cadastro">
-            <button class="close">x</button>
-            <button id="generate-pdf" class="btn-cadastro">Gerar PDF</button>
-            <div id="content">
-              <p>teste</p>
-            </div>
-              
-            </div>
-        </div>
-      </div>    
-  </body>
-  <script src="./src/script.js"></script>
-  <script src="../src/script.js"></script>
+    </div>
+</body>
+<script src="./src/script.js"></script>
+<script src="../src/script.js"></script>
 
 
 </html>
