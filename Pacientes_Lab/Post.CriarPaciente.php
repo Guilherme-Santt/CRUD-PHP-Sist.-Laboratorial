@@ -32,7 +32,7 @@ if(count($_POST)){
 
         if($query){
             // SE INSERIR OS DADOS, VAI DIRECIONAR A PÁGINA PARA A LISTAGEM DE PACIENTES
-            header("location: ../Pacientes_Lab/listagem_pacientes.php");
+            header("location: ../listagem_pacientes.php");
             exit;
         }else {
             // CASO DER ERRO NA INSERÇÃO AO BANCO, VAI RETORNAR ERRO

@@ -228,3 +228,11 @@ th h1 {
 .remover-exame-paciente:hover {
     background-color: rgba(196, 10, 10, 0.87);
 }
+
+.info-content li {
+    list-style: none;
+    font-size: 1.3rem;
+}
+
+
+/* BOTÃO DE GERAR PDF NO RELATÓRIO*/

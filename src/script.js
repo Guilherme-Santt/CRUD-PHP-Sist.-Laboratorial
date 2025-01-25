@@ -1,27 +1,4 @@
-let MyModal = document.getElementById('container-modal');
-var btn = document.getElementById('AbrirModal');
-var span = document.getElementsByClassName("close")[0];
-// Abrir modal
-btn.onclick = function() {
-    MyModal.style.display = "block";
-    MyModal.classList.add("show");
-}
-
-// Fechar modal
-span.onclick = function() {
-        MyModal.style.display = "none";
-        MyModal.classList.remove("show");
-
-
-    }
-    // Fechar modal em qualquer área da tela
-
-window.onclick = function(event) {
-    if (event.target == MyModal) {
-        MyModal.style.display = "none";
-        MyModal.classList.remove("show");
-    }
-}
+console.log("O JavaScrt está funcionando");
 
 // GERADOR DE PDF
 const btnGenerate = document.querySelector("#generate-pdf")
@@ -30,6 +7,8 @@ btnGenerate.addEventListener("click", () => {
     console.log("Usuario clicou em gerar PDF")
         // CONTEUDO GERADO NO PDF
     const conteudo = document.querySelector("#content");
+    const btnPDF = document.querySelector("#btnPdf");
+
     if (!conteudo) {
         console.error("Elemento com ID 'infos-paciente' não encontrado.");
         return;
@@ -38,11 +17,31 @@ btnGenerate.addEventListener("click", () => {
     //CONFIGURAÇÃO DO ARQUIVO PDF
     const options = {
         margin: [10, 10, 10, 10],
-        filename: "arquivo.pdf",
+        filename: "relatorio.pdf",
         html2canvas: { scale: 2 },
         jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
     };
 
     // GERAR E BAIXAR O PDF 
     html2pdf().set(options).from(conteudo).save();
+});
+
+
+
+// DATA DE HOJE
+document.addEventListener("DOMContentLoaded", function() {
+    // Seleciona o input de data
+    const inputDate = document.getElementById("dataHoje");
+
+    // Obtém a data atual
+    const hoje = new Date();
+    const ano = hoje.getFullYear();
+    const mes = String(hoje.getMonth() + 1).padStart(2, '0'); // Adiciona zero à esquerda
+    const dia = String(hoje.getDate()).padStart(2, '0'); // Adiciona zero à esquerda
+
+    // Formata a data como YYYY-MM-DD
+    const dataFormatada = `${ano}-${mes}-${dia}`;
+
+    // Define o valor do input como a data atual
+    inputDate.value = dataFormatada;
 });
