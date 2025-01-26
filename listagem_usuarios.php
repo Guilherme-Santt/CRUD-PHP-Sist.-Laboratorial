@@ -19,6 +19,9 @@ include('Control/function.php');
 <!-- ARQUIVOS CSS SITE -->
 <link rel="stylesheet" href="estilos/style.css">
 
+<!-- BIBLIOTECA SWEET MODAL -->
+<link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
 
 <body>
     <!-- HEADER DE INFORMAÇÕES -->
@@ -196,8 +199,39 @@ include('Control/function.php');
             </div>
         </div>
     </div>
-
     <!-- END MODAL -->
+
+    <!-- SWEET ALERTA PARA ERRO OU SUCESSO -->
+    <?php
+      if(isset($_SESSION['error']) && $_SESSION['error']) : 
+        $error = $_SESSION['error']; 
+        unset($_SESSION['error']);
+    ?>
+    <script>
+    Swal.fire({
+        icon: 'error',
+        title: '<?php echo $error; ?>',
+        text: '<?php echo $error; ?>',
+        confirmButtonText: 'Fechar'
+    });
+    </script>
+    <?php endif;?>
+    <?php
+      if(isset($_SESSION['sucess']) && $_SESSION['sucess']) : 
+            $sucess = $_SESSION['sucess']; 
+            unset($_SESSION['sucess']);
+      ?>
+    <script>
+    Swal.fire({
+        icon: 'success',
+        title: '<?php echo $sucess; ?>',
+        text: '<?php echo $sucess; ?>',
+        confirmButtonText: 'fechar'
+    });
+    </script>
+    <?php endif;?>
+
+    <script src=" src/modal.js"></script>
     <script src="src/modal.js"></script>
 </body>
 

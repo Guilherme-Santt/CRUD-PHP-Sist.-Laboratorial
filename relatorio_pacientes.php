@@ -7,7 +7,12 @@
     <title>Document</title>
 </head>
 <link rel="stylesheet" href="estilos/style.css">
+<!-- BIBLIOTECA PDF -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+
+<!-- BIBLIOTECA SWEET MODAL -->
+<link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
 
 
 <body>
@@ -83,7 +88,7 @@
 
                 // Verifica se encontrou resultados
                 if ($result->num_rows > 0) {
-                echo "<h2>Relatório de Pacientes</h2>";
+                $sucess = "Relatório gerado com sucesso";
                 
                     // Exibe os resultados
                     while ($row = $result->fetch_assoc()) {
@@ -109,25 +114,47 @@
                     }
             } else {
             // Nenhum resultado encontrado
-            echo "<p>Nenhum paciente encontrado no intervalo fornecido.</p>";
+            $error = "Nenhum paciente encontrado no intervalo fornecido." ;
             }
 
             // Fecha o statement
             $stmt->close();
             } else {
             // Erro na preparação do statement
-            echo "<p>Erro ao preparar a consulta: " . $mysqli->error . "</p>";
+            $error  = "Erro ao preparar a consulta: " . $mysqli->error ;
             }
             } else {
             // Mensagem de erro se as datas não forem fornecidas
-            echo "<p>Por favor, insira as datas inicial e final.</p>";
+            $error = "Por favor, insira as datas inicial e final";
             }
             }
 
             ?>
         </div>
     </div>
-
+    <!-- SWEET ALERTA PARA ERRO OU SUCESSO -->
+    <?php
+      if(isset($error) && $error) :?>
+    <script>
+    Swal.fire({
+        icon: 'error',
+        title: '<?php echo $error; ?>',
+        text: '<?php echo $error; ?>',
+        confirmButtonText: 'Fechar'
+    });
+    </script>
+    <?php endif;?>
+    <?php
+      if(isset($sucess) && $sucess) :?>
+    <script>
+    Swal.fire({
+        icon: 'success',
+        title: '<?php echo $sucess; ?>',
+        text: '<?php echo $sucess; ?>',
+        confirmButtonText: 'fechar'
+    });
+    </script>
+    <?php endif;?>
     <script src="./src/script.js"></script>
 </body>
 

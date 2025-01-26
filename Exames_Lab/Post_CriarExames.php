@@ -9,31 +9,45 @@ if(!isset($_SESSION)){
 // VERIFICANDO SE O CAMPO DESCRIÇÃO ESTÁ VAZIO
 include('../Control/conexao.php');
 include('../Control/function.php');
-
+$error  = "";
+$sucess = "";
 // VERIFICAÇÃO DE INSERÇÃO NOS CAMPOS POST DO FORMULÁRIO
 if(count($_POST) > 0){
     $codigo    = strtoupper($_POST['codigo']);
     $descricao = $_POST['descricao'];
-    $valor     = formatar($_POST['valor']);
+    $valor     = $_POST['valor'];
+    // $valor      = isset($_POST['valor']) && !empty($_POST['valor']) ? formatar($_POST['valor']) : null;
+
     if(empty($descricao) || empty($codigo) || empty($valor) || Strlen($codigo) > 4 ){
-        die("CADASTRO INVÁLIDO");
-    }else{    
-        // VERIFICAÇÃO SE O EXAME EXISTE NO BANCO   
-        $sql_codeverify = "SELECT * FROM exames WHERE codigo = '$codigo'"; 
-        $query_verify = $mysqli->query($sql_codeverify);
-        $verify = $query_verify->fetch_assoc();
-            if($verify > 0){
-                die("EXAME CADASTRADO");
-            }else{
-                // INSER INTO EXAMES NO BANCO
-                $sqlinsert = "INSERT INTO exames (descricao, codigo, valor)  values ('$descricao', '$codigo', '$valor')";
-                $queryinsert = $mysqli->query($sqlinsert) or die();
-                    if($queryinsert > 0){
-                        // CASO INSERIR O DADO, REDIRECIONAR PARA LISTAGEM DE EXAMES
-                        header("location: ../listagem_exames.php");
-                    }
-                }
+        $error = "Todos campos são obrigatórios";
+    }
+  
+    // VERIFICAÇÃO SE O EXAME EXISTE NO BANCO   
+    $sql_codeverify = "SELECT codigo FROM exames WHERE codigo = '$codigo'"; 
+    $query_verify = $mysqli->query($sql_codeverify);
+    $verify = $query_verify->fetch_assoc();
+    if($verify){
+        $error = "Exame duplicado";
+        $_SESSION['error'] = $error;
+        header("location: ../listagem_exames.php");
+        exit;
+    }
+    
+    if($error){
+        $_SESSION['error'] = $error;
+        header("location: ../listagem_exames.php");
+        exit;
+    }else{
+        // INSER INTO EXAMES NO BANCO
+        $sqlinsert = "INSERT INTO exames (descricao, codigo, valor)  values ('$descricao', '$codigo', '$valor')";
+        $queryinsert = $mysqli->query($sqlinsert) or die();
+            if($queryinsert > 0){
+                // CASO INSERIR O DADO, REDIRECIONAR PARA LISTAGEM DE EXAMES
+                $sucess = "Cadastro com sucesso";
+                $_SESSION['sucess'] = $sucess;
+                header("location: ../listagem_exames.php");
             }
-    };
+        }
+};
     
 ?>

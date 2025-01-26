@@ -2,11 +2,13 @@
 if(!isset($_SESSION)){
   session_start();
   if(!isset($_SESSION['usuario'])){
-include('../Control/conexao.php');
   }    
 }
 include('../Control/conexao.php');
 include('../Control/function.php');
+$error = "";
+$sucess = "";
+
 if(count($_POST)){
     $nome        = $_POST['nome'];
     $cpf         = $_POST['CPF'];
@@ -21,10 +23,12 @@ if(count($_POST)){
 
     // VERIFICAÇÃO SE ALGUM DOS CAMPOS ESTÁ VAZIO
     if(empty($nome) || empty($cpf) || empty($rg) || empty($email) || empty($endereco) || empty($cep) || empty($cidade) || empty($nascimento) || empty($telefone) || empty($sexo)){
-        die("Todos campos são obrigatórios");
-        var_dump($sexo);
+        $error = "Todos campos são obrigatórios";
+        $_SESSION['error'] = $error;
+        header("location: ../listagem_pacientes.php");
         exit;
-    }else{
+    }
+    else{
         // INSERÇÃO DAS INFORMAÇÕES NO BANCO DE DADOS
         $sql_code = "INSERT INTO pacientes (nome, CPF, RG, email, endereco, CEP, cidade, nascimento, telefone, sexo, data) 
         values ('$nome', '$cpf', '$rg', '$email','$endereco', '$cep', '$cidade', '$nascimento', '$telefone', '$sexo', NOW())";
@@ -32,11 +36,16 @@ if(count($_POST)){
 
         if($query){
             // SE INSERIR OS DADOS, VAI DIRECIONAR A PÁGINA PARA A LISTAGEM DE PACIENTES
+            $sucess = "Cadastrado com sucesso";
+            $_SESSION['sucess'] = $sucess;
             header("location: ../listagem_pacientes.php");
-            exit;
+            exit;         
+            // exit;
         }else {
             // CASO DER ERRO NA INSERÇÃO AO BANCO, VAI RETORNAR ERRO
-            die("Erro na inserção de dados");
+            $error = "Erro na inserção de dados";
+            $_SESSION['error'] = $error;
+            header("location: ../listagem_pacientes.php");    
             exit;
         }
     }

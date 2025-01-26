@@ -48,5 +48,4 @@ document.addEventListener("DOMContentLoaded", function() {
     inputDate.value = dataFormatada;
     inputDate2.value = dataFormatada;
 
-
 });
