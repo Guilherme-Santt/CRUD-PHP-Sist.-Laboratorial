@@ -8,9 +8,28 @@ if(!isset($_SESSION)){
 }
 include('Control/function.php');
 
-$sql_pacientes   = "SELECT * FROM pacientes";
+
+// Parâmetro para o número de pacientes por página
+$pacientes_por_pagina = 6;
+
+// Verifica se o parâmetro de página foi enviado, caso contrário, define como página 1
+$pagina_atual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
+
+// Calcula o deslocamento para a consulta SQL
+$offset = ($pagina_atual - 1) * $pacientes_por_pagina;
+
+// Consulta para contar o número total de pacientes
+$sql_total_pacientes = "SELECT COUNT(*) as total FROM pacientes";
+$result_total = $mysqli->query($sql_total_pacientes) or die($mysqli->error);
+$total_pacientes = $result_total->fetch_assoc()['total'];
+
+// Calcula o número total de páginas
+$total_paginas = ceil($total_pacientes / $pacientes_por_pagina);
+
+// Consulta para buscar os pacientes da página atual
+$sql_pacientes = "SELECT * FROM pacientes LIMIT $offset, $pacientes_por_pagina";
 $query_pacientes = $mysqli->query($sql_pacientes) or die($mysqli->error);
-$num_pacientes = $query_pacientes->num_rows; 
+$num_pacientes = $query_pacientes->num_rows;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -50,6 +69,88 @@ $num_pacientes = $query_pacientes->num_rows;
             </ul>
         </nav>
     </header>
+    <!-- FINAL HEADER -->
+
+    <!-- TABELA DE PACIENTES CADASTRADOS -->
+    <div class="container">
+        <div class="container_son">
+            <table cellpadding="10">
+                <thead>
+                    <th>
+                        <button class="btn-cadastro" id="AbrirModal">Cadastrar Paciente</button>
+                    </th>
+                    <th colspan="9">
+                        <h1>LISTAGEM DE PACIENTES</h1>
+                    </th>
+                </thead>
+                <thead>
+                    <th>Atendimento</th>
+                    <th>Nome</th>
+                    <th>E-mail</th>
+                    <th>Celular</th>
+                    <th>Data de cadastro</th>
+                    <th>Ações</th>
+                </thead>
+                <tbody>
+                    <?php 
+            if($num_pacientes == 0) { ?>
+                    <tr>
+                        <td colspan="7">Nenhum paciente foi encontrado!</td>
+                    </tr>
+                    <?php } else { 
+            while($pacientes = $query_pacientes->fetch_assoc()) {
+                $telefone = "Não informado!";
+                if(!empty($pacientes['telefone'])){
+                    $telefone = formatar_telefone($pacientes['telefone']);   
+                }
+
+                $nascimento = "Nascimento não informada!";
+                if(!empty($pacientes['nascimento'])){
+                    $nascimento = formatar_data($pacientes['nascimento']);
+                }
+
+                $data_cadastro = date("d/m/y H:i:s", strtotime($pacientes['data']));
+            ?>
+                    <tr>
+                        <td><?php echo $pacientes['ID']?> </td>
+                        <td><?php echo $pacientes['nome']?> </td>
+                        <td><?php echo $pacientes['email']?> </td>
+                        <td><?php echo $telefone; ?> </td>
+                        <td><?php echo $data_cadastro;?> </td>
+                        <td>
+                            <a href="editar_paciente.php?id=<?php echo $pacientes['ID']?>">Editar</a>
+                            <hr>
+                            <a href="./Pacientes_Lab/deletar_paciente.php?id=<?php echo $pacientes['ID']?>">Deletar
+                            </a>
+                        </td>
+                    </tr>
+                    <?php 
+            }
+            } 
+            ?>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Paginação -->
+        <div class="paginacao">
+            <?php if ($pagina_atual > 1) { ?>
+            <a href="?pagina=<?php echo $pagina_atual - 1; ?>">Página Anterior</a>
+            <?php } ?>
+
+            <?php for ($i = 1; $i <= $total_paginas; $i++) { ?>
+            <a href="?pagina=<?php echo $i; ?>" <?php if ($i == $pagina_atual) echo 'style="font-weight:bold;"'; ?>>
+                <?php echo $i; ?>
+            </a>
+            <?php } ?>
+
+            <?php if ($pagina_atual < $total_paginas) { ?>
+            <a href="?pagina=<?php echo $pagina_atual + 1; ?>">Próxima Página</a>
+            <?php } ?>
+        </div>
+    </div>
+    <!-- FINAL TABELA DE PACIENTES -->
+
     <!-- MODAL CADASTRADO DE PACIENTES -->
     <div class="container-modal" id="container-modal">
         <div class="janela-cadastro">
@@ -112,71 +213,7 @@ $num_pacientes = $query_pacientes->num_rows;
     </div>
     <!-- FINAL MODAL CADASTRO DE PACIENTES -->
 
-
-    <!-- TABELA DE PACIENTES CADASTRADOS -->
-    <div class="container">
-        <div class="container_son">
-            <table cellpadding="10">
-                <thead>
-                    <th>
-                        <button class="btn-cadastro" id="AbrirModal">Cadastrar Paciente</button>
-                    </th>
-                    <th colspan="9">
-                        <h1>LISTAGEM DE PACIENTES</h1>
-                    </th>
-                </thead>
-                <thead>
-                    <th>Atendimento</th>
-                    <th>Nome</th>
-                    <th>E-mail</th>
-                    <th>Celular</th>
-                    <th>Data de cadastro</th>
-                    <th>Ações</th>
-                </thead>
-                <tbody>
-                    <?php if($num_pacientes == 0) { ?>
-                    <tr>
-                        <td colspan="7">Nenhum paciente foi encontrado!</td>
-                    </tr><?php }
-                    else{ 
-                        while($pacientes = $query_pacientes->fetch_assoc()){
-                            $telefone = "Não informado!";
-                            // SE O CAMPO CONSULTADO NÃO TIVER VÁZIO, UTILIZARÁ FUNÇÃO PARA FORMATAR O MESMO COM CARACTERES
-                            if(!empty($pacientes['telefone'])){
-                                $telefone = formatar_telefone($pacientes['telefone']);   
-                            }
-
-                            $nascimento = "Nascimento não informada!";
-                            // SE O CAMPO CONSULTADO NÃO TIVER VÁZIO, UTILIZARÁ FUNÇÃO QUE PEGA O CAMPO SQL ANO-MES-DIA ALTERANDO - POR / E REVERTER OS CAMPOS PARA DIA/MES/ANO 
-                            if(!empty($pacientes['nascimento'])){
-                                $nascimento = formatar_data($pacientes['nascimento']);
-                            }
-                            // FUNÇÃO DATE (PADRÃO DO PHP) PARA CONVERTER DATA DE CADASTRO NO SQL PARA DIA/MES/ANO E HORA
-                            $data_cadastro = date("d/m/y H:i:s", strtotime($pacientes['data']));?>
-                    <tr>
-                        <td><?php echo $pacientes['ID']?> </td>
-                        <td><?php echo $pacientes['nome']?> </td>
-                        <td><?php echo $pacientes['email']?> </td>
-                        <td><?php echo $telefone; ?> </td>
-                        <td><?php echo $data_cadastro;?> </td>
-                        <td>
-                            <a class="edit" href="editar_paciente.php?id=<?php echo $pacientes['ID']?>">Editar</a>
-                            <hr>
-                            <a class="error"
-                                href="../Pacientes_Lab/deletar_paciente.php?id=<?php echo $pacientes['ID']?>">Deletar</a>
-                        </td>
-                    </tr>
-                    <?php
-                        }
-                    } 
-                    ?>
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <!-- FINAL TABELA DE PACIENTES -->
-
-    <script src="src/modal.js"></script>
+    <script src=" src/modal.js"></script>
 </body>
 
 </html>

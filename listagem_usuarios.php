@@ -51,68 +51,109 @@ include('Control/function.php');
     <div class="container">
         <!-- TABELA DE USUARIOS CADASTRADOS LABORATÓRIO -->
         <div class="container_son">
-            <table ID="alter" cellpadding="10">
-                <thead>
-                    <th>
-                        <button class="btn-cadastro" id="AbrirModal">Cadastrar usuários</button>
-                    </th>
-                    <th colspan="9">
-                        <h1> USUÁRIOS</h1>
-                    </th>
-                </thead>
-                <thead>
-                    <th>ID</th>
-                    <th>Nome</th>
-                    <th>E-mail</th>
-                    <th>Telefone</th>
-                    <th>Data de cadastro</th>
-                    <th>Ações</th>
-                </thead>
-                <tbody>
-                    <?php 
-                    // COMANDO SQL PARA CONSULTAR QUANTIDADE DE USUÁRIOS NO SISTEMA
-                    $sql_clientes   = "SELECT * FROM clientes";
-                    $query_clientes = $mysqli->query($sql_clientes) or die($mysqli->error);
-                    $num_clientes = $query_clientes->num_rows;
-                    if($num_clientes == 0) { 
-                        ?>
-                    <tr>
-                        <td colspan="7">Nenhum usuário foi encontrado!</td>
-                    </tr>
-                    <?php }
-                    else{ 
-                        while($cliente = $query_clientes->fetch_assoc()){
-                            $telefone ="Não informado!";
-                            if(!empty($cliente['telefone'])){
-                                $telefone = formatar_telefone($cliente['telefone']);   
-                            }
-                                $nascimento = "Nascimento não informada!";
-                            if(!empty($cliente['nascimento'])){
-                                $nascimento = formatar_data($cliente['nascimento']);
-                            }
-                            $data_cadastro = date("d/m/y H:i:s", strtotime($cliente['data']));
-                    ?>
-                    <tr>
-                        <td><?php echo $cliente['id']?> </td>
-                        <td><?php echo $cliente['nome']?> </td>
-                        <td><?php echo $cliente['email']?> </td>
-                        <td><?php echo $telefone; ?> </td>
-                        <td><?php echo $data_cadastro;?> </td>
-                        <td>
-                            <a class="edit" href="editar_usuario.php?id=<?php echo $cliente['id']?>">Editar</a>
-                            <hr>
-                            <a class="error"
-                                href="Usuarios_Lab/deletar_usuario.php?id=<?php echo $cliente['id']?>">Deletar</a>
-                        </td>
-                    </tr>
-                    <?php
+            <?php
+            // Número máximo de usuários por página
+            $usuarios_por_pagina = 6;
+
+            // Página atual, obtida via GET, padrão é 1
+            $pagina_atual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
+
+            // Calcula o deslocamento para a consulta SQL
+            $offset = ($pagina_atual - 1) * $usuarios_por_pagina;
+
+            // Consulta para contar o número total de usuários
+            $sql_total_clientes = "SELECT COUNT(*) as total FROM clientes";
+            $result_total = $mysqli->query($sql_total_clientes) or die($mysqli->error);
+            $total_usuarios = $result_total->fetch_assoc()['total'];
+
+            // Calcula o número total de páginas
+            $total_paginas = ceil($total_usuarios / $usuarios_por_pagina);
+
+            // Consulta para buscar os usuários da página atual
+            $sql_clientes = "SELECT * FROM clientes LIMIT $offset, $usuarios_por_pagina";
+            $query_clientes = $mysqli->query($sql_clientes) or die($mysqli->error);
+            $num_clientes = $query_clientes->num_rows;
+            ?>
+            <div class="container_son">
+                <table ID="alter" cellpadding="10">
+                    <thead>
+                        <th>
+                            <button class="btn-cadastro" id="AbrirModal">Cadastrar usuários</button>
+                        </th>
+                        <th colspan="9">
+                            <h1> USUÁRIOS</h1>
+                        </th>
+                    </thead>
+                    <thead>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>E-mail</th>
+                        <th>Telefone</th>
+                        <th>Data de cadastro</th>
+                        <th>Ações</th>
+                    </thead>
+                    <tbody>
+                        <?php 
+            if($num_clientes == 0) { ?>
+                        <tr>
+                            <td colspan="7">Nenhum usuário foi encontrado!</td>
+                        </tr>
+                        <?php 
+            } else {
+                while($cliente = $query_clientes->fetch_assoc()) {
+                    $telefone = "Não informado!";
+                    if(!empty($cliente['telefone'])){
+                        $telefone = formatar_telefone($cliente['telefone']);   
                     }
-                }
+
+                    $nascimento = "Nascimento não informada!";
+                    if(!empty($cliente['nascimento'])){
+                        $nascimento = formatar_data($cliente['nascimento']);
+                    }
+
+                    $data_cadastro = date("d/m/y H:i:s", strtotime($cliente['data']));
                 ?>
-                </tbody>
-            </table>
+                        <tr>
+                            <td><?php echo $cliente['id']?> </td>
+                            <td><?php echo $cliente['nome']?> </td>
+                            <td><?php echo $cliente['email']?> </td>
+                            <td><?php echo $telefone; ?> </td>
+                            <td><?php echo $data_cadastro;?> </td>
+                            <td>
+                                <a class="edit" href="editar_usuario.php?id=<?php echo $cliente['id']?>">Editar</a>
+                                <hr>
+                                <a class="error"
+                                    href="Usuarios_Lab/deletar_usuario.php?id=<?php echo $cliente['id']?>">Deletar</a>
+                            </td>
+                        </tr>
+                        <?php 
+                }
+            } 
+            ?>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Paginação -->
+            <div class="paginacao">
+                <?php if ($pagina_atual > 1) { ?>
+                <a href="?pagina=<?php echo $pagina_atual - 1; ?>">Página Anterior</a>
+                <?php } ?>
+
+                <?php for ($i = 1; $i <= $total_paginas; $i++) { ?>
+                <a href="?pagina=<?php echo $i; ?>" <?php if ($i == $pagina_atual) echo 'style="font-weight:bold;"'; ?>>
+                    <?php echo $i; ?>
+                </a>
+                <?php } ?>
+
+                <?php if ($pagina_atual < $total_paginas) { ?>
+                <a href="?pagina=<?php echo $pagina_atual + 1; ?>">Próxima Página</a>
+                <?php } ?>
+            </div>
         </div>
         <!-- END VISUALIZAÇÃO DE USUARIOS -->
+
+
         <!-- MODAL CADASTRO DE USUARIOS -->
         <div class="container-modal" id="container-modal">
             <div class="janela-cadastro">
@@ -157,7 +198,7 @@ include('Control/function.php');
     </div>
 
     <!-- END MODAL -->
-    <script src="src/script.js"></script>
+    <script src="src/modal.js"></script>
 </body>
 
 </html>

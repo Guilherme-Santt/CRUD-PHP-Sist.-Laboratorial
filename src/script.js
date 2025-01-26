@@ -31,7 +31,9 @@ btnGenerate.addEventListener("click", () => {
 // DATA DE HOJE
 document.addEventListener("DOMContentLoaded", function() {
     // Seleciona o input de data
-    const inputDate = document.getElementById("dataHoje");
+    let inputDate = document.getElementById("dataHoje");
+    let inputDate2 = document.getElementById("dataHoje2");
+
 
     // Obtém a data atual
     const hoje = new Date();
@@ -44,4 +46,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Define o valor do input como a data atual
     inputDate.value = dataFormatada;
+    inputDate2.value = dataFormatada;
+
+
 });

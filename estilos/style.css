@@ -159,6 +159,7 @@ INICIO CONFIGURAÇÕES HEADER*/
 /* CONFIGURAÇÕES TABELAS */
 
 table {
+    border-radius: 0.5rem;
     width: 100%;
     border-collapse: collapse;
     /* Para que as bordas não se sobreponham */
@@ -235,4 +236,8 @@ th h1 {
 }
 
 
-/* BOTÃO DE GERAR PDF NO RELATÓRIO*/
+/* BOTOÕES PAGINAÇÃO */
+
+.paginacao a {
+    border: 1px solid black;
+}
