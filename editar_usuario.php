@@ -21,19 +21,19 @@ if(count($_POST) > 0){
 
     // VERIFICAÇÃO INPUT NOME SE ESTÁ VAZIO OU SE CONTÉM DE 3 Á 100 DÍGITOS.
     if(empty($nome) || Strlen($nome) < 3 || Strlen($nome) > 100)
-        $error = "CAMPO NOME INVÁLIDO OU INCORRETO ";
+        $error = "Nome inválido";
 
     // VERIFICAÇÃO INPUT EMAIL SE ESTÁ VAZIO OU SE ESTÁ SEM FILTRO DE E-MAIL exemplo@exemplo.com.
     if(empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL) || empty($email))
-        $error = "CAMPO E-MAIL INVÁLIDO OU INCORRETO.";
+        $error = "E-mail inválido";
 
     // VERIFICAÇÃO INPUT NOME SE ESTÁ VAZIO OU SE CONTÉM DE 3 Á 100 DÍGITOS.
     if(empty($nascimento) || strlen($nascimento)!=10)
-        $error = "CAMPO NASCIMENTO INCORRETO";
+        $error = "Data de nascimento inválida";
 
     // VERIFICAÇÃO INPUT NOME SE ESTÁ VAZIO OU SE CONTÉM DE 3 Á 100 DÍGITOS.
     if(empty($telefone) || strlen($telefone) != 11)
-        $error = "CAMPO TELEFONE INVÁLIDO OU INCORRETO";
+        $error = "Telefone inválido";
 
     // ATUALIZAÇÃO DE INFORMAÇÕES DO PACIENTE
     if($error){
@@ -46,7 +46,7 @@ if(count($_POST) > 0){
       nascimento = '$nascimento' WHERE id   = '$id'";
       $deu_certo = $mysqli->query($sql_code);
         if($deu_certo){
-          $sucess = "ATUALIZADO COM SUCESSO";
+          $sucess = "Atualizado com sucesso";
             // header("location: editar_usuario.php?id=$id");
 
         }
@@ -144,7 +144,7 @@ $cliente = $query_cliente->fetch_assoc();
     Swal.fire({
         icon: 'error',
         title: '<?php echo $error; ?>',
-        text: '<?php echo $error; ?>',
+        text: 'Verifique o campo preenchido',
         confirmButtonText: 'Fechar'
     });
     </script>
@@ -155,7 +155,7 @@ $cliente = $query_cliente->fetch_assoc();
     Swal.fire({
         icon: 'success',
         title: '<?php echo $sucess; ?>',
-        text: '<?php echo $sucess; ?>',
+        // text: '',
         confirmButtonText: 'fechar'
     });
     </script>

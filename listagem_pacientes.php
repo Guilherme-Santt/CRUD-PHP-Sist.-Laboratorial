@@ -227,7 +227,7 @@ $num_pacientes = $query_pacientes->num_rows;
     Swal.fire({
         icon: 'error',
         title: '<?php echo $error; ?>',
-        text: '<?php echo $error; ?>',
+        text: 'Verifique os campos preenchidos',
         confirmButtonText: 'Fechar'
     });
     </script>
@@ -241,7 +241,7 @@ $num_pacientes = $query_pacientes->num_rows;
     Swal.fire({
         icon: 'success',
         title: '<?php echo $sucess; ?>',
-        text: '<?php echo $sucess; ?>',
+        // text: '',
         confirmButtonText: 'fechar'
     });
     </script>

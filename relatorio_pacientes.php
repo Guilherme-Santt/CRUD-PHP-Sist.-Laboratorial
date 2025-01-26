@@ -139,7 +139,7 @@
     Swal.fire({
         icon: 'error',
         title: '<?php echo $error; ?>',
-        text: '<?php echo $error; ?>',
+        // text: '',
         confirmButtonText: 'Fechar'
     });
     </script>
@@ -150,7 +150,7 @@
     Swal.fire({
         icon: 'success',
         title: '<?php echo $sucess; ?>',
-        text: '<?php echo $sucess; ?>',
+        // text: '',
         confirmButtonText: 'fechar'
     });
     </script>

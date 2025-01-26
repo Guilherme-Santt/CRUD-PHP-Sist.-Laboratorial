@@ -86,11 +86,10 @@ include('Control/function.php');
                     </th>
                 </thead>
                 <thead>
-                    <th>ID exame</th>
                     <th>Código exame</th>
                     <th>Descrição exame</th>
                     <th>Valor</th>
-                    <th>Deletar exame</th>
+                    <th>Ação</th>
                 </thead>
                 <tbody>
                     <?php 
@@ -105,7 +104,6 @@ include('Control/function.php');
         ?>
                     <tr>
                         <!-- VISUALIZAÇÃO DOS CAMPOS NA TABELA -->
-                        <td><?php echo $exames['exameid']?> </td>
                         <td><?php echo $exames['codigo']?> </td>
                         <td><?php echo $exames['descricao']?> </td>
                         <td><?php echo $exames['valor'];?> </td>
@@ -167,38 +165,38 @@ include('Control/function.php');
             </div>
         </div>
         <!-- END MODAL -->
-</body>
-
-<!-- SWEET ALERTA PARA ERRO OU SUCESSO -->
-<?php
-      if(isset($_SESSION['error']) && $_SESSION['error']) : 
-        $error = $_SESSION['error']; 
-        unset($_SESSION['error']);
+    </div>
+    <!-- SWEET ALERTA PARA ERRO OU SUCESSO -->
+    <?php
+    if(isset($_SESSION['error']) && $_SESSION['error']) : 
+    $error = $_SESSION['error']; 
+    unset($_SESSION['error']);
     ?>
-<script>
-Swal.fire({
-    icon: 'error',
-    title: '<?php echo $error; ?>',
-    text: '<?php echo $error; ?>',
-    confirmButtonText: 'Fechar'
-});
-</script>
-<?php endif;?>
-<?php
-      if(isset($_SESSION['sucess']) && $_SESSION['sucess']) : 
-            $sucess = $_SESSION['sucess']; 
-            unset($_SESSION['sucess']);
-      ?>
-<script>
-Swal.fire({
-    icon: 'success',
-    title: '<?php echo $sucess; ?>',
-    text: '<?php echo $sucess; ?>',
-    confirmButtonText: 'fechar'
-});
-</script>
-<?php endif;?>
+    <script>
+    Swal.fire({
+        icon: 'error',
+        title: '<?php echo $error; ?>',
+        text: 'Verifique os campos preenchidos',
+        confirmButtonText: 'Fechar'
+    });
+    </script>
+    <?php endif;?>
+    <?php
+    if(isset($_SESSION['sucess']) && $_SESSION['sucess']) : 
+        $sucess = $_SESSION['sucess']; 
+        unset($_SESSION['sucess']);
+    ?>
+    <script>
+    Swal.fire({
+        icon: 'success',
+        title: '<?php echo $sucess; ?>',
+        // text: '',
+        confirmButtonText: 'fechar'
+    });
+    </script>
+    <?php endif;?>
 
-<script src="src/modal.js"></script>
+    <script src="src/modal.js"></script>
+</body>
 
 </html>

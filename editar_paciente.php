@@ -31,19 +31,19 @@ if(count($_POST) > 0){
     
   // VERIFICAÇÃO SE O NOME TEM DE 3 Á 100 DÍGITOS
   if(Strlen($nome) < 3 || Strlen($nome) > 100)
-      $error = "NOME INCORRETO";
+      $error = "Nome incorreto";
     
   // VERIFICAÇÃO DE FILTRO DE E-MAIL
   if(empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL))
-      $error = "CAMPO E-MAIL INCORRETO";
+      $error = "E-mail inválido";
 
   // VERIFICAÇÃO SE DATA DE NASCIMENTO É DIFERENTE DE 10 DÍGITOS
   if(strlen($nascimento) != 10)
-      $error = "DATA DE NASCIMENTO INCORRETA";
+      $error = "Data de nascimento inválida";
     
   // VERIFICAÇÃO SE O INPUT TELEFONE NÃO TEM 11 DÍGITOS
   if(strlen($telefone) != 11)
-      $error = "TELEFONE INCORRETO";
+      $error = "Telefone incorreto";
   
   // INSERÇÃO CAMPO EXAME NA TABELA PACIENTES_EXAMES
   if(!empty($codigo)){
@@ -59,7 +59,7 @@ if(count($_POST) > 0){
               $verify_cadastro_exame_no_paciente = $query_verify->fetch_assoc();
               // VERIFICAÇÃO SE  EXAME JÁ ESTÁ INSERIDO
                 if($verify_cadastro_exame_no_paciente){
-                    $error = "EXAME JÁ INSERIDO";
+                    $error = "Paciente já contém o exame cadastrado";
                     }
                     else{
                       // SE NÃO ESTIVER INSERIDO, VAI INSERIR
@@ -68,7 +68,7 @@ if(count($_POST) > 0){
                     }
           }else{
             // SE O EXAME NÃO EXISTIR, VAI RETORNAR ERRO
-            $error = "EXAME INEXISTENTE";
+            $error = "Exame inexistente";
           }
     }
     // FINAL INSERÇÃO EXAME NA TABELA PACIENTES_EXAMES
@@ -89,7 +89,7 @@ if(count($_POST) > 0){
         nascimento   = '$nascimento' WHERE id  = '$id'";
         $deu_certo = $mysqli->query($sql_code);
             if($deu_certo){
-                $sucess = "ATUALIZADO COM SUCESSO";
+                $sucess = "Atualizado com sucesso";
                 // unset($_POST);
             }
     }
@@ -232,7 +232,7 @@ $num_exames = $query_exames->num_rows;
         Swal.fire({
             icon: 'error',
             title: '<?php echo $error; ?>',
-            text: '<?php echo $error; ?>',
+            text: 'Verifique o campo preenchido',
             confirmButtonText: 'Fechar'
         });
         </script>
@@ -243,7 +243,7 @@ $num_exames = $query_exames->num_rows;
         Swal.fire({
             icon: 'success',
             title: '<?php echo $sucess; ?>',
-            text: '<?php echo $sucess; ?>',
+            // text: '',
             confirmButtonText: 'fechar'
         });
         </script>
