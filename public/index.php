@@ -36,7 +36,7 @@ if(isset($_POST['email']) ){
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Login V16</title>
+	<title>Bem vindo</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -64,10 +64,10 @@ if(isset($_POST['email']) ){
 </head>
 <body>	
 	<div class="limiter">
-		<div class="container-login100" style="background-image: url('../images/bg-01.jpg');">
+		<div class="container-login100" style="background-image: url('../images/lab-equipment.jpg');">
 			<div class="wrap-login100 p-t-30 p-b-50">
 				<span class="login100-form-title p-b-41">
-					Acesso ao sistema
+					Bem vindo de volta!
 				</span>
 				<form class="login100-form validate-form p-b-33 p-t-5" action="" method="POST">
 

@@ -51,25 +51,26 @@ $num_pacientes = $query_pacientes->num_rows;
     <header class="header">
         <nav>
             <ul class="list-header">
+                <img class="img-worklab" src="../images/icons/worklab.png">
                 <li>
                     <!-- PACIENTES -->
-                    <a class="btn" href="   listagem_pacientes.php">Listagem Pacientes</a>
-                </li>
-                <li>
-                    <!-- USUÁRIOS -->
-                    <a class="btn" href="listagem_usuarios.php">Configurações de usuários</a>
-                </li>
-                <li>
-                    <!-- EXAMES -->
-                    <a class="btn" href="listagem_exames.php">Cadastro de exames</a>
+                    <a class="btn" href="listagem_pacientes.php">PACIENTES</a>
                 </li>
                 <li>
                     <!-- RELATÓRIO -->
-                    <a class="btn" href="relatorio_pacientes.php">Relatório</a>
+                    <a class="btn" href="relatorio_pacientes.php">RELATÓRIO</a>
+                </li>
+                <li>
+                    <li>
+                        <!-- EXAMES -->
+                        <a class="btn" href="listagem_exames.php">EXAMES</a>
+                    </li>
+                    <!-- USUÁRIOS -->
+                    <a class="btn" href="listagem_usuarios.php">USUARIOS</a>
                 </li>
                 <li>
                     <!-- SAIR -->
-                    <a class="btn" href="Login_Lab/logout.php">Encerrar</a>
+                    <a class="btn" href="Login_Lab/logout.php">ENCERRAR</a>
                 </li>
             </ul>
         </nav>
@@ -118,7 +119,7 @@ $num_pacientes = $query_pacientes->num_rows;
             ?>
                     <tr>
                         <td><?php echo $pacientes['ID']?> </td>
-                        <td><?php echo $pacientes['nome']?> </td>
+                        <td ><?php echo $pacientes['nome']?> </td>
                         <td><?php echo $pacientes['email']?> </td>
                         <td><?php echo $telefone; ?> </td>
                         <td><?php echo $data_cadastro;?> </td>

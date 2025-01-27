@@ -142,11 +142,13 @@ include('../Control/function.php');
                 <?php if ($pagina_atual > 1) { ?>
                 <a href="?pagina=<?php echo $pagina_atual - 1; ?>"><<</a>
                 <?php } ?>
-    
+
                 <?php for ($i = 1; $i <= $total_paginas; $i++) { ?>
-                    <a href="?pagina=<?php echo $i; ?>" <?php if ($i == $pagina_atual) echo 'style="font-weight:bold;"';?>><?php echo $i;?></a>
+                <a href="?pagina=<?php echo $i; ?>" <?php if ($i == $pagina_atual) echo 'style="font-weight:bold;"'; ?>>
+                    <?php echo $i; ?>
+                </a>
                 <?php } ?>
-    
+
                 <?php if ($pagina_atual < $total_paginas) { ?>
                 <a href="?pagina=<?php echo $pagina_atual + 1; ?>">>></a>
                 <?php } ?>
@@ -230,6 +232,7 @@ include('../Control/function.php');
     <?php endif;?>
 
     <script src="../src/modal.js"></script>
+
 </body>
 
 </html>

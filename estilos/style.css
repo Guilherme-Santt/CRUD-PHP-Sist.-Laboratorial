@@ -2,6 +2,10 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background-image: url(../images/background.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
 }
 
 
@@ -10,8 +14,9 @@ INICIO CONFIGURAÇÕES HEADER*/
 
 .header {
     background-color: #d8d3d3;
-    height: 7rem;
+    height: 8rem;
     display: grid;
+    justify-content: center;
     align-items: center;
     margin-bottom: 30px;
     box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0);
@@ -28,15 +33,17 @@ INICIO CONFIGURAÇÕES HEADER*/
 
 .list-header a {
     text-decoration: none;
-    color: white;
-    background-color: rgb(164, 96, 228);
+    color: rgb(54, 54, 54);
+    /* background-color: rgb(164, 96, 228); */
     padding: 1rem;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    border-radius: 1rem;
+    /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
+    /* border-radius: 1rem; */
 }
 
 .btn:hover {
     box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0);
+    color: grey;
+    border-bottom: 2px solid  rgb(164, 96, 228);
 }
 
 
@@ -155,7 +162,9 @@ INICIO CONFIGURAÇÕES HEADER*/
     color: rgb(87, 87, 87);
 }
 
-
+.container_son a:hover{
+    box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0);
+}
 /* CONFIGURAÇÕES TABELAS */
 
 table {
@@ -172,7 +181,9 @@ td {
     padding: 2px;
     text-align: center;
 }
-
+.td2{
+    background-color: #6d6c6c;
+}
 th {
     background-color: #f2f2f2;
     /* Cor de fundo para o cabeçalho */
@@ -197,7 +208,7 @@ th h1 {
 
 .att-infos a {
     text-decoration: none;
-    color: black;
+    color: rgb(253, 253, 253);
 }
 
 .att-infos li {
@@ -235,13 +246,7 @@ th h1 {
     font-size: 1.3rem;
 }
 
-
-/* BOTOÕES PAGINAÇÃO */
-
-.paginacao a {
-font-size: 1.5rem;
-border: 1px solid black;
-}
-.paginacao a:hover{
-    background-color: rgb(187, 187, 187);
+.img-worklab{
+    width: 60px;
+    height: 60px;
 }

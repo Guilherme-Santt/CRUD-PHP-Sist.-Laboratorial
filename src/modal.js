@@ -23,3 +23,4 @@ window.onclick = function(event) {
         MyModal.classList.remove("show");
     }
 }
+
