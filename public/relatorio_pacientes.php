@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="../estilos/style.css">
 <!-- BIBLIOTECA PDF -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
-
+<!--===============================================================================================-->	
 <!-- BIBLIOTECA SWEET MODAL -->
 <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
@@ -41,7 +41,7 @@
             </ul>
         </nav>
     </header>
-
+    
     <div class="container">
         <div class="att-infos">
             <form action="" method="POST">

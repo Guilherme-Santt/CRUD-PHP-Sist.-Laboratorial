@@ -41,6 +41,7 @@ $num_pacientes = $query_pacientes->num_rows;
 </head>
 <!-- LINK CSS -->
 <link rel="stylesheet" href="../estilos/style.css">
+<!--===============================================================================================-->	
 <!-- BIBLIOTECA SWEET MODAL -->
 <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
@@ -134,24 +135,22 @@ $num_pacientes = $query_pacientes->num_rows;
             ?>
                 </tbody>
             </table>
+            <!-- Paginação -->
+            <div class="paginacao">
+                <?php if ($pagina_atual > 1) { ?>
+                <a href="?pagina=<?php echo $pagina_atual - 1; ?>"><<</a>
+                <?php } ?>
+    
+                <?php for ($i = 1; $i <= $total_paginas; $i++) { ?>
+                    <a href="?pagina=<?php echo $i; ?>" <?php if ($i == $pagina_atual) echo 'style="font-weight:bold;"';?>><?php echo $i;?></a>
+                <?php } ?>
+    
+                <?php if ($pagina_atual < $total_paginas) { ?>
+                <a href="?pagina=<?php echo $pagina_atual + 1; ?>">>></a>
+                <?php } ?>
+            </div>
         </div>
 
-        <!-- Paginação -->
-        <div class="paginacao">
-            <?php if ($pagina_atual > 1) { ?>
-            <a href="?pagina=<?php echo $pagina_atual - 1; ?>">Página Anterior</a>
-            <?php } ?>
-
-            <?php for ($i = 1; $i <= $total_paginas; $i++) { ?>
-            <a href="?pagina=<?php echo $i; ?>" <?php if ($i == $pagina_atual) echo 'style="font-weight:bold;"'; ?>>
-                <?php echo $i; ?>
-            </a>
-            <?php } ?>
-
-            <?php if ($pagina_atual < $total_paginas) { ?>
-            <a href="?pagina=<?php echo $pagina_atual + 1; ?>">Próxima Página</a>
-            <?php } ?>
-        </div>
     </div>
     <!-- FINAL TABELA DE PACIENTES -->
 

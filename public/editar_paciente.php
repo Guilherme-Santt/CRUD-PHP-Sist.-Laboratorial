@@ -115,10 +115,10 @@ $num_exames = $query_exames->num_rows;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Informações do paciente</title>
 </head>
-
+<!--===============================================================================================-->	
 <!-- LINK DOS ARQUIVOS CSS -->
 <link rel="stylesheet" href="../estilos/style.css">
-
+<!--===============================================================================================-->	
 <!-- BIBLIOTECA SWEET MODAL -->
 <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
