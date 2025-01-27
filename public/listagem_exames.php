@@ -5,8 +5,8 @@ if(!isset($_SESSION)){
         header("location: ../views/index_login.php");
     }    
 }
-include('Control/conexao.php');
-include('Control/function.php');
+include('../Control/conexao.php');
+include('../Control/function.php');
 
 ?>
 <!DOCTYPE html>
@@ -18,7 +18,7 @@ include('Control/function.php');
     <title>Exames</title>
 </head>
 <!-- CÓDIGOS CSS -->
-<link rel="stylesheet" href="estilos/style.css">
+<link rel="stylesheet" href="../estilos/style.css">
 
 <!-- BIBLIOTECA SWEET MODAL -->
 <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
@@ -107,7 +107,7 @@ include('Control/function.php');
                         <td><?php echo $exames['codigo']?> </td>
                         <td><?php echo $exames['descricao']?> </td>
                         <td><?php echo $exames['valor'];?> </td>
-                        <td><a href="Exames_Lab/deletar_exame.php?id=<?php echo $exames['exameid'] ?>">Deletar exame</a>
+                        <td><a href="../modules/deletar_exame.php?id=<?php echo $exames['exameid'] ?>">Deletar exame</a>
                         </td>
                     </tr>
                     <?php 
@@ -139,7 +139,7 @@ include('Control/function.php');
         <!-- JANELA MODAL->CADASTRO DE EXAMES NO SISTEMA -->
         <div class="container-modal" id="container-modal">
             <div class="janela-cadastro">
-                <form action="Exames_Lab/Post_CriarExames.php" method="POST">
+                <form action="../modules/Post_CriarExames.php" method="POST">
                     <button class="close">x</button>
                     <ul class="lista-cadastro">
                         <li>
@@ -196,7 +196,7 @@ include('Control/function.php');
     </script>
     <?php endif;?>
 
-    <script src="src/modal.js"></script>
+    <script src="../src/modal.js"></script>
 </body>
 
 </html>

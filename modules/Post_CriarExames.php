@@ -29,13 +29,13 @@ if(count($_POST) > 0){
     if($verify){
         $error = "Exame duplicado";
         $_SESSION['error'] = $error;
-        header("location: ../listagem_exames.php");
+        header("location: ../public/listagem_exames.php");
         exit;
     }
     
     if($error){
         $_SESSION['error'] = $error;
-        header("location: ../listagem_exames.php");
+        header("location: ../public/listagem_exames.php");
         exit;
     }else{
         // INSER INTO EXAMES NO BANCO
@@ -45,7 +45,7 @@ if(count($_POST) > 0){
                 // CASO INSERIR O DADO, REDIRECIONAR PARA LISTAGEM DE EXAMES
                 $sucess = "Cadastro com sucesso";
                 $_SESSION['sucess'] = $sucess;
-                header("location: ../listagem_exames.php");
+                header("location: .../public/listagem_exames.php");
             }
         }
 };

@@ -6,7 +6,7 @@
     <meta name="Relatorio" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<link rel="stylesheet" href="estilos/style.css">
+<link rel="stylesheet" href="../estilos/style.css">
 <!-- BIBLIOTECA PDF -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
 
@@ -62,7 +62,7 @@
         </div>
         <div class="info-content" id="content">
             <?php
-            include('Control/conexao.php');
+            include('../Control/conexao.php');
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // Obtém as datas do formulário
                 $dataInicial = $_POST['date_inicial'];
@@ -155,7 +155,7 @@
     });
     </script>
     <?php endif;?>
-    <script src="./src/script.js"></script>
+    <script src="../src/script.js"></script>
 </body>
 
 </html>
