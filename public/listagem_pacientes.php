@@ -1,12 +1,12 @@
 <?php 
-include('Control/conexao.php');
 if(!isset($_SESSION)){
     session_start();
     if(!isset($_SESSION['usuario'])){
         header("location: index_login.php");
     }    
 }
-include('Control/function.php');
+include('../Control/conexao.php');
+include('../Control/function.php');
 
 
 // Parâmetro para o número de pacientes por página
@@ -40,7 +40,7 @@ $num_pacientes = $query_pacientes->num_rows;
     <title>Pacientes</title>
 </head>
 <!-- LINK CSS -->
-<link rel="stylesheet" href="estilos/style.css">
+<link rel="stylesheet" href="../estilos/style.css">
 <!-- BIBLIOTECA SWEET MODAL -->
 <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
@@ -52,7 +52,7 @@ $num_pacientes = $query_pacientes->num_rows;
             <ul class="list-header">
                 <li>
                     <!-- PACIENTES -->
-                    <a class="btn" href="listagem_pacientes.php">Listagem Pacientes</a>
+                    <a class="btn" href="   listagem_pacientes.php">Listagem Pacientes</a>
                 </li>
                 <li>
                     <!-- USUÁRIOS -->
@@ -122,9 +122,9 @@ $num_pacientes = $query_pacientes->num_rows;
                         <td><?php echo $telefone; ?> </td>
                         <td><?php echo $data_cadastro;?> </td>
                         <td>
-                            <a href="editar_paciente.php?id=<?php echo $pacientes['ID']?>">Editar</a>
+                            <a href="../public/editar_paciente.php?id=<?php echo $pacientes['ID']?>">Editar</a>
                             <hr>
-                            <a href="./Pacientes_Lab/deletar_paciente.php?id=<?php echo $pacientes['ID']?>">Deletar
+                            <a href="../modules/deletar_paciente.php?id=<?php echo $pacientes['ID']?>">Deletar
                             </a>
                         </td>
                     </tr>
@@ -158,7 +158,7 @@ $num_pacientes = $query_pacientes->num_rows;
     <!-- MODAL CADASTRADO DE PACIENTES -->
     <div class="container-modal" id="container-modal">
         <div class="janela-cadastro">
-            <form action="Pacientes_Lab/Post.CriarPaciente.php" method=POST>
+            <form action="../modules/Post.CriarPaciente.php" method=POST>
                 <ul class=" lista-cadastro">
                     <button class="close">x</button>
                     <li>
@@ -247,7 +247,7 @@ $num_pacientes = $query_pacientes->num_rows;
     </script>
     <?php endif;?>
 
-    <script src=" src/modal.js"></script>
+    <script src=" ../src/modal.js"></script>
 </body>
 
 </html>

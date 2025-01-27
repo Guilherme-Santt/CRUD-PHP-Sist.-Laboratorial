@@ -5,8 +5,8 @@ if(!isset($_SESSION)){
         header("location: Login_Lab/index_login.php");
     }    
 }
-include('Control/conexao.php');
-include('Control/function.php');
+include('../Control/conexao.php');
+include('../Control/function.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,7 +17,7 @@ include('Control/function.php');
     <title>Usuários</title>
 </head>
 <!-- ARQUIVOS CSS SITE -->
-<link rel="stylesheet" href="estilos/style.css">
+<link rel="stylesheet" href="../estilos/style.css">
 
 <!-- BIBLIOTECA SWEET MODAL -->
 <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
@@ -126,7 +126,7 @@ include('Control/function.php');
                                 <a class="edit" href="editar_usuario.php?id=<?php echo $cliente['id']?>">Editar</a>
                                 <hr>
                                 <a class="error"
-                                    href="Usuarios_Lab/deletar_usuario.php?id=<?php echo $cliente['id']?>">Deletar</a>
+                                    href="../modules/deletar_usuario.php?id=<?php echo $cliente['id']?>">Deletar</a>
                             </td>
                         </tr>
                         <?php 
@@ -160,7 +160,7 @@ include('Control/function.php');
         <!-- MODAL CADASTRO DE USUARIOS -->
         <div class="container-modal" id="container-modal">
             <div class="janela-cadastro">
-                <form action="Usuarios_Lab/Post_CriarUsuarios.php" method="POST">
+                <form action="../modules/PostCriarUsuario.php" method="POST">
                     <ul class="lista-cadastro">
                         <button class="close">x</button>
                         <li>
@@ -231,8 +231,7 @@ include('Control/function.php');
     </script>
     <?php endif;?>
 
-    <script src=" src/modal.js"></script>
-    <script src="src/modal.js"></script>
+    <script src="../src/modal.js"></script>
 </body>
 
 </html>

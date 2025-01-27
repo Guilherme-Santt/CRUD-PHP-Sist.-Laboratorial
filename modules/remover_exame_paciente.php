@@ -9,7 +9,7 @@ $idpaciente = $infos['paciente_id'];
 $sql_code  = "DELETE FROM pacientes_exames WHERE id = '$id_exame'";
 $query_code = $mysqli->query($sql_code) or die($mysqli->error);
     if($query_code)
-        header("location: ../editar_paciente.php?id=$idpaciente");  
+        header("location: ../public/editar_paciente.php?id=$idpaciente");  
     else{
       var_dump($sql_code);
       die("erro ao excluir");

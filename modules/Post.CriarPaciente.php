@@ -25,7 +25,7 @@ if(count($_POST)){
     if(empty($nome) || empty($cpf) || empty($rg) || empty($email) || empty($endereco) || empty($cep) || empty($cidade) || empty($nascimento) || empty($telefone) || empty($sexo)){
         $error = "Todos campos são obrigatórios";
         $_SESSION['error'] = $error;
-        header("location: ../listagem_pacientes.php");
+        header("location: ../public/listagem_pacientes.php");
         exit;
     }
     else{
@@ -38,14 +38,14 @@ if(count($_POST)){
             // SE INSERIR OS DADOS, VAI DIRECIONAR A PÁGINA PARA A LISTAGEM DE PACIENTES
             $sucess = "Cadastrado com sucesso";
             $_SESSION['sucess'] = $sucess;
-            header("location: ../listagem_pacientes.php");
+            header("location: ../public/listagem_pacientes.php");
             exit;         
             // exit;
         }else {
             // CASO DER ERRO NA INSERÇÃO AO BANCO, VAI RETORNAR ERRO
             $error = "Erro na inserção de dados";
             $_SESSION['error'] = $error;
-            header("location: ../listagem_pacientes.php");    
+            header("location: ../public/listagem_pacientes.php");
             exit;
         }
     }

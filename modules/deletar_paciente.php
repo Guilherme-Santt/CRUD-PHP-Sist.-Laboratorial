@@ -7,6 +7,6 @@
         if($query_code){
             $sucess = "Deletado com sucesso";
             $_SESSION['sucess'] = $sucess;
-            header("location: ../listagem_pacientes.php");  
+            header("location: ../public/listagem_pacientes.php");  
         }
           ?>

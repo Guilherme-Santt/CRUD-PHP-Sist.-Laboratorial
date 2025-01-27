@@ -6,8 +6,8 @@ if(!isset($_SESSION)){
         header("location: index.php");
     }    
 }
-include('Control/conexao.php');
-include('Control/function.php');
+include('../Control/conexao.php');
+include('../Control/function.php');
 $id     = intval($_GET['id']);
 $sucess  = "";
 $error  = "";
@@ -117,7 +117,7 @@ $num_exames = $query_exames->num_rows;
 </head>
 
 <!-- LINK DOS ARQUIVOS CSS -->
-<link rel="stylesheet" href="estilos/style.css">
+<link rel="stylesheet" href="../estilos/style.css">
 
 <!-- BIBLIOTECA SWEET MODAL -->
 <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
@@ -210,7 +210,7 @@ $num_exames = $query_exames->num_rows;
                             <p>Exames cadastrados:</p>
                             <?php while($exames = $query_exames->fetch_assoc()){?>
                             <button class="remover-exame-paciente">
-                                <a href="./Pacientes_Lab/remover_exame_paciente.php?id=<?php echo $exames['id']?>">
+                                <a href="../modules/remover_exame_paciente.php?id=<?php echo $exames['id']?>">
                                     <?php echo $exames['codigo']?> </a>
                             </button> <?php }?>
                         </div>

@@ -6,8 +6,8 @@ if(!isset($_SESSION)){
         header("location: Login_Lab/index_login.php");
     }
 }
-include('Control/function.php');
-include('Control/conexao.php');
+include('../Control/function.php');
+include('../Control/conexao.php');
 $id = intval($_GET['id']);
 $error = "";
 $sucess = "";
@@ -69,7 +69,7 @@ $cliente = $query_cliente->fetch_assoc();
 </head>
 
 <!-- ARQUIVOS CSS SITE -->
-<link rel="stylesheet" href="estilos/style.css">
+<link rel="stylesheet" href="../estilos/style.css">
 <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
 
@@ -129,7 +129,7 @@ $cliente = $query_cliente->fetch_assoc();
                     </li>
 
                     <li>
-                        <button class="btn_style" name="authorization" type="submit">Atualizar</button>
+                        <button class="btn-cadastro" name="authorization" type="submit">Atualizar</button>
                     </li>
                 </ul>
             </form>
