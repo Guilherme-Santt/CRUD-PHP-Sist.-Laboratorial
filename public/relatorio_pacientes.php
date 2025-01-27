@@ -62,12 +62,14 @@
                 </ul>
             </form>
         </div>
+    
     <!-- END GERADOR RELATÓRIO -->
 
     <!-- POSTS COM SQL PARA BUSCAR INFORMAÇÕES NO BANCO. NESTE CÓDIGO CONTÉM AS INFORMAÇÕES DA TABELA PACIENTES ASSOCIADO COM A PACIENTES_EXAMES E PUXANDO AS INFORMAÇÕES TAMBEM DA TABELA EXAMES -->
     <div class="info-content" id="content">
     <?php
         include('../Control/conexao.php');
+        include('../Control/function.php');
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Obtém as datas do formulário
             $dataInicial = $_POST['date_inicial'];
@@ -132,10 +134,10 @@
                                 <li><b>Nome: </b>"                  . htmlspecialchars($row['nome']) . "</li>
                                 <li><b>Protocolo: </b>"             . htmlspecialchars($row['paciente_id']) . "</li>
                                 <li><b>Cadastro: </b>"              . htmlspecialchars($dataFormatada) . "</li>
-                                <li><b>CPF: </b>"                   . htmlspecialchars($row['CPF']) . "</li>
+                                <li><b>CPF: </b>"                   . htmlspecialchars(formatar_cpf($row['CPF'])) . "</li>
                                 <li><b>Registro Nacional: </b>"     . htmlspecialchars($row['RG']) . "</li>
                                 <li><b>Celular: </b>"               . htmlspecialchars($row['telefone']) . "</li>
-                                <li><b>Data nascimento: </b>"       . htmlspecialchars($row['nascimento']) . "</li>
+                                <li><b>Data nascimento: </b>"       . htmlspecialchars(formatar_data($row['nascimento'])) . "</li>
                                 <li><b>E-mail: </b>"                . htmlspecialchars($row['email']) . "</li>
                                 <li><b>Endereço: </b>"              . htmlspecialchars($row['endereco_completo']) . "</li>
                                 <li><b>Sexo: </b>"                  . htmlspecialchars($row['sexo']) . "</li>

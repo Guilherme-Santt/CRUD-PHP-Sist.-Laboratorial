@@ -16,8 +16,8 @@ if(count($_POST) > 0){
     $codigo    = strtoupper($_POST['codigo']);
     $descricao = $_POST['descricao'];
     $valor     = $_POST['valor'];
-    // $valor      = isset($_POST['valor']) && !empty($_POST['valor']) ? formatar($_POST['valor']) : null;
-
+    $valor     = formatar($valor);
+    
     if(empty($descricao) || empty($codigo) || empty($valor) || Strlen($codigo) > 4 ){
         $error = "Todos campos são obrigatórios";
     }
@@ -45,7 +45,7 @@ if(count($_POST) > 0){
                 // CASO INSERIR O DADO, REDIRECIONAR PARA LISTAGEM DE EXAMES
                 $sucess = "Cadastro com sucesso";
                 $_SESSION['sucess'] = $sucess;
-                header("location: .../public/listagem_exames.php");
+                header("location: ../public/listagem_exames.php");
             }
         }
 };

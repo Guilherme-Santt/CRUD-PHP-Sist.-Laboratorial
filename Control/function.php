@@ -9,13 +9,25 @@ function limpar_texto($str){
 function formatar_telefone($telefone){
     $ddd     = substr ($telefone, 0, 2);
     $parte1  = substr ($telefone, 2, 5);
-    $parte2  = substr ($telefone, 7);
+    $parte2  = substr ($telefone, 7, 8);
     return "($ddd) $parte1-$parte2";
 }
+
+function formatar_cpf($cpf){
+    $parte     = substr ($cpf, 0, 3);
+    $parte1  = substr ($cpf, 3, 3);
+    $parte2  = substr ($cpf, 7, 9);
+    $parte3  = substr ($cpf, 10, 11);
+
+    return "$parte.$parte1.$parte2-$parte3";
+}
+
 // FUNÇÃO FORMATAR DATA PARA VISUALIZAÇÃO PADRÃO BR
 function formatar_data($data){
     return implode('/', array_reverse(explode('-', $data)));
 };
+
+
 // FUNÇÃO FORMATAR NUMERO
 function formatar($valor, $casas=2) {
     return number_format($valor, $casas, '.', '');

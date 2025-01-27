@@ -86,8 +86,8 @@ include('../Control/function.php');
                     </th>
                 </thead>
                 <thead>
-                    <th>Código exame</th>
-                    <th>Descrição exame</th>
+                    <th>Código</th>
+                    <th>Descrição</th>
                     <th>Valor</th>
                     <th>Ação</th>
                 </thead>
@@ -141,22 +141,22 @@ include('../Control/function.php');
                     <button class="close">x</button>
                     <ul class="lista-cadastro">
                         <li>
-                            <label>Código exame.....:</label>
+                            <label>Código......:</label>
                             <input type="text" value="<?php if(isset($_POST['codigo'])) echo $_POST['codigo']; ?>"
                                 name="codigo">
                         </li>
                         <li>
-                            <label>Descrição exame.:</label></label>
+                            <label>Descrição..:</label></label>
                             <input type="text" value="<?php if(isset($_POST['descricao'])) echo $_POST['descricao']; ?>"
                                 name="descricao">
                         </li>
                         <li>
-                            <label>Valor..........:</label></label>
+                            <label>Valor.........:</label></label>
                             <input type="text" value="<?php if(isset($_POST['valor'])) echo $_POST['valor']; ?>"
                                 name="valor">
                         </li>
                         <li>
-                            <button class="btn-cadastro" type="submit" name="cadastrar">Cadastrar exame</button>
+                            <button class="btn-cadastro" type="submit" name="cadastrar">Enviar</button>
                         </li>
                     </ul>
                 </form>

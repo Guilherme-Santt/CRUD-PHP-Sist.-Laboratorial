@@ -167,7 +167,7 @@ $num_pacientes = $query_pacientes->num_rows;
                     </li>
                     <li>
                         <label>CPF............:</label>
-                        <input type="text" value="<?php if(isset($_POST['CPF'])) echo $_POST['CPF']; ?>" name="CPF">
+                        <input maxlength="11" type="text" value="<?php if(isset($_POST['CPF'])) echo $_POST['CPF']; ?>" name="CPF">
                     </li>
                     <li>
                         <label>RG.............:</label>
