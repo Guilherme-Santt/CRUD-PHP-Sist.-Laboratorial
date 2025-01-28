@@ -211,7 +211,7 @@ include('../Control/function.php');
     Swal.fire({
         icon: 'error',
         title: '<?php echo $error; ?>',
-        text: 'Verifique os campos preenchidos',
+        // text: 'Verifique os campos preenchidos',
         confirmButtonText: 'Fechar'
     });
     </script>

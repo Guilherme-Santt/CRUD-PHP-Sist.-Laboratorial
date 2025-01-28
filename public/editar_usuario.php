@@ -144,7 +144,7 @@ $cliente = $query_cliente->fetch_assoc();
     Swal.fire({
         icon: 'error',
         title: '<?php echo $error; ?>',
-        text: 'Verifique o campo preenchido',
+        // text: 'Verifique o campo preenchido',
         confirmButtonText: 'Fechar'
     });
     </script>

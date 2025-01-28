@@ -54,23 +54,29 @@ $num_pacientes = $query_pacientes->num_rows;
                 <img class="img-worklab" src="../images/icons/worklab.png">
                 <li>
                     <!-- PACIENTES -->
-                    <a class="btn" href="listagem_pacientes.php">PACIENTES</a>
+                    <img class="img-icon"src="../images/icons/pacientes.png">
+                    <a class="btn" href="listagem_pacientes.php">Pacientes</a>
                 </li>
                 <li>
                     <!-- RELATÓRIO -->
-                    <a class="btn" href="relatorio_pacientes.php">RELATÓRIO</a>
+                    <img class="img-icon" src="../images/icons/relatorio.png">
+                    <a class="btn" href="relatorio_pacientes.php">Relatório</a>
                 </li>
                 <li>
                     <li>
                         <!-- EXAMES -->
-                        <a class="btn" href="listagem_exames.php">EXAMES</a>
+                        <img class="img-icon" src="../images/icons/exames.png">
+                        <a class="btn" href="listagem_exames.php">Exames</a>
                     </li>
+                <li>
                     <!-- USUÁRIOS -->
-                    <a class="btn" href="listagem_usuarios.php">USUARIOS</a>
+                    <img class="img-icon"src="../images/icons/usuario.png">
+                    <a class="btn" href="listagem_usuarios.php">Usuários</a>
                 </li>
                 <li>
                     <!-- SAIR -->
-                    <a class="btn" href="Login_Lab/logout.php">ENCERRAR</a>
+                    <img class="img-icon" src="../images/icons/encerrar.png">
+                    <a class="btn" href="Login_Lab/logout.php">Encerrar</a>
                 </li>
             </ul>
         </nav>
@@ -227,7 +233,7 @@ $num_pacientes = $query_pacientes->num_rows;
     Swal.fire({
         icon: 'error',
         title: '<?php echo $error; ?>',
-        text: 'Verifique os campos preenchidos',
+        // text: 'Verifique os campos preenchidos',
         confirmButtonText: 'Fechar'
     });
     </script>

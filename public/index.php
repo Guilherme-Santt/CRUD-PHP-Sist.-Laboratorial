@@ -39,7 +39,11 @@ if(isset($_POST['email']) ){
 	<title>Bem vindo</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->	
+
+<!--===============================================================================================-->
+	<link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+<!--===============================================================================================-->
 	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="../vendor/bootstrap/css/bootstrap.min.css">
@@ -64,7 +68,7 @@ if(isset($_POST['email']) ){
 </head>
 <body>	
 	<div class="limiter">
-		<div class="container-login100" style="background-image: url('../images/lab-equipment.jpg');">
+		<div class="container-login100" style="background-image: url('../images/icons/lab-equipment.jpg');">
 			<div class="wrap-login100 p-t-30 p-b-50">
 				<span class="login100-form-title p-b-41">
 					Bem vindo de volta!
@@ -99,7 +103,7 @@ if(isset($_POST['email']) ){
     Swal.fire({
         icon: 'error',
         title: '<?php echo $error; ?>',
-        text: 'Verifique o campo preenchido',
+        // text: 'Verifique o campo preenchido',
         confirmButtonText: 'Fechar'
     });
     </script>
