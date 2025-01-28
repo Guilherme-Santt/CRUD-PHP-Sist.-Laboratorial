@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 06/02/2024 às 16:40
--- Versão do servidor: 10.4.28-MariaDB
--- Versão do PHP: 8.0.28
+-- Tempo de geração: 28/01/2025 às 17:30
+-- Versão do servidor: 10.4.32-MariaDB
+-- Versão do PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -44,7 +44,7 @@ CREATE TABLE `clientes` (
 --
 
 INSERT INTO `clientes` (`id`, `nome`, `email`, `telefone`, `nascimento`, `data`, `senha`, `unidade`, `assinatura`) VALUES
-(46, 'José Guilherme Santos Silva', 'admin@admin.com', '11995910318', '2001-03-12', '2024-01-16 14:00:05', '$2y$10$KXKZ1xev.tnfU6yplONhM.a/pZBrG/my.2Zh/pX9Eq9S3Doi/KLdu', 'Cotia', NULL);
+(68, 'Guilherme', 'admin@admin.com', '11995910318', '2000-01-12', '2025-01-28 13:08:27', '$2y$10$o/GiZHHYR6UYFoA5Q7axi.hilyfy6x85BTxXlUhMU3tg/VphhuY.e', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -55,17 +55,22 @@ INSERT INTO `clientes` (`id`, `nome`, `email`, `telefone`, `nascimento`, `data`,
 CREATE TABLE `exames` (
   `exameid` int(11) NOT NULL,
   `codigo` varchar(3) NOT NULL,
-  `descricao` longtext NOT NULL
+  `descricao` longtext NOT NULL,
+  `valor` int(15) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `exames`
 --
 
-INSERT INTO `exames` (`exameid`, `codigo`, `descricao`) VALUES
-(1, 'COL', 'Colesterol'),
-(2, 'HDL', 'Colesterol HDL'),
-(3, 'TRI', 'Triglicerides');
+INSERT INTO `exames` (`exameid`, `codigo`, `descricao`, `valor`) VALUES
+(1, 'COL', 'Colesterol', 51),
+(2, 'HDL', 'Colesterol HDL', 43),
+(3, 'TRI', 'Triglicerides', 77),
+(6, 'AUR', 'Acido úrico', 55),
+(7, 'CAI', 'Cálcio Ionico', 33),
+(10, 'FOS', 'Fosforo', 99),
+(16, 'HEM', 'Hemograma', 100);
 
 -- --------------------------------------------------------
 
@@ -84,23 +89,16 @@ CREATE TABLE `pacientes` (
   `sexo` varchar(100) NOT NULL,
   `data` datetime DEFAULT NULL ON UPDATE current_timestamp(),
   `nascimento` date NOT NULL,
-  `CRM` varchar(100) NOT NULL,
-  `Convenio` varchar(100) DEFAULT NULL,
-  `diagnostico` longtext DEFAULT NULL,
-  `medicamentos` longtext DEFAULT NULL,
-  `observacoes` longtext DEFAULT NULL,
-  `RG` int(100) DEFAULT NULL,
-  `CPF` int(100) DEFAULT NULL,
-  `nome_mae` longtext DEFAULT NULL,
-  `id_user` int(11) NOT NULL
+  `RG` varchar(100) DEFAULT NULL,
+  `CPF` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `pacientes`
 --
 
-INSERT INTO `pacientes` (`ID`, `nome`, `email`, `endereco`, `CEP`, `cidade`, `telefone`, `sexo`, `data`, `nascimento`, `CRM`, `Convenio`, `diagnostico`, `medicamentos`, `observacoes`, `RG`, `CPF`, `nome_mae`, `id_user`) VALUES
-(23, 'José Guilherme Santos Silva', 'guisant@icloud.com', 'R Santa Genoveva, 217 - Jardim Araruama', 6700505, 'Cotia', '11995910318', 'Masculino', '2024-02-02 14:09:29', '2001-03-12', '123', 'Particular', '', '', '', 123, 2147483647, 'Cristina', 46);
+INSERT INTO `pacientes` (`ID`, `nome`, `email`, `endereco`, `CEP`, `cidade`, `telefone`, `sexo`, `data`, `nascimento`, `RG`, `CPF`) VALUES
+(45, 'Guilherme', 'admin@admin.com', 'Cotia', 6700505, 'cotia', '11995910318', 'Masculino', '2025-01-28 11:38:04', '2001-03-12', '60036043440', '51366329848');
 
 -- --------------------------------------------------------
 
@@ -111,29 +109,23 @@ INSERT INTO `pacientes` (`ID`, `nome`, `email`, `endereco`, `CEP`, `cidade`, `te
 CREATE TABLE `pacientes_exames` (
   `id` int(11) NOT NULL,
   `paciente_id` int(11) NOT NULL,
-  `exame_id` int(11) NOT NULL,
-  `resultado` int(100) DEFAULT NULL
+  `exame_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `pacientes_exames`
 --
 
-INSERT INTO `pacientes_exames` (`id`, `paciente_id`, `exame_id`, `resultado`) VALUES
-(27, 12, 1, 1),
-(28, 12, 2, NULL),
-(29, 12, 3, NULL),
-(31, 13, 1, 1),
-(32, 13, 2, 3),
-(36, 11, 2, 2),
-(38, 11, 1, 4),
-(42, 11, 4, NULL),
-(50, 48, 2, NULL),
-(52, 51, 1, NULL),
-(59, 16, 1, NULL),
-(60, 16, 2, NULL),
-(61, 16, 3, NULL),
-(62, 16, 4, NULL);
+INSERT INTO `pacientes_exames` (`id`, `paciente_id`, `exame_id`) VALUES
+(76, 31, 3),
+(77, 31, 2),
+(78, 32, 3),
+(79, 32, 2),
+(80, 33, 1),
+(82, 33, 3),
+(86, 45, 1),
+(87, 45, 3),
+(88, 45, 2);
 
 --
 -- Índices para tabelas despejadas
@@ -155,9 +147,7 @@ ALTER TABLE `exames`
 -- Índices de tabela `pacientes`
 --
 ALTER TABLE `pacientes`
-  ADD PRIMARY KEY (`ID`),
-  ADD KEY `CRM` (`CRM`),
-  ADD KEY `id_user` (`id_user`);
+  ADD PRIMARY KEY (`ID`);
 
 --
 -- Índices de tabela `pacientes_exames`
@@ -175,25 +165,25 @@ ALTER TABLE `pacientes_exames`
 -- AUTO_INCREMENT de tabela `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
 -- AUTO_INCREMENT de tabela `exames`
 --
 ALTER TABLE `exames`
-  MODIFY `exameid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `exameid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de tabela `pacientes`
 --
 ALTER TABLE `pacientes`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT de tabela `pacientes_exames`
 --
 ALTER TABLE `pacientes_exames`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -2,10 +2,12 @@
 if(!isset($_SESSION)){
   session_start();
   if(!isset($_SESSION['usuario'])){
-  }    
+    header("location: ../public/index.php");
+}    
 }
 include('../Control/conexao.php');
 include('../Control/function.php');
+// VARIAVEIS DE MENSAGEM
 $error = "";
 $sucess = "";
 

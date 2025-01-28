@@ -22,7 +22,7 @@ Passo á passo de como utilizar o sistema:
 
 2. Teremos a seguintes ferramentas:
   1. Pacientes. Dentro da tela pacientes, nós podemos criar um paciente, apagar e editar. Ao clicar em editar, será direcionado para uma tela com as informações do paciente
-  onde será possível editar, e adicionar um exame. Para conseguir adicionar um exame, será preciso criar os exames na seguinte ferramenta.
+  onde será possível editar as informações, adicionar um exame no paciente e remover(para remover, basta clicar encima do exame inserdo). Para conseguir adicionar um exame, será preciso criar os exames na seguinte ferramenta.
   2. Exames:  Dentro da tela exames, será possível cadastrar um exame com código, valor e descrição. Não será possível fazer exame duplicado.
   3. Usuários: Nesta tela são os usuários para poder acessar o sistema, é possível cadastrar, editar e remover.
   4. Relatório: Essa tela é especificamente para gerar relatório de cadastro de pacientes diários. Você seleciona a data que deseja e ele vai te retornar os dados

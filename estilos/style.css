@@ -247,7 +247,7 @@ th h1 {
 .remover-exame-paciente {
     border: none;
     padding: 0.3rem;
-    color: black;
+background-color: black;
 }
 
 .remover-exame-paciente:hover {

@@ -15,8 +15,8 @@ $sucess = "";
 if(count($_POST) > 0){
     $codigo    = strtoupper($_POST['codigo']);
     $descricao = $_POST['descricao'];
-    $valor     = $_POST['valor'];
-    $valor     = formatar($valor);
+    $valor     = $_POST['valor'] ;
+
     
     if(empty($descricao) || empty($codigo) || empty($valor) || Strlen($codigo) > 4 ){
         $error = "Todos campos são obrigatórios";
