@@ -1,90 +1,37 @@
-<!-- COMANDOS PARA ACESSAR O PROJETO PELO DOCKER -->
+Passo á passo para executar o projeto:
+1. Vamos fazer download do Apache XAMP, neste link: https://www.apachefriends.org/pt_br/download.html.
 
-1.Primeiro, baixe a imagem oficial do MYSQL do Docker Hub. Abra o terminal e execute:
-docker pull mysql:latest
+2. Agora vamos baixar a pasta do arquivo disponível neste repositório. A pasta deve ficar dentro da pasta raiz do XAMP apache, em uma pasta chamada "htdocs"
 
-2.Agora, você pode criar um container com o MySQL:
-docker run --name mysql-container -e MYSQL_ROOT_PASSWORD=12345 -p 3306:3306 -d mysql:latest
+3. Após baixar a pasta do projeto e direcionar para dentro da pasta htdocs(na pasta XAMP), vamos executar o XAMP no seu sistema op. e vamos startar as duas primeiras opções: APACHE, MYSQL. 
+OBS: Caso tiver outra documentação rodando na porta 3306, será necessário fechar para executar o XAMP.
 
-3.Para verificar se o container está executando, execute o comando: 
-docker ps
-3.1.Vamos copiar o ID na interface do docker ou utilize este comando para saber o ID do seu container: 
-docker ps -a
+4. Na pasta raiz do projeto, tem o arquivo SQL disponível, com as tabelas e colunas necessárias para rodar o banco de dados no projeto. Para conseguir inserir o backup do banco 
+de dados no xamp, vamos abrir o PHPMyAdmin disponível dentro do XAMP, na segunda opção(MySQL), opção "Admin". Ou pelo link: ou: http://localhost/phpmyadmin/
 
-3.2. Agora, vamos executar o container com seguinte comando:
-docker start [ID do container]
+5. Ele vai abrir o PhPMyAdmin no seu navegador automáticamente.
+  1.Vamos acessar o sistema, de preferência Login: root  / senha: "em branco"
+  2.Vamos criar um banco chamado "system". Caso optar por outro nome, irei orientar a baixo como rodar o projeto.
+  3.Ao criar o banco, basta arrastar o arquivo SQL para dentro do banco, que ele vai fazer backup das informações.
+  4.Caso optar por outro nome de banco e senha. Deverá entrar no código do projeto em: Control->conexão.php e alterar os valores das variáveis(vale para usuário, senha e nome do banco)
+
+6. Agora podemos abrir o projeto no navegador: 127.0.0.1/Projeto-Worklab/public/
+
+Passo á passo de como utilizar o sistema:
+1. Ele vai direcionar para a tela de login. A senha padrão que deixei no SQL, é Login: admin@admin.com senha: 123.  
+
+2. Teremos a seguintes ferramentas:
+  1. Pacientes. Dentro da tela pacientes, nós podemos criar um paciente, apagar e editar. Ao clicar em editar, será direcionado para uma tela com as informações do paciente
+  onde será possível editar, e adicionar um exame. Para conseguir adicionar um exame, será preciso criar os exames na seguinte ferramenta.
+  2. Exames:  Dentro da tela exames, será possível cadastrar um exame com código, valor e descrição. Não será possível fazer exame duplicado.
+  3. Usuários: Nesta tela são os usuários para poder acessar o sistema, é possível cadastrar, editar e remover.
+  4. Relatório: Essa tela é especificamente para gerar relatório de cadastro de pacientes diários. Você seleciona a data que deseja e ele vai te retornar os dados
+  do paciente, *caso tiver sido registrado no dia selecionado*. Após gerar o relatório, é possível gerar um PDF para impressão.
 
 
-4.Agora, vamos acessar o MYSQL dentro do container:
-docker exec -it mysql-container mysql -u root -p
-4.1. A senha é a mesma qual foi criada o container: 12345
+Observações: 
+1. Todas tabelas, contém visualização de 6 dados pagina. Caso criar mais que 6, se atentar em mudar a página para visualização.
+2. Não será possível cadastrar dados já existentes. 
 
-5.Caso optar por dígitar o código a mão para criar as tabelas dentro do docker, vou disponibilizar o código SQL aqui em baixo. Caso NÃO, ignorar e partir para próximo passo á baixo:
-
-<!-- TABELA DE CLIENTES -->
-CREATE TABLE `clientes` (
-  `id` INT AUTO_INCREMENT PRIMARY KEY,
-  `nome` varchar(100) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `telefone` varchar(15) DEFAULT NULL,
-  `nascimento` date DEFAULT NULL,
-  `data` datetime NOT NULL DEFAULT current_timestamp(),
-  `senha` longtext NOT NULL,
-  `unidade` varchar(50) DEFAULT NULL,
-  `assinatura` longtext DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
-<!-- TABELA DE PACIENTES -->
-
-CREATE TABLE `pacientes` (
-  `ID` INT AUTO_INCREMENT PRIMARY KEY,
-  `nome` varchar(100) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `endereco` varchar(100) NOT NULL,
-  `CEP` int(50) DEFAULT NULL,
-  `cidade` text DEFAULT NULL,
-  `telefone` varchar(15) NOT NULL,
-  `sexo` varchar(100) NOT NULL,
-  `data` datetime DEFAULT NULL ON UPDATE current_timestamp(),
-  `nascimento` date NOT NULL,
-  `CRM` varchar(100) NOT NULL,
-  `Convenio` varchar(100) DEFAULT NULL,
-  `diagnostico` longtext DEFAULT NULL,
-  `medicamentos` longtext DEFAULT NULL,
-  `observacoes` longtext DEFAULT NULL,
-  `RG` int(100) DEFAULT NULL,
-  `CPF` int(100) DEFAULT NULL,
-  `nome_mae` longtext DEFAULT NULL,
-  `id_user` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
-<!-- TABELA DE EXAMES -->
-CREATE TABLE `pacientes_exames` (
-  `id` INT AUTO_INCREMENT PRIMARY KEY,
-  `paciente_id` int(11) NOT NULL,
-  `exame_id` int(11) NOT NULL,
-  `resultado` int(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
-<!-- TABELA PACIENTES EXAMES -->
-CREATE TABLE `pacientes_exames` (
-  `id` int(11) NOT NULL,
-  `paciente_id` int(11) NOT NULL,
-  `exame_id` int(11) NOT NULL,
-  `resultado` int(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
-<!-- INSERÇÃO DE DADOS PARA ACESSAR O SISTEMA *OBRIGATORIO* PARA FAZER LOGIN -->
-INSERT INTO `clientes` (`id`, `nome`, `email`, `telefone`, `nascimento`, `data`, `senha`, `unidade`, `assinatura`) VALUES
-(46, 'José Guilherme Santos Silva', 'admin@admin.com', '11995910318', '2001-03-12', '2024-01-16 14:00:05', '$2y$10$KXKZ1xev.tnfU6yplONhM.a/pZBrG/my.2Zh/pX9Eq9S3Doi/KLdu', 'Cotia', NULL);
-
-6.Agora vou mostrar como inserir as tabelas no banco de dados pelo PhpAdmin. Primeiro vamos criar uma container no docker para o php admin, com seguinte comando:
-docker run --name phpmyadmin --link mysql-container:db -p 8080:80 -d phpmyadmin/phpmyadmin 
-
-7.Após criar o container, e ambos estiver rodando, vamos acessar a interface do PHPAdmin na web.
-http://localhost:8080
-
-usuario: root
-senha: 12345
-
-8. Vamos puxar o arquivo disponível na pasta SQL dentro desse template para dentro do SQL e pronto, vão puxar todas tabelas e informações necessárias. 
+Agradeço desde já pela oportunidade. :D
+qualquer dúvida: guisant@icloud.com
