@@ -1,23 +1,37 @@
-<h1>Passo á passo para executar o projeto</h1>
-<ol> 
-  <li>
-    Vamos fazer download do Apache, neste link:
-    https://www.apachefriends.org/pt_br/download.html
-  </li>
-  <li>
-    Vamos baixar a pasta do arquivo disponível neste repositório
-  </li>
-  <li>
-    Vamos salvar a pasta do projeto dentro da pasta htdocs(dentro da pasta raiz do XAMPP)
-    
-  </li>
-  <li>
-    
-  </li>
-    <li>
-    
-  </li>
-    <li>
-    
-  </li>
-<ol>
+Passo á passo para executar o projeto:
+1. Vamos fazer download do Apache XAMP, neste link: https://www.apachefriends.org/pt_br/download.html.
+
+2. Agora vamos baixar a pasta do arquivo disponível neste repositório. A pasta deve ficar dentro da pasta raiz do XAMP apache, em uma pasta chamada "htdocs"
+
+3. Após baixar a pasta do projeto e direcionar para dentro da pasta htdocs(na pasta XAMP), vamos executar o XAMP no seu sistema op. e vamos startar as duas primeiras opções: APACHE, MYSQL. 
+OBS: Caso tiver outra documentação rodando na porta 3306, será necessário fechar para executar o XAMP.
+
+4. Na pasta raiz do projeto, tem o arquivo SQL disponível, com as tabelas e colunas necessárias para rodar o banco de dados no projeto. Para conseguir inserir o backup do banco 
+de dados no xamp, vamos abrir o PHPMyAdmin disponível dentro do XAMP, na segunda opção(MySQL), opção "Admin". Ou pelo link: ou: http://localhost/phpmyadmin/
+
+5. Ele vai abrir o PhPMyAdmin no seu navegador automáticamente.
+  1.Vamos acessar o sistema, de preferência Login: root  / senha: "em branco"
+  2.Vamos criar um banco chamado "system". Caso optar por outro nome, irei orientar a baixo como rodar o projeto.
+  3.Ao criar o banco, basta arrastar o arquivo SQL para dentro do banco, que ele vai fazer backup das informações.
+  4.Caso optar por outro nome de banco e senha. Deverá entrar no código do projeto em: Control->conexão.php e alterar os valores das variáveis(vale para usuário, senha e nome do banco)
+
+6. Agora podemos abrir o projeto no navegador: 127.0.0.1/Projeto-Worklab/public/
+
+Passo á passo de como utilizar o sistema:
+1. Ele vai direcionar para a tela de login. A senha padrão que deixei no SQL, é Login: admin@admin.com senha: 123.  
+
+2. Teremos a seguintes ferramentas:
+  1. Pacientes. Dentro da tela pacientes, nós podemos criar um paciente, apagar e editar. Ao clicar em editar, será direcionado para uma tela com as informações do paciente
+  onde será possível editar, e adicionar um exame. Para conseguir adicionar um exame, será preciso criar os exames na seguinte ferramenta.
+  2. Exames:  Dentro da tela exames, será possível cadastrar um exame com código, valor e descrição. Não será possível fazer exame duplicado.
+  3. Usuários: Nesta tela são os usuários para poder acessar o sistema, é possível cadastrar, editar e remover.
+  4. Relatório: Essa tela é especificamente para gerar relatório de cadastro de pacientes diários. Você seleciona a data que deseja e ele vai te retornar os dados
+  do paciente, *caso tiver sido registrado no dia selecionado*. Após gerar o relatório, é possível gerar um PDF para impressão.
+
+
+Observações: 
+1. Todas tabelas, contém visualização de 6 dados pagina. Caso criar mais que 6, se atentar em mudar a página para visualização.
+2. Não será possível cadastrar dados já existentes. 
+
+Agradeço desde já pela oportunidade. :D
+qualquer dúvida: guisant@icloud.com
