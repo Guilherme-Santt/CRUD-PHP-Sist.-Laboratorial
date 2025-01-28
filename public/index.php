@@ -66,7 +66,8 @@ if(isset($_POST['email']) ){
 	<link rel="stylesheet" type="text/css" href="../estilos/main.css">
 <!--===============================================================================================-->
 </head>
-<body>	
+<body>
+	<!-- DIVISÃO DE INSERÇÃO DE LOGUIN E SENHA -->
 	<div class="limiter">
 		<div class="container-login100" style="background-image: url('../images/icons/lab-equipment.jpg');">
 			<div class="wrap-login100 p-t-30 p-b-50">

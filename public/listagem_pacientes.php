@@ -76,7 +76,7 @@ $num_pacientes = $query_pacientes->num_rows;
                 <li>
                     <!-- SAIR -->
                     <img class="img-icon" src="../images/icons/encerrar.png">
-                    <a class="btn" href="Login_Lab/logout.php">Encerrar</a>
+                    <a class="btn" href="../modules/logout.php">Encerrar</a>
                 </li>
             </ul>
         </nav>

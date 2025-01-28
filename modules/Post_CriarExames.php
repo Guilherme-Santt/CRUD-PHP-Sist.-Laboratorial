@@ -5,12 +5,12 @@ if(!isset($_SESSION)){
         header("location: ../Loguin_Lab/index_login.php");
     }    
 }
-// CÓDIGO PHP
 // VERIFICANDO SE O CAMPO DESCRIÇÃO ESTÁ VAZIO
 include('../Control/conexao.php');
 include('../Control/function.php');
 $error  = "";
 $sucess = "";
+
 // VERIFICAÇÃO DE INSERÇÃO NOS CAMPOS POST DO FORMULÁRIO
 if(count($_POST) > 0){
     $codigo    = strtoupper($_POST['codigo']);

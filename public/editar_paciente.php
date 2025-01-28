@@ -14,85 +14,84 @@ $error  = "";
 
 
 if(count($_POST) > 0){
-  $nome         = $_POST['nome'];
-  $email        = $_POST['email'];
-  $endereco     = $_POST['endereco'];
-  $telefone     = $_POST['telefone'];
-  $nascimento   = $_POST['nascimento'];
-  $codigo       = $_POST['id_exame'];
-  $RG           = $_POST['RG'];
-  $CPF          = $_POST['CPF'];
-  $CEP          = $_POST['CEP'];
-  $cidade       = $_POST['cidade'];
-  
-  // VERIFICAÇÕES DE SEGURANÇA DOS INPUTS 
-  if(empty($RG) || empty($CPF) || empty($cidade) || empty($CEP) || empty($cidade) || empty($nome) ||  empty($nascimento) || empty($telefone)) 
-      $error = "Todos Campos são obrigatórios";
+    $nome         = $_POST['nome'];
+    $email        = $_POST['email'];
+    $endereco     = $_POST['endereco'];
+    $telefone     = $_POST['telefone'];
+    $nascimento   = $_POST['nascimento'];
+    $codigo       = $_POST['id_exame'];
+    $RG           = $_POST['RG'];
+    $CPF          = $_POST['CPF'];
+    $CEP          = $_POST['CEP'];
+    $cidade       = $_POST['cidade'];
     
-  // VERIFICAÇÃO SE O NOME TEM DE 3 Á 100 DÍGITOS
-  if(Strlen($nome) < 3 || Strlen($nome) > 100)
-      $error = "Nome incorreto";
-    
-  // VERIFICAÇÃO DE FILTRO DE E-MAIL
-  if(empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL))
-      $error = "E-mail inválido";
+    // VERIFICAÇÕES DE SEGURANÇA DOS INPUTS 
+    if(empty($RG) || empty($CPF) || empty($cidade) || empty($CEP) || empty($cidade) || empty($nome) ||  empty($nascimento) || empty($telefone)) 
+        $error = "Todos Campos são obrigatórios";
+        
+    // VERIFICAÇÃO SE O NOME TEM DE 3 Á 100 DÍGITOS
+    if(Strlen($nome) < 3 || Strlen($nome) > 100)
+        $error = "Nome incorreto";
+        
+    // VERIFICAÇÃO DE FILTRO DE E-MAIL
+    if(empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL))
+        $error = "E-mail inválido";
 
-  // VERIFICAÇÃO SE DATA DE NASCIMENTO É DIFERENTE DE 10 DÍGITOS
-  if(strlen($nascimento) != 10)
-      $error = "Data de nascimento inválida";
+    // VERIFICAÇÃO SE DATA DE NASCIMENTO É DIFERENTE DE 10 DÍGITOS
+    if(strlen($nascimento) != 10)
+        $error = "Data de nascimento inválida";
+        
+    // VERIFICAÇÃO SE O INPUT TELEFONE NÃO TEM 11 DÍGITOS
+    if(strlen($telefone) != 11)
+        $error = "Telefone incorreto";
     
-  // VERIFICAÇÃO SE O INPUT TELEFONE NÃO TEM 11 DÍGITOS
-  if(strlen($telefone) != 11)
-      $error = "Telefone incorreto";
-  
-  // INSERÇÃO CAMPO EXAME NA TABELA PACIENTES_EXAMES
-  if(!empty($codigo)){
-      // VERIFICAÇÃO SE O EXAME EXISTE NA TABELA EXAMES
-      $sql_verify = "SELECT * FROM exames WHERE codigo = '$codigo'";
-      $query_verify = $mysqli->query($sql_verify);
-      $verify_existencia_exame = $query_verify->fetch_assoc();
-      $codigo = isset($verify_existencia_exame['exameid']) ? $verify_existencia_exame['exameid'] : null;
-      if($verify_existencia_exame){
-              // VERIFICANDO SE O EXAME JÁ ESTÁ INSERIDO NO PACIENTE NA TABELA PACIENTES_EXAMES
-              $sql_verify = "SELECT * FROM pacientes_exames WHERE exame_id = '$codigo' AND paciente_id = '$id' ";
-              $query_verify = $mysqli->query($sql_verify);
-              $verify_cadastro_exame_no_paciente = $query_verify->fetch_assoc();
-              // VERIFICAÇÃO SE  EXAME JÁ ESTÁ INSERIDO
-                if($verify_cadastro_exame_no_paciente){
-                    $error = "Paciente já contém o exame cadastrado";
-                    }
-                    else{
-                      // SE NÃO ESTIVER INSERIDO, VAI INSERIR
-                        $ql_insert = "INSERT INTO pacientes_exames (paciente_id, exame_id) VALUES ('$id', '$codigo')";
-                        $query_insert = $mysqli->query($ql_insert);
-                    }
-          }else{
+    // INSERÇÃO CAMPO EXAME NA TABELA PACIENTES_EXAMES
+    if(!empty($codigo)){
+        // VERIFICAÇÃO SE O EXAME EXISTE NA TABELA EXAMES
+        $sql_verify = "SELECT * FROM exames WHERE codigo = '$codigo'";
+        $query_verify = $mysqli->query($sql_verify);
+        $verify_existencia_exame = $query_verify->fetch_assoc();
+        $codigo = isset($verify_existencia_exame['exameid']) ? $verify_existencia_exame['exameid'] : null;
+        if($verify_existencia_exame){
+                // VERIFICANDO SE O EXAME JÁ ESTÁ INSERIDO NO PACIENTE NA TABELA PACIENTES_EXAMES
+                $sql_verify = "SELECT * FROM pacientes_exames WHERE exame_id = '$codigo' AND paciente_id = '$id' ";
+                $query_verify = $mysqli->query($sql_verify);
+                $verify_cadastro_exame_no_paciente = $query_verify->fetch_assoc();
+                // VERIFICAÇÃO SE  EXAME JÁ ESTÁ INSERIDO
+                    if($verify_cadastro_exame_no_paciente){
+                        $error = "Paciente já contém o exame cadastrado";
+                        }
+                        else{
+                        // SE NÃO ESTIVER INSERIDO, VAI INSERIR
+                            $ql_insert = "INSERT INTO pacientes_exames (paciente_id, exame_id) VALUES ('$id', '$codigo')";
+                            $query_insert = $mysqli->query($ql_insert);
+                        }
+        }else{
             // SE O EXAME NÃO EXISTIR, VAI RETORNAR ERRO
             $error = "Exame inexistente";
-          }
-    }
-    // FINAL INSERÇÃO EXAME NA TABELA PACIENTES_EXAMES
-
-    
-    if($error){
-      
-    } else{  //ATUALIZAÇÃO DAS INFORMAÇÕES ALTERADAS
-        $sql_code = "UPDATE pacientes
-        SET nome     = '$nome', 
-        endereco     = '$endereco',
-        RG           = '$RG',
-        CEP          = '$CEP',
-        CPF          = '$CPF',
-        cidade       = '$cidade',
-        email        = '$email',
-        telefone     = '$telefone',
-        nascimento   = '$nascimento' WHERE id  = '$id'";
-        $deu_certo = $mysqli->query($sql_code);
-            if($deu_certo){
-                $sucess = "Atualizado com sucesso";
-                // unset($_POST);
-            }
-    }
+        }
+        }
+        // FINAL INSERÇÃO EXAME NA TABELA PACIENTES_EXAMES
+        
+        if($error){
+        
+        } else{  //ATUALIZAÇÃO DAS INFORMAÇÕES ALTERADAS
+            $sql_code = "UPDATE pacientes
+            SET nome     = '$nome', 
+            endereco     = '$endereco',
+            RG           = '$RG',
+            CEP          = '$CEP',
+            CPF          = '$CPF',
+            cidade       = '$cidade',
+            email        = '$email',
+            telefone     = '$telefone',
+            nascimento   = '$nascimento' WHERE id  = '$id'";
+            $deu_certo = $mysqli->query($sql_code);
+                if($deu_certo){
+                    $sucess = "Atualizado com sucesso";
+                    // unset($_POST);
+                }
+        }
 }
 
 // VISUALIZAÇÃO INFORMAÇÕES USUÁRIO NO CAMPO EDIÇÃO
@@ -124,30 +123,41 @@ $num_exames = $query_exames->num_rows;
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
 
 <body>
-    <!-- !-- DIVISÃO Á BAIXO DO HEADER, PARA INFOS & AVISOS  -->
-    <header class=" header">
+    <!-- HEADER DE INFORMAÇÕES -->
+    <header class="header">
         <nav>
             <ul class="list-header">
-                <!-- PACIENTES -->
+                <img class="img-worklab" src="../images/icons/worklab.png">
                 <li>
-                    <a class="btn" href="listagem_pacientes.php">Listagem Pacientes</a>
+                    <!-- PACIENTES -->
+                    <img class="img-icon"src="../images/icons/pacientes.png">
+                    <a class="btn" href="listagem_pacientes.php">Pacientes</a>
                 </li>
-                <!-- USUÁRIOS -->
                 <li>
-                    <a class="btn" href="listagem_usuarios.php">Configurações de usuários</a>
+                    <!-- RELATÓRIO -->
+                    <img class="img-icon" src="../images/icons/relatorio.png">
+                    <a class="btn" href="relatorio_pacientes.php">Relatório</a>
                 </li>
-                <!-- EXAMES -->
                 <li>
-                    <a class="btn" href="listagem_exames.php">Cadastro de exames</a>
+                    <li>
+                        <!-- EXAMES -->
+                        <img class="img-icon" src="../images/icons/exames.png">
+                        <a class="btn" href="listagem_exames.php">Exames</a>
+                    </li>
+                <li>
+                    <!-- USUÁRIOS -->
+                    <img class="img-icon"src="../images/icons/usuario.png">
+                    <a class="btn" href="listagem_usuarios.php">Usuários</a>
                 </li>
                 <li>
                     <!-- SAIR -->
-                    <a class="btn" href="Login_Lab/logout.php">Encerrar</a>
+                    <img class="img-icon" src="../images/icons/encerrar.png">
+                    <a class="btn" href="../modules/logout.php">Encerrar</a>
                 </li>
-
             </ul>
         </nav>
     </header>
+    <!-- FINAL HEADER -->
 
     <!-- INSERÇÃO CAMPOS POST NO FORM PARA ATUALIZAÇÃO DE DADOS-->
     <div class="container">
@@ -224,7 +234,7 @@ $num_exames = $query_exames->num_rows;
                 </ul>
             </form>
         </div>
-
+    </div>
         <!-- SWEET ALERTA PARA ERRO OU SUCESSO -->
         <?php
       if(isset($error) && $error) :?>

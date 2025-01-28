@@ -29,52 +29,63 @@ include('../Control/function.php');
     <header class="header">
         <nav>
             <ul class="list-header">
-                <!-- PACIENTES -->
+                <img class="img-worklab" src="../images/icons/worklab.png">
                 <li>
-                    <a class="btn" href="listagem_pacientes.php">Listagem Pacientes</a>
+                    <!-- PACIENTES -->
+                    <img class="img-icon"src="../images/icons/pacientes.png">
+                    <a class="btn" href="listagem_pacientes.php">Pacientes</a>
                 </li>
-
-                <!-- USUÁRIOS -->
                 <li>
-                    <a class="btn" href="listagem_usuarios.php">Configurações de usuários</a>
+                    <!-- RELATÓRIO -->
+                    <img class="img-icon" src="../images/icons/relatorio.png">
+                    <a class="btn" href="relatorio_pacientes.php">Relatório</a>
                 </li>
-
-                <!-- EXAMES -->
                 <li>
-                    <a class="btn" href="listagem_exames.php">Cadastro de exames</a>
+                    <li>
+                        <!-- EXAMES -->
+                        <img class="img-icon" src="../images/icons/exames.png">
+                        <a class="btn" href="listagem_exames.php">Exames</a>
+                    </li>
+                <li>
+                    <!-- USUÁRIOS -->
+                    <img class="img-icon"src="../images/icons/usuario.png">
+                    <a class="btn" href="listagem_usuarios.php">Usuários</a>
                 </li>
                 <li>
                     <!-- SAIR -->
-                    <a class="btn" href="Login_Lab/logout.php">Encerrar</a>
+                    <img class="img-icon" src="../images/icons/encerrar.png">
+                    <a class="btn" href="../modules/logout.php">Encerrar</a>
                 </li>
             </ul>
         </nav>
     </header>
+    <!-- FINAL HEADER -->
+     
     <!-- DIV PARA TABELA COM INFORMAÇÕES DOS EXAMES -->
     <div class="container">
         <div class="container_son">
             <?php
-          // Parâmetro para o número de visualizações por página
-          $exames_por_pagina = 6;
+            // Parâmetro para o número de visualizações por página
+            $exames_por_pagina = 6;
 
-          // Verifica se o parâmetro de página foi enviado, caso contrário, define como página 1
-          $pagina_atual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
+            // Verifica se o parâmetro de página foi enviado, caso contrário, define como página 1
+            $pagina_atual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
 
-          // Calcula o deslocamento para a consulta SQL
-          $offset = ($pagina_atual - 1) * $exames_por_pagina;
+            // Calcula o deslocamento para a consulta SQL
+            $offset = ($pagina_atual - 1) * $exames_por_pagina;
 
-          // Consulta para contar o número total de exames
-          $sql_total_exames = "SELECT COUNT(*) as total FROM exames";
-          $result_total = $mysqli->query($sql_total_exames) or die($mysqli->error);
-          $total_exames = $result_total->fetch_assoc()['total'];
+            // Consulta para contar o número total de exames
+            $sql_total_exames = "SELECT COUNT(*) as total FROM exames";
+            $result_total = $mysqli->query($sql_total_exames) or die($mysqli->error);
+            $total_exames = $result_total->fetch_assoc()['total'];
 
-          // Calcula o número total de páginas
-          $total_paginas = ceil($total_exames / $exames_por_pagina);
+            // Calcula o número total de páginas
+            $total_paginas = ceil($total_exames / $exames_por_pagina);
 
-          // Consulta para buscar os exames da página atual
-          $sql_exames = "SELECT * FROM exames LIMIT $offset, $exames_por_pagina";
-          $query_exames = $mysqli->query($sql_exames) or die($mysqli->error);
-        ?>
+            // Consulta para buscar os exames da página atual
+            $sql_exames = "SELECT * FROM exames LIMIT $offset, $exames_por_pagina";
+            $query_exames = $mysqli->query($sql_exames) or die($mysqli->error);
+            ?>
 
             <table>
                 <thead>
@@ -92,41 +103,40 @@ include('../Control/function.php');
                     <th>Ação</th>
                 </thead>
                 <tbody>
-                    <?php 
-        if($query_exames->num_rows == 0) { 
-        ?>
-                    <tr>
-                        <td colspan="5">Nenhum exame foi encontrado!</td>
-                    </tr>
-                    <?php 
-        } else { 
-            while($exames = $query_exames->fetch_assoc()) {
-        ?>
-                    <tr>
-                        <!-- VISUALIZAÇÃO DOS CAMPOS NA TABELA -->
-                        <td><?php echo $exames['codigo']?> </td>
-                        <td><?php echo $exames['descricao']?> </td>
-                        <td><?php echo $exames['valor'];?> </td>
-                        <td><a href="../modules/deletar_exame.php?id=<?php echo $exames['exameid'] ?>">Deletar exame</a>
-                        </td>
-                    </tr>
-                    <?php 
-            }
-        } 
-        ?>
+                <?php 
+                if($query_exames->num_rows == 0) { 
+                ?>
+                            <tr>
+                                <td colspan="5">Nenhum exame foi encontrado!</td>
+                            </tr>
+                            <?php 
+                } else { 
+                    while($exames = $query_exames->fetch_assoc()) {
+                ?>
+                            <tr>
+                                <!-- VISUALIZAÇÃO DOS CAMPOS NA TABELA -->
+                                <td><?php echo $exames['codigo']?> </td>
+                                <td><?php echo $exames['descricao']?> </td>
+                                <td><?php echo $exames['valor'];?> </td>
+                                <td><a href="../modules/deletar_exame.php?id=<?php echo $exames['exameid'] ?>">Deletar exame</a>
+                                </td>
+                            </tr>
+                            <?php 
+                    }
+                } 
+                ?>
                 </tbody>
             </table>
-
             <!-- Paginação -->
             <div class="paginacao">
                 <?php if ($pagina_atual > 1) { ?>
                 <a href="?pagina=<?php echo $pagina_atual - 1; ?>"><<</a>
                 <?php } ?>
-    
+
                 <?php for ($i = 1; $i <= $total_paginas; $i++) { ?>
                     <a href="?pagina=<?php echo $i; ?>" <?php if ($i == $pagina_atual) echo 'style="font-weight:bold;"';?>><?php echo $i;?></a>
                 <?php } ?>
-    
+
                 <?php if ($pagina_atual < $total_paginas) { ?>
                 <a href="?pagina=<?php echo $pagina_atual + 1; ?>">>></a>
                 <?php } ?>

@@ -20,28 +20,37 @@
     <header class="header">
         <nav>
             <ul class="list-header">
-                <!-- PACIENTES -->
+                <img class="img-worklab" src="../images/icons/worklab.png">
                 <li>
-                    <a class="btn" href="listagem_pacientes.php">Listagem Pacientes</a>
+                    <!-- PACIENTES -->
+                    <img class="img-icon"src="../images/icons/pacientes.png">
+                    <a class="btn" href="listagem_pacientes.php">Pacientes</a>
                 </li>
-
-                <!-- USUÁRIOS -->
                 <li>
-                    <a class="btn" href="listagem_usuarios.php">Configurações de usuários</a>
+                    <!-- RELATÓRIO -->
+                    <img class="img-icon" src="../images/icons/relatorio.png">
+                    <a class="btn" href="relatorio_pacientes.php">Relatório</a>
                 </li>
-
-                <!-- EXAMES -->
                 <li>
-                    <a class="btn" href="listagem_exames.php">Cadastro de exames</a>
+                    <li>
+                        <!-- EXAMES -->
+                        <img class="img-icon" src="../images/icons/exames.png">
+                        <a class="btn" href="listagem_exames.php">Exames</a>
+                    </li>
+                <li>
+                    <!-- USUÁRIOS -->
+                    <img class="img-icon"src="../images/icons/usuario.png">
+                    <a class="btn" href="listagem_usuarios.php">Usuários</a>
                 </li>
                 <li>
                     <!-- SAIR -->
-                    <a class="btn" href="Login_Lab/logout.php">Encerrar</a>
+                    <img class="img-icon" src="../images/icons/encerrar.png">
+                    <a class="btn" href="../modules/logout.php">Encerrar</a>
                 </li>
             </ul>
         </nav>
     </header>
-    <!-- END HEADER -->
+    <!-- FINAL HEADER -->
 
     <!-- FORM PARA GERAR RELATÓRIO -->
     <div class="container">
@@ -134,7 +143,7 @@
                                 <li><b>Nome: </b>"                  . htmlspecialchars($row['nome']) . "</li>
                                 <li><b>Protocolo: </b>"             . htmlspecialchars($row['paciente_id']) . "</li>
                                 <li><b>Cadastro: </b>"              . htmlspecialchars($dataFormatada) . "</li>
-                                <li><b>CPF: </b>"                   . htmlspecialchars(formatar_cpf($row['CPF'])) . "</li>
+                                <li><b>CPF: </b>"                   . htmlspecialchars($row['CPF']) . "</li>
                                 <li><b>Registro Nacional: </b>"     . htmlspecialchars($row['RG']) . "</li>
                                 <li><b>Celular: </b>"               . htmlspecialchars($row['telefone']) . "</li>
                                 <li><b>Data nascimento: </b>"       . htmlspecialchars(formatar_data($row['nascimento'])) . "</li>

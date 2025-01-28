@@ -21,6 +21,12 @@ if(count($_POST)){
     $telefone    = $_POST['telefone'];
     $sexo        = isset($_POST['sexo']) ? $_POST['sexo'] : null;
 
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $_SESSION['error'] = "E-mail inválido!";
+        header("location: ../public/listagem_pacientes.php");
+        exit;
+    }
+    
     // VERIFICAÇÃO SE ALGUM DOS CAMPOS ESTÁ VAZIO
     if(empty($nome) || empty($cpf) || empty($rg) || empty($email) || empty($endereco) || empty($cep) || empty($cidade) || empty($nascimento) || empty($telefone) || empty($sexo)){
         $error = "Todos campos são obrigatórios";
@@ -30,7 +36,8 @@ if(count($_POST)){
     }
     else{
         // INSERÇÃO DAS INFORMAÇÕES NO BANCO DE DADOS
-        $sql_code = "INSERT INTO pacientes (nome, CPF, RG, email, endereco, CEP, cidade, nascimento, telefone, sexo, data) 
+        $sql_code = "INSERT INTO pacientes 
+        (nome, CPF, RG, email, endereco, CEP, cidade, nascimento, telefone, sexo, data) 
         values ('$nome', '$cpf', '$rg', '$email','$endereco', '$cep', '$cidade', '$nascimento', '$telefone', '$sexo', NOW())";
         $query = $mysqli->query($sql_code);
 
@@ -39,8 +46,7 @@ if(count($_POST)){
             $sucess = "Cadastrado com sucesso";
             $_SESSION['sucess'] = $sucess;
             header("location: ../public/listagem_pacientes.php");
-            exit;         
-            // exit;
+            exit;   
         }else {
             // CASO DER ERRO NA INSERÇÃO AO BANCO, VAI RETORNAR ERRO
             $error = "Erro na inserção de dados";
