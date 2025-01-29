@@ -19,7 +19,7 @@ INICIO CONFIGURAÇÕES HEADER*/
     justify-content: center;
     align-items: center;
     margin-bottom: 30px;
-    box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .list-header {
@@ -43,11 +43,9 @@ INICIO CONFIGURAÇÕES HEADER*/
     height: 5rem;
 }
 .list-header a {
-    
     text-decoration: none;
     color: rgb(250, 247, 247);
     /* background-color: rgb(164, 96, 228); */
-    padding: 1rem;
     /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
     /* border-radius: 1rem; */
 }
